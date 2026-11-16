@@ -1,0 +1,83 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="100%" height="100%">
+  <defs>
+    <!-- Wax Drop Shadow -->
+    <filter id="sealShadow" x="-20%" y="-20%" width="150%" height="150%">
+      <feDropShadow dx="0" dy="8" stdDeviation="8" flood-color="#300A0D" flood-opacity="0.45" />
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#000000" flood-opacity="0.25" />
+    </filter>
+
+    <!-- Wax Rim Gradient -->
+    <radialGradient id="waxGradient" cx="45%" cy="40%" r="55%">
+      <stop offset="0%" stop-color="#9E2A34" />
+      <stop offset="65%" stop-color="#731921" />
+      <stop offset="85%" stop-color="#5A1218" />
+      <stop offset="100%" stop-color="#3F0A0F" />
+    </radialGradient>
+
+    <!-- Inner Stamp Inset Cavity -->
+    <radialGradient id="innerCavity" cx="48%" cy="46%" r="50%">
+      <stop offset="0%" stop-color="#69161E" />
+      <stop offset="70%" stop-color="#551117" />
+      <stop offset="100%" stop-color="#400A0E" />
+    </radialGradient>
+
+    <!-- Embossed Gold Shimmer for Stamp Relief -->
+    <linearGradient id="embossedGold" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#F2DFB8" />
+      <stop offset="50%" stop-color="#D4BE93" />
+      <stop offset="100%" stop-color="#9E7E4D" />
+    </linearGradient>
+
+    <filter id="embossBevel">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="1.5" result="blur" />
+      <feSpecularLighting in="blur" surfaceScale="2" specularConstant="0.8" specularExponent="20" lighting-color="#FFF2D6" result="spec">
+        <fePointLight x="60" y="50" z="80" />
+      </feSpecularLighting>
+      <feComposite in="spec" in2="SourceAlpha" operator="in" result="specIn" />
+      <feComposite in="SourceGraphic" in2="specIn" operator="arithmetic" k1="0" k2="1" k3="1" k4="0" />
+    </filter>
+  </defs>
+
+  <!-- Wax Outer Natural Droplet Edge -->
+  <g filter="url(#sealShadow)">
+    <path d="M100 12 
+             C128 10, 154 22, 172 44 
+             C188 64, 194 92, 186 118 
+             C179 143, 168 166, 144 179 
+             C122 191, 92 192, 68 184 
+             C44 175, 23 158, 14 134 
+             C6 112, 8 84, 22 62 
+             C37 38, 68 14, 100 12Z" 
+          fill="url(#waxGradient)" />
+          
+    <!-- Wax Melting Ripple Rim Detail -->
+    <path d="M100 24 
+             C124 23, 145 33, 160 52 
+             C174 69, 179 92, 172 113 
+             C165 134, 154 152, 134 163 
+             C115 173, 90 173, 71 166 
+             C51 159, 34 144, 26 124 
+             C19 105, 21 82, 33 64 
+             C46 44, 73 25, 100 24Z" 
+          fill="none" stroke="#A8323D" stroke-width="2.5" opacity="0.45" />
+
+    <!-- Center Depressed Stamping Circle -->
+    <circle cx="100" cy="102" r="54" fill="url(#innerCavity)" stroke="#38070A" stroke-width="2" />
+    <circle cx="100" cy="102" r="50" fill="none" stroke="url(#embossedGold)" stroke-width="1.2" stroke-dasharray="3 2" opacity="0.65" />
+    <circle cx="100" cy="102" r="46" fill="none" stroke="url(#embossedGold)" stroke-width="0.8" opacity="0.4" />
+
+    <!-- Monogram Relief Inside Seal -->
+    <g filter="url(#embossBevel)">
+      <!-- Letter I -->
+      <text x="80" y="112" font-family="'Cormorant Garamond', Georgia, serif" font-size="34" font-weight="600" font-style="italic" fill="url(#embossedGold)" text-anchor="middle">I</text>
+      <!-- Ampersand -->
+      <text x="100" y="105" font-family="'Allura', cursive, serif" font-size="24" font-weight="400" fill="#E6D3AF" text-anchor="middle">&amp;</text>
+      <!-- Letter A -->
+      <text x="120" y="112" font-family="'Cormorant Garamond', Georgia, serif" font-size="34" font-weight="600" fill="url(#embossedGold)" text-anchor="middle">A</text>
+    </g>
+
+    <!-- Star / Flourish Dots -->
+    <circle cx="100" cy="72" r="2" fill="url(#embossedGold)" opacity="0.75" />
+    <circle cx="100" cy="132" r="2" fill="url(#embossedGold)" opacity="0.75" />
+  </g>
+</svg>

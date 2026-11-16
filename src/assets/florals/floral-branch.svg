@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 60" width="100%" height="100%" fill="none">
+  <!-- Central flowing stem -->
+  <path d="M10 32 C50 18, 90 42, 130 26 C170 12, 205 38, 230 28" stroke="#4A6359" stroke-width="1.2" stroke-linecap="round" />
+
+  <!-- Pairs of Eucalyptus / Olive leaves -->
+  <!-- Pair 1 -->
+  <path d="M38 27 C42 16, 52 18, 50 26 C45 30, 40 29, 38 27Z" fill="#879487" opacity="0.85" />
+  <path d="M42 32 C46 42, 56 40, 53 33 C48 30, 44 31, 42 32Z" fill="#4A6359" opacity="0.9" />
+
+  <!-- Pair 2 -->
+  <path d="M78 30 C82 18, 94 22, 90 30 C85 33, 80 32, 78 30Z" fill="#B69A69" opacity="0.75" />
+  <path d="M84 34 C89 44, 100 42, 97 34 C92 32, 86 33, 84 34Z" fill="#879487" opacity="0.85" />
+
+  <!-- Pair 3 Center highlight -->
+  <path d="M122 25 C125 14, 137 15, 135 24 C130 28, 124 27, 122 25Z" fill="#4A6359" opacity="0.9" />
+  <path d="M128 30 C134 40, 144 37, 140 29 C136 28, 130 29, 128 30Z" fill="#D9BDB3" opacity="0.8" />
+
+  <!-- Pair 4 -->
+  <path d="M165 20 C170 10, 180 12, 178 20 C173 24, 168 23, 165 20Z" fill="#879487" opacity="0.85" />
+  <path d="M172 26 C178 35, 188 33, 185 25 C180 23, 174 24, 172 26Z" fill="#4A6359" opacity="0.9" />
+
+  <!-- Pair 5 Tip -->
+  <path d="M205 28 C212 18, 222 22, 218 30 C214 32, 208 30, 205 28Z" fill="#B69A69" opacity="0.8" />
+
+  <!-- Fine Gold Accent Berries -->
+  <circle cx="65" cy="22" r="2.2" fill="#B69A69" />
+  <circle cx="110" cy="38" r="2.5" fill="#B69A69" />
+  <circle cx="152" cy="18" r="2.2" fill="#B69A69" />
+  <circle cx="195" cy="36" r="2" fill="#B69A69" />
+</svg>

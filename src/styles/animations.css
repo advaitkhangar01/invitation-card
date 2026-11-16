@@ -1,0 +1,142 @@
+/* 3D Envelope & Unfolding Motion Specifications */
+
+.perspective-1000 {
+  perspective: 1200px;
+  perspective-origin: center top;
+}
+
+/* Flap 3D rotation */
+.envelope-flap {
+  transform-origin: top center;
+  transition: transform 850ms cubic-bezier(0.4, 0, 0.2, 1);
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+}
+
+.envelope-flap.opened {
+  transform: rotateX(180deg);
+  z-index: 1;
+}
+
+/* Card Emergence upward motion */
+.invitation-card-emerge {
+  transition: transform 950ms cubic-bezier(0.16, 1, 0.3, 1),
+              opacity 600ms ease-out,
+              box-shadow 950ms ease-out;
+}
+
+/* Wax Seal Pulse before click */
+@keyframes sealPulse {
+  0%, 100% {
+    transform: scale(1);
+    filter: drop-shadow(0 6px 16px rgba(56, 7, 10, 0.45));
+  }
+  50% {
+    transform: scale(1.03);
+    filter: drop-shadow(0 8px 22px rgba(158, 51, 60, 0.6));
+  }
+}
+
+.seal-interactive {
+  animation: sealPulse 2.8s ease-in-out infinite;
+  cursor: pointer;
+  transition: transform 200ms ease, filter 200ms ease;
+}
+
+.seal-interactive:hover {
+  transform: scale(1.05);
+}
+
+.seal-interactive:active {
+  transform: scale(0.96);
+}
+
+.seal-broken {
+  animation: none;
+  opacity: 0;
+  transform: scale(1.15);
+  transition: opacity 400ms ease, transform 400ms ease;
+  pointer-events: none;
+}
+
+/* Delicate gold foil light sweep */
+@keyframes goldShimmer {
+  0% {
+    background-position: -200% center;
+  }
+  100% {
+    background-position: 200% center;
+  }
+}
+
+.foil-shimmer {
+  background: linear-gradient(
+    90deg,
+    rgba(182, 154, 105, 0.8) 0%,
+    rgba(245, 235, 215, 0.98) 50%,
+    rgba(182, 154, 105, 0.8) 100%
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: goldShimmer 5s linear infinite;
+}
+
+/* Floating botanical leaf motion */
+@keyframes floatSubtle {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-6px) rotate(1.5deg);
+  }
+}
+
+.floating-botanical {
+  animation: floatSubtle 6s ease-in-out infinite;
+}
+
+/* Scroll prompt subtle bounce */
+@keyframes scrollBounce {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(6px);
+  }
+  60% {
+    transform: translateY(3px);
+  }
+}
+
+.scroll-indicator-bounce {
+  animation: scrollBounce 2.4s infinite;
+}
+
+/* Prefers Reduced Motion Safeguards */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .envelope-flap {
+    transform: none !important;
+    transition: none !important;
+  }
+
+  .seal-interactive {
+    animation: none !important;
+  }
+
+  .floating-botanical,
+  .scroll-indicator-bounce,
+  .foil-shimmer {
+    animation: none !important;
+  }
+}

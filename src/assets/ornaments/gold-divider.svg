@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 24" width="100%" height="100%" fill="none">
+  <!-- Left Hairline Rule -->
+  <line x1="10" y1="12" x2="115" y2="12" stroke="#B69A69" stroke-width="0.8" stroke-opacity="0.65" />
+  <circle cx="118" cy="12" r="1.5" fill="#B69A69" opacity="0.8" />
+
+  <!-- Center Diamond & Leaflet Flourish -->
+  <g transform="translate(150, 12)">
+    <!-- Center Diamond -->
+    <polygon points="0,-5 5,0 0,5 -5,0" fill="#B69A69" opacity="0.9" />
+    <circle cx="0" cy="0" r="1.2" fill="#FBF8F2" />
+    <!-- Flanking mini leaves -->
+    <path d="M-8 0 C-14 -4, -18 0, -20 -1 C-18 3, -13 2, -8 0Z" fill="#879487" opacity="0.85" />
+    <path d="M8 0 C14 -4, 18 0, 20 -1 C18 3, 13 2, 8 0Z" fill="#879487" opacity="0.85" />
+  </g>
+
+  <!-- Right Hairline Rule -->
+  <circle cx="182" cy="12" r="1.5" fill="#B69A69" opacity="0.8" />
+  <line x1="185" y1="12" x2="290" y2="12" stroke="#B69A69" stroke-width="0.8" stroke-opacity="0.65" />
+</svg>

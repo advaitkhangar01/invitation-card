@@ -1,0 +1,300 @@
+/* Specific Invitation Components Styling */
+
+/* 1. Envelope Intro Screen */
+.envelope-screen {
+  position: relative;
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: var(--space-xl) var(--space-lg);
+  background: radial-gradient(circle at 50% 40%, #FAF5EE 0%, #EFE7DA 100%);
+  overflow: hidden;
+  user-select: none;
+}
+
+.envelope-wrapper {
+  position: relative;
+  width: 320px;
+  height: 220px;
+  margin: var(--space-2xl) 0;
+  cursor: pointer;
+}
+
+/* Physical Envelope Outer Body */
+.envelope-box {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background: #E8DCCB;
+  border-radius: 4px;
+  box-shadow: var(--shadow-envelope);
+  overflow: hidden;
+}
+
+/* Inner Envelope Lining with delicate sage tint */
+.envelope-inner-liner {
+  position: absolute;
+  inset: 6px;
+  background: #DFD5C4;
+  border-radius: 2px;
+  box-shadow: inset 0 2px 10px rgba(0, 0, 0, 0.08);
+}
+
+/* Envelope Flap (Triangular 3D fold) */
+.envelope-flap-polygon {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 120px;
+  clip-path: polygon(0 0, 50% 100%, 100% 0);
+  background: linear-gradient(180deg, #D4C6B1 0%, #E8DCCB 100%);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  z-index: 5;
+  transform-origin: top center;
+  transition: transform 750ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Envelope Lower Pocket (Triangular side/bottom flaps) */
+.envelope-pocket {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 3;
+  pointer-events: none;
+}
+
+.envelope-pocket-left {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  clip-path: polygon(0 0, 50% 55%, 0 100%);
+  background: #E2D5C2;
+}
+
+.envelope-pocket-right {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  clip-path: polygon(100% 0, 50% 55%, 100% 100%);
+  background: #D9CBB7;
+}
+
+.envelope-pocket-bottom {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  clip-path: polygon(0 100%, 50% 48%, 100% 100%);
+  background: #E8DCCB;
+  box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.05);
+}
+
+/* Wax Seal on Envelope */
+.wax-seal-wrapper {
+  position: absolute;
+  top: 92px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 72px;
+  height: 72px;
+  z-index: 8;
+}
+
+/* 2. Main Invitation Stationery Card */
+.invitation-card {
+  position: relative;
+  background-color: var(--color-pale-cream);
+  border: 1px solid rgba(182, 154, 105, 0.45);
+  box-shadow: var(--shadow-card);
+  border-radius: 2px;
+  padding: 38px 24px 34px;
+  margin: var(--space-xl) auto;
+  width: calc(100% - 24px);
+  max-width: 376px;
+  text-align: center;
+  position: relative;
+}
+
+.invitation-card-inner-border {
+  position: absolute;
+  inset: 8px;
+  border: 1px solid rgba(182, 154, 105, 0.28);
+  pointer-events: none;
+}
+
+.card-corner {
+  position: absolute;
+  width: 48px;
+  height: 48px;
+  pointer-events: none;
+}
+
+.card-corner-tl {
+  top: 10px;
+  left: 10px;
+}
+
+.card-corner-tr {
+  top: 10px;
+  right: 10px;
+  transform: scaleX(-1);
+}
+
+.card-corner-bl {
+  bottom: 10px;
+  left: 10px;
+  transform: scaleY(-1);
+}
+
+.card-corner-br {
+  bottom: 10px;
+  right: 10px;
+  transform: scale(-1, -1);
+}
+
+/* 3. Section Background Themes */
+.section-ivory {
+  background-color: var(--color-warm-ivory);
+  color: var(--color-soft-ink);
+}
+
+.section-deep-sage {
+  background: linear-gradient(180deg, #263D35 0%, #1D302A 100%);
+  color: var(--color-ink-on-dark);
+}
+
+/* 4. Family Section Grid */
+.family-container {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3xl);
+  margin-top: var(--space-2xl);
+}
+
+.family-column {
+  text-align: center;
+  position: relative;
+}
+
+.family-title {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 1.55rem;
+  font-weight: 600;
+  color: var(--color-deep-sage);
+  margin-bottom: var(--space-xs);
+}
+
+.family-relation {
+  font-family: 'Allura', cursive;
+  font-size: 1.35rem;
+  color: var(--color-antique-gold);
+  margin: var(--space-xs) 0;
+}
+
+.family-parents {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 1rem;
+  font-weight: 500;
+  line-height: 1.6;
+  color: var(--color-soft-ink);
+}
+
+/* 5. Date Experience Details */
+.date-highlight-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-xl) 0;
+  border-top: 1px solid rgba(182, 154, 105, 0.4);
+  border-bottom: 1px solid rgba(182, 154, 105, 0.4);
+  margin: var(--space-2xl) 0;
+  position: relative;
+}
+
+/* 6. Venue Direction Button */
+.btn-directions {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-sm);
+  background: var(--color-deep-sage);
+  color: var(--color-warm-ivory);
+  border: 1px solid var(--color-antique-gold);
+  border-radius: 50px;
+  padding: 14px 28px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  text-decoration: none;
+  box-shadow: 0 4px 15px rgba(38, 61, 53, 0.2);
+  transition: all var(--transition-fast);
+  cursor: pointer;
+  min-height: 48px;
+  min-width: 200px;
+}
+
+.btn-directions:hover {
+  background: #1B2D27;
+  border-color: #E3D1A5;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(38, 61, 53, 0.3);
+}
+
+.btn-directions:active {
+  transform: translateY(0);
+}
+
+/* 7. Discreet Floating Music Control */
+.music-toggle-btn {
+  position: fixed;
+  bottom: 24px;
+  right: calc(50% - 195px);
+  z-index: 99;
+  background: rgba(251, 248, 242, 0.92);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(182, 154, 105, 0.4);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-deep-sage);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+@media (max-width: 430px) {
+  .music-toggle-btn {
+    right: 20px;
+  }
+}
+
+.music-toggle-btn:hover {
+  background: #FFFFFF;
+  border-color: var(--color-antique-gold);
+  transform: scale(1.08);
+}
+
+/* 8. Ornamental Frame & Dividers */
+.gold-divider-wrap {
+  width: 100%;
+  max-width: 240px;
+  margin: var(--space-xl) auto;
+  opacity: 0.85;
+}

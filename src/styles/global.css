@@ -1,0 +1,115 @@
+@import './tokens.css';
+@import './typography.css';
+
+/* CSS Reset & Box Sizing */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+  background-color: var(--color-flank-bg);
+  color-scheme: light;
+}
+
+body {
+  min-height: 100vh;
+  background-color: var(--color-flank-bg);
+  overflow-x: hidden;
+  position: relative;
+}
+
+/* Master Centered Mobile Composition Column */
+.app-viewport-wrapper {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  background: radial-gradient(circle at 50% 30%, #2A3C35 0%, #17241F 100%);
+  position: relative;
+  overflow-x: hidden;
+}
+
+.invitation-container {
+  width: 100%;
+  max-width: var(--invitation-max-width);
+  min-width: var(--invitation-min-width);
+  min-height: 100vh;
+  background-color: var(--color-warm-ivory);
+  position: relative;
+  box-shadow: 0 0 70px rgba(0, 0, 0, 0.45), 0 0 20px rgba(0, 0, 0, 0.25);
+  margin: 0 auto;
+  overflow-x: hidden;
+}
+
+/* Paper Tactile Texture Overlay */
+.paper-texture-overlay {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.04;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+  z-index: 10;
+}
+
+/* Desktop Ambient Flanks - Decorative Vines flanking the invitation */
+.desktop-flank-left,
+.desktop-flank-right {
+  display: none;
+  position: fixed;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 180px;
+  height: 600px;
+  pointer-events: none;
+  opacity: 0.22;
+  z-index: 1;
+}
+
+@media (min-width: 1024px) {
+  .desktop-flank-left {
+    display: block;
+    left: calc(50% - 240px - 180px);
+  }
+  .desktop-flank-right {
+    display: block;
+    right: calc(50% - 240px - 180px);
+    transform: translateY(-50%) scaleX(-1);
+  }
+}
+
+/* Accessible Focus States */
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid var(--color-antique-gold);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* Touch Targets */
+button, a {
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Utility Layout Classes */
+.section-padding {
+  padding-left: var(--invitation-side-padding);
+  padding-right: var(--invitation-side-padding);
+  padding-top: var(--space-4xl);
+  padding-bottom: var(--space-4xl);
+}
+
+.text-center {
+  text-align: center;
+}
+
+.flex-col-center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
