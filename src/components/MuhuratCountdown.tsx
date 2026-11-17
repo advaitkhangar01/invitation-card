@@ -70,7 +70,7 @@ export const MuhuratCountdown: React.FC = () => {
       className="scene-block reveal"
       style={{
         textAlign: 'center',
-        padding: '16px 0',
+        padding: '20px 0',
       }}
       aria-label="Auspicious Muhurat and Countdown"
     >
@@ -79,7 +79,7 @@ export const MuhuratCountdown: React.FC = () => {
         <h2 className="section-main-title">The Sacred Vows</h2>
       </div>
 
-      {/* Date & Time Badge */}
+      {/* Date & Time Monumental Badge */}
       <div
         className="reveal delay-2"
         style={{
@@ -87,16 +87,17 @@ export const MuhuratCountdown: React.FC = () => {
           flexWrap: 'wrap',
           alignItems: 'center',
           justifyContent: 'center',
-          gap: '8px',
-          background: 'rgba(185, 154, 98, 0.12)',
-          border: '1px solid rgba(185, 154, 98, 0.45)',
-          padding: '8px 18px',
-          borderRadius: '24px',
+          gap: '10px',
+          background: 'rgba(179, 145, 85, 0.12)',
+          border: '1px solid rgba(179, 145, 85, 0.5)',
+          padding: '10px 22px',
+          borderRadius: '30px',
           fontFamily: 'var(--font-heading)',
-          fontSize: '1.05rem',
+          fontSize: 'clamp(1.15rem, 3.2vw, 1.55rem)',
           color: 'var(--color-forest-deep)',
-          fontWeight: 600,
-          margin: '0 auto 10px',
+          fontWeight: 700,
+          margin: '0 auto 12px',
+          boxShadow: '0 2px 10px rgba(179, 145, 85, 0.15)',
         }}
       >
         <span>{WEDDING_DATA.date.fullFormatted}</span>
@@ -108,11 +109,12 @@ export const MuhuratCountdown: React.FC = () => {
         className="reveal delay-2"
         style={{
           fontFamily: 'var(--font-body)',
-          fontSize: '0.8125rem',
+          fontSize: 'clamp(0.8125rem, 2.2vw, 0.95rem)',
           color: 'var(--color-ink-muted)',
-          letterSpacing: '0.08em',
+          letterSpacing: '0.1em',
           textTransform: 'uppercase',
-          marginBottom: '20px',
+          fontWeight: 600,
+          marginBottom: '24px',
         }}
       >
         {WEDDING_DATA.time.periodName} ({WEDDING_DATA.time.timezone})
@@ -125,7 +127,7 @@ export const MuhuratCountdown: React.FC = () => {
           display: 'grid',
           gridTemplateColumns: 'repeat(4, 1fr)',
           gap: '10px',
-          marginBottom: '22px',
+          marginBottom: '26px',
         }}
       >
         {[
@@ -139,17 +141,17 @@ export const MuhuratCountdown: React.FC = () => {
             className="countdown-box"
             style={{
               background: '#FFFFFF',
-              border: '1px solid rgba(185, 154, 98, 0.35)',
-              borderRadius: '12px',
-              padding: '14px 6px',
-              boxShadow: '0 4px 14px rgba(35, 59, 50, 0.05)',
+              border: '1px solid rgba(179, 145, 85, 0.4)',
+              borderRadius: '14px',
+              padding: '16px 6px',
+              boxShadow: '0 4px 16px rgba(22, 41, 32, 0.05)',
               transition: 'transform 0.25s ease, box-shadow 0.25s ease',
             }}
           >
             <div
               style={{
                 fontFamily: 'var(--font-display)',
-                fontSize: '1.85rem',
+                fontSize: 'clamp(2rem, 5.8vw, 3.2rem)',
                 color: 'var(--color-forest-deep)',
                 fontWeight: 700,
                 lineHeight: 1,
@@ -160,12 +162,12 @@ export const MuhuratCountdown: React.FC = () => {
             <div
               style={{
                 fontFamily: 'var(--font-body)',
-                fontSize: '0.6875rem',
-                letterSpacing: '0.12em',
+                fontSize: 'clamp(0.6875rem, 1.8vw, 0.8125rem)',
+                letterSpacing: '0.14em',
                 textTransform: 'uppercase',
                 color: 'var(--color-ink-muted)',
-                marginTop: '6px',
-                fontWeight: 600,
+                marginTop: '8px',
+                fontWeight: 700,
               }}
             >
               {item.label}
@@ -179,7 +181,7 @@ export const MuhuratCountdown: React.FC = () => {
         <button
           onClick={handleDownloadCalendar}
           className="btn-royal-secondary"
-          style={{ width: '100%', maxWidth: '320px' }}
+          style={{ width: '100%', maxWidth: '340px' }}
         >
           📅 Save Date to Calendar (.ics)
         </button>

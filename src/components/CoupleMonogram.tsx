@@ -7,7 +7,7 @@ export const CoupleMonogram: React.FC = () => {
       className="scene-block reveal"
       style={{
         textAlign: 'center',
-        padding: '16px 0',
+        padding: '24px 0',
       }}
       aria-label="The Union of Isha and Ashish"
     >
@@ -17,37 +17,37 @@ export const CoupleMonogram: React.FC = () => {
         alt="Royal Heritage Crest"
         className="reveal delay-1"
         style={{
-          width: '78px',
+          width: 'clamp(68px, 14vw, 92px)',
           height: 'auto',
-          margin: '0 auto 12px',
+          margin: '0 auto 16px',
           opacity: 0.95,
-          filter: 'drop-shadow(0 4px 12px rgba(185, 154, 98, 0.3))',
+          filter: 'drop-shadow(0 4px 12px rgba(179, 145, 85, 0.35))',
           display: 'block',
         }}
       />
 
-      {/* Monumental Couple Names */}
-      <div className="reveal delay-2">
+      {/* Monumental Couple Names — Dominant Visual Focal Point */}
+      <div className="reveal delay-2" style={{ padding: '0 8px' }}>
         <h1
-          className="couple-name-text"
           style={{
             fontFamily: 'var(--font-display)',
-            fontSize: '2.5rem',
-            lineHeight: 1.15,
+            fontSize: 'clamp(3rem, 9.2vw, 6.2rem)',
+            lineHeight: 1.05,
             color: 'var(--color-forest-deep)',
             fontWeight: 700,
-            letterSpacing: '0.02em',
+            letterSpacing: '0.01em',
+            margin: '0',
+            textShadow: '0 1px 2px rgba(179, 145, 85, 0.25)',
           }}
         >
           {WEDDING_DATA.bride.name}
         </h1>
 
         <span
-          className="couple-ampersand-text"
           style={{
             fontFamily: 'var(--font-accent)',
-            fontSize: '3.2rem',
-            lineHeight: '0.85',
+            fontSize: 'clamp(3.2rem, 9.5vw, 6.4rem)',
+            lineHeight: 0.8,
             color: 'var(--color-gold-antique)',
             display: 'block',
             margin: '6px 0',
@@ -57,14 +57,15 @@ export const CoupleMonogram: React.FC = () => {
         </span>
 
         <h1
-          className="couple-name-text"
           style={{
             fontFamily: 'var(--font-display)',
-            fontSize: '2.5rem',
-            lineHeight: 1.15,
+            fontSize: 'clamp(3rem, 9.2vw, 6.2rem)',
+            lineHeight: 1.05,
             color: 'var(--color-forest-deep)',
             fontWeight: 700,
-            letterSpacing: '0.02em',
+            letterSpacing: '0.01em',
+            margin: '0',
+            textShadow: '0 1px 2px rgba(179, 145, 85, 0.25)',
           }}
         >
           {WEDDING_DATA.groom.name}
@@ -75,29 +76,31 @@ export const CoupleMonogram: React.FC = () => {
         className="reveal delay-3"
         style={{
           fontFamily: 'var(--font-heading)',
-          fontSize: '1.25rem',
+          fontSize: 'clamp(1.15rem, 3.2vw, 1.55rem)',
           color: 'var(--color-ink-muted)',
-          marginTop: '16px',
+          marginTop: '20px',
           fontStyle: 'italic',
+          lineHeight: 1.4,
+          padding: '0 12px',
         }}
       >
         As they unite their lives in sacred matrimony
       </p>
 
       {/* Gold Botanical Garland */}
-      <div className="reveal delay-4" style={{ marginTop: '20px' }}>
+      <div className="reveal delay-4" style={{ marginTop: '24px' }}>
         <img
           src="/assets/frames/garland-gold.webp"
-          alt="Traditional Royal Garland"
+          alt="Royal Botanical Garland"
           style={{
             width: '100%',
-            maxWidth: '360px',
-            height: '42px',
+            maxWidth: '380px',
+            height: '46px',
             objectFit: 'contain',
             margin: '0 auto',
             opacity: 0.92,
             display: 'block',
-            filter: 'drop-shadow(0 2px 6px rgba(185, 154, 98, 0.25))',
+            filter: 'drop-shadow(0 2px 8px rgba(179, 145, 85, 0.28))',
           }}
         />
       </div>

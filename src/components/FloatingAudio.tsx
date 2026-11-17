@@ -7,6 +7,31 @@ export const FloatingAudio: React.FC = () => {
   const oscillatorsRef = useRef<OscillatorNode[]>([]);
   const lfoRef = useRef<OscillatorNode | null>(null);
 
+  // Play delicate ceremonial temple chime
+  const playSacredChime = (ctx: AudioContext, destination: AudioNode) => {
+    try {
+      const chimeFreqs = [1108.73, 1479.98, 2217.46]; // C#6, F#6, C#7 harmonics
+      chimeFreqs.forEach((freq, idx) => {
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+        osc.type = 'sine';
+        osc.frequency.setValueAtTime(freq, ctx.currentTime);
+
+        const startTime = ctx.currentTime + idx * 0.08;
+        gain.gain.setValueAtTime(0.0001, startTime);
+        gain.gain.exponentialRampToValueAtTime(0.12 / (idx + 1), startTime + 0.02);
+        gain.gain.exponentialRampToValueAtTime(0.0001, startTime + 2.5);
+
+        osc.connect(gain);
+        gain.connect(destination);
+        osc.start(startTime);
+        osc.stop(startTime + 2.6);
+      });
+    } catch {
+      // Non-blocking
+    }
+  };
+
   const startSacredMusic = () => {
     try {
       if (audioCtxRef.current && audioCtxRef.current.state === 'running') {
@@ -27,12 +52,14 @@ export const FloatingAudio: React.FC = () => {
       // Master Gain Node with 2s smooth cinematic fade in
       const masterGain = ctx.createGain();
       masterGain.gain.setValueAtTime(0.0001, ctx.currentTime);
-      masterGain.gain.exponentialRampToValueAtTime(0.22, ctx.currentTime + 2.0);
+      masterGain.gain.exponentialRampToValueAtTime(0.2, ctx.currentTime + 2.2);
       masterGain.connect(ctx.destination);
       masterGainRef.current = masterGain;
 
-      // 1. Classical Indian Tanpura Harmonics (Raga Bhairav / Bilawal in C# / G#)
-      // Fundamental frequencies: 69.3Hz (Kharaj), 138.59Hz (Sa), 207.65Hz (Pa), 277.18Hz (High Sa)
+      // Play soft entrance chime
+      playSacredChime(ctx, ctx.destination);
+
+      // Classical Indian Tanpura Harmonics (Raga in C# / G#)
       const droneFreqs = [69.3, 138.59, 207.65, 277.18, 415.3];
       const oscs: OscillatorNode[] = [];
 
@@ -43,12 +70,11 @@ export const FloatingAudio: React.FC = () => {
         osc.type = idx === 0 ? 'sine' : idx % 2 === 0 ? 'triangle' : 'sine';
         osc.frequency.setValueAtTime(freq, ctx.currentTime);
 
-        // Low-pass filter for velvety warmth
         const filter = ctx.createBiquadFilter();
         filter.type = 'lowpass';
-        filter.frequency.setValueAtTime(750, ctx.currentTime);
+        filter.frequency.setValueAtTime(720, ctx.currentTime);
 
-        const vol = 0.28 / (idx + 1);
+        const vol = 0.25 / (idx + 1);
         oscGain.gain.setValueAtTime(vol, ctx.currentTime);
 
         osc.connect(filter);
@@ -59,22 +85,21 @@ export const FloatingAudio: React.FC = () => {
         oscs.push(osc);
       });
 
-      // 2. Shehnai Vibrato Melodic Overtone (Gentle spiritual auspicious melody)
+      // Shehnai Vibrato Flute Overtone (Gentle spiritual auspicious melody)
       const shehnaiOsc = ctx.createOscillator();
       const shehnaiGain = ctx.createGain();
       shehnaiOsc.type = 'triangle';
       shehnaiOsc.frequency.setValueAtTime(554.37, ctx.currentTime); // High C# (Sa)
 
-      // Vibrato LFO for Shehnai breath
       const lfo = ctx.createOscillator();
       const lfoGain = ctx.createGain();
-      lfo.frequency.setValueAtTime(4.5, ctx.currentTime); // 4.5 Hz vocal tremolo
-      lfoGain.gain.setValueAtTime(3.5, ctx.currentTime); // subtle pitch bend
+      lfo.frequency.setValueAtTime(4.5, ctx.currentTime);
+      lfoGain.gain.setValueAtTime(3.2, ctx.currentTime);
       lfo.connect(shehnaiOsc.frequency);
       lfo.start();
       lfoRef.current = lfo;
 
-      shehnaiGain.gain.setValueAtTime(0.045, ctx.currentTime);
+      shehnaiGain.gain.setValueAtTime(0.04, ctx.currentTime);
       shehnaiOsc.connect(shehnaiGain);
       shehnaiGain.connect(masterGain);
       shehnaiOsc.start();
@@ -83,7 +108,7 @@ export const FloatingAudio: React.FC = () => {
       oscillatorsRef.current = oscs;
       setIsPlaying(true);
     } catch (e) {
-      console.warn('Audio autoplay requires gesture:', e);
+      console.warn('Audio playback initialization:', e);
     }
   };
 
@@ -131,33 +156,15 @@ export const FloatingAudio: React.FC = () => {
     }
   };
 
-  // Auto-play by default on mount & automatically resume on first interaction
   useEffect(() => {
-    // Attempt instant autoplay
-    startSacredMusic();
-
+    // Listen for custom trigger from card opening button
     const handleCustomAudioStart = () => {
       startSacredMusic();
     };
     window.addEventListener('start-wedding-audio', handleCustomAudioStart);
 
-    // Universal gesture handler to satisfy strict browser autoplay policies
-    const handleFirstGesture = () => {
-      startSacredMusic();
-      ['touchstart', 'scroll', 'pointerdown', 'click', 'keydown'].forEach((evt) => {
-        window.removeEventListener(evt, handleFirstGesture);
-      });
-    };
-
-    ['touchstart', 'scroll', 'pointerdown', 'click', 'keydown'].forEach((evt) => {
-      window.addEventListener(evt, handleFirstGesture, { passive: true });
-    });
-
     return () => {
       window.removeEventListener('start-wedding-audio', handleCustomAudioStart);
-      ['touchstart', 'scroll', 'pointerdown', 'click', 'keydown'].forEach((evt) => {
-        window.removeEventListener(evt, handleFirstGesture);
-      });
     };
   }, []);
 
@@ -168,16 +175,16 @@ export const FloatingAudio: React.FC = () => {
         position: 'fixed',
         bottom: '22px',
         right: '20px',
-        background: 'rgba(26, 49, 39, 0.94)',
+        background: 'rgba(22, 41, 32, 0.94)',
         backdropFilter: 'blur(14px)',
-        border: `1px solid ${isPlaying ? 'var(--color-gold-bright)' : 'rgba(185, 154, 98, 0.45)'}`,
+        border: `1px solid ${isPlaying ? 'var(--color-gold-bright)' : 'rgba(179, 145, 85, 0.45)'}`,
         borderRadius: '30px',
         padding: '10px 18px',
         display: 'flex',
         alignItems: 'center',
         gap: '10px',
         boxShadow: isPlaying
-          ? '0 12px 32px rgba(0, 0, 0, 0.45), 0 0 15px rgba(216, 189, 138, 0.35)'
+          ? '0 12px 32px rgba(0, 0, 0, 0.45), 0 0 15px rgba(212, 182, 126, 0.35)'
           : '0 10px 24px rgba(0, 0, 0, 0.35)',
         cursor: 'pointer',
         zIndex: 1000,
@@ -186,7 +193,7 @@ export const FloatingAudio: React.FC = () => {
       }}
       role="button"
       tabIndex={0}
-      aria-label={isPlaying ? 'Mute Sacred Shehnai Music' : 'Play Sacred Shehnai Music'}
+      aria-label={isPlaying ? 'Mute Sacred Music' : 'Play Sacred Music'}
     >
       <span
         style={{
@@ -203,7 +210,7 @@ export const FloatingAudio: React.FC = () => {
             fontFamily: 'var(--font-body)',
             fontSize: '0.75rem',
             fontWeight: 700,
-            letterSpacing: '0.07em',
+            letterSpacing: '0.08em',
             color: 'var(--color-gold-champagne)',
             textTransform: 'uppercase',
             lineHeight: 1.2,
@@ -219,7 +226,7 @@ export const FloatingAudio: React.FC = () => {
             letterSpacing: '0.04em',
           }}
         >
-          {isPlaying ? 'Playing • Tap to Mute' : 'Tap to Play'}
+          {isPlaying ? 'Playing • Tap to Mute' : 'Muted • Tap to Play'}
         </span>
       </div>
     </aside>

@@ -7,7 +7,7 @@ export const TraditionalBlessings: React.FC = () => {
       className="scene-block reveal"
       style={{
         textAlign: 'center',
-        padding: '20px 0 10px',
+        padding: '24px 0 16px',
       }}
       aria-label="Traditional Blessings and Hospitality"
     >
@@ -17,10 +17,10 @@ export const TraditionalBlessings: React.FC = () => {
         alt="Royal Wax Seal"
         className="reveal delay-1"
         style={{
-          width: '68px',
+          width: 'clamp(64px, 14vw, 84px)',
           height: 'auto',
-          margin: '0 auto 16px',
-          filter: 'drop-shadow(0 6px 14px rgba(185, 154, 98, 0.4))',
+          margin: '0 auto 18px',
+          filter: 'drop-shadow(0 6px 16px rgba(179, 145, 85, 0.4))',
           display: 'block',
         }}
       />
@@ -29,12 +29,13 @@ export const TraditionalBlessings: React.FC = () => {
         className="reveal delay-2"
         style={{
           fontFamily: 'var(--font-heading)',
-          fontSize: '1.25rem',
+          fontSize: 'clamp(1.25rem, 3.6vw, 1.75rem)',
           fontStyle: 'italic',
           color: 'var(--color-forest-deep)',
-          lineHeight: 1.6,
-          maxWidth: '440px',
-          margin: '0 auto 20px',
+          lineHeight: 1.55,
+          maxWidth: '480px',
+          margin: '0 auto 24px',
+          padding: '0 8px',
         }}
       >
         “{WEDDING_DATA.blessing.quote}”
@@ -44,25 +45,25 @@ export const TraditionalBlessings: React.FC = () => {
         className="reveal delay-3"
         style={{
           fontFamily: 'var(--font-body)',
-          fontSize: '0.8125rem',
-          letterSpacing: '0.15em',
+          fontSize: 'clamp(0.8125rem, 2.2vw, 0.95rem)',
+          letterSpacing: '0.18em',
           textTransform: 'uppercase',
           color: 'var(--color-ink-muted)',
-          fontWeight: 600,
+          fontWeight: 700,
         }}
       >
         Warmly Welcomed by
       </p>
 
-      {/* Verified Hosts Signature */}
+      {/* Verified Hosts Signature — Expressive Monumental Calligraphy */}
       <div className="reveal delay-4">
         <p
           style={{
             fontFamily: 'var(--font-accent)',
-            fontSize: '3rem',
-            lineHeight: 1,
+            fontSize: 'clamp(3.2rem, 9.5vw, 6.2rem)',
+            lineHeight: 0.95,
             color: 'var(--color-gold-antique)',
-            marginTop: '6px',
+            marginTop: '8px',
           }}
         >
           {WEDDING_DATA.hosts}
@@ -71,9 +72,10 @@ export const TraditionalBlessings: React.FC = () => {
         <p
           style={{
             fontFamily: 'var(--font-heading)',
-            fontSize: '1.1rem',
+            fontSize: 'clamp(1.15rem, 3vw, 1.45rem)',
             color: 'var(--color-ink-charcoal)',
-            marginTop: '6px',
+            marginTop: '8px',
+            fontWeight: 600,
           }}
         >
           {WEDDING_DATA.blessing.signOff}

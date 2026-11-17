@@ -8,22 +8,22 @@ export const AuspiciousShloka: React.FC = () => {
       style={{
         textAlign: 'center',
         paddingTop: '6px',
-        paddingBottom: '16px',
+        paddingBottom: '20px',
       }}
       aria-label="Auspicious Invocation"
     >
       {/* Traditional Sanskrit Shloka */}
-      <div style={{ marginBottom: '14px' }}>
+      <div style={{ marginBottom: '18px', padding: '0 8px' }}>
         <p
           className="shloka-text"
           style={{
             fontFamily: 'var(--font-heading)',
-            fontSize: '1.35rem',
-            letterSpacing: '0.05em',
+            fontSize: 'clamp(1.45rem, 4.5vw, 2.35rem)',
+            letterSpacing: '0.04em',
             color: 'var(--color-sacred-kumkum)',
             fontWeight: 700,
-            lineHeight: 1.3,
-            margin: '0 auto 4px',
+            lineHeight: 1.25,
+            margin: '0 auto 6px',
           }}
         >
           {WEDDING_DATA.shloka.sanskrit}
@@ -31,11 +31,14 @@ export const AuspiciousShloka: React.FC = () => {
         <p
           style={{
             fontFamily: 'var(--font-body)',
-            fontSize: '0.8125rem',
+            fontSize: 'clamp(0.75rem, 2.1vw, 0.9375rem)',
             color: 'var(--color-ink-muted)',
-            letterSpacing: '0.08em',
+            letterSpacing: '0.12em',
             textTransform: 'uppercase',
-            fontWeight: 500,
+            fontWeight: 600,
+            maxWidth: '380px',
+            margin: '0 auto',
+            lineHeight: 1.5,
           }}
         >
           {WEDDING_DATA.shloka.english}
@@ -49,20 +52,19 @@ export const AuspiciousShloka: React.FC = () => {
           flexDirection: 'column',
           alignItems: 'center',
           position: 'relative',
-          margin: '4px auto 0',
+          margin: '2px auto 0',
         }}
       >
-        {/* Animated Sacred Flame Glow */}
+        {/* Subtle Warm Sacred Flame Aura */}
         <div
           style={{
             position: 'absolute',
-            top: '-6px',
-            width: '18px',
-            height: '24px',
+            top: '2px',
+            width: '14px',
+            height: '20px',
             borderRadius: '50% 50% 35% 35%',
-            background: 'radial-gradient(ellipse at 50% 60%, #FFFFFF 10%, #FFDF73 40%, #E86518 80%, transparent 100%)',
-            filter: 'drop-shadow(0 0 10px #FF9E2C)',
-            animation: 'flameFlicker 2s infinite ease-in-out',
+            background: 'radial-gradient(ellipse at 50% 65%, #FFF6D6 15%, #FFA726 65%, transparent 100%)',
+            animation: 'flameOrganic 2.4s infinite ease-in-out',
             zIndex: 3,
             pointerEvents: 'none',
           }}
@@ -73,9 +75,9 @@ export const AuspiciousShloka: React.FC = () => {
           src="/assets/ornaments/wed-lamp.webp"
           alt="Auspicious Brass Diya"
           style={{
-            width: '56px',
+            width: 'clamp(52px, 12vw, 68px)',
             height: 'auto',
-            filter: 'drop-shadow(0 6px 14px rgba(185, 154, 98, 0.4))',
+            filter: 'drop-shadow(0 6px 14px rgba(179, 145, 85, 0.35))',
             display: 'block',
           }}
         />

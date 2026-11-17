@@ -8,7 +8,7 @@
   <!-- Typography -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Pinyon+Script&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Pinyon+Script&display=swap" rel="stylesheet">
   
   <!-- Three.js from CDN for standalone mockup -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
@@ -24,17 +24,17 @@
       --color-paper-ivory: #FDFBF7;
       --color-paper-warm: #F8F4EC;
       --color-paper-cream: #F3ECE0;
-      --color-forest-deep: #1A3127;
-      --color-forest-rich: #233B32;
-      --color-sage-soft: #8C9A82;
-      --color-gold-deep: #8E7341;
-      --color-gold-antique: #B99A62;
-      --color-gold-bright: #D8BD8A;
-      --color-gold-champagne: #F2E8D5;
-      --color-ink-espresso: #241E1B;
-      --color-ink-charcoal: #3D3531;
-      --color-ink-muted: #6E645D;
-      --color-sacred-kumkum: #8F2228;
+      --color-forest-deep: #162920;
+      --color-forest-rich: #213B30;
+      --color-sage-soft: #849479;
+      --color-gold-deep: #7D6335;
+      --color-gold-antique: #B39155;
+      --color-gold-bright: #D4B67E;
+      --color-gold-champagne: #F2E7D3;
+      --color-ink-espresso: #1A1412;
+      --color-ink-charcoal: #2F2723;
+      --color-ink-muted: #5E534B;
+      --color-sacred-kumkum: #881C22;
 
       --font-display: "Bodoni Moda", "Didot", serif;
       --font-heading: "Cormorant Garamond", Georgia, serif;
@@ -45,16 +45,17 @@
     }
 
     body {
-      background-color: #121E19;
+      background-color: #0E1713;
       background-image: 
-        radial-gradient(circle at 50% 15%, rgba(35, 59, 50, 0.75) 0%, transparent 60%),
-        radial-gradient(circle at 85% 85%, rgba(185, 154, 98, 0.18) 0%, transparent 50%),
+        radial-gradient(circle at 50% 12%, rgba(33, 59, 48, 0.75) 0%, transparent 65%),
+        radial-gradient(circle at 85% 85%, rgba(179, 145, 85, 0.16) 0%, transparent 50%),
         url('public/assets/textures/white_wall.jpg');
       background-attachment: fixed;
       background-size: cover;
       color: var(--color-ink-espresso);
       font-family: var(--font-body);
       min-height: 100vh;
+      min-height: 100dvh;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -69,13 +70,13 @@
       position: fixed;
       top: 0; left: 0; right: 0; bottom: 0;
       background-image: 
-        radial-gradient(2px 2px at 20px 30px, rgba(216, 189, 138, 0.4), rgba(0,0,0,0)),
-        radial-gradient(2px 2px at 140px 170px, rgba(216, 189, 138, 0.35), rgba(0,0,0,0)),
+        radial-gradient(2px 2px at 20px 30px, rgba(212, 182, 126, 0.4), rgba(0,0,0,0)),
+        radial-gradient(2px 2px at 140px 170px, rgba(212, 182, 126, 0.35), rgba(0,0,0,0)),
         radial-gradient(3px 3px at 260px 240px, rgba(255, 245, 200, 0.5), rgba(0,0,0,0)),
-        radial-gradient(2px 2px at 380px 390px, rgba(216, 189, 138, 0.3), rgba(0,0,0,0));
+        radial-gradient(2px 2px at 380px 390px, rgba(212, 182, 126, 0.3), rgba(0,0,0,0));
       background-repeat: repeat;
       background-size: 400px 400px;
-      opacity: 0.7;
+      opacity: 0.65;
       pointer-events: none;
       z-index: 1;
       animation: stardustDrift 60s linear infinite;
@@ -92,15 +93,15 @@
       top: 16px;
       left: 50%;
       transform: translateX(-50%);
-      background: rgba(26, 49, 39, 0.88);
+      background: rgba(22, 41, 32, 0.9);
       backdrop-filter: blur(12px);
-      border: 1px solid rgba(185, 154, 98, 0.4);
+      border: 1px solid rgba(179, 145, 85, 0.45);
       border-radius: 30px;
       padding: 6px 14px;
       display: flex;
       gap: 10px;
       z-index: 9999;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
     }
 
     .viewport-btn {
@@ -109,7 +110,7 @@
       color: var(--color-gold-champagne);
       font-family: var(--font-body);
       font-size: 12px;
-      font-weight: 500;
+      font-weight: 600;
       padding: 6px 14px;
       border-radius: 20px;
       cursor: pointer;
@@ -118,8 +119,7 @@
 
     .viewport-btn.active, .viewport-btn:hover {
       background: var(--color-gold-antique);
-      color: #1A3127;
-      font-weight: 600;
+      color: #162920;
     }
 
     /* Main Invitation Canvas Card */
@@ -135,22 +135,23 @@
     .invitation-card {
       background: var(--color-paper-ivory);
       background-image: 
-        radial-gradient(circle at 50% 0%, rgba(185, 154, 98, 0.08) 0%, transparent 45%),
-        radial-gradient(circle at 50% 100%, rgba(35, 59, 50, 0.04) 0%, transparent 45%),
+        radial-gradient(circle at 50% 0%, rgba(179, 145, 85, 0.09) 0%, transparent 45%),
+        radial-gradient(circle at 50% 100%, rgba(33, 59, 48, 0.05) 0%, transparent 45%),
         url('public/assets/textures/white_wall.jpg');
       background-size: cover;
-      border-radius: 18px;
+      border-radius: 20px;
       box-shadow: 
-        0 30px 80px -20px rgba(0, 0, 0, 0.6),
-        0 0 0 1px rgba(185, 154, 98, 0.4);
+        0 4px 6px -1px rgba(0, 0, 0, 0.05),
+        0 25px 60px -12px rgba(14, 23, 19, 0.45),
+        0 0 0 1px rgba(179, 145, 85, 0.4);
       position: relative;
       overflow: hidden;
-      padding: 44px 28px;
+      padding: 52px 36px;
       animation: cardEntrance 1.2s var(--ease-editorial) forwards;
     }
 
     @keyframes cardEntrance {
-      0% { opacity: 0; transform: translateY(30px); }
+      0% { opacity: 0; transform: translateY(35px); }
       100% { opacity: 1; transform: translateY(0); }
     }
 
@@ -158,9 +159,9 @@
     .invitation-card::before {
       content: "";
       position: absolute;
-      top: 10px; left: 10px; right: 10px; bottom: 10px;
-      border: 1px solid rgba(185, 154, 98, 0.35);
-      border-radius: 12px;
+      top: 12px; left: 12px; right: 12px; bottom: 12px;
+      border: 1px solid rgba(179, 145, 85, 0.4);
+      border-radius: 14px;
       pointer-events: none;
       z-index: 2;
     }
@@ -168,9 +169,9 @@
     .invitation-card::after {
       content: "";
       position: absolute;
-      top: 15px; left: 15px; right: 15px; bottom: 15px;
-      border: 1px solid rgba(185, 154, 98, 0.18);
-      border-radius: 9px;
+      top: 17px; left: 17px; right: 17px; bottom: 17px;
+      border: 1px solid rgba(179, 145, 85, 0.2);
+      border-radius: 11px;
       pointer-events: none;
       z-index: 2;
     }
@@ -178,24 +179,24 @@
     /* Corner Flourishes */
     .corner-flourish {
       position: absolute;
-      width: 44px;
-      height: 44px;
-      opacity: 0.85;
+      width: 50px;
+      height: 50px;
+      opacity: 0.88;
       pointer-events: none;
       z-index: 3;
-      filter: drop-shadow(0 2px 4px rgba(185, 154, 98, 0.3));
+      filter: drop-shadow(0 2px 4px rgba(179, 145, 85, 0.3));
     }
-    .corner-tl { top: 18px; left: 18px; }
-    .corner-tr { top: 18px; right: 18px; transform: scaleX(-1); }
-    .corner-bl { bottom: 18px; left: 18px; transform: scaleY(-1); }
-    .corner-br { bottom: 18px; right: 18px; transform: scale(-1); }
+    .corner-tl { top: 20px; left: 20px; }
+    .corner-tr { top: 20px; right: 20px; transform: scaleX(-1); }
+    .corner-bl { bottom: 20px; left: 20px; transform: scaleY(-1); }
+    .corner-br { bottom: 20px; right: 20px; transform: scale(-1); }
 
     /* Scene Separator */
     .scene-divider {
       border: none;
       height: 1px;
-      background: radial-gradient(circle, rgba(185, 154, 98, 0.45) 0%, rgba(185, 154, 98, 0.08) 80%, transparent 100%);
-      margin: 36px 0;
+      background: radial-gradient(circle, rgba(179, 145, 85, 0.5) 0%, rgba(179, 145, 85, 0.08) 80%, transparent 100%);
+      margin: 44px 0;
     }
 
     /* Scroll Reveal Engine */
@@ -216,7 +217,7 @@
 
     /* Shloka Shimmer */
     .shloka-text {
-      background: linear-gradient(135deg, #8F2228 0%, #D47A22 40%, #8F2228 80%);
+      background: linear-gradient(135deg, #881C22 0%, #B39155 35%, #881C22 75%);
       background-size: 200% auto;
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
@@ -228,22 +229,22 @@
       100% { background-position: 200% center; }
     }
 
-    /* Flame Flicker */
-    @keyframes flameFlicker {
-      0%, 100% { transform: scale(1) translateY(0); opacity: 0.95; filter: drop-shadow(0 0 8px #FF9E2C); }
-      25% { transform: scale(1.08, 0.94) translateY(-1px) rotate(-1deg); opacity: 1; filter: drop-shadow(0 0 14px #FFBD38); }
-      50% { transform: scale(0.96, 1.05) translateY(-2px) rotate(1deg); opacity: 0.9; filter: drop-shadow(0 0 10px #FF881E); }
-      75% { transform: scale(1.04, 0.98) translateY(-0.5px) rotate(-0.5deg); opacity: 0.98; filter: drop-shadow(0 0 12px #FFA726); }
+    /* Organic Flame Teardrop Flicker */
+    @keyframes flameOrganic {
+      0%, 100% { transform: scale(1) translateY(0); opacity: 0.95; filter: drop-shadow(0 -2px 6px rgba(255, 170, 40, 0.7)); }
+      25% { transform: scale(1.06, 0.94) translateY(-1px); opacity: 1; filter: drop-shadow(0 -3px 9px rgba(255, 200, 60, 0.85)); }
+      50% { transform: scale(0.96, 1.05) translateY(-2px); opacity: 0.92; filter: drop-shadow(0 -2px 5px rgba(255, 140, 30, 0.65)); }
+      75% { transform: scale(1.03, 0.98) translateY(-0.5px); opacity: 0.98; filter: drop-shadow(0 -3px 8px rgba(255, 180, 50, 0.8)); }
     }
 
     @keyframes pulseGlow {
-      0%, 100% { transform: translate(-50%, -50%) scale(0.95); opacity: 0.6; }
+      0%, 100% { transform: translate(-50%, -50%) scale(0.95); opacity: 0.55; }
       50% { transform: translate(-50%, -50%) scale(1.08); opacity: 0.95; }
     }
 
     @keyframes musicPulse {
       0%, 100% { transform: scale(1); }
-      50% { transform: scale(1.22); }
+      50% { transform: scale(1.2); }
     }
 
     .luxury-paper-card {
@@ -251,7 +252,7 @@
     }
     .luxury-paper-card:hover {
       transform: translateY(-2px);
-      box-shadow: 0 8px 22px rgba(35, 59, 50, 0.08) !important;
+      box-shadow: 0 10px 26px rgba(22, 41, 32, 0.08) !important;
     }
 
     .countdown-box {
@@ -259,35 +260,35 @@
     }
     .countdown-box:hover {
       transform: translateY(-3px);
-      box-shadow: 0 8px 20px rgba(35, 59, 50, 0.1) !important;
+      box-shadow: 0 8px 24px rgba(22, 41, 32, 0.1) !important;
       border-color: var(--color-gold-antique) !important;
     }
 
-    /* Primary & Secondary Buttons */
+    /* Buttons */
     .btn-royal-primary {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      gap: 10px;
+      gap: 12px;
       background: var(--color-forest-rich);
       color: var(--color-paper-ivory);
       text-decoration: none;
       font-family: var(--font-body);
-      font-size: 0.875rem;
-      font-weight: 600;
-      letter-spacing: 0.08em;
+      font-size: clamp(0.875rem, 2.2vw, 1rem);
+      font-weight: 700;
+      letter-spacing: 0.1em;
       text-transform: uppercase;
-      padding: 14px 22px;
+      padding: 16px 28px;
       border-radius: 8px;
       border: 1px solid var(--color-gold-antique);
-      box-shadow: 0 4px 16px rgba(26, 49, 39, 0.28);
+      box-shadow: 0 4px 18px rgba(22, 41, 32, 0.32);
       transition: all 0.3s var(--ease-editorial);
       cursor: pointer;
     }
     .btn-royal-primary:hover {
       background: var(--color-forest-deep);
       transform: translateY(-2px);
-      box-shadow: 0 8px 22px rgba(26, 49, 39, 0.38);
+      box-shadow: 0 8px 24px rgba(22, 41, 32, 0.42);
       border-color: var(--color-gold-bright);
     }
 
@@ -295,22 +296,22 @@
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      gap: 8px;
+      gap: 10px;
       background: transparent;
       color: var(--color-forest-deep);
       text-decoration: none;
       font-family: var(--font-body);
-      font-size: 0.8125rem;
-      font-weight: 600;
-      letter-spacing: 0.06em;
-      padding: 12px 20px;
+      font-size: clamp(0.8125rem, 2vw, 0.9375rem);
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      padding: 14px 24px;
       border-radius: 8px;
-      border: 1px solid rgba(185, 154, 98, 0.55);
+      border: 1px solid rgba(179, 145, 85, 0.6);
       transition: all 0.25s ease;
       cursor: pointer;
     }
     .btn-royal-secondary:hover {
-      background: rgba(185, 154, 98, 0.08);
+      background: rgba(179, 145, 85, 0.1);
       border-color: var(--color-gold-antique);
       transform: translateY(-1px);
     }
@@ -320,9 +321,9 @@
       position: fixed;
       bottom: 22px;
       right: 20px;
-      background: rgba(26, 49, 39, 0.94);
+      background: rgba(22, 41, 32, 0.94);
       backdrop-filter: blur(14px);
-      border: 1px solid rgba(185, 154, 98, 0.45);
+      border: 1px solid rgba(179, 145, 85, 0.45);
       border-radius: 30px;
       padding: 10px 18px;
       display: flex;
@@ -336,7 +337,7 @@
     }
     .floating-audio-widget.active {
       border-color: var(--color-gold-bright);
-      box-shadow: 0 12px 32px rgba(0, 0, 0, 0.45), 0 0 15px rgba(216, 189, 138, 0.35);
+      box-shadow: 0 12px 32px rgba(0, 0, 0, 0.45), 0 0 15px rgba(212, 182, 126, 0.35);
     }
 
     /* Toast */
@@ -360,58 +361,85 @@
       transform: translateX(-50%) translateY(0);
       opacity: 1;
     }
+
+    @media (max-width: 600px) {
+      body {
+        padding: 0 !important;
+        margin: 0 !important;
+        background-color: var(--color-paper-ivory) !important;
+        background-image: none !important;
+      }
+      body::before { display: none !important; }
+      .invitation-wrapper {
+        max-width: 100% !important;
+        margin-top: 0 !important;
+      }
+      .invitation-card {
+        border-radius: 0 !important;
+        border: none !important;
+        box-shadow: none !important;
+        padding: calc(env(safe-area-inset-top, 16px) + 24px) 20px calc(env(safe-area-inset-bottom, 16px) + 36px) !important;
+      }
+      .invitation-card::before { top: 10px; left: 10px; right: 10px; bottom: 10px; border-radius: 0; }
+      .invitation-card::after { top: 14px; left: 14px; right: 14px; bottom: 14px; border-radius: 0; }
+    }
   </style>
 </head>
 <body>
 
-  <!-- Royal Card Opening Preloader Screen -->
-  <div id="cardPreloader" style="position: fixed; inset: 0; z-index: 99999; background: #0B1410; display: flex; align-items: center; justify-content: center; perspective: 1400px; padding: 16px; transition: opacity 0.6s ease 0.8s;">
-    <div style="position: absolute; width: 500px; height: 500px; border-radius: 50%; background: radial-gradient(circle, rgba(185, 154, 98, 0.18) 0%, transparent 70%); pointer-events: none;"></div>
+  <!-- Royal Gatefold Card Opening Preloader Screen (Warm Ivory Paper) -->
+  <div id="cardPreloader" style="position: fixed; inset: 0; z-index: 99999; background: #0E1713; display: flex; align-items: center; justify-content: center; perspective: 1600px; padding: 0; transition: opacity 0.6s ease 0.75s;">
+    <div style="position: absolute; width: 600px; height: 600px; border-radius: 50%; background: radial-gradient(circle, rgba(179, 145, 85, 0.15) 0%, transparent 70%); pointer-events: none;"></div>
     
-    <div onclick="openInvitationCard()" style="position: relative; width: 100%; maxWidth: 400px; height: 580px; maxHeight: 90vh; border-radius: 16px; box-shadow: 0 30px 90px rgba(0,0,0,0.85), 0 0 0 1px rgba(185,154,98,0.45); cursor: pointer; transform-style: preserve-3d; user-select: none;">
-      <!-- Left Flap -->
-      <div id="flapLeft" style="position: absolute; top: 0; left: 0; width: 50.5%; height: 100%; background: #15241C; background-image: radial-gradient(circle at 100% 50%, rgba(185,154,98,0.15) 0%, transparent 70%), url('public/assets/textures/white_wall.jpg'); background-size: cover; border-top-left-radius: 16px; border-bottom-left-radius: 16px; border: 1px solid rgba(185,154,98,0.45); border-right: 1px solid rgba(185,154,98,0.7); transform-origin: left center; transition: transform 1.1s cubic-bezier(0.25, 1, 0.5, 1); box-shadow: 5px 0 25px rgba(0,0,0,0.5); z-index: 10; overflow: hidden;">
-        <div style="position: absolute; top: 12px; left: 12px; right: 6px; bottom: 12px; border: 1px solid rgba(185,154,98,0.3); border-radius: 8px 0 0 8px; pointer-events: none;"></div>
-        <img src="public/assets/frames/deco-alpona-corner.webp" alt="flourish" style="position: absolute; top: 16px; left: 16px; width: 36px; height: 36px; opacity: 0.8;">
-        <img src="public/assets/frames/deco-alpona-corner.webp" alt="flourish" style="position: absolute; bottom: 16px; left: 16px; width: 36px; height: 36px; transform: scaleY(-1); opacity: 0.8;">
+    <div style="position: relative; width: 100%; max-width: 480px; height: 100svh; max-height: 100dvh; transform-style: preserve-3d; user-select: none;">
+      <!-- Left Flap (Warm Ivory Handmade Paper) -->
+      <div id="flapLeft" style="position: absolute; top: 0; left: 0; width: 50.5%; height: 100%; background: #FDFBF7; background-image: radial-gradient(circle at 100% 50%, rgba(179,145,85,0.12) 0%, transparent 65%), url('public/assets/textures/white_wall.jpg'); background-size: cover; border: 1px solid rgba(179,145,85,0.45); border-right: 1px solid rgba(179,145,85,0.75); transform-origin: left center; transition: transform 1.1s cubic-bezier(0.25, 1, 0.5, 1); box-shadow: 6px 0 24px rgba(0,0,0,0.25); z-index: 10; overflow: hidden;">
+        <div style="position: absolute; top: 14px; left: 14px; right: 6px; bottom: 14px; border: 1px solid rgba(179,145,85,0.4); border-right: none; pointer-events: none;"></div>
+        <img src="public/assets/frames/deco-alpona-corner.webp" alt="flourish" style="position: absolute; top: 18px; left: 18px; width: 42px; height: 42px; opacity: 0.85;">
+        <img src="public/assets/frames/deco-alpona-corner.webp" alt="flourish" style="position: absolute; bottom: 18px; left: 18px; width: 42px; height: 42px; transform: scaleY(-1); opacity: 0.85;">
       </div>
 
-      <!-- Right Flap -->
-      <div id="flapRight" style="position: absolute; top: 0; right: 0; width: 50.5%; height: 100%; background: #15241C; background-image: radial-gradient(circle at 0% 50%, rgba(185,154,98,0.15) 0%, transparent 70%), url('public/assets/textures/white_wall.jpg'); background-size: cover; border-top-right-radius: 16px; border-bottom-right-radius: 16px; border: 1px solid rgba(185,154,98,0.45); border-left: none; transform-origin: right center; transition: transform 1.1s cubic-bezier(0.25, 1, 0.5, 1); box-shadow: -5px 0 25px rgba(0,0,0,0.5); z-index: 10; overflow: hidden;">
-        <div style="position: absolute; top: 12px; left: 6px; right: 12px; bottom: 12px; border: 1px solid rgba(185,154,98,0.3); border-radius: 0 8px 8px 0; pointer-events: none;"></div>
-        <img src="public/assets/frames/deco-alpona-corner.webp" alt="flourish" style="position: absolute; top: 16px; right: 16px; width: 36px; height: 36px; transform: scaleX(-1); opacity: 0.8;">
-        <img src="public/assets/frames/deco-alpona-corner.webp" alt="flourish" style="position: absolute; bottom: 16px; right: 16px; width: 36px; height: 36px; transform: scale(-1); opacity: 0.8;">
+      <!-- Right Flap (Warm Ivory Handmade Paper) -->
+      <div id="flapRight" style="position: absolute; top: 0; right: 0; width: 50.5%; height: 100%; background: #FDFBF7; background-image: radial-gradient(circle at 0% 50%, rgba(179,145,85,0.12) 0%, transparent 65%), url('public/assets/textures/white_wall.jpg'); background-size: cover; border: 1px solid rgba(179,145,85,0.45); border-left: none; transform-origin: right center; transition: transform 1.1s cubic-bezier(0.25, 1, 0.5, 1); box-shadow: -6px 0 24px rgba(0,0,0,0.25); z-index: 10; overflow: hidden;">
+        <div style="position: absolute; top: 14px; left: 6px; right: 14px; bottom: 14px; border: 1px solid rgba(179,145,85,0.4); border-left: none; pointer-events: none;"></div>
+        <img src="public/assets/frames/deco-alpona-corner.webp" alt="flourish" style="position: absolute; top: 18px; right: 18px; width: 42px; height: 42px; transform: scaleX(-1); opacity: 0.85;">
+        <img src="public/assets/frames/deco-alpona-corner.webp" alt="flourish" style="position: absolute; bottom: 18px; right: 18px; width: 42px; height: 42px; transform: scale(-1); opacity: 0.85;">
       </div>
 
-      <!-- Center Presentation -->
+      <!-- Front Presentation -->
       <div id="preloaderContent" style="position: absolute; inset: 0; z-index: 20; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 24px; text-align: center; transition: opacity 0.4s ease; pointer-events: none;">
-        <p style="font-family: var(--font-heading); font-size: 1.15rem; color: #E0B970; font-weight: 700; letter-spacing: 0.06em; margin-bottom: 10px;">
+        <p style="font-family: var(--font-heading); font-size: clamp(1.15rem, 3.2vw, 1.45rem); color: var(--color-sacred-kumkum); font-weight: 700; letter-spacing: 0.06em; margin-bottom: 8px;">
           ॥ श्री गणेशाय नमः ॥
         </p>
-        <img src="public/assets/frames/crest-royal.webp" alt="Royal Crest" style="width: 64px; height: auto; margin-bottom: 14px; filter: drop-shadow(0 4px 10px rgba(216,189,138,0.35));">
-        <p style="font-family: var(--font-body); font-size: 0.6875rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--color-gold-bright); font-weight: 600; margin-bottom: 6px;">
-          Wedding Invitation
+        <img src="public/assets/frames/crest-royal.webp" alt="Royal Crest" style="width: clamp(58px, 12vw, 76px); height: auto; margin-bottom: 10px; filter: drop-shadow(0 3px 8px rgba(179,145,85,0.35));">
+        <p style="font-family: var(--font-body); font-size: clamp(0.75rem, 1.8vw, 0.875rem); letter-spacing: 0.22em; text-transform: uppercase; color: var(--color-gold-deep); font-weight: 700; margin-bottom: 4px;">
+          Royal Wedding Invitation
         </p>
-        <h2 style="font-family: var(--font-display); font-size: 2rem; line-height: 1.1; color: #FDFBF7; font-weight: 700;">
+        <h2 style="font-family: var(--font-display); font-size: clamp(2.4rem, 7.5vw, 3.6rem); line-height: 1.1; color: var(--color-forest-deep); font-weight: 700;">
           Isha
         </h2>
-        <span style="font-family: var(--font-accent); font-size: 2.4rem; color: var(--color-gold-antique); line-height: 0.85; margin: 4px 0;">
+        <span style="font-family: var(--font-accent); font-size: clamp(2.5rem, 7vw, 3.8rem); color: var(--color-gold-antique); lineHeight: 0.85; margin: 2px 0;">
           &amp;
         </span>
-        <h2 style="font-family: var(--font-display); font-size: 2rem; line-height: 1.1; color: #FDFBF7; font-weight: 700; margin-bottom: 12px;">
+        <h2 style="font-family: var(--font-display); font-size: clamp(2.4rem, 7.5vw, 3.6rem); line-height: 1.1; color: var(--color-forest-deep); font-weight: 700; margin-bottom: 10px;">
           Ashish
         </h2>
-        <p style="font-family: var(--font-heading); font-size: 1.05rem; color: #D8BD8A; letter-spacing: 0.05em; margin-bottom: 24px;">
+        <p style="font-family: var(--font-heading); font-size: clamp(1.1rem, 2.8vw, 1.35rem); color: var(--color-ink-charcoal); font-weight: 600; letter-spacing: 0.04em; margin-bottom: 18px;">
           Thursday, 17 December 2026
         </p>
-        <div style="position: relative; width: 84px; height: 84px; display: flex; align-items: center; justify-content: center; margin: 0 auto 18px;">
-          <div style="position: absolute; width: 90px; height: 90px; border-radius: 50%; background: radial-gradient(circle, rgba(216, 189, 138, 0.4) 0%, transparent 70%); animation: pulseGlow 2.5s infinite ease-in-out;"></div>
-          <img src="public/assets/ornaments/seal.png" alt="Royal Wax Seal" style="width: 74px; height: auto; filter: drop-shadow(0 6px 16px rgba(0,0,0,0.6));">
+        <div style="position: relative; width: 80px; height: 80px; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px;">
+          <div style="position: absolute; width: 88px; height: 88px; border-radius: 50%; background: radial-gradient(circle, rgba(179, 145, 85, 0.4) 0%, transparent 70%); animation: pulseGlow 2.5s infinite ease-in-out;"></div>
+          <img src="public/assets/ornaments/seal.png" alt="Royal Wax Seal" style="width: 72px; height: auto; filter: drop-shadow(0 6px 16px rgba(0,0,0,0.25));">
         </div>
-        <button style="display: inline-flex; align-items: center; justify-content: center; gap: 8px; background: linear-gradient(135deg, #B99A62 0%, #E8D3A7 50%, #B99A62 100%); color: #1A3127; font-family: var(--font-body); font-size: 0.8125rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; padding: 12px 24px; border-radius: 30px; border: 1px solid #FFE6B0; box-shadow: 0 6px 20px rgba(0,0,0,0.4), 0 0 15px rgba(216,189,138,0.4); cursor: pointer; pointer-events: auto;">
-          <span>✉️</span>
-          <span>Tap to Open Invitation</span>
-        </button>
+        <div style="display: flex; flex-direction: column; gap: 10px; width: 100%; max-width: 300px; pointer-events: auto;">
+          <button onclick="openInvitationCard(true)" style="display: inline-flex; align-items: center; justify-content: center; gap: 10px; background: var(--color-forest-rich); color: var(--color-paper-ivory); font-family: var(--font-body); font-size: clamp(0.8125rem, 2.2vw, 0.9375rem); font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; padding: 14px 22px; border-radius: 30px; border: 1px solid var(--color-gold-antique); box-shadow: 0 6px 20px rgba(22,41,32,0.35); cursor: pointer;">
+            <span>✉️</span>
+            <span>Open with Sacred Music 🎵</span>
+          </button>
+          <button onclick="openInvitationCard(false)" style="background: transparent; color: var(--color-ink-muted); font-family: var(--font-body); font-size: 0.8125rem; font-weight: 600; letter-spacing: 0.05em; padding: 8px 16px; border: none; cursor: pointer; text-decoration: underline; text-underline-offset: 3px;">
+            Open Silently 🔇
+          </button>
+        </div>
       </div>
     </div>
   </div>
@@ -431,24 +459,24 @@
       <img src="public/assets/frames/deco-alpona-corner.webp" alt="Corner flourish" class="corner-flourish corner-br">
 
       <!-- SCENE 1: INVOCATION & 3D RINGS -->
-      <section style="text-align: center; padding-top: 6px; padding-bottom: 16px;">
-        <div style="margin-bottom: 14px;">
-          <p class="shloka-text" style="font-family: var(--font-heading); font-size: 1.35rem; letter-spacing: 0.05em; font-weight: 700; line-height: 1.3;">
+      <section style="text-align: center; padding-top: 6px; padding-bottom: 20px;">
+        <div style="margin-bottom: 18px; padding: 0 8px;">
+          <p class="shloka-text" style="font-family: var(--font-heading); font-size: clamp(1.45rem, 4.5vw, 2.35rem); letter-spacing: 0.04em; font-weight: 700; line-height: 1.25; margin: 0 auto 6px;">
             ॥ श्री गणेशाय नमः ॥
           </p>
-          <p style="font-family: var(--font-body); font-size: 0.8125rem; color: var(--color-ink-muted); letter-spacing: 0.08em; text-transform: uppercase; font-weight: 500;">
+          <p style="font-family: var(--font-body); font-size: clamp(0.75rem, 2.1vw, 0.9375rem); color: var(--color-ink-muted); letter-spacing: 0.12em; text-transform: uppercase; font-weight: 600; max-width: 380px; margin: 0 auto; line-height: 1.5;">
             With the divine grace and blessings of the Almighty
           </p>
         </div>
 
-        <div style="display: inline-flex; flex-direction: column; align-items: center; position: relative; margin: 4px auto 0;">
-          <div style="position: absolute; top: -6px; width: 18px; height: 24px; border-radius: 50% 50% 35% 35%; background: radial-gradient(ellipse at 50% 60%, #FFFFFF 10%, #FFDF73 40%, #E86518 80%, transparent 100%); filter: drop-shadow(0 0 10px #FF9E2C); animation: flameFlicker 2s infinite ease-in-out; z-index: 3; pointer-events: none;"></div>
-          <img src="public/assets/ornaments/wed-lamp.webp" alt="Auspicious Brass Diya" style="width: 56px; height: auto; filter: drop-shadow(0 6px 14px rgba(185, 154, 98, 0.4)); display: block;">
+        <div style="display: inline-flex; flex-direction: column; align-items: center; position: relative; margin: 2px auto 0;">
+          <div style="position: absolute; top: 2px; width: 14px; height: 20px; border-radius: 50% 50% 35% 35%; background: radial-gradient(ellipse at 50% 65%, #FFF6D6 15%, #FFA726 65%, transparent 100%); animation: flameOrganic 2.4s infinite ease-in-out; z-index: 3; pointer-events: none;"></div>
+          <img src="public/assets/ornaments/wed-lamp.webp" alt="Auspicious Brass Diya" style="width: clamp(52px, 12vw, 68px); height: auto; filter: drop-shadow(0 6px 14px rgba(179, 145, 85, 0.35)); display: block;">
         </div>
 
-        <!-- Real 3D Three.js Rings Hero Canvas -->
+        <!-- 3D Three.js Rings Hero Canvas (Clean, no text label) -->
         <div style="position: relative; width: 100%; height: 290px; margin: 6px auto 12px; display: flex; align-items: center; justify-content: center;">
-          <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 230px; height: 230px; border-radius: 50%; background: radial-gradient(circle, rgba(216, 189, 138, 0.28) 0%, rgba(185, 154, 98, 0.1) 45%, transparent 75%); pointer-events: none; animation: pulseGlow 4s infinite ease-in-out;"></div>
+          <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 230px; height: 230px; border-radius: 50%; background: radial-gradient(circle, rgba(179, 145, 85, 0.28) 0%, rgba(179, 145, 85, 0.1) 45%, transparent 75%); pointer-events: none; animation: pulseGlow 4s infinite ease-in-out;"></div>
           <div id="threeCanvas" style="width: 100%; height: 100%; cursor: grab; touch-action: none;"></div>
         </div>
       </section>
@@ -456,34 +484,34 @@
       <hr class="scene-divider">
 
       <!-- SCENE 2: FORMAL INVITATION -->
-      <section class="reveal" style="text-align: center; padding: 16px 0;">
-        <p class="reveal delay-1" style="font-family: var(--font-body); font-size: 0.8125rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--color-gold-deep); font-weight: 600; margin-bottom: 14px;">
+      <section class="reveal" style="text-align: center; padding: 20px 0;">
+        <p class="reveal delay-1" style="font-family: var(--font-body); font-size: clamp(0.8125rem, 2.2vw, 0.95rem); letter-spacing: 0.18em; text-transform: uppercase; color: var(--color-gold-deep); font-weight: 700; margin-bottom: 18px;">
           Under the Grace of Elders &amp; Ancestors
         </p>
 
-        <div class="luxury-paper-card reveal delay-2" style="background: rgba(35, 59, 50, 0.035); border: 1px solid rgba(185, 154, 98, 0.32); border-radius: 12px; padding: 18px 16px; margin-bottom: 18px; box-shadow: 0 4px 14px rgba(35, 59, 50, 0.04);">
-          <p style="font-family: var(--font-heading); font-size: 1.25rem; color: var(--color-forest-deep); line-height: 1.35; font-weight: 600;">
+        <div class="luxury-paper-card reveal delay-2" style="background: rgba(33, 59, 48, 0.035); border: 1px solid rgba(179, 145, 85, 0.38); border-radius: 14px; padding: 22px 20px; margin-bottom: 20px; box-shadow: 0 4px 16px rgba(22, 41, 32, 0.05);">
+          <p style="font-family: var(--font-heading); font-size: clamp(1.3rem, 3.8vw, 1.85rem); color: var(--color-forest-deep); line-height: 1.3; font-weight: 700;">
             Mr. Bhudeo Bawankule<br>&amp; Mrs. Rekha Bawankle
           </p>
-          <p style="font-family: var(--font-body); font-size: 0.8125rem; color: var(--color-ink-muted); margin-top: 6px; letter-spacing: 0.04em;">
+          <p style="font-family: var(--font-body); font-size: clamp(0.875rem, 2.2vw, 1.05rem); color: var(--color-ink-muted); marginTop: 8px; letter-spacing: 0.04em; line-height: 1.5;">
             Cordially invite your gracious presence to celebrate the wedding of their daughter
           </p>
         </div>
 
-        <div class="reveal delay-3" style="margin: 22px 0;">
-          <p style="font-family: var(--font-heading); font-size: 1.5rem; font-style: italic; color: var(--color-forest-rich); letter-spacing: 0.02em; font-weight: 600;">
+        <div class="reveal delay-3" style="margin: 26px 0;">
+          <p style="font-family: var(--font-heading); font-size: clamp(1.6rem, 4.6vw, 2.4rem); font-style: italic; color: var(--color-forest-rich); letter-spacing: 0.02em; font-weight: 700; line-height: 1.25;">
             “ We are Inviting you  ”
           </p>
         </div>
 
-        <div class="luxury-paper-card reveal delay-4" style="background: rgba(35, 59, 50, 0.035); border: 1px solid rgba(185, 154, 98, 0.32); border-radius: 12px; padding: 18px 16px; box-shadow: 0 4px 14px rgba(35, 59, 50, 0.04);">
-          <p style="font-family: var(--font-body); font-size: 0.8125rem; color: var(--color-ink-muted); letter-spacing: 0.04em; margin-bottom: 4px;">
+        <div class="luxury-paper-card reveal delay-4" style="background: rgba(33, 59, 48, 0.035); border: 1px solid rgba(179, 145, 85, 0.38); border-radius: 14px; padding: 22px 20px; box-shadow: 0 4px 16px rgba(22, 41, 32, 0.05);">
+          <p style="font-family: var(--font-body); font-size: clamp(0.8125rem, 2vw, 0.95rem); color: var(--color-ink-muted); letter-spacing: 0.06em; margin-bottom: 6px; text-transform: uppercase; font-weight: 600;">
             Together with
           </p>
-          <p style="font-family: var(--font-heading); font-size: 1.25rem; color: var(--color-forest-deep); line-height: 1.35; font-weight: 600;">
+          <p style="font-family: var(--font-heading); font-size: clamp(1.3rem, 3.8vw, 1.85rem); color: var(--color-forest-deep); line-height: 1.3; font-weight: 700;">
             Mr. Manikrao Deshmukh<br>&amp; Mrs. Nirmala Deshmukh
           </p>
-          <p style="font-family: var(--font-body); font-size: 0.8125rem; color: var(--color-ink-muted); marginTop: 4px; letter-spacing: 0.04em;">
+          <p style="font-family: var(--font-body); font-size: clamp(0.875rem, 2.2vw, 1.05rem); color: var(--color-ink-muted); margin-top: 6px; letter-spacing: 0.04em;">
             Parents of the Groom
           </p>
         </div>
@@ -491,75 +519,71 @@
 
       <hr class="scene-divider">
 
-      <!-- SCENE 3: THE COUPLE MONOGRAM -->
-      <section class="reveal" style="text-align: center; padding: 16px 0;">
-        <img src="public/assets/frames/crest-royal.webp" alt="Royal Heritage Crest" class="reveal delay-1" style="width: 78px; height: auto; margin: 0 auto 12px; opacity: 0.95; filter: drop-shadow(0 4px 12px rgba(185, 154, 98, 0.3)); display: block;">
+      <!-- SCENE 3: THE COUPLE MONOGRAM (MONUMENTAL TYPOGRAPHY) -->
+      <section class="reveal" style="text-align: center; padding: 24px 0;">
+        <img src="public/assets/frames/crest-royal.webp" alt="Royal Heritage Crest" class="reveal delay-1" style="width: clamp(68px, 14vw, 92px); height: auto; margin: 0 auto 16px; opacity: 0.95; filter: drop-shadow(0 4px 12px rgba(179, 145, 85, 0.35)); display: block;">
         
-        <div class="reveal delay-2">
-          <h1 style="font-family: var(--font-display); font-size: 2.5rem; line-height: 1.15; color: var(--color-forest-deep); font-weight: 700; letter-spacing: 0.02em;">
+        <div class="reveal delay-2" style="padding: 0 8px;">
+          <h1 style="font-family: var(--font-display); font-size: clamp(3rem, 9.2vw, 6.2rem); line-height: 1.05; color: var(--color-forest-deep); font-weight: 700; letter-spacing: 0.01em; margin: 0;">
             Isha Bawankule
           </h1>
-          <span style="font-family: var(--font-accent); font-size: 3.2rem; line-height: 0.85; color: var(--color-gold-antique); display: block; margin: 6px 0;">
+          <span style="font-family: var(--font-accent); font-size: clamp(3.2rem, 9.5vw, 6.4rem); line-height: 0.8; color: var(--color-gold-antique); display: block; margin: 6px 0;">
             &amp;
           </span>
-          <h1 style="font-family: var(--font-display); font-size: 2.5rem; line-height: 1.15; color: var(--color-forest-deep); font-weight: 700; letter-spacing: 0.02em;">
+          <h1 style="font-family: var(--font-display); font-size: clamp(3rem, 9.2vw, 6.2rem); line-height: 1.05; color: var(--color-forest-deep); font-weight: 700; letter-spacing: 0.01em; margin: 0;">
             Ashish Deshmukh
           </h1>
         </div>
 
-        <p class="reveal delay-3" style="font-family: var(--font-heading); font-size: 1.25rem; color: var(--color-ink-muted); margin-top: 16px; font-style: italic;">
+        <p class="reveal delay-3" style="font-family: var(--font-heading); font-size: clamp(1.15rem, 3.2vw, 1.55rem); color: var(--color-ink-muted); margin-top: 20px; font-style: italic; line-height: 1.4; padding: 0 12px;">
           As they unite their lives in sacred matrimony
         </p>
 
-        <div class="reveal delay-4" style="margin-top: 20px;">
-          <img src="public/assets/frames/garland-gold.webp" alt="Royal Botanical Garland" style="width: 100%; maxWidth: 360px; height: 42px; object-fit: contain; margin: 0 auto; opacity: 0.92; display: block; filter: drop-shadow(0 2px 6px rgba(185, 154, 98, 0.25));">
+        <div class="reveal delay-4" style="margin-top: 24px;">
+          <img src="public/assets/frames/garland-gold.webp" alt="Royal Botanical Garland" style="width: 100%; max-width: 380px; height: 46px; object-fit: contain; margin: 0 auto; opacity: 0.92; display: block; filter: drop-shadow(0 2px 8px rgba(179, 145, 85, 0.28));">
         </div>
       </section>
 
       <hr class="scene-divider">
 
       <!-- SCENE 4: AUSPICIOUS MUHURAT -->
-      <section class="reveal" style="text-align: center; padding: 16px 0;">
+      <section class="reveal" style="text-align: center; padding: 20px 0;">
         <div class="reveal delay-1">
-          <p style="font-family: var(--font-body); font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--color-gold-deep); font-weight: 600; margin-bottom: 6px;">
-            Auspicious Muhurat
-          </p>
-          <h2 style="font-family: var(--font-display); font-size: 1.625rem; color: var(--color-forest-deep); letter-spacing: 0.03em; font-weight: 700; margin-bottom: 12px;">
-            The Sacred Vows
-          </h2>
+          <p class="section-eyebrow">Auspicious Muhurat</p>
+          <h2 class="section-main-title">The Sacred Vows</h2>
         </div>
 
-        <div class="reveal delay-2" style="display: inline-flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 8px; background: rgba(185, 154, 98, 0.12); border: 1px solid rgba(185, 154, 98, 0.45); padding: 8px 18px; border-radius: 24px; font-family: var(--font-heading); font-size: 1.05rem; color: var(--color-forest-deep); font-weight: 600; margin: 0 auto 10px;">
+        <div class="reveal delay-2" style="display: inline-flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 10px; background: rgba(179, 145, 85, 0.12); border: 1px solid rgba(179, 145, 85, 0.5); padding: 10px 22px; border-radius: 30px; font-family: var(--font-heading); font-size: clamp(1.15rem, 3.2vw, 1.55rem); color: var(--color-forest-deep); font-weight: 700; margin: 0 auto 12px; box-shadow: 0 2px 10px rgba(179, 145, 85, 0.15);">
           <span>Thursday, 17 December 2026</span>
           <span>•</span>
           <span>5:40 PM IST</span>
         </div>
 
-        <p class="reveal delay-2" style="font-family: var(--font-body); font-size: 0.8125rem; color: var(--color-ink-muted); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 20px;">
+        <p class="reveal delay-2" style="font-family: var(--font-body); font-size: clamp(0.8125rem, 2.2vw, 0.95rem); color: var(--color-ink-muted); letter-spacing: 0.1em; text-transform: uppercase; font-weight: 600; margin-bottom: 24px;">
           Twilight Goraj Muhurat (IST Asia/Kolkata)
         </p>
 
-        <div class="reveal delay-3" style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-bottom: 22px;">
-          <div class="countdown-box" style="background: #FFFFFF; border: 1px solid rgba(185, 154, 98, 0.35); border-radius: 12px; padding: 14px 6px; box-shadow: 0 4px 14px rgba(35, 59, 50, 0.05);">
-            <div id="daysVal" style="font-family: var(--font-display); font-size: 1.85rem; color: var(--color-forest-deep); font-weight: 700; line-height: 1;">--</div>
-            <div style="font-family: var(--font-body); font-size: 0.6875rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--color-ink-muted); margin-top: 6px; font-weight: 600;">Days</div>
+        <div class="reveal delay-3" style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-bottom: 26px;">
+          <div class="countdown-box" style="background: #FFFFFF; border: 1px solid rgba(179, 145, 85, 0.4); border-radius: 14px; padding: 16px 6px; box-shadow: 0 4px 16px rgba(22, 41, 32, 0.05);">
+            <div id="daysVal" style="font-family: var(--font-display); font-size: clamp(2rem, 5.8vw, 3.2rem); color: var(--color-forest-deep); font-weight: 700; line-height: 1;">--</div>
+            <div style="font-family: var(--font-body); font-size: clamp(0.6875rem, 1.8vw, 0.8125rem); letter-spacing: 0.14em; text-transform: uppercase; color: var(--color-ink-muted); margin-top: 8px; font-weight: 700;">Days</div>
           </div>
-          <div class="countdown-box" style="background: #FFFFFF; border: 1px solid rgba(185, 154, 98, 0.35); border-radius: 12px; padding: 14px 6px; box-shadow: 0 4px 14px rgba(35, 59, 50, 0.05);">
-            <div id="hoursVal" style="font-family: var(--font-display); font-size: 1.85rem; color: var(--color-forest-deep); font-weight: 700; line-height: 1;">--</div>
-            <div style="font-family: var(--font-body); font-size: 0.6875rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--color-ink-muted); margin-top: 6px; font-weight: 600;">Hours</div>
+          <div class="countdown-box" style="background: #FFFFFF; border: 1px solid rgba(179, 145, 85, 0.4); border-radius: 14px; padding: 16px 6px; box-shadow: 0 4px 16px rgba(22, 41, 32, 0.05);">
+            <div id="hoursVal" style="font-family: var(--font-display); font-size: clamp(2rem, 5.8vw, 3.2rem); color: var(--color-forest-deep); font-weight: 700; line-height: 1;">--</div>
+            <div style="font-family: var(--font-body); font-size: clamp(0.6875rem, 1.8vw, 0.8125rem); letter-spacing: 0.14em; text-transform: uppercase; color: var(--color-ink-muted); margin-top: 8px; font-weight: 700;">Hours</div>
           </div>
-          <div class="countdown-box" style="background: #FFFFFF; border: 1px solid rgba(185, 154, 98, 0.35); border-radius: 12px; padding: 14px 6px; box-shadow: 0 4px 14px rgba(35, 59, 50, 0.05);">
-            <div id="minsVal" style="font-family: var(--font-display); font-size: 1.85rem; color: var(--color-forest-deep); font-weight: 700; line-height: 1;">--</div>
-            <div style="font-family: var(--font-body); font-size: 0.6875rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--color-ink-muted); margin-top: 6px; font-weight: 600;">Mins</div>
+          <div class="countdown-box" style="background: #FFFFFF; border: 1px solid rgba(179, 145, 85, 0.4); border-radius: 14px; padding: 16px 6px; box-shadow: 0 4px 16px rgba(22, 41, 32, 0.05);">
+            <div id="minsVal" style="font-family: var(--font-display); font-size: clamp(2rem, 5.8vw, 3.2rem); color: var(--color-forest-deep); font-weight: 700; line-height: 1;">--</div>
+            <div style="font-family: var(--font-body); font-size: clamp(0.6875rem, 1.8vw, 0.8125rem); letter-spacing: 0.14em; text-transform: uppercase; color: var(--color-ink-muted); margin-top: 8px; font-weight: 700;">Mins</div>
           </div>
-          <div class="countdown-box" style="background: #FFFFFF; border: 1px solid rgba(185, 154, 98, 0.35); border-radius: 12px; padding: 14px 6px; box-shadow: 0 4px 14px rgba(35, 59, 50, 0.05);">
-            <div id="secsVal" style="font-family: var(--font-display); font-size: 1.85rem; color: var(--color-forest-deep); font-weight: 700; line-height: 1;">--</div>
-            <div style="font-family: var(--font-body); font-size: 0.6875rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--color-ink-muted); margin-top: 6px; font-weight: 600;">Secs</div>
+          <div class="countdown-box" style="background: #FFFFFF; border: 1px solid rgba(179, 145, 85, 0.4); border-radius: 14px; padding: 16px 6px; box-shadow: 0 4px 16px rgba(22, 41, 32, 0.05);">
+            <div id="secsVal" style="font-family: var(--font-display); font-size: clamp(2rem, 5.8vw, 3.2rem); color: var(--color-forest-deep); font-weight: 700; line-height: 1;">--</div>
+            <div style="font-family: var(--font-body); font-size: clamp(0.6875rem, 1.8vw, 0.8125rem); letter-spacing: 0.14em; text-transform: uppercase; color: var(--color-ink-muted); margin-top: 8px; font-weight: 700;">Secs</div>
           </div>
         </div>
 
         <div class="reveal delay-4">
-          <button onclick="addToCalendar()" class="btn-royal-secondary" style="width: 100%; max-width: 320px;">
+          <button onclick="addToCalendar()" class="btn-royal-secondary" style="width: 100%; max-width: 340px;">
             📅 Save Date to Calendar (.ics)
           </button>
         </div>
@@ -568,32 +592,28 @@
       <hr class="scene-divider">
 
       <!-- SCENE 5: SANCTUARY VENUE -->
-      <section class="reveal" style="text-align: center; padding: 16px 0;">
+      <section class="reveal" style="text-align: center; padding: 20px 0;">
         <div class="reveal delay-1">
-          <p style="font-family: var(--font-body); font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--color-gold-deep); font-weight: 600; margin-bottom: 6px;">
-            The Destination
-          </p>
-          <h2 style="font-family: var(--font-display); font-size: 1.625rem; color: var(--color-forest-deep); letter-spacing: 0.03em; font-weight: 700; margin-bottom: 12px;">
-            Sacred Sanctuary
-          </h2>
+          <p class="section-eyebrow">The Destination</p>
+          <h2 class="section-main-title">Sacred Sanctuary</h2>
         </div>
 
-        <div class="luxury-paper-card reveal delay-2" style="background: rgba(35, 59, 50, 0.035); border: 1px solid rgba(185, 154, 98, 0.35); border-radius: 14px; padding: 24px 20px; margin-top: 12px; box-shadow: 0 6px 18px rgba(35, 59, 50, 0.05);">
-          <div style="width: 44px; height: 44px; border-radius: 50%; background: rgba(185, 154, 98, 0.16); border: 1px solid rgba(185, 154, 98, 0.45); display: flex; align-items: center; justify-content: center; margin: 0 auto 12px;">
-            <img src="public/assets/icons/map-marker.svg" alt="Venue Pin" style="width: 22px; height: 22px;">
+        <div class="luxury-paper-card reveal delay-2" style="background: rgba(33, 59, 48, 0.035); border: 1px solid rgba(179, 145, 85, 0.38); border-radius: 16px; padding: 28px 22px; margin-top: 14px; box-shadow: 0 6px 20px rgba(22, 41, 32, 0.06);">
+          <div style="width: 48px; height: 48px; border-radius: 50%; background: rgba(179, 145, 85, 0.16); border: 1px solid rgba(179, 145, 85, 0.5); display: flex; align-items: center; justify-content: center; margin: 0 auto 16px;">
+            <img src="public/assets/icons/map-marker.svg" alt="Venue Pin" style="width: 24px; height: 24px;">
           </div>
 
-          <h3 style="font-family: var(--font-display); font-size: 1.85rem; color: var(--color-forest-deep); font-weight: 700; margin-bottom: 8px;">
+          <h3 style="font-family: var(--font-display); font-size: clamp(2rem, 5.6vw, 3.2rem); color: var(--color-forest-deep); font-weight: 700; margin-bottom: 10px; line-height: 1.15;">
             Amrit Farms
           </h3>
-          <p style="font-family: var(--font-body); font-size: 0.95rem; line-height: 1.5; color: var(--color-ink-charcoal); font-weight: 500;">
+          <p style="font-family: var(--font-body); font-size: clamp(1rem, 2.6vw, 1.2rem); line-height: 1.5; color: var(--color-ink-charcoal); font-weight: 600;">
             GUMTHALA NAGPUR (MH) 441111
           </p>
-          <p style="font-family: var(--font-body); font-size: 0.8125rem; color: var(--color-ink-muted); margin-top: 4px; margin-bottom: 22px;">
+          <p style="font-family: var(--font-body); font-size: clamp(0.85rem, 2.2vw, 1rem); color: var(--color-ink-muted); margin-top: 6px; margin-bottom: 26px;">
             (Near Gumthi/Koradi Road Area)
           </p>
 
-          <div style="display: flex; flex-direction: column; gap: 12px; max-width: 340px; margin: 0 auto;">
+          <div style="display: flex; flex-direction: column; gap: 14px; max-width: 360px; margin: 0 auto;">
             <a href="https://maps.app.goo.gl/zbGfRrkW83LXk8qG8?g_st=ac" target="_blank" rel="noopener noreferrer" class="btn-royal-primary">
               📍 Open in Google Maps
             </a>
@@ -607,22 +627,22 @@
       <hr class="scene-divider">
 
       <!-- SCENE 6: TRADITIONAL BLESSINGS -->
-      <section class="reveal" style="text-align: center; padding: 20px 0 10px;">
-        <img src="public/assets/ornaments/seal.png" alt="Royal Wax Seal" class="reveal delay-1" style="width: 68px; height: auto; margin: 0 auto 16px; filter: drop-shadow(0 6px 14px rgba(185, 154, 98, 0.4)); display: block;">
+      <section class="reveal" style="text-align: center; padding: 24px 0 16px;">
+        <img src="public/assets/ornaments/seal.png" alt="Royal Wax Seal" class="reveal delay-1" style="width: clamp(64px, 14vw, 84px); height: auto; margin: 0 auto 18px; filter: drop-shadow(0 6px 16px rgba(179, 145, 85, 0.4)); display: block;">
         
-        <p class="reveal delay-2" style="font-family: var(--font-heading); font-size: 1.25rem; font-style: italic; color: var(--color-forest-deep); line-height: 1.6; max-width: 440px; margin: 0 auto 20px;">
+        <p class="reveal delay-2" style="font-family: var(--font-heading); font-size: clamp(1.25rem, 3.6vw, 1.75rem); font-style: italic; color: var(--color-forest-deep); line-height: 1.55; max-width: 480px; margin: 0 auto 24px; padding: 0 8px;">
           “May the harmony of your souls be eternal, blessed with joy, laughter, and boundless peace.”
         </p>
 
-        <p class="reveal delay-3" style="font-family: var(--font-body); font-size: 0.8125rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--color-ink-muted); font-weight: 600;">
+        <p class="reveal delay-3" style="font-family: var(--font-body); font-size: clamp(0.8125rem, 2.2vw, 0.95rem); letter-spacing: 0.18em; text-transform: uppercase; color: var(--color-ink-muted); font-weight: 700;">
           Warmly Welcomed by
         </p>
 
         <div class="reveal delay-4">
-          <p style="font-family: var(--font-accent); font-size: 3rem; line-height: 1; color: var(--color-gold-antique); margin-top: 6px;">
+          <p style="font-family: var(--font-accent); font-size: clamp(3.2rem, 9.5vw, 6.2rem); lineHeight: 0.95; color: var(--color-gold-antique); margin-top: 8px;">
             Isha &amp; Ashish
           </p>
-          <p style="font-family: var(--font-heading); font-size: 1.1rem; color: var(--color-ink-charcoal); margin-top: 6px;">
+          <p style="font-family: var(--font-heading); font-size: clamp(1.15rem, 3vw, 1.45rem); color: var(--color-ink-charcoal); marginTop: 8px; font-weight: 600;">
             &amp; The Bawankule &amp; Deshmukh Families
           </p>
         </div>
@@ -630,11 +650,11 @@
     </main>
   </div>
 
-  <!-- Floating Audio Widget with Auto-Play Enabled by Default -->
+  <!-- Floating Audio Widget -->
   <aside class="floating-audio-widget" id="audioWidget" onclick="toggleAudio()">
     <span id="audioIcon" style="font-size: 1.15rem; display: inline-block;">🎵</span>
     <div style="display: flex; flex-direction: column; text-align: left;">
-      <span style="font-family: var(--font-body); font-size: 0.75rem; font-weight: 700; letter-spacing: 0.07em; color: var(--color-gold-champagne); text-transform: uppercase; line-height: 1.2;">
+      <span style="font-family: var(--font-body); font-size: 0.75rem; font-weight: 700; letter-spacing: 0.08em; color: var(--color-gold-champagne); text-transform: uppercase; line-height: 1.2;">
         Sacred Shehnai
       </span>
       <span id="audioStatus" style="font-family: var(--font-body); font-size: 0.625rem; color: var(--color-gold-bright); letter-spacing: 0.04em;">
@@ -646,8 +666,15 @@
   <div class="toast-popup" id="toast">✓ Address copied to clipboard!</div>
 
   <script>
-    // Open Gatefold Invitation Card
-    function openInvitationCard() {
+    // Viewport Switcher
+    function setViewport(w, btn) {
+      document.getElementById('invitationWrapper').style.maxWidth = w;
+      document.querySelectorAll('.viewport-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+    }
+
+    // Open Gatefold Invitation Card (Warm Ivory Paper)
+    function openInvitationCard(withMusic) {
       const left = document.getElementById('flapLeft');
       const right = document.getElementById('flapRight');
       const content = document.getElementById('preloaderContent');
@@ -660,20 +687,16 @@
         preloader.style.opacity = '0';
         preloader.style.pointerEvents = 'none';
 
-        // Trigger sacred audio immediately on user tap
-        startAudio();
+        if (withMusic) {
+          startAudio();
+        } else {
+          stopAudio();
+        }
 
         setTimeout(() => {
           preloader.style.display = 'none';
-        }, 1400);
+        }, 1300);
       }
-    }
-
-    // Viewport Switcher
-    function setViewport(w, btn) {
-      document.getElementById('invitationWrapper').style.maxWidth = w;
-      document.querySelectorAll('.viewport-btn').forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
     }
 
     // IntersectionObserver for Scroll Reveals
@@ -751,7 +774,6 @@
       const camera = new THREE.PerspectiveCamera(38, width / height, 0.1, 100);
       camera.position.set(0, 0.25, 4.2);
 
-      // Studio Lighting
       scene.add(new THREE.AmbientLight(0xfff6ea, 2.0));
       const keyLight = new THREE.DirectionalLight(0xffeedd, 3.0);
       keyLight.position.set(3, 5, 4);
@@ -766,7 +788,6 @@
       diamondLight.position.set(0.4, 0.8, 1.2);
       scene.add(diamondLight);
 
-      // Materials
       const goldMat = new THREE.MeshPhysicalMaterial({
         color: 0xEDB85A,
         metalness: 0.98,
@@ -789,7 +810,6 @@
       const masterGroup = new THREE.Group();
       scene.add(masterGroup);
 
-      // Groom's Gold Band
       const bandGroup = new THREE.Group();
       const bandMesh = new THREE.Mesh(new THREE.TorusGeometry(0.72, 0.11, 32, 100), goldMat);
       bandGroup.add(bandMesh);
@@ -797,14 +817,12 @@
       bandGroup.rotation.set(0.35, 0.45, -0.2);
       masterGroup.add(bandGroup);
 
-      // Bride's Solitaire Engagement Ring
       const solGroup = new THREE.Group();
       solGroup.add(new THREE.Mesh(new THREE.TorusGeometry(0.68, 0.09, 32, 100), goldMat));
 
       const setting = new THREE.Group();
       setting.position.set(0, 0.69, 0);
 
-      // 4 Prongs
       const prongGeo = new THREE.CylinderGeometry(0.025, 0.03, 0.22, 12);
       for (let i = 0; i < 4; i++) {
         const a = (i * Math.PI) / 2 + Math.PI / 4;
@@ -815,7 +833,6 @@
         setting.add(p);
       }
 
-      // Brilliant Cut Diamond
       const crown = new THREE.Mesh(new THREE.CylinderGeometry(0.19, 0.23, 0.1, 16), diamondMat);
       crown.position.y = 0.12;
       setting.add(crown);
@@ -829,7 +846,6 @@
       solGroup.rotation.set(-0.25, -0.4, 0.28);
       masterGroup.add(solGroup);
 
-      // Stardust Particles
       const pCount = 45;
       const pPos = new Float32Array(pCount * 3);
       for (let i = 0; i < pCount; i++) {
@@ -843,10 +859,8 @@
       const pGeo = new THREE.BufferGeometry();
       pGeo.setAttribute('position', new THREE.BufferAttribute(pPos, 3));
       const pMat = new THREE.PointsMaterial({ size: 0.08, color: 0xF5DEB3, transparent: true, opacity: 0.8 });
-      const particles = new THREE.Points(pGeo, pMat);
-      scene.add(particles);
+      scene.add(new THREE.Points(pGeo, pMat));
 
-      // Touch & Mouse Dragging
       let isDrag = false, prevPos = { x: 0, y: 0 }, rotX = 0, rotY = 0;
       const onDown = (e) => {
         isDrag = true;
@@ -882,7 +896,6 @@
           masterGroup.rotation.y += (rotY - masterGroup.rotation.y) * 0.12;
           masterGroup.rotation.x += (rotX - masterGroup.rotation.x) * 0.12;
         }
-        particles.rotation.y = -t * 0.05;
         diamondLight.position.x = Math.sin(t * 2) * 1.5;
         diamondLight.position.z = Math.cos(t * 2) * 1.5;
         renderer.render(scene, camera);
@@ -891,11 +904,29 @@
     }
     window.addEventListener('DOMContentLoaded', init3DHero);
 
-    // Audio Autoplay Engine (Web Audio API)
+    // Audio Engine (Web Audio API with Chime)
     let audioCtx = null;
     let masterGain = null;
     let oscs = [];
     let isPlaying = false;
+
+    function playChime(ctx, dest) {
+      const chimeFreqs = [1108.73, 1479.98, 2217.46];
+      chimeFreqs.forEach((freq, idx) => {
+        const osc = ctx.createOscillator();
+        const g = ctx.createGain();
+        osc.type = 'sine';
+        osc.frequency.setValueAtTime(freq, ctx.currentTime);
+        const st = ctx.currentTime + idx * 0.08;
+        g.gain.setValueAtTime(0.0001, st);
+        g.gain.exponentialRampToValueAtTime(0.12 / (idx + 1), st + 0.02);
+        g.gain.exponentialRampToValueAtTime(0.0001, st + 2.5);
+        osc.connect(g);
+        g.connect(dest);
+        osc.start(st);
+        osc.stop(st + 2.6);
+      });
+    }
 
     function startAudio() {
       if (audioCtx && audioCtx.state === 'running') return;
@@ -906,10 +937,11 @@
 
         masterGain = audioCtx.createGain();
         masterGain.gain.setValueAtTime(0.0001, audioCtx.currentTime);
-        masterGain.gain.exponentialRampToValueAtTime(0.22, audioCtx.currentTime + 2.0);
+        masterGain.gain.exponentialRampToValueAtTime(0.2, audioCtx.currentTime + 2.2);
         masterGain.connect(audioCtx.destination);
 
-        // Tanpura Harmonics in C# / G#
+        playChime(audioCtx, audioCtx.destination);
+
         const freqs = [69.3, 138.59, 207.65, 277.18, 415.3];
         oscs = [];
         freqs.forEach((f, i) => {
@@ -920,9 +952,9 @@
 
           const filt = audioCtx.createBiquadFilter();
           filt.type = 'lowpass';
-          filt.frequency.setValueAtTime(750, audioCtx.currentTime);
+          filt.frequency.setValueAtTime(720, audioCtx.currentTime);
 
-          g.gain.setValueAtTime(0.28 / (i + 1), audioCtx.currentTime);
+          g.gain.setValueAtTime(0.25 / (i + 1), audioCtx.currentTime);
           osc.connect(filt);
           filt.connect(g);
           g.connect(masterGain);
@@ -930,7 +962,6 @@
           oscs.push(osc);
         });
 
-        // Shehnai Flute Vibrato
         const sOsc = audioCtx.createOscillator();
         const sGain = audioCtx.createGain();
         sOsc.type = 'triangle';
@@ -939,11 +970,11 @@
         const lfo = audioCtx.createOscillator();
         const lfoG = audioCtx.createGain();
         lfo.frequency.setValueAtTime(4.5, audioCtx.currentTime);
-        lfoG.gain.setValueAtTime(3.5, audioCtx.currentTime);
+        lfoG.gain.setValueAtTime(3.2, audioCtx.currentTime);
         lfo.connect(sOsc.frequency);
         lfo.start();
 
-        sGain.gain.setValueAtTime(0.045, audioCtx.currentTime);
+        sGain.gain.setValueAtTime(0.04, audioCtx.currentTime);
         sOsc.connect(sGain);
         sGain.connect(masterGain);
         sOsc.start();
@@ -952,7 +983,7 @@
         isPlaying = true;
         updateAudioUI();
       } catch (err) {
-        console.warn('Autoplay waiting for gesture:', err);
+        console.warn('Audio waiting for user gesture:', err);
       }
     }
 
@@ -991,19 +1022,9 @@
         widget.classList.remove('active');
         icon.innerText = '🔇';
         icon.style.animation = 'none';
-        status.innerText = 'Tap to Play';
+        status.innerText = 'Muted • Tap to Play';
       }
     }
-
-    // Attempt autoplay immediately and attach universal gesture triggers
-    window.addEventListener('DOMContentLoaded', () => {
-      startAudio();
-      const trigger = () => {
-        startAudio();
-        ['touchstart', 'scroll', 'pointerdown', 'click', 'keydown'].forEach(ev => window.removeEventListener(ev, trigger));
-      };
-      ['touchstart', 'scroll', 'pointerdown', 'click', 'keydown'].forEach(ev => window.addEventListener(ev, trigger, { passive: true }));
-    });
   </script>
 </body>
 </html>

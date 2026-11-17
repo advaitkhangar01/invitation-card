@@ -2,25 +2,25 @@ import React, { useState } from 'react';
 import { WEDDING_DATA } from '../data/weddingData';
 
 interface CardOpeningPreloaderProps {
-  onOpen?: () => void;
+  onOpen?: (withSound: boolean) => void;
 }
 
 export const CardOpeningPreloader: React.FC<CardOpeningPreloaderProps> = ({ onOpen }) => {
   const [isOpening, setIsOpening] = useState(false);
   const [isClosed, setIsClosed] = useState(true);
 
-  const handleOpen = () => {
+  const handleOpen = (withSound: boolean) => {
     if (isOpening) return;
     setIsOpening(true);
 
-    // Trigger sacred audio playback immediately via custom event
-    window.dispatchEvent(new Event('start-wedding-audio'));
-    if (onOpen) onOpen();
+    if (withSound) {
+      window.dispatchEvent(new Event('start-wedding-audio'));
+    }
+    if (onOpen) onOpen(withSound);
 
-    // After animation completes, remove overlay from view
     setTimeout(() => {
       setIsClosed(false);
-    }, 1400);
+    }, 1300);
   };
 
   if (!isClosed) return null;
@@ -31,66 +31,94 @@ export const CardOpeningPreloader: React.FC<CardOpeningPreloaderProps> = ({ onOp
         position: 'fixed',
         inset: 0,
         zIndex: 99999,
-        background: '#0B1410',
+        background: '#0E1713',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        perspective: '1400px',
+        perspective: '1600px',
         overflow: 'hidden',
-        padding: '16px',
+        padding: '0',
         opacity: isOpening ? 0 : 1,
-        transition: 'opacity 0.6s ease 0.8s',
+        transition: 'opacity 0.6s ease 0.75s',
         pointerEvents: isOpening ? 'none' : 'auto',
       }}
     >
-      {/* Background Ambient Glow */}
+      {/* Background Ambient Radial Glow */}
       <div
         style={{
           position: 'absolute',
-          width: '500px',
-          height: '500px',
+          width: '600px',
+          height: '600px',
           borderRadius: '50%',
-          background: 'radial-gradient(circle, rgba(185, 154, 98, 0.18) 0%, transparent 70%)',
+          background: 'radial-gradient(circle, rgba(179, 145, 85, 0.15) 0%, transparent 70%)',
           pointerEvents: 'none',
         }}
       />
 
-      {/* Royal Card Envelope Container (Mobile-first ratio: 380px max width, ~560px height) */}
+      {/* Royal Card Envelope Container
+          Mobile: Full Edge-to-Edge 100vw, 100svh/100dvh, 0 margins
+          Desktop: Max-width 480px, 680px height, centered with luxury shadow
+      */}
       <div
-        onClick={handleOpen}
+        className="preloader-envelope"
         style={{
           position: 'relative',
           width: '100%',
-          maxWidth: '400px',
-          height: '580px',
-          maxHeight: '90vh',
-          borderRadius: '16px',
-          boxShadow: '0 30px 90px rgba(0, 0, 0, 0.85), 0 0 0 1px rgba(185, 154, 98, 0.45)',
-          cursor: 'pointer',
+          maxWidth: '480px',
+          height: '100svh',
+          maxHeight: '100dvh',
           transformStyle: 'preserve-3d',
           userSelect: 'none',
         }}
       >
-        {/* Left Gatefold Flap */}
+        <style>{`
+          @media (min-width: 601px) {
+            .preloader-envelope {
+              height: 680px !important;
+              max-height: 92vh !important;
+              border-radius: 20px !important;
+              box-shadow: 0 35px 90px rgba(0, 0, 0, 0.8), 0 0 0 1px rgba(179, 145, 85, 0.5) !important;
+            }
+            .preloader-flap-left {
+              border-top-left-radius: 20px !important;
+              border-bottom-left-radius: 20px !important;
+            }
+            .preloader-flap-right {
+              border-top-right-radius: 20px !important;
+              border-bottom-right-radius: 20px !important;
+            }
+          }
+          @media (max-width: 600px) {
+            .preloader-envelope {
+              border-radius: 0 !important;
+              box-shadow: none !important;
+              border: none !important;
+            }
+            .preloader-flap-left, .preloader-flap-right {
+              border-radius: 0 !important;
+            }
+          }
+        `}</style>
+
+        {/* Left Gatefold Flap (Warm Ivory Handmade Paper with Gold Inset) */}
         <div
+          className="preloader-flap-left"
           style={{
             position: 'absolute',
             top: 0,
             left: 0,
             width: '50.5%',
             height: '100%',
-            background: '#15241C',
+            background: 'var(--color-paper-ivory)',
             backgroundImage:
-              'radial-gradient(circle at 100% 50%, rgba(185, 154, 98, 0.15) 0%, transparent 70%), url("/assets/textures/white_wall.jpg")',
+              'radial-gradient(circle at 100% 50%, rgba(179, 145, 85, 0.12) 0%, transparent 65%), url("/assets/textures/white_wall.jpg")',
             backgroundSize: 'cover',
-            borderTopLeftRadius: '16px',
-            borderBottomLeftRadius: '16px',
-            border: '1px solid rgba(185, 154, 98, 0.45)',
-            borderRight: '1px solid rgba(185, 154, 98, 0.7)',
+            border: '1px solid rgba(179, 145, 85, 0.45)',
+            borderRight: '1px solid rgba(179, 145, 85, 0.75)',
             transformOrigin: 'left center',
             transform: isOpening ? 'rotateY(-125deg)' : 'rotateY(0deg)',
             transition: 'transform 1.1s cubic-bezier(0.25, 1, 0.5, 1)',
-            boxShadow: isOpening ? 'none' : '5px 0 25px rgba(0, 0, 0, 0.5)',
+            boxShadow: isOpening ? 'none' : '6px 0 24px rgba(0, 0, 0, 0.25)',
             zIndex: 10,
             overflow: 'hidden',
           }}
@@ -99,48 +127,47 @@ export const CardOpeningPreloader: React.FC<CardOpeningPreloaderProps> = ({ onOp
           <div
             style={{
               position: 'absolute',
-              top: '12px',
-              left: '12px',
+              top: '14px',
+              left: '14px',
               right: '6px',
-              bottom: '12px',
-              border: '1px solid rgba(185, 154, 98, 0.3)',
-              borderRadius: '8px 0 0 8px',
+              bottom: '14px',
+              border: '1px solid rgba(179, 145, 85, 0.4)',
+              borderRight: 'none',
               pointerEvents: 'none',
             }}
           />
-          {/* Left corner alpona */}
+          {/* Left Corner Alpona Flourishes */}
           <img
             src="/assets/frames/deco-alpona-corner.webp"
             alt="flourish"
-            style={{ position: 'absolute', top: '16px', left: '16px', width: '36px', height: '36px', opacity: 0.8 }}
+            style={{ position: 'absolute', top: '18px', left: '18px', width: '42px', height: '42px', opacity: 0.85 }}
           />
           <img
             src="/assets/frames/deco-alpona-corner.webp"
             alt="flourish"
-            style={{ position: 'absolute', bottom: '16px', left: '16px', width: '36px', height: '36px', transform: 'scaleY(-1)', opacity: 0.8 }}
+            style={{ position: 'absolute', bottom: '18px', left: '18px', width: '42px', height: '42px', transform: 'scaleY(-1)', opacity: 0.85 }}
           />
         </div>
 
-        {/* Right Gatefold Flap */}
+        {/* Right Gatefold Flap (Warm Ivory Handmade Paper with Gold Inset) */}
         <div
+          className="preloader-flap-right"
           style={{
             position: 'absolute',
             top: 0,
             right: 0,
             width: '50.5%',
             height: '100%',
-            background: '#15241C',
+            background: 'var(--color-paper-ivory)',
             backgroundImage:
-              'radial-gradient(circle at 0% 50%, rgba(185, 154, 98, 0.15) 0%, transparent 70%), url("/assets/textures/white_wall.jpg")',
+              'radial-gradient(circle at 0% 50%, rgba(179, 145, 85, 0.12) 0%, transparent 65%), url("/assets/textures/white_wall.jpg")',
             backgroundSize: 'cover',
-            borderTopRightRadius: '16px',
-            borderBottomRightRadius: '16px',
-            border: '1px solid rgba(185, 154, 98, 0.45)',
+            border: '1px solid rgba(179, 145, 85, 0.45)',
             borderLeft: 'none',
             transformOrigin: 'right center',
             transform: isOpening ? 'rotateY(125deg)' : 'rotateY(0deg)',
             transition: 'transform 1.1s cubic-bezier(0.25, 1, 0.5, 1)',
-            boxShadow: isOpening ? 'none' : '-5px 0 25px rgba(0, 0, 0, 0.5)',
+            boxShadow: isOpening ? 'none' : '-6px 0 24px rgba(0, 0, 0, 0.25)',
             zIndex: 10,
             overflow: 'hidden',
           }}
@@ -149,29 +176,29 @@ export const CardOpeningPreloader: React.FC<CardOpeningPreloaderProps> = ({ onOp
           <div
             style={{
               position: 'absolute',
-              top: '12px',
+              top: '14px',
               left: '6px',
-              right: '12px',
-              bottom: '12px',
-              border: '1px solid rgba(185, 154, 98, 0.3)',
-              borderRadius: '0 8px 8px 0',
+              right: '14px',
+              bottom: '14px',
+              border: '1px solid rgba(179, 145, 85, 0.4)',
+              borderLeft: 'none',
               pointerEvents: 'none',
             }}
           />
-          {/* Right corner alpona */}
+          {/* Right Corner Alpona Flourishes */}
           <img
             src="/assets/frames/deco-alpona-corner.webp"
             alt="flourish"
-            style={{ position: 'absolute', top: '16px', right: '16px', width: '36px', height: '36px', transform: 'scaleX(-1)', opacity: 0.8 }}
+            style={{ position: 'absolute', top: '18px', right: '18px', width: '42px', height: '42px', transform: 'scaleX(-1)', opacity: 0.85 }}
           />
           <img
             src="/assets/frames/deco-alpona-corner.webp"
             alt="flourish"
-            style={{ position: 'absolute', bottom: '16px', right: '16px', width: '36px', height: '36px', transform: 'scale(-1)', opacity: 0.8 }}
+            style={{ position: 'absolute', bottom: '18px', right: '18px', width: '42px', height: '42px', transform: 'scale(-1)', opacity: 0.85 }}
           />
         </div>
 
-        {/* Center Card Presentation (Content on front of gatefold) */}
+        {/* Front Presentation (Typography rendered directly as authentic letterpress text on warm paper) */}
         <div
           style={{
             position: 'absolute',
@@ -181,7 +208,7 @@ export const CardOpeningPreloader: React.FC<CardOpeningPreloaderProps> = ({ onOp
             flexDirection: 'column',
             alignItems: 'center',
             justifyContent: 'center',
-            padding: '24px',
+            padding: 'calc(env(safe-area-inset-top, 20px) + 20px) 24px calc(env(safe-area-inset-bottom, 20px) + 24px)',
             textAlign: 'center',
             opacity: isOpening ? 0 : 1,
             transition: 'opacity 0.4s ease',
@@ -192,14 +219,14 @@ export const CardOpeningPreloader: React.FC<CardOpeningPreloaderProps> = ({ onOp
           <p
             style={{
               fontFamily: 'var(--font-heading)',
-              fontSize: '1.15rem',
-              color: '#E0B970',
+              fontSize: 'clamp(1.15rem, 3.2vw, 1.45rem)',
+              color: 'var(--color-sacred-kumkum)',
               fontWeight: 700,
               letterSpacing: '0.06em',
-              marginBottom: '10px',
+              marginBottom: '8px',
             }}
           >
-            ॥ श्री गणेशाय नमः ॥
+            {WEDDING_DATA.shloka.sanskrit}
           </p>
 
           {/* Royal Crest */}
@@ -207,48 +234,48 @@ export const CardOpeningPreloader: React.FC<CardOpeningPreloaderProps> = ({ onOp
             src="/assets/frames/crest-royal.webp"
             alt="Royal Crest"
             style={{
-              width: '64px',
+              width: 'clamp(58px, 12vw, 76px)',
               height: 'auto',
-              marginBottom: '14px',
-              filter: 'drop-shadow(0 4px 10px rgba(216, 189, 138, 0.35))',
+              marginBottom: '10px',
+              filter: 'drop-shadow(0 3px 8px rgba(179, 145, 85, 0.35))',
             }}
           />
 
           <p
             style={{
               fontFamily: 'var(--font-body)',
-              fontSize: '0.6875rem',
-              letterSpacing: '0.2em',
+              fontSize: 'clamp(0.75rem, 1.8vw, 0.875rem)',
+              letterSpacing: '0.22em',
               textTransform: 'uppercase',
-              color: 'var(--color-gold-bright)',
-              fontWeight: 600,
-              marginBottom: '6px',
+              color: 'var(--color-gold-deep)',
+              fontWeight: 700,
+              marginBottom: '4px',
             }}
           >
-            Wedding Invitation
+            Royal Wedding Invitation
           </p>
 
-          {/* Monogram Names */}
+          {/* Monumental Names */}
           <h2
             style={{
               fontFamily: 'var(--font-display)',
-              fontSize: '2rem',
+              fontSize: 'clamp(2.4rem, 7.5vw, 3.6rem)',
               lineHeight: 1.1,
-              color: '#FDFBF7',
+              color: 'var(--color-forest-deep)',
               fontWeight: 700,
               letterSpacing: '0.02em',
             }}
           >
-            Isha
+            {WEDDING_DATA.bride.name.split(' ')[0]}
           </h2>
 
           <span
             style={{
               fontFamily: 'var(--font-accent)',
-              fontSize: '2.4rem',
+              fontSize: 'clamp(2.5rem, 7vw, 3.8rem)',
               color: 'var(--color-gold-antique)',
               lineHeight: 0.85,
-              margin: '4px 0',
+              margin: '2px 0',
             }}
           >
             &amp;
@@ -257,48 +284,49 @@ export const CardOpeningPreloader: React.FC<CardOpeningPreloaderProps> = ({ onOp
           <h2
             style={{
               fontFamily: 'var(--font-display)',
-              fontSize: '2rem',
+              fontSize: 'clamp(2.4rem, 7.5vw, 3.6rem)',
               lineHeight: 1.1,
-              color: '#FDFBF7',
+              color: 'var(--color-forest-deep)',
               fontWeight: 700,
               letterSpacing: '0.02em',
-              marginBottom: '12px',
+              marginBottom: '10px',
             }}
           >
-            Ashish
+            {WEDDING_DATA.groom.name.split(' ')[0]}
           </h2>
 
           <p
             style={{
               fontFamily: 'var(--font-heading)',
-              fontSize: '1.05rem',
-              color: '#D8BD8A',
-              letterSpacing: '0.05em',
-              marginBottom: '24px',
+              fontSize: 'clamp(1.1rem, 2.8vw, 1.35rem)',
+              color: 'var(--color-ink-charcoal)',
+              fontWeight: 600,
+              letterSpacing: '0.04em',
+              marginBottom: '18px',
             }}
           >
             {WEDDING_DATA.date.fullFormatted}
           </p>
 
-          {/* Royal Gold Wax Seal with Pulsing Invitation Cue */}
+          {/* Royal Gold Wax Seal */}
           <div
             style={{
               position: 'relative',
-              width: '84px',
-              height: '84px',
+              width: '80px',
+              height: '80px',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
-              margin: '0 auto 18px',
+              margin: '0 auto 20px',
             }}
           >
             <div
               style={{
                 position: 'absolute',
-                width: '90px',
-                height: '90px',
+                width: '88px',
+                height: '88px',
                 borderRadius: '50%',
-                background: 'radial-gradient(circle, rgba(216, 189, 138, 0.4) 0%, transparent 70%)',
+                background: 'radial-gradient(circle, rgba(179, 145, 85, 0.4) 0%, transparent 70%)',
                 animation: 'pulseGlow 2.5s infinite ease-in-out',
               }}
             />
@@ -306,40 +334,70 @@ export const CardOpeningPreloader: React.FC<CardOpeningPreloaderProps> = ({ onOp
               src="/assets/ornaments/seal.png"
               alt="Royal Wax Seal"
               style={{
-                width: '74px',
+                width: '72px',
                 height: 'auto',
-                filter: 'drop-shadow(0 6px 16px rgba(0, 0, 0, 0.6))',
+                filter: 'drop-shadow(0 6px 16px rgba(0, 0, 0, 0.25))',
               }}
             />
           </div>
 
-          {/* Tap to Open Prompt Button */}
-          <button
-            onClick={handleOpen}
+          {/* User Choice CTAs: Enter with Sound or Enter Silently */}
+          <div
             style={{
-              display: 'inline-flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              gap: '8px',
-              background: 'linear-gradient(135deg, #B99A62 0%, #E8D3A7 50%, #B99A62 100%)',
-              color: '#1A3127',
-              fontFamily: 'var(--font-body)',
-              fontSize: '0.8125rem',
-              fontWeight: 700,
-              letterSpacing: '0.12em',
-              textTransform: 'uppercase',
-              padding: '12px 24px',
-              borderRadius: '30px',
-              border: '1px solid #FFE6B0',
-              boxShadow: '0 6px 20px rgba(0, 0, 0, 0.4), 0 0 15px rgba(216, 189, 138, 0.4)',
-              cursor: 'pointer',
+              display: 'flex',
+              flexDirection: 'column',
+              gap: '10px',
+              width: '100%',
+              maxWidth: '300px',
               pointerEvents: 'auto',
-              transition: 'transform 0.25s ease',
             }}
           >
-            <span>✉️</span>
-            <span>Tap to Open Invitation</span>
-          </button>
+            <button
+              onClick={() => handleOpen(true)}
+              style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                gap: '10px',
+                background: 'var(--color-forest-rich)',
+                color: 'var(--color-paper-ivory)',
+                fontFamily: 'var(--font-body)',
+                fontSize: 'clamp(0.8125rem, 2.2vw, 0.9375rem)',
+                fontWeight: 700,
+                letterSpacing: '0.1em',
+                textTransform: 'uppercase',
+                padding: '14px 22px',
+                borderRadius: '30px',
+                border: '1px solid var(--color-gold-antique)',
+                boxShadow: '0 6px 20px rgba(22, 41, 32, 0.35)',
+                cursor: 'pointer',
+                transition: 'all 0.25s ease',
+              }}
+            >
+              <span>✉️</span>
+              <span>Open with Sacred Music 🎵</span>
+            </button>
+
+            <button
+              onClick={() => handleOpen(false)}
+              style={{
+                background: 'transparent',
+                color: 'var(--color-ink-muted)',
+                fontFamily: 'var(--font-body)',
+                fontSize: '0.8125rem',
+                fontWeight: 600,
+                letterSpacing: '0.05em',
+                padding: '8px 16px',
+                border: 'none',
+                cursor: 'pointer',
+                textDecoration: 'underline',
+                textUnderlineOffset: '3px',
+                transition: 'color 0.2s ease',
+              }}
+            >
+              Open Silently 🔇
+            </button>
+          </div>
         </div>
       </div>
     </div>
