@@ -1,0 +1,1659 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Asset Contact Sheets — Isha & Ashish Wedding Creative Library</title>
+  <style>
+    :root {
+      --bg: #121214;
+      --card-bg: #1A1A1E;
+      --card-border: #2C2C32;
+      --text: #F0EDE8;
+      --muted: #9E9AA0;
+      --accent: #E5C378;
+      --badge-bg: #262422;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      padding: 40px 20px;
+      line-height: 1.5;
+    }
+    .container { max-width: 1400px; margin: 0 auto; }
+    header {
+      text-align: center;
+      margin-bottom: 50px;
+      padding-bottom: 30px;
+      border-bottom: 1px solid var(--card-border);
+    }
+    .badge {
+      display: inline-block;
+      text-transform: uppercase;
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      color: var(--accent);
+      background: var(--badge-bg);
+      border: 1px solid var(--accent);
+      padding: 6px 18px;
+      border-radius: 20px;
+      margin-bottom: 16px;
+      font-weight: 700;
+    }
+    h1 {
+      font-size: 36px;
+      font-weight: 700;
+      color: #FFF;
+      letter-spacing: 0.02em;
+      margin-bottom: 10px;
+    }
+    .subtitle {
+      color: var(--muted);
+      font-size: 16px;
+    }
+    .nav-bar {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+      margin-bottom: 40px;
+    }
+    .nav-btn {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      color: var(--text);
+      padding: 8px 18px;
+      border-radius: 20px;
+      font-size: 13px;
+      text-decoration: none;
+      transition: all 0.2s;
+    }
+    .nav-btn:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+    .category-section {
+      margin-bottom: 60px;
+    }
+    .category-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 24px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--card-border);
+    }
+    .category-title {
+      font-size: 24px;
+      font-weight: 600;
+      color: var(--accent);
+    }
+    .asset-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 20px;
+    }
+    .asset-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 10px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.2s, border-color 0.2s;
+    }
+    .asset-card:hover {
+      transform: translateY(-4px);
+      border-color: var(--accent);
+    }
+    .preview-box {
+      width: 100%;
+      height: 180px;
+      background: #0D0D0F;
+      background-image: 
+        linear-gradient(45deg, #18181C 25%, transparent 25%), 
+        linear-gradient(-45deg, #18181C 25%, transparent 25%), 
+        linear-gradient(45deg, transparent 75%, #18181C 75%), 
+        linear-gradient(-45deg, transparent 75%, #18181C 75%);
+      background-size: 20px 20px;
+      background-position: 0 0, 0 10px, 10px -10px, -10px 0px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 12px;
+      position: relative;
+    }
+    .preview-box img {
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
+    }
+    .preview-box svg {
+      max-width: 80%;
+      max-height: 80%;
+      fill: var(--accent);
+    }
+    .placeholder-badge {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--accent);
+      background: rgba(229, 195, 120, 0.1);
+      border: 1px solid var(--accent);
+      padding: 8px 14px;
+      border-radius: 6px;
+      text-align: center;
+    }
+    .card-meta {
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      flex-grow: 1;
+    }
+    .card-id {
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--accent);
+      letter-spacing: 0.1em;
+    }
+    .card-title {
+      font-size: 15px;
+      font-weight: 600;
+      color: #FFF;
+      line-height: 1.3;
+    }
+    .card-dim {
+      font-size: 12px;
+      color: var(--muted);
+    }
+    .card-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 8px;
+    }
+    .tag {
+      font-size: 10px;
+      background: #25252B;
+      color: #BBB;
+      padding: 3px 8px;
+      border-radius: 4px;
+      font-weight: 500;
+    }
+    .tag-comm {
+      background: rgba(46, 125, 50, 0.2);
+      color: #81C784;
+      border: 1px solid rgba(46, 125, 50, 0.4);
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <span class="badge">Visual Asset Verification</span>
+      <h1>Creative Library Contact Sheets</h1>
+      <p class="subtitle">Complete Visual Gallery of All 84 Verified Downloaded Assets for Isha & Ashish</p>
+    </header>
+
+    <div class="nav-bar">
+<a class="nav-btn" href="#animation-assets-(lottie)">Animation Assets (Lottie) (2)</a>
+<a class="nav-btn" href="#backgrounds-and-overlays">Backgrounds & Overlays (7)</a>
+<a class="nav-btn" href="#bouquets-and-arrangements">Bouquets & Arrangements (3)</a>
+<a class="nav-btn" href="#floral-frames-and-borders">Floral Frames & Borders (9)</a>
+<a class="nav-btn" href="#flowers-and-botanicals">Flowers & Botanicals (7)</a>
+<a class="nav-btn" href="#rings-and-jewellery">Rings & Jewellery (9)</a>
+<a class="nav-btn" href="#svg-decorative-elements">SVG Decorative Elements (6)</a>
+<a class="nav-btn" href="#three-dimensional-assets">Three-Dimensional Assets (3)</a>
+<a class="nav-btn" href="#typography">Typography (30)</a>
+<a class="nav-btn" href="#wedding-objects-and-motifs">Wedding Objects & Motifs (8)</a>
+</div>
+
+    <section id="animation-assets-(lottie)" class="category-section">
+      <div class="category-header">
+        <h2 class="category-title">Animation Assets (Lottie)</h2>
+        <span style="font-size: 13px; color: var(--muted);">2 Assets Downloaded</span>
+      </div>
+      <div class="asset-grid">
+    
+        <div class="asset-card">
+          <div class="preview-box">
+            <div class="placeholder-badge">✨ Lottie Motion<br>Vector JSON</div>
+          </div>
+          <div class="card-meta">
+            <span class="card-id">AST-077 • JSON</span>
+            <span class="card-title">Partyyy</span>
+            <span class="card-dim">Vector Lottie Motion • 365,326 B</span>
+            <div class="card-tags">
+              <span class="tag tag-comm">Commercial: Permitted</span>
+              <span class="tag">Alpha: Yes (Alpha Channel Supported)</span>
+              <span class="tag">MIT License</span>
+            </div>
+          </div>
+        </div>
+        
+        <div class="asset-card">
+          <div class="preview-box">
+            <div class="placeholder-badge">✨ Lottie Motion<br>Vector JSON</div>
+          </div>
+          <div class="card-meta">
+            <span class="card-id">AST-078 • JSON</span>
+            <span class="card-title">Wedding Animation</span>
+            <span class="card-dim">Vector Lottie Motion • 1,714,733 B</span>
+            <div class="card-tags">
+              <span class="tag tag-comm">Commercial: Permitted</span>
+              <span class="tag">Alpha: Yes (Alpha Channel Supported)</span>
+              <span class="tag">MIT License</span>
+            </div>
+          </div>
+        </div>
+        
+      </div>
+    </section>
+    
+    <section id="backgrounds-and-overlays" class="category-section">
+      <div class="category-header">
+        <h2 class="category-title">Backgrounds & Overlays</h2>
+        <span style="font-size: 13px; color: var(--muted);">7 Assets Downloaded</span>
+      </div>
+      <div class="asset-grid">
+    
+        <div class="asset-card">
+          <div class="preview-box">
+            <img src="creative-library\07-backgrounds-overlays\overlays\background.svg" alt="Background">
+          </div>
+          <div class="card-meta">
+            <span class="card-id">AST-032 • SVG</span>
+            <span class="card-title">Background</span>
+            <span class="card-dim">Scalable Vector • 63,978 B</span>
+            <div class="card-tags">
+              <span class="tag tag-comm">Commercial: Permitted</span>
+              <span class="tag">Alpha: Yes (Vector)</span>
+              <span class="tag">MIT / Open Content</span>
+            </div>
+          </div>
+        </div>
+        
+        <div class="asset-card">
+          <div class="preview-box">
+            <img src="creative-library\07-backgrounds-overlays\overlays\deco-sparkles.webp" alt="Deco Sparkles">
+          </div>
+          <div class="card-meta">
+            <span class="card-id">AST-033 • WEBP</span>
+            <span class="card-title">Deco Sparkles</span>
+            <span class="card-dim">392x214 • 13,432 B</span>
+            <div class="card-tags">
+              <span class="tag tag-comm">Commercial: Permitted</span>
+              <span class="tag">Alpha: Yes</span>
+              <span class="tag">MIT License</span>
+            </div>
+          </div>
+        </div>
+        
+        <div class="asset-card">
+          <div class="preview-box">
+            <img src="creative-library\07-backgrounds-overlays\overlays\spark-1.png" alt="Spark 1">
+          </div>
+          <div class="card-meta">
+            <span class="card-id">AST-034 • PNG</span>
+            <span class="card-title">Spark 1</span>
+            <span class="card-dim">128x128 • 7,876 B</span>
+            <div class="card-tags">
+              <span class="tag tag-comm">Commercial: Permitted</span>
+              <span class="tag">Alpha: Yes</span>
+              <span class="tag">MIT License</span>
+            </div>
+          </div>
+        </div>
+        
+        <div class="asset-card">
+          <div class="preview-box">
+            <img src="creative-library\07-backgrounds-overlays\overlays\spark-2.png" alt="Spark 2">
+          </div>
+          <div class="card-meta">
+            <span class="card-id">AST-035 • PNG</span>
+            <span class="card-title">Spark 2</span>
+            <span class="card-dim">256x256 • 20,494 B</span>
+            <div class="card-tags">
+              <span class="tag tag-comm">Commercial: Permitted</span>
+              <span class="tag">Alpha: Yes</span>
+              <span class="tag">MIT License</span>
+            </div>
+          </div>
+        </div>
+        
+        <div class="asset-card">
+          <div class="preview-box">
+            <img src="creative-library\07-backgrounds-overlays\paper\handmade-paper.png" alt="Handmade Paper">
+          </div>
+          <div class="card-meta">
+            <span class="card-id">AST-036 • PNG</span>
+            <span class="card-title">Handmade Paper</span>
+            <span class="card-dim">100x100 • 6,491 B</span>
+            <div class="card-tags">
+              <span class="tag tag-comm">Commercial: Permitted</span>
+              <span class="tag">Alpha: Yes</span>
+              <span class="tag">MIT License</span>
+            </div>
+          </div>
+        </div>
+        
+        <div class="asset-card">
+          <div class="preview-box">
+            <img src="creative-library\07-backgrounds-overlays\paper\white_wall.jpg" alt="White Wall">
+          </div>
+          <div class="card-meta">
+            <span class="card-id">AST-037 • JPG</span>
+            <span class="card-title">White Wall</span>
+            <span class="card-dim">5472x3648 • 3,248,247 B</span>
+            <div class="card-tags">
+              <span class="tag tag-comm">Commercial: Permitted</span>
+              <span class="tag">Alpha: No</span>
+              <span class="tag">Public Domain / Free Texture</span>
+            </div>
+          </div>
+        </div>
+        
+        <div class="asset-card">
+          <div class="preview-box">
+            <img src="creative-library\07-backgrounds-overlays\textures\bg-rose-sage.webp" alt="Bg Rose Sage">
+          </div>
+          <div class="card-meta">
+            <span class="card-id">AST-038 • WEBP</span>
+            <span class="card-title">Bg Rose Sage</span>
+            <span class="card-dim">1200x1200 • 320,124 B</span>
+            <div class="card-tags">
+              <span class="tag tag-comm">Commercial: Permitted</span>
+              <span class="tag">Alpha: No</span>
+              <span class="tag">MIT License</span>
+            </div>
+          </div>
+        </div>
+        
+      </div>
+    </section>
+    
+    <section id="bouquets-and-arrangements" class="category-section">
+      <div class="category-header">
+        <h2 class="category-title">Bouquets & Arrangements</h2>
+        <span style="font-size: 13px; color: var(--muted);">3 Assets Downloaded</span>
+      </div>
+      <div class="asset-grid">
+    
+        <div class="asset-card">
+          <div class="preview-box">
+            <img src="creative-library\04-bouquets\2-red-flowers.png" alt="2 Red Flowers">
+          </div>
+          <div class="card-meta">
+            <span class="card-id">AST-017 • PNG</span>
+            <span class="card-title">2 Red Flowers</span>
+            <span class="card-dim">356x320 • 155,942 B</span>
+            <div class="card-tags">
+              <span class="tag tag-comm">Commercial: Permitted</span>
+              <span class="tag">Alpha: Yes</span>
+              <span class="tag">MIT / Open Source</span>
+            </div>
+          </div>
+        </div>
+        
+        <div class="asset-card">
+          <div class="preview-box">
+            <img src="creative-library\04-bouquets\header-motif.webp" alt="Header Motif">
+          </div>
+          <div class="card-meta">
+            <span class="card-id">AST-018 • WEBP</span>
+            <span class="card-title">Header Motif</span>
+            <span class="card-dim">1065x330 • 185,096 B</span>
+            <div class="card-tags">
+              <span class="tag tag-comm">Commercial: Permitted</span>
+              <span class="tag">Alpha: Yes</span>
+              <span class="tag">MIT License</span>
+            </div>
+          </div>
+        </div>
+        
+        <div class="asset-card">
+          <div class="preview-box">
+            <img src="creative-library\04-bouquets\roses2.jpg" alt="Roses2">
+          </div>
+          <div class="card-meta">
+            <span class="card-id">AST-019 • JPG</span>
+            <span class="card-title">Roses2</span>
+            <span class="card-dim">1920x1280 • 361,317 B</span>
+            <div class="card-tags">
+              <span class="tag tag-comm">Commercial: Permitted</span>
+              <span class="tag">Alpha: No</span>
+              <span class="tag">MIT License</span>
+            </div>
+          </div>
+        </div>
+        
+      </div>
+    </section>
+    
+    <section id="floral-frames-and-borders" class="category-section">
+      <div class="category-header">
+        <h2 class="category-title">Floral Frames & Borders</h2>
+        <span style="font-size: 13px; color: var(--muted);">9 Assets Downloaded</span>
+      </div>
+      <div class="asset-grid">
+    
+        <div class="asset-card">
+          <div class="preview-box">
+            <img src="creative-library\02-floral-frames\borders\arch-gold.webp" alt="Arch Gold">
+          </div>
+          <div class="card-meta">
+            <span class="card-id">AST-001 • WEBP</span>
+            <span class="card-title">Arch Gold</span>
+            <span class="card-dim">585x780 • 119,308 B</span>
+            <div class="card-tags">
+              <span class="tag tag-comm">Commercial: Permitted</span>
+              <span class="tag">Alpha: Yes</span>
+              <span class="tag">MIT License</span>
+            </div>
+          </div>
+        </div>
+        
+        <div class="asset-card">
+          <div class="preview-box">
+            <img src="creative-library\02-floral-frames\borders\border.png" alt="Border">
+          </div>
+          <div class="card-meta">
+            <span class="card-id">AST-002 • PNG</span>
+            <span class="card-title">Border</span>
+            <span class="card-dim">383x615 • 7,566 B</span>
+            <div class="card-tags">
+              <span class="tag tag-comm">Commercial: Permitted</span>
+              <span class="tag">Alpha: Yes</span>
+              <span class="tag">MIT License</span>
+            </div>
+          </div>
+        </div>
+        
+        <div class="asset-card">
+          <div class="preview-box">
+            <img src="creative-library\02-floral-frames\borders\deco-kasavu-strip.webp" alt="Deco Kasavu Strip">
+          </div>
+          <div class="card-meta">
+            <span class="card-id">AST-003 • WEBP</span>
+            <span class="card-title">Deco Kasavu Strip</span>
+            <span class="card-dim">460x165 • 33,290 B</span>
+            <div class="card-tags">
+              <span class="tag tag-comm">Commercial: Permitted</span>
+              <span class="tag">Alpha: Yes</span>
+              <span class="tag">Creative Commons Attribution / MIT</span>
+            </div>
+          </div>
+        </div>
+        
+        <div class="asset-card">
+          <div class="preview-box">
+            <img src="creative-library\02-floral-frames\corners\corner-gold.webp" alt="Corner Gold">
+          </div>
+          <div class="card-meta">
+            <span class="card-id">AST-004 • WEBP</span>
+            <span class="card-title">Corner Gold</span>
+            <span class="card-dim">513x520 • 186,288 B</span>
+            <div class="card-tags">
+              <span class="tag tag-comm">Commercial: Permitted</span>
+              <span class="tag">Alpha: Yes</span>
+              <span class="tag">MIT License</span>
+            </div>
+          </div>
+        </div>
+        
+        <div class="asset-card">
+          <div class="preview-box">
+            <img src="creative-library\02-floral-frames\corners\deco-alpona-corner.webp" alt="Deco Alpona Corner">
+          </div>
+          <div class="card-meta">
+            <span class="card-id">AST-005 • WEBP</span>
+            <span class="card-title">Deco Alpona Corner</span>
+            <span class="card-dim">369x337 • 60,374 B</span>
+            <div class="card-tags">
+              <span class="tag tag-comm">Commercial: Permitted</span>
+              <span class="tag">Alpha: Yes</span>
+              <span class="tag">Creative Commons Attribution / MIT</span>
+            </div>
+          </div>
+        </div>
+        
+        <div class="asset-card">
+          <div class="preview-box">
+            <img src="creative-library\02-floral-frames\corners\deco-alpona-swirl.webp" alt="Deco Alpona Swirl">
+          </div>
+          <div class="card-meta">
+            <span class="card-id">AST-006 • WEBP</span>
+            <span class="card-title">Deco Alpona Swirl</span>
+            <span class="card-dim">267x341 • 53,090 B</span>
+            <div class="card-tags">
+              <span class="tag tag-comm">Commercial: Permitted</span>
+              <span class="tag">Alpha: Yes</span>
+              <span class="tag">Creative Commons Attribution / MIT</span>
+            </div>
+          </div>
+        </div>
+        
+        <div class="asset-card">
+          <div class="preview-box">
+            <img src="creative-library\02-floral-frames\ornamental\crest-royal.webp" alt="Crest Royal">
+          </div>
+          <div class="card-meta">
+            <span class="card-id">AST-007 • WEBP</span>
+            <span class="card-title">Crest Royal</span>
+            <span class="card-dim">570x760 • 167,064 B</span>
+            <div class="card-tags">
+              <span class="tag tag-comm">Commercial: Permitted</span>
+              <span class="tag">Alpha: Yes</span>
+              <span class="tag">MIT License</span>
+            </div>
+          </div>
+        </div>
+        
+        <div class="asset-card">
+          <div class="preview-box">
+            <img src="creative-library\02-floral-frames\ornamental\garland-gold.webp" alt="Garland Gold">
+          </div>
+          <div class="card-meta">
+            <span class="card-id">AST-008 • WEBP</span>
+            <span class="card-title">Garland Gold</span>
+            <span class="card-dim">720x556 • 166,424 B</span>
+            <div class="card-tags">
+              <span class="tag tag-comm">Commercial: Permitted</span>
+              <span class="tag">Alpha: Yes</span>
+              <span class="tag">MIT License</span>
+            </div>
+          </div>
+        </div>
+        
+        <div class="asset-card">
+          <div class="preview-box">
+            <img src="creative-library\02-floral-frames\ornamental\palace-gold.webp" alt="Palace Gold">
+          </div>
+          <div class="card-meta">
+            <span class="card-id">AST-009 • WEBP</span>
+            <span class="card-title">Palace Gold</span>
+            <span class="card-dim">1000x750 • 248,258 B</span>
+            <div class="card-tags">
+              <span class="tag tag-comm">Commercial: Permitted</span>
+              <span class="tag">Alpha: Yes</span>
+              <span class="tag">MIT License</span>
+            </div>
+          </div>
+        </div>
+        
+      </div>
+    </section>
+    
+    <section id="flowers-and-botanicals" class="category-section">
+      <div class="category-header">
+        <h2 class="category-title">Flowers & Botanicals</h2>
+        <span style="font-size: 13px; color: var(--muted);">7 Assets Downloaded</span>
+      </div>
+      <div class="asset-grid">
+    
+        <div class="asset-card">
+          <div class="preview-box">
+            <img src="creative-library\03-flowers-botanicals\branches\deco-jasmine-string.webp" alt="Deco Jasmine String">
+          </div>
+          <div class="card-meta">
+            <span class="card-id">AST-010 • WEBP</span>
+            <span class="card-title">Deco Jasmine String</span>
+            <span class="card-dim">428x209 • 26,612 B</span>
+            <div class="card-tags">
+              <span class="tag tag-comm">Commercial: Permitted</span>
+              <span class="tag">Alpha: Yes</span>
+              <span class="tag">MIT / CC-BY</span>
+            </div>
+          </div>
+        </div>
+        
+        <div class="asset-card">
+          <div class="preview-box">
+            <img src="creative-library\03-flowers-botanicals\branches\deco-marigold-string.webp" alt="Deco Marigold String">
+          </div>
+          <div class="card-meta">
+            <span class="card-id">AST-011 • WEBP</span>
+            <span class="card-title">Deco Marigold String</span>
+            <span class="card-dim">303x328 • 30,270 B</span>
+            <div class="card-tags">
+              <span class="tag tag-comm">Commercial: Permitted</span>
+              <span class="tag">Alpha: Yes</span>
+              <span class="tag">MIT / CC-BY</span>
+            </div>
+          </div>
+        </div>
+        
+        <div class="asset-card">
+          <div class="preview-box">
+            <img src="creative-library\03-flowers-botanicals\individual-flowers\amaltas-botanical-plate.jpg" alt="Amaltas Botanical Plate">
+          </div>
+          <div class="card-meta">
+            <span class="card-id">AST-012 • JPG</span>
+            <span class="card-title">Amaltas Botanical Plate</span>
+            <span class="card-dim">2076x3000 • 421,212 B</span>
+            <div class="card-tags">
+              <span class="tag tag-comm">Commercial: Permitted</span>
+              <span class="tag">Alpha: No</span>
+              <span class="tag">Public Domain / CC0</span>
+            </div>
+          </div>
+        </div>
+        
+        <div class="asset-card">
+          <div class="preview-box">
+            <img src="creative-library\03-flowers-botanicals\individual-flowers\bougainvillea-botanical-plate.jpg" alt="Bougainvillea Botanical Plate">
+          </div>
+          <div class="card-meta">
+            <span class="card-id">AST-013 • JPG</span>
+            <span class="card-title">Bougainvillea Botanical Plate</span>
+            <span class="card-dim">1928x3000 • 184,493 B</span>
+            <div class="card-tags">
+              <span class="tag tag-comm">Commercial: Permitted</span>
+              <span class="tag">Alpha: No</span>
+              <span class="tag">Public Domain / CC0</span>
+            </div>
+          </div>
+        </div>
+        
+        <div class="asset-card">
+          <div class="preview-box">
+            <img src="creative-library\03-flowers-botanicals\individual-flowers\rose-gold.webp" alt="Rose Gold">
+          </div>
+          <div class="card-meta">
+            <span class="card-id">AST-014 • WEBP</span>
+            <span class="card-title">Rose Gold</span>
+            <span class="card-dim">460x453 • 94,000 B</span>
+            <div class="card-tags">
+              <span class="tag tag-comm">Commercial: Permitted</span>
+              <span class="tag">Alpha: Yes</span>
+              <span class="tag">MIT License</span>
+            </div>
+          </div>
+        </div>
+        
+        <div class="asset-card">
+          <div class="preview-box">
+            <img src="creative-library\03-flowers-botanicals\individual-flowers\spider-lily-botanical-plate.jpg" alt="Spider Lily Botanical Plate">
+          </div>
+          <div class="card-meta">
+            <span class="card-id">AST-015 • JPG</span>
+            <span class="card-title">Spider Lily Botanical Plate</span>
+            <span class="card-dim">1928x3000 • 441,393 B</span>
+            <div class="card-tags">
+              <span class="tag tag-comm">Commercial: Permitted</span>
+              <span class="tag">Alpha: No</span>
+              <span class="tag">Public Domain / CC0</span>
+            </div>
+          </div>
+        </div>
+        
+        <div class="asset-card">
+          <div class="preview-box">
+            <img src="creative-library\03-flowers-botanicals\leaves\tulsi-botanical-plate.jpg" alt="Tulsi Botanical Plate">
+          </div>
+          <div class="card-meta">
+            <span class="card-id">AST-016 • JPG</span>
+            <span class="card-title">Tulsi Botanical Plate</span>
+            <span class="card-dim">1928x3000 • 219,463 B</span>
+            <div class="card-tags">
+              <span class="tag tag-comm">Commercial: Permitted</span>
+              <span class="tag">Alpha: No</span>
+              <span class="tag">Public Domain / CC0</span>
+            </div>
+          </div>
+        </div>
+        
+      </div>
+    </section>
+    
+    <section id="rings-and-jewellery" class="category-section">
+      <div class="category-header">
+        <h2 class="category-title">Rings & Jewellery</h2>
+        <span style="font-size: 13px; color: var(--muted);">9 Assets Downloaded</span>
+      </div>
+      <div class="asset-grid">
+    
+        <div class="asset-card">
+          <div class="preview-box">
+            <div class="placeholder-badge">💎 3D GLB<br>Angel Ring Gold</div>
+          </div>
+          <div class="card-meta">
+            <span class="card-id">AST-020 • GLB</span>
+            <span class="card-title">Angel Ring Gold</span>
+            <span class="card-dim">3D Geometry • 189,992 B</span>
+            <div class="card-tags">
+              <span class="tag tag-comm">Commercial: Permitted</span>
+              <span class="tag">Alpha: N/A (3D Mesh)</span>
+              <span class="tag">MIT License</span>
+            </div>
+          </div>
+        </div>
+        
+        <div class="asset-card">
+          <div class="preview-box">
+            <div class="placeholder-badge">💎 3D GLB<br>Bijith Ring</div>
+          </div>
+          <div class="card-meta">
+            <span class="card-id">AST-021 • GLB</span>
+            <span class="card-title">Bijith Ring</span>
+            <span class="card-dim">3D Geometry • 186,540 B</span>
+            <div class="card-tags">
+              <span class="tag tag-comm">Commercial: Permitted</span>
+              <span class="tag">Alpha: N/A (3D Mesh)</span>
+              <span class="tag">MIT License</span>
+            </div>
+          </div>
+        </div>
+        
+        <div class="asset-card">
+          <div class="preview-box">
+            <img src="creative-library\05-rings-jewellery\diamond.svg" alt="Diamond">
+          </div>
+          <div class="card-meta">
+            <span class="card-id">AST-022 • SVG</span>
+            <span class="card-title">Diamond</span>
+            <span class="card-dim">Scalable Vector • 793 B</span>
+            <div class="card-tags">
+              <span class="tag tag-comm">Commercial: Permitted</span>
+              <span class="tag">Alpha: Yes (Vector)</span>
+              <span class="tag">Public Domain / MIT</span>
+            </div>
+          </div>
+        </div>
+        
+        <div class="asset-card">
+          <div class="preview-box">
+            <img src="creative-library\05-rings-jewellery\rings.svg" alt="Rings">
+          </div>
+          <div class="card-meta">
+            <span class="card-id">AST-023 • SVG</span>
+            <span class="card-title">Rings</span>
+            <span class="card-dim">Scalable Vector • 3,401 B</span>
+            <div class="card-tags">
+              <span class="tag tag-comm">Commercial: Permitted</span>
+              <span class="tag">Alpha: Yes (Vector)</span>
+              <span class="tag">Public Domain / MIT</span>
+            </div>
+          </div>
+        </div>
+        
+        <div class="asset-card">
+          <div class="preview-box">
+            <div class="placeholder-badge">💎 3D GLB<br>Angel Ring Gold</div>
+          </div>
+          <div class="card-meta">
+            <span class="card-id">AST-039 • GLB</span>
+            <span class="card-title">Angel Ring Gold</span>
+            <span class="card-dim">3D Geometry • 189,992 B</span>
+            <div class="card-tags">
+              <span class="tag tag-comm">Commercial: Permitted</span>
+              <span class="tag">Alpha: N/A (3D Mesh)</span>
+              <span class="tag">MIT License</span>
+            </div>
+          </div>
+        </div>
+        
+        <div class="asset-card">
+          <div class="preview-box">
+            <div class="placeholder-badge">💎 3D GLB<br>Bijith Ring</div>
+          </div>
+          <div class="card-meta">
+            <span class="card-id">AST-040 • GLB</span>
+            <span class="card-title">Bijith Ring</span>
+            <span class="card-dim">3D Geometry • 186,540 B</span>
+            <div class="card-tags">
+              <span class="tag tag-comm">Commercial: Permitted</span>
+              <span class="tag">Alpha: N/A (3D Mesh)</span>
+              <span class="tag">MIT License</span>
+            </div>
+          </div>
+        </div>
+        
+        <div class="asset-card">
+          <div class="preview-box">
+            <div class="placeholder-badge">💎 3D OBJ<br>Engagement Ring</div>
+          </div>
+          <div class="card-meta">
+            <span class="card-id">AST-041 • OBJ</span>
+            <span class="card-title">Engagement Ring</span>
+            <span class="card-dim">3D Geometry • 1,327,174 B</span>
+            <div class="card-tags">
+              <span class="tag tag-comm">Commercial: Permitted</span>
+              <span class="tag">Alpha: N/A (3D Mesh)</span>
+              <span class="tag">GPL-3.0 / Open Showcase</span>
+            </div>
+          </div>
+        </div>
+        
+        <div class="asset-card">
+          <div class="preview-box">
+            <div class="placeholder-badge">📦 3D Model<br>GLB Mesh</div>
+          </div>
+          <div class="card-meta">
+            <span class="card-id">AST-043 • GLB</span>
+            <span class="card-title">Ring 02</span>
+            <span class="card-dim">3D Geometry • 5,543,436 B</span>
+            <div class="card-tags">
+              <span class="tag tag-comm">Commercial: Permitted</span>
+              <span class="tag">Alpha: N/A (3D Mesh)</span>
+              <span class="tag">MIT License</span>
+            </div>
+          </div>
+        </div>
+        
+        <div class="asset-card">
+          <div class="preview-box">
+            <div class="placeholder-badge">💎 3D OBJ<br>Wedding Ring</div>
+          </div>
+          <div class="card-meta">
+            <span class="card-id">AST-044 • OBJ</span>
+            <span class="card-title">Wedding Ring</span>
+            <span class="card-dim">3D Geometry • 431,602 B</span>
+            <div class="card-tags">
+              <span class="tag tag-comm">Commercial: Permitted</span>
+              <span class="tag">Alpha: N/A (3D Mesh)</span>
+              <span class="tag">GPL-3.0 / Open Showcase</span>
+            </div>
+          </div>
+        </div>
+        
+      </div>
+    </section>
+    
+    <section id="svg-decorative-elements" class="category-section">
+      <div class="category-header">
+        <h2 class="category-title">SVG Decorative Elements</h2>
+        <span style="font-size: 13px; color: var(--muted);">6 Assets Downloaded</span>
+      </div>
+      <div class="asset-grid">
+    
+        <div class="asset-card">
+          <div class="preview-box">
+            <img src="creative-library\11-svg-decorative\angle-down.svg" alt="Angle Down">
+          </div>
+          <div class="card-meta">
+            <span class="card-id">AST-079 • SVG</span>
+            <span class="card-title">Angle Down</span>
+            <span class="card-dim">Scalable Vector • 744 B</span>
+            <div class="card-tags">
+              <span class="tag tag-comm">Commercial: Permitted</span>
+              <span class="tag">Alpha: Yes (Vector)</span>
+              <span class="tag">MIT License</span>
+            </div>
+          </div>
+        </div>
+        
+        <div class="asset-card">
+          <div class="preview-box">
+            <img src="creative-library\11-svg-decorative\clock-o.svg" alt="Clock O">
+          </div>
+          <div class="card-meta">
+            <span class="card-id">AST-080 • SVG</span>
+            <span class="card-title">Clock O</span>
+            <span class="card-dim">Scalable Vector • 662 B</span>
+            <div class="card-tags">
+              <span class="tag tag-comm">Commercial: Permitted</span>
+              <span class="tag">Alpha: Yes (Vector)</span>
+              <span class="tag">MIT License</span>
+            </div>
+          </div>
+        </div>
+        
+        <div class="asset-card">
+          <div class="preview-box">
+            <img src="creative-library\11-svg-decorative\dance.svg" alt="Dance">
+          </div>
+          <div class="card-meta">
+            <span class="card-id">AST-081 • SVG</span>
+            <span class="card-title">Dance</span>
+            <span class="card-dim">Scalable Vector • 9,041 B</span>
+            <div class="card-tags">
+              <span class="tag tag-comm">Commercial: Permitted</span>
+              <span class="tag">Alpha: Yes (Vector)</span>
+              <span class="tag">MIT License</span>
+            </div>
+          </div>
+        </div>
+        
+        <div class="asset-card">
+          <div class="preview-box">
+            <img src="creative-library\11-svg-decorative\heart.svg" alt="Heart">
+          </div>
+          <div class="card-meta">
+            <span class="card-id">AST-082 • SVG</span>
+            <span class="card-title">Heart</span>
+            <span class="card-dim">Scalable Vector • 1,232 B</span>
+            <div class="card-tags">
+              <span class="tag tag-comm">Commercial: Permitted</span>
+              <span class="tag">Alpha: Yes (Vector)</span>
+              <span class="tag">MIT License</span>
+            </div>
+          </div>
+        </div>
+        
+        <div class="asset-card">
+          <div class="preview-box">
+            <img src="creative-library\11-svg-decorative\kiss.svg" alt="Kiss">
+          </div>
+          <div class="card-meta">
+            <span class="card-id">AST-083 • SVG</span>
+            <span class="card-title">Kiss</span>
+            <span class="card-dim">Scalable Vector • 6,866 B</span>
+            <div class="card-tags">
+              <span class="tag tag-comm">Commercial: Permitted</span>
+              <span class="tag">Alpha: Yes (Vector)</span>
+              <span class="tag">MIT License</span>
+            </div>
+          </div>
+        </div>
+        
+        <div class="asset-card">
+          <div class="preview-box">
+            <img src="creative-library\11-svg-decorative\map-marker.svg" alt="Map Marker">
+          </div>
+          <div class="card-meta">
+            <span class="card-id">AST-084 • SVG</span>
+            <span class="card-title">Map Marker</span>
+            <span class="card-dim">Scalable Vector • 600 B</span>
+            <div class="card-tags">
+              <span class="tag tag-comm">Commercial: Permitted</span>
+              <span class="tag">Alpha: Yes (Vector)</span>
+              <span class="tag">MIT License</span>
+            </div>
+          </div>
+        </div>
+        
+      </div>
+    </section>
+    
+    <section id="three-dimensional-assets" class="category-section">
+      <div class="category-header">
+        <h2 class="category-title">Three-Dimensional Assets</h2>
+        <span style="font-size: 13px; color: var(--muted);">3 Assets Downloaded</span>
+      </div>
+      <div class="asset-grid">
+    
+        <div class="asset-card">
+          <div class="preview-box">
+            <img src="creative-library/08-three-dimensional/previews/glass-vase-flowers-preview.jpg" alt="Glass Vase Flowers Preview">
+          </div>
+          <div class="card-meta">
+            <span class="card-id">AST-042 • GLB</span>
+            <span class="card-title">Glass Vase Flowers</span>
+            <span class="card-dim">3D Geometry • 1,819,824 B</span>
+            <div class="card-tags">
+              <span class="tag tag-comm">Commercial: Permitted</span>
+              <span class="tag">Alpha: N/A (3D Mesh)</span>
+              <span class="tag">Creative Commons Zero v1.0 Universal (CC0)</span>
+            </div>
+          </div>
+        </div>
+        
+        <div class="asset-card">
+          <div class="preview-box">
+            <img src="creative-library\08-three-dimensional\previews\glass-vase-flowers-preview.jpg" alt="Glass Vase Flowers Preview">
+          </div>
+          <div class="card-meta">
+            <span class="card-id">AST-045 • JPG</span>
+            <span class="card-title">Glass Vase Flowers Preview</span>
+            <span class="card-dim">1186x1144 • 549,486 B</span>
+            <div class="card-tags">
+              <span class="tag tag-comm">Commercial: Permitted</span>
+              <span class="tag">Alpha: No</span>
+              <span class="tag">Creative Commons Zero v1.0 Universal (CC0)</span>
+            </div>
+          </div>
+        </div>
+        
+        <div class="asset-card">
+          <div class="preview-box">
+            <img src="creative-library\08-three-dimensional\textures\skybox.jpg" alt="Skybox">
+          </div>
+          <div class="card-meta">
+            <span class="card-id">AST-046 • JPG</span>
+            <span class="card-title">Skybox</span>
+            <span class="card-dim">256x192 • 9,682 B</span>
+            <div class="card-tags">
+              <span class="tag tag-comm">Commercial: Permitted</span>
+              <span class="tag">Alpha: No</span>
+              <span class="tag">MIT / Open Content</span>
+            </div>
+          </div>
+        </div>
+        
+      </div>
+    </section>
+    
+    <section id="typography" class="category-section">
+      <div class="category-header">
+        <h2 class="category-title">Typography</h2>
+        <span style="font-size: 13px; color: var(--muted);">30 Assets Downloaded</span>
+      </div>
+      <div class="asset-grid">
+    
+        <div class="asset-card">
+          <div class="preview-box">
+            <div class="placeholder-badge">Aa Typography<br>Alex</div>
+          </div>
+          <div class="card-meta">
+            <span class="card-id">AST-047 • WOFF2</span>
+            <span class="card-title">Alex Brush Normal 400</span>
+            <span class="card-dim">Typography Asset • 33,288 B</span>
+            <div class="card-tags">
+              <span class="tag tag-comm">Commercial: Permitted</span>
+              <span class="tag">Alpha: N/A</span>
+              <span class="tag">SIL Open Font License (OFL-1.1)</span>
+            </div>
+          </div>
+        </div>
+        
+        <div class="asset-card">
+          <div class="preview-box">
+            <div class="placeholder-badge">Aa Typography<br>Fonts.Css</div>
+          </div>
+          <div class="card-meta">
+            <span class="card-id">AST-048 • CSS</span>
+            <span class="card-title">Fonts</span>
+            <span class="card-dim">Typography Asset • 1,285 B</span>
+            <div class="card-tags">
+              <span class="tag tag-comm">Commercial: Permitted</span>
+              <span class="tag">Alpha: N/A</span>
+              <span class="tag">SIL Open Font License (OFL-1.1)</span>
+            </div>
+          </div>
+        </div>
+        
+        <div class="asset-card">
+          <div class="preview-box">
+            <div class="placeholder-badge">Aa Typography<br>Bodoni</div>
+          </div>
+          <div class="card-meta">
+            <span class="card-id">AST-049 • WOFF2</span>
+            <span class="card-title">Bodoni Moda Italic 400</span>
+            <span class="card-dim">Typography Asset • 29,848 B</span>
+            <div class="card-tags">
+              <span class="tag tag-comm">Commercial: Permitted</span>
+              <span class="tag">Alpha: N/A</span>
+              <span class="tag">SIL Open Font License (OFL-1.1)</span>
+            </div>
+          </div>
+        </div>
+        
+        <div class="asset-card">
+          <div class="preview-box">
+            <div class="placeholder-badge">Aa Typography<br>Bodoni</div>
+          </div>
+          <div class="card-meta">
+            <span class="card-id">AST-050 • WOFF2</span>
+            <span class="card-title">Bodoni Moda Italic 600</span>
+            <span class="card-dim">Typography Asset • 29,848 B</span>
+            <div class="card-tags">
+              <span class="tag tag-comm">Commercial: Permitted</span>
+              <span class="tag">Alpha: N/A</span>
+              <span class="tag">SIL Open Font License (OFL-1.1)</span>
+            </div>
+          </div>
+        </div>
+        
+        <div class="asset-card">
+          <div class="preview-box">
+            <div class="placeholder-badge">Aa Typography<br>Bodoni</div>
+          </div>
+          <div class="card-meta">
+            <span class="card-id">AST-051 • WOFF2</span>
+            <span class="card-title">Bodoni Moda Normal 400</span>
+            <span class="card-dim">Typography Asset • 25,832 B</span>
+            <div class="card-tags">
+              <span class="tag tag-comm">Commercial: Permitted</span>
+              <span class="tag">Alpha: N/A</span>
+              <span class="tag">SIL Open Font License (OFL-1.1)</span>
+            </div>
+          </div>
+        </div>
+        
+        <div class="asset-card">
+          <div class="preview-box">
+            <div class="placeholder-badge">Aa Typography<br>Bodoni</div>
+          </div>
+          <div class="card-meta">
+            <span class="card-id">AST-052 • WOFF2</span>
+            <span class="card-title">Bodoni Moda Normal 600</span>
+            <span class="card-dim">Typography Asset • 25,832 B</span>
+            <div class="card-tags">
+              <span class="tag tag-comm">Commercial: Permitted</span>
+              <span class="tag">Alpha: N/A</span>
+              <span class="tag">SIL Open Font License (OFL-1.1)</span>
+            </div>
+          </div>
+        </div>
+        
+        <div class="asset-card">
+          <div class="preview-box">
+            <div class="placeholder-badge">Aa Typography<br>Bodoni</div>
+          </div>
+          <div class="card-meta">
+            <span class="card-id">AST-053 • WOFF2</span>
+            <span class="card-title">Bodoni Moda Normal 700</span>
+            <span class="card-dim">Typography Asset • 25,832 B</span>
+            <div class="card-tags">
+              <span class="tag tag-comm">Commercial: Permitted</span>
+              <span class="tag">Alpha: N/A</span>
+              <span class="tag">SIL Open Font License (OFL-1.1)</span>
+            </div>
+          </div>
+        </div>
+        
+        <div class="asset-card">
+          <div class="preview-box">
+            <div class="placeholder-badge">Aa Typography<br>Fonts.Css</div>
+          </div>
+          <div class="card-meta">
+            <span class="card-id">AST-054 • CSS</span>
+            <span class="card-title">Fonts</span>
+            <span class="card-dim">Typography Asset • 20,238 B</span>
+            <div class="card-tags">
+              <span class="tag tag-comm">Commercial: Permitted</span>
+              <span class="tag">Alpha: N/A</span>
+              <span class="tag">SIL Open Font License (OFL-1.1)</span>
+            </div>
+          </div>
+        </div>
+        
+        <div class="asset-card">
+          <div class="preview-box">
+            <div class="placeholder-badge">Aa Typography<br>Cormorant</div>
+          </div>
+          <div class="card-meta">
+            <span class="card-id">AST-055 • WOFF2</span>
+            <span class="card-title">Cormorant Garamond Italic 400</span>
+            <span class="card-dim">Typography Asset • 39,260 B</span>
+            <div class="card-tags">
+              <span class="tag tag-comm">Commercial: Permitted</span>
+              <span class="tag">Alpha: N/A</span>
+              <span class="tag">SIL Open Font License (OFL-1.1)</span>
+            </div>
+          </div>
+        </div>
+        
+        <div class="asset-card">
+          <div class="preview-box">
+            <div class="placeholder-badge">Aa Typography<br>Cormorant</div>
+          </div>
+          <div class="card-meta">
+            <span class="card-id">AST-056 • WOFF2</span>
+            <span class="card-title">Cormorant Garamond Italic 600</span>
+            <span class="card-dim">Typography Asset • 39,260 B</span>
+            <div class="card-tags">
+              <span class="tag tag-comm">Commercial: Permitted</span>
+              <span class="tag">Alpha: N/A</span>
+              <span class="tag">SIL Open Font License (OFL-1.1)</span>
+            </div>
+          </div>
+        </div>
+        
+        <div class="asset-card">
+          <div class="preview-box">
+            <div class="placeholder-badge">Aa Typography<br>Cormorant</div>
+          </div>
+          <div class="card-meta">
+            <span class="card-id">AST-057 • WOFF2</span>
+            <span class="card-title">Cormorant Garamond Normal 300</span>
+            <span class="card-dim">Typography Asset • 37,640 B</span>
+            <div class="card-tags">
+              <span class="tag tag-comm">Commercial: Permitted</span>
+              <span class="tag">Alpha: N/A</span>
+              <span class="tag">SIL Open Font License (OFL-1.1)</span>
+            </div>
+          </div>
+        </div>
+        
+        <div class="asset-card">
+          <div class="preview-box">
+            <div class="placeholder-badge">Aa Typography<br>Cormorant</div>
+          </div>
+          <div class="card-meta">
+            <span class="card-id">AST-058 • WOFF2</span>
+            <span class="card-title">Cormorant Garamond Normal 400</span>
+            <span class="card-dim">Typography Asset • 37,640 B</span>
+            <div class="card-tags">
+              <span class="tag tag-comm">Commercial: Permitted</span>
+              <span class="tag">Alpha: N/A</span>
+              <span class="tag">SIL Open Font License (OFL-1.1)</span>
+            </div>
+          </div>
+        </div>
+        
+        <div class="asset-card">
+          <div class="preview-box">
+            <div class="placeholder-badge">Aa Typography<br>Cormorant</div>
+          </div>
+          <div class="card-meta">
+            <span class="card-id">AST-059 • WOFF2</span>
+            <span class="card-title">Cormorant Garamond Normal 600</span>
+            <span class="card-dim">Typography Asset • 37,640 B</span>
+            <div class="card-tags">
+              <span class="tag tag-comm">Commercial: Permitted</span>
+              <span class="tag">Alpha: N/A</span>
+              <span class="tag">SIL Open Font License (OFL-1.1)</span>
+            </div>
+          </div>
+        </div>
+        
+        <div class="asset-card">
+          <div class="preview-box">
+            <div class="placeholder-badge">Aa Typography<br>Cormorant</div>
+          </div>
+          <div class="card-meta">
+            <span class="card-id">AST-060 • WOFF2</span>
+            <span class="card-title">Cormorant Garamond Normal 700</span>
+            <span class="card-dim">Typography Asset • 37,640 B</span>
+            <div class="card-tags">
+              <span class="tag tag-comm">Commercial: Permitted</span>
+              <span class="tag">Alpha: N/A</span>
+              <span class="tag">SIL Open Font License (OFL-1.1)</span>
+            </div>
+          </div>
+        </div>
+        
+        <div class="asset-card">
+          <div class="preview-box">
+            <div class="placeholder-badge">Aa Typography<br>Fonts.Css</div>
+          </div>
+          <div class="card-meta">
+            <span class="card-id">AST-061 • CSS</span>
+            <span class="card-title">Fonts</span>
+            <span class="card-dim">Typography Asset • 12,396 B</span>
+            <div class="card-tags">
+              <span class="tag tag-comm">Commercial: Permitted</span>
+              <span class="tag">Alpha: N/A</span>
+              <span class="tag">SIL Open Font License (OFL-1.1)</span>
+            </div>
+          </div>
+        </div>
+        
+        <div class="asset-card">
+          <div class="preview-box">
+            <div class="placeholder-badge">Aa Typography<br>Dm</div>
+          </div>
+          <div class="card-meta">
+            <span class="card-id">AST-062 • WOFF2</span>
+            <span class="card-title">Dm Sans Italic 400</span>
+            <span class="card-dim">Typography Asset • 15,140 B</span>
+            <div class="card-tags">
+              <span class="tag tag-comm">Commercial: Permitted</span>
+              <span class="tag">Alpha: N/A</span>
+              <span class="tag">SIL Open Font License (OFL-1.1)</span>
+            </div>
+          </div>
+        </div>
+        
+        <div class="asset-card">
+          <div class="preview-box">
+            <div class="placeholder-badge">Aa Typography<br>Dm</div>
+          </div>
+          <div class="card-meta">
+            <span class="card-id">AST-063 • WOFF2</span>
+            <span class="card-title">Dm Sans Normal 400</span>
+            <span class="card-dim">Typography Asset • 36,932 B</span>
+            <div class="card-tags">
+              <span class="tag tag-comm">Commercial: Permitted</span>
+              <span class="tag">Alpha: N/A</span>
+              <span class="tag">SIL Open Font License (OFL-1.1)</span>
+            </div>
+          </div>
+        </div>
+        
+        <div class="asset-card">
+          <div class="preview-box">
+            <div class="placeholder-badge">Aa Typography<br>Dm</div>
+          </div>
+          <div class="card-meta">
+            <span class="card-id">AST-064 • WOFF2</span>
+            <span class="card-title">Dm Sans Normal 500</span>
+            <span class="card-dim">Typography Asset • 36,932 B</span>
+            <div class="card-tags">
+              <span class="tag tag-comm">Commercial: Permitted</span>
+              <span class="tag">Alpha: N/A</span>
+              <span class="tag">SIL Open Font License (OFL-1.1)</span>
+            </div>
+          </div>
+        </div>
+        
+        <div class="asset-card">
+          <div class="preview-box">
+            <div class="placeholder-badge">Aa Typography<br>Dm</div>
+          </div>
+          <div class="card-meta">
+            <span class="card-id">AST-065 • WOFF2</span>
+            <span class="card-title">Dm Sans Normal 700</span>
+            <span class="card-dim">Typography Asset • 36,932 B</span>
+            <div class="card-tags">
+              <span class="tag tag-comm">Commercial: Permitted</span>
+              <span class="tag">Alpha: N/A</span>
+              <span class="tag">SIL Open Font License (OFL-1.1)</span>
+            </div>
+          </div>
+        </div>
+        
+        <div class="asset-card">
+          <div class="preview-box">
+            <div class="placeholder-badge">Aa Typography<br>Fonts.Css</div>
+          </div>
+          <div class="card-meta">
+            <span class="card-id">AST-066 • CSS</span>
+            <span class="card-title">Fonts</span>
+            <span class="card-dim">Typography Asset • 3,596 B</span>
+            <div class="card-tags">
+              <span class="tag tag-comm">Commercial: Permitted</span>
+              <span class="tag">Alpha: N/A</span>
+              <span class="tag">SIL Open Font License (OFL-1.1)</span>
+            </div>
+          </div>
+        </div>
+        
+        <div class="asset-card">
+          <div class="preview-box">
+            <div class="placeholder-badge">Aa Typography<br>Fonts.Css</div>
+          </div>
+          <div class="card-meta">
+            <span class="card-id">AST-067 • CSS</span>
+            <span class="card-title">Fonts</span>
+            <span class="card-dim">Typography Asset • 2,219 B</span>
+            <div class="card-tags">
+              <span class="tag tag-comm">Commercial: Permitted</span>
+              <span class="tag">Alpha: N/A</span>
+              <span class="tag">SIL Open Font License (OFL-1.1)</span>
+            </div>
+          </div>
+        </div>
+        
+        <div class="asset-card">
+          <div class="preview-box">
+            <div class="placeholder-badge">Aa Typography<br>Great</div>
+          </div>
+          <div class="card-meta">
+            <span class="card-id">AST-068 • WOFF2</span>
+            <span class="card-title">Great Vibes Normal 400</span>
+            <span class="card-dim">Typography Asset • 42,800 B</span>
+            <div class="card-tags">
+              <span class="tag tag-comm">Commercial: Permitted</span>
+              <span class="tag">Alpha: N/A</span>
+              <span class="tag">SIL Open Font License (OFL-1.1)</span>
+            </div>
+          </div>
+        </div>
+        
+        <div class="asset-card">
+          <div class="preview-box">
+            <div class="placeholder-badge">Aa Typography<br>Fonts.Css</div>
+          </div>
+          <div class="card-meta">
+            <span class="card-id">AST-069 • CSS</span>
+            <span class="card-title">Fonts</span>
+            <span class="card-dim">Typography Asset • 1,315 B</span>
+            <div class="card-tags">
+              <span class="tag tag-comm">Commercial: Permitted</span>
+              <span class="tag">Alpha: N/A</span>
+              <span class="tag">SIL Open Font License (OFL-1.1)</span>
+            </div>
+          </div>
+        </div>
+        
+        <div class="asset-card">
+          <div class="preview-box">
+            <div class="placeholder-badge">Aa Typography<br>Pinyon</div>
+          </div>
+          <div class="card-meta">
+            <span class="card-id">AST-070 • WOFF2</span>
+            <span class="card-title">Pinyon Script Normal 400</span>
+            <span class="card-dim">Typography Asset • 39,044 B</span>
+            <div class="card-tags">
+              <span class="tag tag-comm">Commercial: Permitted</span>
+              <span class="tag">Alpha: N/A</span>
+              <span class="tag">SIL Open Font License (OFL-1.1)</span>
+            </div>
+          </div>
+        </div>
+        
+        <div class="asset-card">
+          <div class="preview-box">
+            <div class="placeholder-badge">Aa Typography<br>Fonts.Css</div>
+          </div>
+          <div class="card-meta">
+            <span class="card-id">AST-071 • CSS</span>
+            <span class="card-title">Fonts</span>
+            <span class="card-dim">Typography Asset • 8,397 B</span>
+            <div class="card-tags">
+              <span class="tag tag-comm">Commercial: Permitted</span>
+              <span class="tag">Alpha: N/A</span>
+              <span class="tag">SIL Open Font License (OFL-1.1)</span>
+            </div>
+          </div>
+        </div>
+        
+        <div class="asset-card">
+          <div class="preview-box">
+            <div class="placeholder-badge">Aa Typography<br>Playfair</div>
+          </div>
+          <div class="card-meta">
+            <span class="card-id">AST-072 • WOFF2</span>
+            <span class="card-title">Playfair Display Italic 400</span>
+            <span class="card-dim">Typography Asset • 38,804 B</span>
+            <div class="card-tags">
+              <span class="tag tag-comm">Commercial: Permitted</span>
+              <span class="tag">Alpha: N/A</span>
+              <span class="tag">SIL Open Font License (OFL-1.1)</span>
+            </div>
+          </div>
+        </div>
+        
+        <div class="asset-card">
+          <div class="preview-box">
+            <div class="placeholder-badge">Aa Typography<br>Playfair</div>
+          </div>
+          <div class="card-meta">
+            <span class="card-id">AST-073 • WOFF2</span>
+            <span class="card-title">Playfair Display Italic 600</span>
+            <span class="card-dim">Typography Asset • 38,804 B</span>
+            <div class="card-tags">
+              <span class="tag tag-comm">Commercial: Permitted</span>
+              <span class="tag">Alpha: N/A</span>
+              <span class="tag">SIL Open Font License (OFL-1.1)</span>
+            </div>
+          </div>
+        </div>
+        
+        <div class="asset-card">
+          <div class="preview-box">
+            <div class="placeholder-badge">Aa Typography<br>Playfair</div>
+          </div>
+          <div class="card-meta">
+            <span class="card-id">AST-074 • WOFF2</span>
+            <span class="card-title">Playfair Display Normal 400</span>
+            <span class="card-dim">Typography Asset • 38,404 B</span>
+            <div class="card-tags">
+              <span class="tag tag-comm">Commercial: Permitted</span>
+              <span class="tag">Alpha: N/A</span>
+              <span class="tag">SIL Open Font License (OFL-1.1)</span>
+            </div>
+          </div>
+        </div>
+        
+        <div class="asset-card">
+          <div class="preview-box">
+            <div class="placeholder-badge">Aa Typography<br>Playfair</div>
+          </div>
+          <div class="card-meta">
+            <span class="card-id">AST-075 • WOFF2</span>
+            <span class="card-title">Playfair Display Normal 600</span>
+            <span class="card-dim">Typography Asset • 38,404 B</span>
+            <div class="card-tags">
+              <span class="tag tag-comm">Commercial: Permitted</span>
+              <span class="tag">Alpha: N/A</span>
+              <span class="tag">SIL Open Font License (OFL-1.1)</span>
+            </div>
+          </div>
+        </div>
+        
+        <div class="asset-card">
+          <div class="preview-box">
+            <div class="placeholder-badge">Aa Typography<br>Playfair</div>
+          </div>
+          <div class="card-meta">
+            <span class="card-id">AST-076 • WOFF2</span>
+            <span class="card-title">Playfair Display Normal 700</span>
+            <span class="card-dim">Typography Asset • 38,404 B</span>
+            <div class="card-tags">
+              <span class="tag tag-comm">Commercial: Permitted</span>
+              <span class="tag">Alpha: N/A</span>
+              <span class="tag">SIL Open Font License (OFL-1.1)</span>
+            </div>
+          </div>
+        </div>
+        
+      </div>
+    </section>
+    
+    <section id="wedding-objects-and-motifs" class="category-section">
+      <div class="category-header">
+        <h2 class="category-title">Wedding Objects & Motifs</h2>
+        <span style="font-size: 13px; color: var(--muted);">8 Assets Downloaded</span>
+      </div>
+      <div class="asset-grid">
+    
+        <div class="asset-card">
+          <div class="preview-box">
+            <img src="creative-library\06-wedding-objects\cake.svg" alt="Cake">
+          </div>
+          <div class="card-meta">
+            <span class="card-id">AST-024 • SVG</span>
+            <span class="card-title">Cake</span>
+            <span class="card-dim">Scalable Vector • 3,351 B</span>
+            <div class="card-tags">
+              <span class="tag tag-comm">Commercial: Permitted</span>
+              <span class="tag">Alpha: Yes (Vector)</span>
+              <span class="tag">Open Source</span>
+            </div>
+          </div>
+        </div>
+        
+        <div class="asset-card">
+          <div class="preview-box">
+            <img src="creative-library\06-wedding-objects\deco-bell.webp" alt="Deco Bell">
+          </div>
+          <div class="card-meta">
+            <span class="card-id">AST-025 • WEBP</span>
+            <span class="card-title">Deco Bell</span>
+            <span class="card-dim">146x214 • 12,526 B</span>
+            <div class="card-tags">
+              <span class="tag tag-comm">Commercial: Permitted</span>
+              <span class="tag">Alpha: Yes</span>
+              <span class="tag">MIT License</span>
+            </div>
+          </div>
+        </div>
+        
+        <div class="asset-card">
+          <div class="preview-box">
+            <img src="creative-library\06-wedding-objects\deco-betel-leaf.webp" alt="Deco Betel Leaf">
+          </div>
+          <div class="card-meta">
+            <span class="card-id">AST-026 • WEBP</span>
+            <span class="card-title">Deco Betel Leaf</span>
+            <span class="card-dim">239x280 • 23,136 B</span>
+            <div class="card-tags">
+              <span class="tag tag-comm">Commercial: Permitted</span>
+              <span class="tag">Alpha: Yes</span>
+              <span class="tag">MIT License</span>
+            </div>
+          </div>
+        </div>
+        
+        <div class="asset-card">
+          <div class="preview-box">
+            <img src="creative-library\06-wedding-objects\deco-thalam.webp" alt="Deco Thalam">
+          </div>
+          <div class="card-meta">
+            <span class="card-id">AST-027 • WEBP</span>
+            <span class="card-title">Deco Thalam</span>
+            <span class="card-dim">293x270 • 35,614 B</span>
+            <div class="card-tags">
+              <span class="tag tag-comm">Commercial: Permitted</span>
+              <span class="tag">Alpha: Yes</span>
+              <span class="tag">MIT License</span>
+            </div>
+          </div>
+        </div>
+        
+        <div class="asset-card">
+          <div class="preview-box">
+            <img src="creative-library\06-wedding-objects\heart-doves.png" alt="Heart Doves">
+          </div>
+          <div class="card-meta">
+            <span class="card-id">AST-028 • PNG</span>
+            <span class="card-title">Heart Doves</span>
+            <span class="card-dim">1200x1033 • 1,104,697 B</span>
+            <div class="card-tags">
+              <span class="tag tag-comm">Commercial: Permitted</span>
+              <span class="tag">Alpha: Yes</span>
+              <span class="tag">Open Source</span>
+            </div>
+          </div>
+        </div>
+        
+        <div class="asset-card">
+          <div class="preview-box">
+            <img src="creative-library\06-wedding-objects\seal.png" alt="Seal">
+          </div>
+          <div class="card-meta">
+            <span class="card-id">AST-029 • PNG</span>
+            <span class="card-title">Seal</span>
+            <span class="card-dim">128x130 • 27,568 B</span>
+            <div class="card-tags">
+              <span class="tag tag-comm">Commercial: Permitted</span>
+              <span class="tag">Alpha: Yes</span>
+              <span class="tag">MIT License</span>
+            </div>
+          </div>
+        </div>
+        
+        <div class="asset-card">
+          <div class="preview-box">
+            <img src="creative-library\06-wedding-objects\wed-conch.webp" alt="Wed Conch">
+          </div>
+          <div class="card-meta">
+            <span class="card-id">AST-030 • WEBP</span>
+            <span class="card-title">Wed Conch</span>
+            <span class="card-dim">162x226 • 17,388 B</span>
+            <div class="card-tags">
+              <span class="tag tag-comm">Commercial: Permitted</span>
+              <span class="tag">Alpha: Yes</span>
+              <span class="tag">MIT License</span>
+            </div>
+          </div>
+        </div>
+        
+        <div class="asset-card">
+          <div class="preview-box">
+            <img src="creative-library\06-wedding-objects\wed-lamp.webp" alt="Wed Lamp">
+          </div>
+          <div class="card-meta">
+            <span class="card-id">AST-031 • WEBP</span>
+            <span class="card-title">Wed Lamp</span>
+            <span class="card-dim">165x381 • 23,862 B</span>
+            <div class="card-tags">
+              <span class="tag tag-comm">Commercial: Permitted</span>
+              <span class="tag">Alpha: Yes</span>
+              <span class="tag">MIT License</span>
+            </div>
+          </div>
+        </div>
+        
+      </div>
+    </section>
+    
+  </div>
+</body>
+</html>

@@ -1,0 +1,249 @@
+@import './fonts.css';
+
+/* ==========================================================================
+   ROYAL INDIAN BOTANICAL DESIGN SYSTEM (RIB-DS) CORE STYLESHEET
+   ========================================================================== */
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  /* Surfaces & Paper Tactility */
+  --color-paper-ivory: #FDFBF7;
+  --color-paper-warm: #F8F4EC;
+  --color-paper-cream: #F3ECE0;
+  --color-paper-sand: #EAE1D2;
+
+  /* Royal Indian Botanical Greens */
+  --color-forest-deep: #1A3127;
+  --color-forest-rich: #233B32;
+  --color-forest-medium: #315144;
+  --color-sage-soft: #8C9A82;
+  --color-sage-light: #C4CDBF;
+
+  /* Metallic Royal Gold */
+  --color-gold-deep: #8E7341;
+  --color-gold-antique: #B99A62;
+  --color-gold-bright: #D8BD8A;
+  --color-gold-champagne: #F2E8D5;
+
+  /* Typography & Readability */
+  --color-ink-espresso: #241E1B;
+  --color-ink-charcoal: #3D3531;
+  --color-ink-muted: #6E645D;
+  --color-ink-light: #9B9189;
+
+  /* Sacred Accents */
+  --color-sacred-kumkum: #8F2228;
+  --color-sacred-marigold: #D47A22;
+
+  /* Typography Stacks */
+  --font-display: "Bodoni Moda", "Didot", "Playfair Display", Georgia, serif;
+  --font-heading: "Cormorant Garamond", "Garamond", "Times New Roman", serif;
+  --font-body: "DM Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-accent: "Pinyon Script", "Alex Brush", cursive;
+
+  /* Motion & Easing */
+  --ease-editorial: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --duration-fast: 250ms;
+  --duration-normal: 500ms;
+  --duration-slow: 900ms;
+  --duration-cinematic: 1400ms;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  background-color: #121E19;
+  background-image: 
+    radial-gradient(circle at 50% 15%, rgba(35, 59, 50, 0.7) 0%, transparent 65%),
+    radial-gradient(circle at 85% 85%, rgba(185, 154, 98, 0.18) 0%, transparent 50%),
+    url('/assets/textures/white_wall.jpg');
+  background-attachment: fixed;
+  background-size: cover;
+  color: var(--color-ink-espresso);
+  font-family: var(--font-body);
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  padding: 32px 16px 80px;
+  overflow-x: hidden;
+}
+
+/* Base Container */
+.app-container {
+  width: 100%;
+  max-width: 520px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 10;
+}
+
+/* Royal Invitation Paper Card */
+.royal-invitation-card {
+  background: var(--color-paper-ivory);
+  background-image: 
+    radial-gradient(circle at 50% 0%, rgba(185, 154, 98, 0.08) 0%, transparent 45%),
+    radial-gradient(circle at 50% 100%, rgba(35, 59, 50, 0.04) 0%, transparent 45%),
+    url('/assets/textures/white_wall.jpg');
+  background-size: cover;
+  border-radius: 18px;
+  box-shadow: 
+    0 30px 80px -20px rgba(0, 0, 0, 0.55),
+    0 0 0 1px rgba(185, 154, 98, 0.35);
+  position: relative;
+  overflow: hidden;
+  padding: 44px 28px;
+}
+
+@media (max-width: 400px) {
+  .royal-invitation-card {
+    padding: 36px 18px;
+    border-radius: 14px;
+  }
+}
+
+/* Double Inset Gold Border */
+.royal-invitation-card::before {
+  content: "";
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  right: 10px;
+  bottom: 10px;
+  border: 1px solid rgba(185, 154, 98, 0.35);
+  border-radius: 12px;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.royal-invitation-card::after {
+  content: "";
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  right: 15px;
+  bottom: 15px;
+  border: 1px solid rgba(185, 154, 98, 0.18);
+  border-radius: 9px;
+  pointer-events: none;
+  z-index: 2;
+}
+
+/* Corner Flourishes */
+.corner-flourish {
+  position: absolute;
+  width: 44px;
+  height: 44px;
+  opacity: 0.7;
+  pointer-events: none;
+  z-index: 3;
+}
+.corner-flourish.top-left { top: 18px; left: 18px; }
+.corner-flourish.top-right { top: 18px; right: 18px; transform: scaleX(-1); }
+.corner-flourish.bottom-left { bottom: 18px; left: 18px; transform: scaleY(-1); }
+.corner-flourish.bottom-right { bottom: 18px; right: 18px; transform: scale(-1); }
+
+/* Scene Separator */
+.scene-divider {
+  border: none;
+  height: 1px;
+  background: radial-gradient(circle, rgba(185, 154, 98, 0.4) 0%, rgba(185, 154, 98, 0.05) 80%, transparent 100%);
+  margin: 36px 0;
+}
+
+/* Section Header Styles */
+.section-title-wrap {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.section-eyebrow {
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--color-gold-deep);
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+
+.section-main-title {
+  font-family: var(--font-display);
+  font-size: 1.625rem;
+  color: var(--color-forest-deep);
+  letter-spacing: 0.03em;
+  font-weight: 700;
+}
+
+/* Primary Button Styling */
+.btn-royal-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  background: var(--color-forest-rich);
+  color: var(--color-paper-ivory);
+  text-decoration: none;
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 14px 22px;
+  border-radius: 8px;
+  border: 1px solid var(--color-gold-antique);
+  box-shadow: 0 4px 16px rgba(26, 49, 39, 0.28);
+  transition: all 0.3s var(--ease-editorial);
+  cursor: pointer;
+}
+
+.btn-royal-primary:hover {
+  background: var(--color-forest-deep);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 22px rgba(26, 49, 39, 0.38);
+  border-color: var(--color-gold-bright);
+}
+
+.btn-royal-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: transparent;
+  color: var(--color-forest-deep);
+  text-decoration: none;
+  font-family: var(--font-body);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  padding: 12px 20px;
+  border-radius: 8px;
+  border: 1px solid rgba(185, 154, 98, 0.55);
+  transition: all 0.25s ease;
+  cursor: pointer;
+}
+
+.btn-royal-secondary:hover {
+  background: rgba(185, 154, 98, 0.08);
+  border-color: var(--color-gold-antique);
+  transform: translateY(-1px);
+}
+
+/* Reduced Motion Guidelines */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

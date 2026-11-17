@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Typography Specimen — Isha & Ashish Wedding Invitation</title>
+  <link rel="stylesheet" href="creative-library/09-typography/bodoni-moda/fonts.css">
+  <link rel="stylesheet" href="creative-library/09-typography/cormorant-garamond/fonts.css">
+  <link rel="stylesheet" href="creative-library/09-typography/dm-sans/fonts.css">
+  <link rel="stylesheet" href="creative-library/09-typography/playfair-display/fonts.css">
+  <link rel="stylesheet" href="creative-library/09-typography/pinyon-script/fonts.css">
+  <link rel="stylesheet" href="creative-library/09-typography/alex-brush/fonts.css">
+  <link rel="stylesheet" href="creative-library/09-typography/great-vibes/fonts.css">
+  <style>
+    :root {
+      --bg: #FAF7F2;
+      --card-bg: #FFFFFF;
+      --text: #2A241F;
+      --muted: #6B5B4E;
+      --accent: #C5A059;
+      --border: #E8DFD5;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      font-family: 'DM Sans', sans-serif;
+      padding: 40px 20px;
+      line-height: 1.6;
+    }
+    .container {
+      max-width: 1040px;
+      margin: 0 auto;
+    }
+    header {
+      text-align: center;
+      margin-bottom: 60px;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 40px;
+    }
+    .badge {
+      display: inline-block;
+      text-transform: uppercase;
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      color: var(--accent);
+      background: rgba(197, 160, 89, 0.12);
+      padding: 6px 16px;
+      border-radius: 20px;
+      margin-bottom: 16px;
+      font-weight: 600;
+    }
+    h1 {
+      font-family: 'Bodoni Moda', serif;
+      font-size: 42px;
+      font-weight: 600;
+      color: var(--text);
+      letter-spacing: 0.02em;
+      margin-bottom: 12px;
+    }
+    .subtitle {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 20px;
+      color: var(--muted);
+      font-style: italic;
+    }
+    .section-title {
+      font-family: 'Bodoni Moda', serif;
+      font-size: 28px;
+      margin: 50px 0 24px;
+      padding-bottom: 8px;
+      border-bottom: 2px solid var(--accent);
+      display: inline-block;
+    }
+    .specimen-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 24px;
+      margin-bottom: 40px;
+    }
+    .font-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 28px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.03);
+    }
+    .font-name {
+      font-size: 14px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--accent);
+      margin-bottom: 4px;
+    }
+    .font-role {
+      font-size: 12px;
+      color: var(--muted);
+      margin-bottom: 20px;
+    }
+    .preview-large {
+      font-size: 38px;
+      line-height: 1.2;
+      margin-bottom: 16px;
+    }
+    .preview-alphabet {
+      font-size: 15px;
+      letter-spacing: 0.05em;
+      color: var(--muted);
+      border-top: 1px solid var(--border);
+      padding-top: 12px;
+    }
+    .pairing-proposal {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 40px;
+      margin-bottom: 40px;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.04);
+    }
+    .pairing-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 30px;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 16px;
+    }
+    .recommended-pill {
+      background: #2E7D32;
+      color: #FFF;
+      font-size: 11px;
+      font-weight: 700;
+      padding: 4px 12px;
+      border-radius: 20px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+    .mock-invite {
+      text-align: center;
+      max-width: 580px;
+      margin: 0 auto;
+      padding: 30px;
+      background: #FAF8F5;
+      border: 1px solid #ECE4DA;
+      border-radius: 10px;
+    }
+    .p1-prelude { font-family: 'Cormorant Garamond', serif; font-size: 14px; text-transform: uppercase; letter-spacing: 0.25em; color: var(--muted); margin-bottom: 20px; }
+    .p1-names { font-family: 'Bodoni Moda', serif; font-size: 42px; font-weight: 600; line-height: 1.2; color: var(--text); margin-bottom: 20px; }
+    .p1-amp { font-family: 'Pinyon Script', cursive; font-size: 52px; color: var(--accent); display: block; margin: -10px 0; font-weight: normal; }
+    .p1-parents { font-family: 'Cormorant Garamond', serif; font-size: 17px; font-style: italic; color: #4A3E34; margin-bottom: 24px; line-height: 1.7; }
+    .p1-date { font-family: 'Bodoni Moda', serif; font-size: 56px; font-weight: 700; color: var(--text); line-height: 1; margin-bottom: 6px; }
+    .p1-subdate { font-family: 'Cormorant Garamond', serif; font-size: 16px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--accent); font-weight: 600; margin-bottom: 16px; }
+    .p1-venue { font-family: 'Bodoni Moda', serif; font-size: 22px; font-weight: 600; margin-bottom: 6px; }
+    .p1-address { font-family: 'DM Sans', sans-serif; font-size: 13px; color: var(--muted); max-width: 380px; margin: 0 auto; line-height: 1.6; }
+
+    .p2-names { font-family: 'Playfair Display', serif; font-size: 40px; font-weight: 600; color: #1D1A17; margin-bottom: 16px; }
+    .p2-amp { font-family: 'Great Vibes', cursive; font-size: 46px; color: var(--accent); display: block; margin: -8px 0; }
+    .p2-parents { font-family: 'Playfair Display', serif; font-size: 15px; font-style: italic; color: #4A3E34; margin-bottom: 20px; }
+
+    .p3-names { font-family: 'Cormorant Garamond', serif; font-size: 48px; font-weight: 600; color: #2A241F; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 16px; }
+    .p3-amp { font-family: 'Alex Brush', cursive; font-size: 50px; color: var(--accent); display: block; margin: -12px 0; text-transform: none; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <span class="badge">Creative Agency Typography Research</span>
+      <h1>Isha Bawankule & Ashish Deshmukh</h1>
+      <p class="subtitle">Complete Specimen System & Typographic Pairing Proposals</p>
+    </header>
+
+    <h2 class="section-title">1. Shortlisted Typeface Library</h2>
+    <div class="specimen-grid">
+      <div class="font-card">
+        <div class="font-name">Bodoni Moda</div>
+        <div class="font-role">Primary Editorial Display (Couple Names & Dates)</div>
+        <div class="preview-large" style="font-family: 'Bodoni Moda', serif; font-weight: 700;">Isha & Ashish</div>
+        <div class="preview-alphabet" style="font-family: 'Bodoni Moda', serif;">
+          ABCDEFGHIJKLMNOPQRSTUVWXYZ<br>abcdefghijklmnopqrstuvwxyz 0123456789
+        </div>
+      </div>
+
+      <div class="font-card">
+        <div class="font-name">Cormorant Garamond</div>
+        <div class="font-role">Secondary Classical Serif (Headings & Blessings)</div>
+        <div class="preview-large" style="font-family: 'Cormorant Garamond', serif; font-style: italic; font-weight: 500;">Thursday, 17th December</div>
+        <div class="preview-alphabet" style="font-family: 'Cormorant Garamond', serif;">
+          ABCDEFGHIJKLMNOPQRSTUVWXYZ<br>abcdefghijklmnopqrstuvwxyz 0123456789
+        </div>
+      </div>
+
+      <div class="font-card">
+        <div class="font-name">DM Sans</div>
+        <div class="font-role">Contemporary Micro-Copy (Venue, Address, Timings)</div>
+        <div class="preview-large" style="font-family: 'DM Sans', sans-serif; font-size: 24px; font-weight: 500;">Ceremony at 5:40 PM • Amrit Farms</div>
+        <div class="preview-alphabet" style="font-family: 'DM Sans', sans-serif;">
+          ABCDEFGHIJKLMNOPQRSTUVWXYZ<br>abcdefghijklmnopqrstuvwxyz 0123456789
+        </div>
+      </div>
+
+      <div class="font-card">
+        <div class="font-name">Pinyon Script</div>
+        <div class="font-role">Aristocratic Calligraphic Flourish (Monograms & Ampersand)</div>
+        <div class="preview-large" style="font-family: 'Pinyon Script', cursive; color: var(--accent); font-size: 44px;">& With the Blessings of</div>
+        <div class="preview-alphabet" style="font-family: 'Pinyon Script', cursive;">
+          ABCDEFGHIJKLMNOPQRSTUVWXYZ<br>abcdefghijklmnopqrstuvwxyz
+        </div>
+      </div>
+
+      <div class="font-card">
+        <div class="font-name">Playfair Display</div>
+        <div class="font-role">Alternative High-Contrast Serif (Proposal B)</div>
+        <div class="preview-large" style="font-family: 'Playfair Display', serif; font-weight: 600;">Amrit Farms Nagpur</div>
+        <div class="preview-alphabet" style="font-family: 'Playfair Display', serif;">
+          ABCDEFGHIJKLMNOPQRSTUVWXYZ<br>abcdefghijklmnopqrstuvwxyz 0123456789
+        </div>
+      </div>
+
+      <div class="font-card">
+        <div class="font-name">Alex Brush</div>
+        <div class="font-role">Flowing Penmanship Script (Proposal C)</div>
+        <div class="preview-large" style="font-family: 'Alex Brush', cursive; color: var(--accent); font-size: 44px;">Cordially Inviting You</div>
+        <div class="preview-alphabet" style="font-family: 'Alex Brush', cursive;">
+          ABCDEFGHIJKLMNOPQRSTUVWXYZ<br>abcdefghijklmnopqrstuvwxyz
+        </div>
+      </div>
+    </div>
+
+    <h2 class="section-title">2. Curated Typography Pairing Proposals</h2>
+
+    <!-- Proposal 1 -->
+    <div class="pairing-proposal">
+      <div class="pairing-header">
+        <div>
+          <h3>Proposal 1: High-Art Editorial & Calligraphic Gold</h3>
+          <p style="font-size: 13px; color: var(--muted);">Bodoni Moda (Display) + Cormorant Garamond (Headings) + Pinyon Script (Accents) + DM Sans (Body)</p>
+        </div>
+        <span class="recommended-pill">Agency Recommended</span>
+      </div>
+      <div class="mock-invite">
+        <div class="p1-prelude">We are Inviting you</div>
+        <div class="p1-names">
+          Isha Bawankule
+          <span class="p1-amp">&</span>
+          Ashish Deshmukh
+        </div>
+        <div class="p1-parents">
+          With the blessings of our parents<br>
+          <strong>Bhudeo Bawankule & Rekha Bawankle</strong><br>
+          <strong>Manikrao Deshmukh & Nirmala Deshmukh</strong><br>
+          <span style="font-size: 13px; font-family: 'DM Sans', sans-serif; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted);">Hosted with love by Isha & Ashish</span>
+        </div>
+        <div class="p1-subdate">Thursday</div>
+        <div class="p1-date">17</div>
+        <div class="p1-subdate">December 2026 • 5:40 PM</div>
+        <div class="p1-venue">Amrit Farms</div>
+        <div class="p1-address">GUMTHALA NAGPUR (MH) 441111<br>(Near Gumthi/Koradi Road Area)</div>
+      </div>
+    </div>
+
+    <!-- Proposal 2 -->
+    <div class="pairing-proposal">
+      <div class="pairing-header">
+        <div>
+          <h3>Proposal 2: Romantic Heritage & Great Vibes Script</h3>
+          <p style="font-size: 13px; color: var(--muted);">Playfair Display (Display & Headings) + Great Vibes (Script) + DM Sans (Body)</p>
+        </div>
+      </div>
+      <div class="mock-invite">
+        <div class="p1-prelude" style="font-family: 'Playfair Display', serif;">We are Inviting you</div>
+        <div class="p2-names">
+          Isha Bawankule
+          <span class="p2-amp">&</span>
+          Ashish Deshmukh
+        </div>
+        <div class="p2-parents">
+          With the blessings of our parents<br>
+          <strong>Bhudeo Bawankule & Rekha Bawankle</strong><br>
+          <strong>Manikrao Deshmukh & Nirmala Deshmukh</strong>
+        </div>
+        <div class="p1-subdate">Thursday, 17th December 2026 • 5:40 PM</div>
+        <div class="p1-venue" style="font-family: 'Playfair Display', serif;">Amrit Farms</div>
+        <div class="p1-address">GUMTHALA NAGPUR (MH) 441111</div>
+      </div>
+    </div>
+
+    <!-- Proposal 3 -->
+    <div class="pairing-proposal">
+      <div class="pairing-header">
+        <div>
+          <h3>Proposal 3: Architectural All-Caps & Flowing Signature</h3>
+          <p style="font-size: 13px; color: var(--muted);">Cormorant Garamond (Uppercase Display) + Alex Brush (Accents) + DM Sans (Body)</p>
+        </div>
+      </div>
+      <div class="mock-invite">
+        <div class="p1-prelude">We are Inviting you</div>
+        <div class="p3-names">
+          Isha Bawankule
+          <span class="p3-amp">and</span>
+          Ashish Deshmukh
+        </div>
+        <div class="p1-parents">
+          With the blessings of our parents<br>
+          <strong>Bhudeo Bawankule & Rekha Bawankle</strong><br>
+          <strong>Manikrao Deshmukh & Nirmala Deshmukh</strong>
+        </div>
+        <div class="p1-subdate">Thursday, 17th December 2026 • 5:40 PM</div>
+        <div class="p1-venue" style="font-family: 'Cormorant Garamond', serif; letter-spacing: 0.1em; text-transform: uppercase;">Amrit Farms</div>
+        <div class="p1-address">GUMTHALA NAGPUR (MH) 441111</div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
