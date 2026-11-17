@@ -14,34 +14,37 @@ export const SanctuaryVenue: React.FC = () => {
 
   return (
     <section
+      className="scene-block reveal"
       style={{
         textAlign: 'center',
         padding: '16px 0',
       }}
       aria-label="Wedding Venue and Directions"
     >
-      <div className="section-title-wrap">
+      <div className="section-title-wrap reveal delay-1">
         <p className="section-eyebrow">The Destination</p>
         <h2 className="section-main-title">Sacred Sanctuary</h2>
       </div>
 
       <div
+        className="luxury-paper-card reveal delay-2"
         style={{
-          background: 'rgba(35, 59, 50, 0.03)',
-          border: '1px solid rgba(185, 154, 98, 0.32)',
+          background: 'rgba(35, 59, 50, 0.035)',
+          border: '1px solid rgba(185, 154, 98, 0.35)',
           borderRadius: '14px',
           padding: '24px 20px',
           marginTop: '12px',
+          boxShadow: '0 6px 18px rgba(35, 59, 50, 0.05)',
         }}
       >
         {/* Destination Pin Icon */}
         <div
           style={{
-            width: '42px',
-            height: '42px',
+            width: '44px',
+            height: '44px',
             borderRadius: '50%',
-            background: 'rgba(185, 154, 98, 0.15)',
-            border: '1px solid rgba(185, 154, 98, 0.4)',
+            background: 'rgba(185, 154, 98, 0.16)',
+            border: '1px solid rgba(185, 154, 98, 0.45)',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
@@ -51,14 +54,14 @@ export const SanctuaryVenue: React.FC = () => {
           <img
             src="/assets/icons/map-marker.svg"
             alt="Venue Pin"
-            style={{ width: '20px', height: '20px', filter: 'invert(19%) sepia(23%) saturate(1200%) hue-rotate(110deg)' }}
+            style={{ width: '22px', height: '22px' }}
           />
         </div>
 
         <h3
           style={{
             fontFamily: 'var(--font-display)',
-            fontSize: '1.75rem',
+            fontSize: '1.85rem',
             color: 'var(--color-forest-deep)',
             fontWeight: 700,
             marginBottom: '8px',

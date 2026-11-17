@@ -4,6 +4,7 @@ import { WEDDING_DATA } from '../data/weddingData';
 export const CoupleMonogram: React.FC = () => {
   return (
     <section
+      className="scene-block reveal"
       style={{
         textAlign: 'center',
         padding: '16px 0',
@@ -12,61 +13,69 @@ export const CoupleMonogram: React.FC = () => {
     >
       {/* Royal Crest Monogram */}
       <img
-        src="/assets/frames/royal_filigree_crest.png"
+        src="/assets/frames/crest-royal.webp"
         alt="Royal Heritage Crest"
+        className="reveal delay-1"
         style={{
-          width: '72px',
+          width: '78px',
           height: 'auto',
           margin: '0 auto 12px',
-          opacity: 0.9,
-          filter: 'drop-shadow(0 4px 10px rgba(185, 154, 98, 0.25))',
+          opacity: 0.95,
+          filter: 'drop-shadow(0 4px 12px rgba(185, 154, 98, 0.3))',
+          display: 'block',
         }}
       />
 
       {/* Monumental Couple Names */}
-      <h1
-        style={{
-          fontFamily: 'var(--font-display)',
-          fontSize: '2.45rem',
-          lineHeight: 1.15,
-          color: 'var(--color-forest-deep)',
-          fontWeight: 700,
-          letterSpacing: '0.02em',
-        }}
-      >
-        {WEDDING_DATA.bride.name}
-      </h1>
+      <div className="reveal delay-2">
+        <h1
+          className="couple-name-text"
+          style={{
+            fontFamily: 'var(--font-display)',
+            fontSize: '2.5rem',
+            lineHeight: 1.15,
+            color: 'var(--color-forest-deep)',
+            fontWeight: 700,
+            letterSpacing: '0.02em',
+          }}
+        >
+          {WEDDING_DATA.bride.name}
+        </h1>
 
-      <span
-        style={{
-          fontFamily: 'var(--font-accent)',
-          fontSize: '3rem',
-          lineHeight: '0.85',
-          color: 'var(--color-gold-antique)',
-          display: 'block',
-          margin: '6px 0',
-        }}
-      >
-        &amp;
-      </span>
+        <span
+          className="couple-ampersand-text"
+          style={{
+            fontFamily: 'var(--font-accent)',
+            fontSize: '3.2rem',
+            lineHeight: '0.85',
+            color: 'var(--color-gold-antique)',
+            display: 'block',
+            margin: '6px 0',
+          }}
+        >
+          &amp;
+        </span>
 
-      <h1
-        style={{
-          fontFamily: 'var(--font-display)',
-          fontSize: '2.45rem',
-          lineHeight: 1.15,
-          color: 'var(--color-forest-deep)',
-          fontWeight: 700,
-          letterSpacing: '0.02em',
-        }}
-      >
-        {WEDDING_DATA.groom.name}
-      </h1>
+        <h1
+          className="couple-name-text"
+          style={{
+            fontFamily: 'var(--font-display)',
+            fontSize: '2.5rem',
+            lineHeight: 1.15,
+            color: 'var(--color-forest-deep)',
+            fontWeight: 700,
+            letterSpacing: '0.02em',
+          }}
+        >
+          {WEDDING_DATA.groom.name}
+        </h1>
+      </div>
 
       <p
+        className="reveal delay-3"
         style={{
           fontFamily: 'var(--font-heading)',
-          fontSize: '1.2rem',
+          fontSize: '1.25rem',
           color: 'var(--color-ink-muted)',
           marginTop: '16px',
           fontStyle: 'italic',
@@ -75,19 +84,23 @@ export const CoupleMonogram: React.FC = () => {
         As they unite their lives in sacred matrimony
       </p>
 
-      {/* Jasmine & Marigold Welcome Garland */}
-      <img
-        src="/assets/botanical/garland-jasmine-marigold.png"
-        alt="Traditional Jasmine and Marigold Garland"
-        style={{
-          width: '100%',
-          maxWidth: '420px',
-          height: '38px',
-          objectFit: 'contain',
-          margin: '20px auto 0',
-          opacity: 0.88,
-        }}
-      />
+      {/* Gold Botanical Garland */}
+      <div className="reveal delay-4" style={{ marginTop: '20px' }}>
+        <img
+          src="/assets/frames/garland-gold.webp"
+          alt="Traditional Royal Garland"
+          style={{
+            width: '100%',
+            maxWidth: '360px',
+            height: '42px',
+            objectFit: 'contain',
+            margin: '0 auto',
+            opacity: 0.92,
+            display: 'block',
+            filter: 'drop-shadow(0 2px 6px rgba(185, 154, 98, 0.25))',
+          }}
+        />
+      </div>
     </section>
   );
 };

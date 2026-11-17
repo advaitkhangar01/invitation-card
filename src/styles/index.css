@@ -49,10 +49,6 @@
   /* Motion & Easing */
   --ease-editorial: cubic-bezier(0.22, 1, 0.36, 1);
   --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
-  --duration-fast: 250ms;
-  --duration-normal: 500ms;
-  --duration-slow: 900ms;
-  --duration-cinematic: 1400ms;
 }
 
 html {
@@ -65,7 +61,7 @@ html {
 body {
   background-color: #121E19;
   background-image: 
-    radial-gradient(circle at 50% 15%, rgba(35, 59, 50, 0.7) 0%, transparent 65%),
+    radial-gradient(circle at 50% 12%, rgba(35, 59, 50, 0.75) 0%, transparent 60%),
     radial-gradient(circle at 85% 85%, rgba(185, 154, 98, 0.18) 0%, transparent 50%),
     url('/assets/textures/white_wall.jpg');
   background-attachment: fixed;
@@ -77,6 +73,33 @@ body {
   justify-content: center;
   padding: 32px 16px 80px;
   overflow-x: hidden;
+  position: relative;
+}
+
+/* Ambient Floating Stardust Overlay */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: 
+    radial-gradient(2px 2px at 20px 30px, rgba(216, 189, 138, 0.4), rgba(0,0,0,0)),
+    radial-gradient(2px 2px at 140px 170px, rgba(216, 189, 138, 0.35), rgba(0,0,0,0)),
+    radial-gradient(3px 3px at 260px 240px, rgba(255, 245, 200, 0.5), rgba(0,0,0,0)),
+    radial-gradient(2px 2px at 380px 390px, rgba(216, 189, 138, 0.3), rgba(0,0,0,0));
+  background-repeat: repeat;
+  background-size: 400px 400px;
+  opacity: 0.7;
+  pointer-events: none;
+  z-index: 1;
+  animation: stardustDrift 60s linear infinite;
+}
+
+@keyframes stardustDrift {
+  from { transform: translateY(0); }
+  to { transform: translateY(-400px); }
 }
 
 /* Base Container */
@@ -98,11 +121,23 @@ body {
   background-size: cover;
   border-radius: 18px;
   box-shadow: 
-    0 30px 80px -20px rgba(0, 0, 0, 0.55),
-    0 0 0 1px rgba(185, 154, 98, 0.35);
+    0 30px 80px -20px rgba(0, 0, 0, 0.6),
+    0 0 0 1px rgba(185, 154, 98, 0.4);
   position: relative;
   overflow: hidden;
   padding: 44px 28px;
+  animation: cardEntrance 1.2s var(--ease-editorial) forwards;
+}
+
+@keyframes cardEntrance {
+  0% {
+    opacity: 0;
+    transform: translateY(40px) scale(0.98);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
 }
 
 @media (max-width: 400px) {
@@ -144,9 +179,11 @@ body {
   position: absolute;
   width: 44px;
   height: 44px;
-  opacity: 0.7;
+  opacity: 0.85;
   pointer-events: none;
   z-index: 3;
+  transition: transform 0.6s var(--ease-editorial);
+  filter: drop-shadow(0 2px 4px rgba(185, 154, 98, 0.3));
 }
 .corner-flourish.top-left { top: 18px; left: 18px; }
 .corner-flourish.top-right { top: 18px; right: 18px; transform: scaleX(-1); }
@@ -157,8 +194,85 @@ body {
 .scene-divider {
   border: none;
   height: 1px;
-  background: radial-gradient(circle, rgba(185, 154, 98, 0.4) 0%, rgba(185, 154, 98, 0.05) 80%, transparent 100%);
+  background: radial-gradient(circle, rgba(185, 154, 98, 0.45) 0%, rgba(185, 154, 98, 0.08) 80%, transparent 100%);
   margin: 36px 0;
+}
+
+/* ==========================================================================
+   SCROLL REVEAL & TEXT ANIMATION ENGINE
+   ========================================================================== */
+
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.85s var(--ease-editorial), transform 0.85s var(--ease-editorial);
+  will-change: opacity, transform;
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.delay-1 { transition-delay: 100ms; }
+.delay-2 { transition-delay: 200ms; }
+.delay-3 { transition-delay: 350ms; }
+.delay-4 { transition-delay: 500ms; }
+
+/* Sanskrit Shloka Shimmer */
+.shloka-text {
+  background: linear-gradient(135deg, #8F2228 0%, #D47A22 40%, #8F2228 80%);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shlokaShimmer 6s infinite linear;
+}
+
+@keyframes shlokaShimmer {
+  0% { background-position: 0% center; }
+  100% { background-position: 200% center; }
+}
+
+/* Sacred Diya Flame Flicker */
+@keyframes flameFlicker {
+  0%, 100% {
+    transform: scale(1) translateY(0);
+    opacity: 0.95;
+    filter: drop-shadow(0 0 8px #FF9E2C);
+  }
+  25% {
+    transform: scale(1.08, 0.94) translateY(-1px) rotate(-1deg);
+    opacity: 1;
+    filter: drop-shadow(0 0 14px #FFBD38);
+  }
+  50% {
+    transform: scale(0.96, 1.05) translateY(-2px) rotate(1deg);
+    opacity: 0.9;
+    filter: drop-shadow(0 0 10px #FF881E);
+  }
+  75% {
+    transform: scale(1.04, 0.98) translateY(-0.5px) rotate(-0.5deg);
+    opacity: 0.98;
+    filter: drop-shadow(0 0 12px #FFA726);
+  }
+}
+
+/* Radiant Gold Pulsing Glow */
+@keyframes pulseGlow {
+  0%, 100% {
+    transform: translate(-50%, -50%) scale(0.95);
+    opacity: 0.6;
+  }
+  50% {
+    transform: translate(-50%, -50%) scale(1.08);
+    opacity: 0.95;
+  }
+}
+
+/* Music Icon Pulse */
+@keyframes musicPulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.22); }
 }
 
 /* Section Header Styles */
@@ -239,11 +353,31 @@ body {
   transform: translateY(-1px);
 }
 
+/* Countdown Card Hover Elevation */
+.countdown-box:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(35, 59, 50, 0.1) !important;
+  border-color: var(--color-gold-antique) !important;
+}
+
+/* Luxury Paper Card Hover */
+.luxury-paper-card {
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
+}
+.luxury-paper-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 22px rgba(35, 59, 50, 0.08) !important;
+}
+
 /* Reduced Motion Guidelines */
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
+  }
+  .reveal {
+    opacity: 1 !important;
+    transform: none !important;
   }
 }

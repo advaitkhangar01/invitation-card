@@ -37,7 +37,6 @@ export const MuhuratCountdown: React.FC = () => {
   }, []);
 
   const handleDownloadCalendar = () => {
-    // 17:40 IST (UTC+05:30) is 12:10 UTC
     const icsData = [
       'BEGIN:VCALENDAR',
       'VERSION:2.0',
@@ -68,19 +67,21 @@ export const MuhuratCountdown: React.FC = () => {
 
   return (
     <section
+      className="scene-block reveal"
       style={{
         textAlign: 'center',
         padding: '16px 0',
       }}
       aria-label="Auspicious Muhurat and Countdown"
     >
-      <div className="section-title-wrap">
+      <div className="section-title-wrap reveal delay-1">
         <p className="section-eyebrow">Auspicious Muhurat</p>
         <h2 className="section-main-title">The Sacred Vows</h2>
       </div>
 
       {/* Date & Time Badge */}
       <div
+        className="reveal delay-2"
         style={{
           display: 'inline-flex',
           flexWrap: 'wrap',
@@ -104,6 +105,7 @@ export const MuhuratCountdown: React.FC = () => {
       </div>
 
       <p
+        className="reveal delay-2"
         style={{
           fontFamily: 'var(--font-body)',
           fontSize: '0.8125rem',
@@ -118,6 +120,7 @@ export const MuhuratCountdown: React.FC = () => {
 
       {/* Countdown Grid */}
       <div
+        className="reveal delay-3"
         style={{
           display: 'grid',
           gridTemplateColumns: 'repeat(4, 1fr)',
@@ -133,12 +136,14 @@ export const MuhuratCountdown: React.FC = () => {
         ].map((item) => (
           <div
             key={item.label}
+            className="countdown-box"
             style={{
               background: '#FFFFFF',
-              border: '1px solid rgba(185, 154, 98, 0.32)',
+              border: '1px solid rgba(185, 154, 98, 0.35)',
               borderRadius: '12px',
               padding: '14px 6px',
               boxShadow: '0 4px 14px rgba(35, 59, 50, 0.05)',
+              transition: 'transform 0.25s ease, box-shadow 0.25s ease',
             }}
           >
             <div
@@ -170,13 +175,15 @@ export const MuhuratCountdown: React.FC = () => {
       </div>
 
       {/* Add to Calendar Button */}
-      <button
-        onClick={handleDownloadCalendar}
-        className="btn-royal-secondary"
-        style={{ width: '100%', maxWidth: '320px' }}
-      >
-        📅 Save Date to Calendar (.ics)
-      </button>
+      <div className="reveal delay-4">
+        <button
+          onClick={handleDownloadCalendar}
+          className="btn-royal-secondary"
+          style={{ width: '100%', maxWidth: '320px' }}
+        >
+          📅 Save Date to Calendar (.ics)
+        </button>
+      </div>
     </section>
   );
 };

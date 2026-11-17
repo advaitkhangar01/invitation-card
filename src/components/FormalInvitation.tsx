@@ -4,6 +4,7 @@ import { WEDDING_DATA } from '../data/weddingData';
 export const FormalInvitation: React.FC = () => {
   return (
     <section
+      className="scene-block reveal"
       style={{
         textAlign: 'center',
         padding: '16px 0',
@@ -11,6 +12,7 @@ export const FormalInvitation: React.FC = () => {
       aria-label="Formal Wedding Invitation"
     >
       <p
+        className="reveal delay-1"
         style={{
           fontFamily: 'var(--font-body)',
           fontSize: '0.8125rem',
@@ -21,23 +23,25 @@ export const FormalInvitation: React.FC = () => {
           marginBottom: '14px',
         }}
       >
-        Under the Grace of Elders & Ancestors
+        Under the Grace of Elders &amp; Ancestors
       </p>
 
       {/* Bride's Parents Blessing */}
       <div
+        className="luxury-paper-card reveal delay-2"
         style={{
-          background: 'rgba(35, 59, 50, 0.03)',
-          border: '1px solid rgba(185, 154, 98, 0.28)',
+          background: 'rgba(35, 59, 50, 0.035)',
+          border: '1px solid rgba(185, 154, 98, 0.32)',
           borderRadius: '12px',
           padding: '18px 16px',
-          marginBottom: '16px',
+          marginBottom: '18px',
+          boxShadow: '0 4px 14px rgba(35, 59, 50, 0.04)',
         }}
       >
         <p
           style={{
             fontFamily: 'var(--font-heading)',
-            fontSize: '1.2rem',
+            fontSize: '1.25rem',
             color: 'var(--color-forest-deep)',
             lineHeight: 1.35,
             fontWeight: 600,
@@ -61,11 +65,11 @@ export const FormalInvitation: React.FC = () => {
       </div>
 
       {/* Verbatim Invitation Line */}
-      <div style={{ margin: '22px 0' }}>
+      <div className="reveal delay-3" style={{ margin: '22px 0' }}>
         <p
           style={{
             fontFamily: 'var(--font-heading)',
-            fontSize: '1.45rem',
+            fontSize: '1.5rem',
             fontStyle: 'italic',
             color: 'var(--color-forest-rich)',
             letterSpacing: '0.02em',
@@ -78,11 +82,13 @@ export const FormalInvitation: React.FC = () => {
 
       {/* Groom's Parents Blessing */}
       <div
+        className="luxury-paper-card reveal delay-4"
         style={{
-          background: 'rgba(35, 59, 50, 0.03)',
-          border: '1px solid rgba(185, 154, 98, 0.28)',
+          background: 'rgba(35, 59, 50, 0.035)',
+          border: '1px solid rgba(185, 154, 98, 0.32)',
           borderRadius: '12px',
           padding: '18px 16px',
+          boxShadow: '0 4px 14px rgba(35, 59, 50, 0.04)',
         }}
       >
         <p
@@ -99,7 +105,7 @@ export const FormalInvitation: React.FC = () => {
         <p
           style={{
             fontFamily: 'var(--font-heading)',
-            fontSize: '1.2rem',
+            fontSize: '1.25rem',
             color: 'var(--color-forest-deep)',
             lineHeight: 1.35,
             fontWeight: 600,

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { AuspiciousShloka } from './components/AuspiciousShloka';
 import { ThreeRingsCanvas } from './components/ThreeRingsCanvas';
 import { FormalInvitation } from './components/FormalInvitation';
@@ -9,30 +9,59 @@ import { TraditionalBlessings } from './components/TraditionalBlessings';
 import { FloatingAudio } from './components/FloatingAudio';
 
 export const App: React.FC = () => {
+  // IntersectionObserver for cinematic scroll reveals
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+          }
+        });
+      },
+      {
+        root: null,
+        rootMargin: '0px 0px -40px 0px',
+        threshold: 0.12,
+      }
+    );
+
+    const revealElements = document.querySelectorAll('.reveal');
+    revealElements.forEach((el) => observer.observe(el));
+
+    // Force top elements to be visible immediately on load
+    const topElements = document.querySelectorAll('#main-invitation > section:first-of-type .reveal, #main-invitation > .scene-block:first-of-type');
+    topElements.forEach((el) => el.classList.add('is-visible'));
+
+    return () => {
+      revealElements.forEach((el) => observer.unobserve(el));
+    };
+  }, []);
+
   return (
     <div className="app-container">
       <main className="royal-invitation-card" id="main-invitation">
         {/* 4 Sacred Alpona Gold Corner Flourishes */}
         <img
-          src="/assets/frames/alpona_corner_gold.png"
+          src="/assets/frames/deco-alpona-corner.webp"
           alt="Alpona flourish"
           className="corner-flourish top-left"
           aria-hidden="true"
         />
         <img
-          src="/assets/frames/alpona_corner_gold.png"
+          src="/assets/frames/deco-alpona-corner.webp"
           alt="Alpona flourish"
           className="corner-flourish top-right"
           aria-hidden="true"
         />
         <img
-          src="/assets/frames/alpona_corner_gold.png"
+          src="/assets/frames/deco-alpona-corner.webp"
           alt="Alpona flourish"
           className="corner-flourish bottom-left"
           aria-hidden="true"
         />
         <img
-          src="/assets/frames/alpona_corner_gold.png"
+          src="/assets/frames/deco-alpona-corner.webp"
           alt="Alpona flourish"
           className="corner-flourish bottom-right"
           aria-hidden="true"
@@ -80,7 +109,7 @@ export const App: React.FC = () => {
         <TraditionalBlessings />
       </main>
 
-      {/* Floating Sacred Audio Ambient Player */}
+      {/* Floating Sacred Audio Ambient Player (Autoplay with gesture fallback) */}
       <FloatingAudio />
     </div>
   );

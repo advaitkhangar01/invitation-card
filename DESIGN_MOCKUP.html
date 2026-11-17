@@ -3,15 +3,17 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Wedding Invitation Mockup — Isha & Ashish | The Royal Indian Botanical Experience</title>
+  <title>Isha &amp; Ashish — Royal Wedding Invitation | The Royal Indian Botanical Experience</title>
   
-  <!-- Self-hosted & Google Font Fallbacks -->
+  <!-- Typography -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Pinyon+Script&display=swap" rel="stylesheet">
+  
+  <!-- Three.js from CDN for standalone mockup -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 
   <style>
-    /* CSS Reset & Variables */
     *, *::before, *::after {
       box-sizing: border-box;
       margin: 0;
@@ -45,8 +47,8 @@
     body {
       background-color: #121E19;
       background-image: 
-        radial-gradient(circle at 50% 20%, rgba(35, 59, 50, 0.6) 0%, transparent 60%),
-        radial-gradient(circle at 80% 80%, rgba(185, 154, 98, 0.15) 0%, transparent 50%),
+        radial-gradient(circle at 50% 15%, rgba(35, 59, 50, 0.75) 0%, transparent 60%),
+        radial-gradient(circle at 85% 85%, rgba(185, 154, 98, 0.18) 0%, transparent 50%),
         url('public/assets/textures/white_wall.jpg');
       background-attachment: fixed;
       background-size: cover;
@@ -58,6 +60,30 @@
       align-items: center;
       padding: 40px 16px 80px;
       overflow-x: hidden;
+      position: relative;
+    }
+
+    /* Ambient Floating Stardust */
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background-image: 
+        radial-gradient(2px 2px at 20px 30px, rgba(216, 189, 138, 0.4), rgba(0,0,0,0)),
+        radial-gradient(2px 2px at 140px 170px, rgba(216, 189, 138, 0.35), rgba(0,0,0,0)),
+        radial-gradient(3px 3px at 260px 240px, rgba(255, 245, 200, 0.5), rgba(0,0,0,0)),
+        radial-gradient(2px 2px at 380px 390px, rgba(216, 189, 138, 0.3), rgba(0,0,0,0));
+      background-repeat: repeat;
+      background-size: 400px 400px;
+      opacity: 0.7;
+      pointer-events: none;
+      z-index: 1;
+      animation: stardustDrift 60s linear infinite;
+    }
+
+    @keyframes stardustDrift {
+      from { transform: translateY(0); }
+      to { transform: translateY(-400px); }
     }
 
     /* Device Preview Toolbar */
@@ -66,7 +92,7 @@
       top: 16px;
       left: 50%;
       transform: translateX(-50%);
-      background: rgba(26, 49, 39, 0.85);
+      background: rgba(26, 49, 39, 0.88);
       backdrop-filter: blur(12px);
       border: 1px solid rgba(185, 154, 98, 0.4);
       border-radius: 30px;
@@ -99,317 +125,150 @@
     /* Main Invitation Canvas Card */
     .invitation-wrapper {
       width: 100%;
-      max-width: 480px; /* Default Mobile-First Viewport */
+      max-width: 480px;
       margin-top: 40px;
       transition: max-width 0.4s var(--ease-editorial);
       position: relative;
+      z-index: 10;
     }
 
     .invitation-card {
       background: var(--color-paper-ivory);
       background-image: 
-        radial-gradient(circle at 50% 0%, rgba(185, 154, 98, 0.08) 0%, transparent 40%),
+        radial-gradient(circle at 50% 0%, rgba(185, 154, 98, 0.08) 0%, transparent 45%),
+        radial-gradient(circle at 50% 100%, rgba(35, 59, 50, 0.04) 0%, transparent 45%),
         url('public/assets/textures/white_wall.jpg');
       background-size: cover;
-      border-radius: 16px;
+      border-radius: 18px;
       box-shadow: 
-        0 25px 70px -15px rgba(0, 0, 0, 0.5),
-        0 0 0 1px rgba(185, 154, 98, 0.35);
+        0 30px 80px -20px rgba(0, 0, 0, 0.6),
+        0 0 0 1px rgba(185, 154, 98, 0.4);
       position: relative;
       overflow: hidden;
-      padding: 40px 24px;
+      padding: 44px 28px;
+      animation: cardEntrance 1.2s var(--ease-editorial) forwards;
+    }
+
+    @keyframes cardEntrance {
+      0% { opacity: 0; transform: translateY(30px); }
+      100% { opacity: 1; transform: translateY(0); }
     }
 
     /* Gold Double Inset Border */
     .invitation-card::before {
       content: "";
       position: absolute;
-      top: 10px;
-      left: 10px;
-      right: 10px;
-      bottom: 10px;
-      border: 1px solid rgba(185, 154, 98, 0.3);
-      border-radius: 10px;
+      top: 10px; left: 10px; right: 10px; bottom: 10px;
+      border: 1px solid rgba(185, 154, 98, 0.35);
+      border-radius: 12px;
       pointer-events: none;
+      z-index: 2;
     }
 
     .invitation-card::after {
       content: "";
       position: absolute;
-      top: 14px;
-      left: 14px;
-      right: 14px;
-      bottom: 14px;
-      border: 1px solid rgba(185, 154, 98, 0.15);
-      border-radius: 8px;
+      top: 15px; left: 15px; right: 15px; bottom: 15px;
+      border: 1px solid rgba(185, 154, 98, 0.18);
+      border-radius: 9px;
       pointer-events: none;
+      z-index: 2;
     }
 
     /* Corner Flourishes */
-    .corner-ornament {
+    .corner-flourish {
       position: absolute;
-      width: 42px;
-      height: 42px;
-      opacity: 0.65;
+      width: 44px;
+      height: 44px;
+      opacity: 0.85;
       pointer-events: none;
-      z-index: 2;
+      z-index: 3;
+      filter: drop-shadow(0 2px 4px rgba(185, 154, 98, 0.3));
     }
     .corner-tl { top: 18px; left: 18px; }
     .corner-tr { top: 18px; right: 18px; transform: scaleX(-1); }
     .corner-bl { bottom: 18px; left: 18px; transform: scaleY(-1); }
     .corner-br { bottom: 18px; right: 18px; transform: scale(-1); }
 
-    /* Scene Sections */
-    .scene-section {
-      text-align: center;
-      position: relative;
-      padding: 36px 0;
-      border-bottom: 1px solid rgba(185, 154, 98, 0.2);
+    /* Scene Separator */
+    .scene-divider {
+      border: none;
+      height: 1px;
+      background: radial-gradient(circle, rgba(185, 154, 98, 0.45) 0%, rgba(185, 154, 98, 0.08) 80%, transparent 100%);
+      margin: 36px 0;
     }
 
-    .scene-section:last-of-type {
-      border-bottom: none;
-      padding-bottom: 16px;
+    /* Scroll Reveal Engine */
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.85s var(--ease-editorial), transform 0.85s var(--ease-editorial);
+    }
+    .reveal.is-visible {
+      opacity: 1;
+      transform: translateY(0);
     }
 
-    /* Auspicious Shloka */
-    .shloka-box {
-      margin-bottom: 24px;
+    .delay-1 { transition-delay: 100ms; }
+    .delay-2 { transition-delay: 200ms; }
+    .delay-3 { transition-delay: 350ms; }
+    .delay-4 { transition-delay: 500ms; }
+
+    /* Shloka Shimmer */
+    .shloka-text {
+      background: linear-gradient(135deg, #8F2228 0%, #D47A22 40%, #8F2228 80%);
+      background-size: 200% auto;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: shlokaShimmer 6s infinite linear;
     }
 
-    .shloka-sanskrit {
-      font-family: var(--font-heading);
-      font-size: 1.15rem;
-      letter-spacing: 0.04em;
-      color: var(--color-sacred-kumkum);
-      font-weight: 600;
-      margin-bottom: 6px;
+    @keyframes shlokaShimmer {
+      0% { background-position: 0% center; }
+      100% { background-position: 200% center; }
     }
 
-    .shloka-meaning {
-      font-family: var(--font-body);
-      font-size: 0.8125rem;
-      color: var(--color-ink-muted);
-      letter-spacing: 0.05em;
-      text-transform: uppercase;
+    /* Flame Flicker */
+    @keyframes flameFlicker {
+      0%, 100% { transform: scale(1) translateY(0); opacity: 0.95; filter: drop-shadow(0 0 8px #FF9E2C); }
+      25% { transform: scale(1.08, 0.94) translateY(-1px) rotate(-1deg); opacity: 1; filter: drop-shadow(0 0 14px #FFBD38); }
+      50% { transform: scale(0.96, 1.05) translateY(-2px) rotate(1deg); opacity: 0.9; filter: drop-shadow(0 0 10px #FF881E); }
+      75% { transform: scale(1.04, 0.98) translateY(-0.5px) rotate(-0.5deg); opacity: 0.98; filter: drop-shadow(0 0 12px #FFA726); }
     }
 
-    /* Ceremonial Diya Icon */
-    .diya-graphic {
-      width: 72px;
-      height: auto;
-      margin: 0 auto 16px;
-      filter: drop-shadow(0 6px 12px rgba(185, 154, 98, 0.3));
-      animation: gentle-glow 3s infinite ease-in-out;
+    @keyframes pulseGlow {
+      0%, 100% { transform: translate(-50%, -50%) scale(0.95); opacity: 0.6; }
+      50% { transform: translate(-50%, -50%) scale(1.08); opacity: 0.95; }
     }
 
-    @keyframes gentle-glow {
-      0%, 100% { filter: drop-shadow(0 4px 8px rgba(185, 154, 98, 0.25)); }
-      50% { filter: drop-shadow(0 8px 18px rgba(216, 189, 138, 0.55)); }
+    @keyframes musicPulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.22); }
     }
 
-    /* 3D Ring Display Simulation */
-    .ring-stage {
-      position: relative;
-      width: 220px;
-      height: 180px;
-      margin: 10px auto 20px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+    .luxury-paper-card {
+      transition: transform 0.35s ease, box-shadow 0.35s ease;
+    }
+    .luxury-paper-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 22px rgba(35, 59, 50, 0.08) !important;
     }
 
-    .ring-aura {
-      position: absolute;
-      width: 160px;
-      height: 160px;
-      border-radius: 50%;
-      background: radial-gradient(circle, rgba(216, 189, 138, 0.25) 0%, transparent 70%);
-      animation: aura-pulse 4s infinite ease-in-out;
+    .countdown-box {
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+    .countdown-box:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(35, 59, 50, 0.1) !important;
+      border-color: var(--color-gold-antique) !important;
     }
 
-    @keyframes aura-pulse {
-      0%, 100% { transform: scale(0.9); opacity: 0.6; }
-      50% { transform: scale(1.15); opacity: 0.9; }
-    }
-
-    .ring-visual {
-      position: relative;
-      width: 140px;
-      height: 140px;
-      z-index: 2;
-      filter: drop-shadow(0 12px 24px rgba(26, 49, 39, 0.2));
-      transition: transform 0.6s var(--ease-editorial);
-    }
-
-    .ring-visual:hover {
-      transform: scale(1.08) rotate(5deg);
-    }
-
-    /* Royal Invitation Typography */
-    .invitation-intro {
-      font-family: var(--font-body);
-      font-size: 0.9375rem;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--color-gold-deep);
-      margin-bottom: 12px;
-      font-weight: 500;
-    }
-
-    .parents-blessing-card {
-      background: rgba(35, 59, 50, 0.03);
-      border: 1px solid rgba(185, 154, 98, 0.25);
-      border-radius: 12px;
-      padding: 18px 16px;
-      margin: 16px 0;
-    }
-
-    .parents-line {
-      font-family: var(--font-heading);
-      font-size: 1.15rem;
-      color: var(--color-forest-deep);
-      line-height: 1.4;
-      font-weight: 600;
-    }
-
-    .parents-relation {
-      font-family: var(--font-body);
-      font-size: 0.8125rem;
-      color: var(--color-ink-muted);
-      margin-top: 4px;
-      letter-spacing: 0.04em;
-    }
-
-    .verbatim-invite-line {
-      font-family: var(--font-heading);
-      font-size: 1.35rem;
-      font-style: italic;
-      color: var(--color-forest-rich);
-      margin: 20px 0;
-      letter-spacing: 0.02em;
-    }
-
-    /* The Monumental Couple Names */
-    .names-monogram-crest {
-      width: 64px;
-      height: auto;
-      margin: 0 auto 12px;
-      opacity: 0.85;
-    }
-
-    .couple-name {
-      font-family: var(--font-display);
-      font-size: 2.5rem;
-      line-height: 1.15;
-      color: var(--color-forest-deep);
-      font-weight: 700;
-      letter-spacing: 0.02em;
-      text-shadow: 0 1px 2px rgba(185, 154, 98, 0.2);
-    }
-
-    .couple-ampersand {
-      font-family: var(--font-accent);
-      font-size: 2.8rem;
-      line-height: 0.9;
-      color: var(--color-gold-antique);
-      margin: 4px 0;
-      display: block;
-    }
-
-    /* Muhurat & Countdown Section */
-    .scene-title {
-      font-family: var(--font-display);
-      font-size: 1.5rem;
-      color: var(--color-forest-rich);
-      letter-spacing: 0.05em;
-      margin-bottom: 8px;
-    }
-
-    .muhurat-badge {
+    /* Primary & Secondary Buttons */
+    .btn-royal-primary {
       display: inline-flex;
       align-items: center;
-      gap: 6px;
-      background: rgba(185, 154, 98, 0.12);
-      border: 1px solid rgba(185, 154, 98, 0.4);
-      padding: 6px 14px;
-      border-radius: 20px;
-      font-size: 0.875rem;
-      color: var(--color-forest-deep);
-      font-weight: 600;
-      margin-bottom: 20px;
-    }
-
-    .countdown-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 8px;
-      margin: 20px 0;
-    }
-
-    .countdown-cell {
-      background: #FFFFFF;
-      border: 1px solid rgba(185, 154, 98, 0.3);
-      border-radius: 10px;
-      padding: 12px 6px;
-      box-shadow: 0 4px 12px rgba(35, 59, 50, 0.04);
-    }
-
-    .countdown-value {
-      font-family: var(--font-display);
-      font-size: 1.75rem;
-      color: var(--color-forest-deep);
-      font-weight: 700;
-      line-height: 1;
-    }
-
-    .countdown-label {
-      font-family: var(--font-body);
-      font-size: 0.6875rem;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--color-ink-muted);
-      margin-top: 4px;
-    }
-
-    /* Venue & Sanctuary Section */
-    .venue-card {
-      background: rgba(35, 59, 50, 0.03);
-      border: 1px solid rgba(185, 154, 98, 0.3);
-      border-radius: 12px;
-      padding: 22px 18px;
-      margin-top: 16px;
-      position: relative;
-    }
-
-    .venue-name {
-      font-family: var(--font-display);
-      font-size: 1.65rem;
-      color: var(--color-forest-deep);
-      font-weight: 700;
-      margin-bottom: 6px;
-    }
-
-    .venue-address {
-      font-family: var(--font-body);
-      font-size: 0.9375rem;
-      line-height: 1.5;
-      color: var(--color-ink-charcoal);
-      margin-bottom: 20px;
-    }
-
-    /* Buttons & Actions */
-    .btn-group {
-      display: flex;
-      flex-direction: column;
+      justify-content: center;
       gap: 10px;
-    }
-
-    .btn-primary {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
       background: var(--color-forest-rich);
       color: var(--color-paper-ivory);
       text-decoration: none;
@@ -418,21 +277,21 @@
       font-weight: 600;
       letter-spacing: 0.08em;
       text-transform: uppercase;
-      padding: 14px 20px;
+      padding: 14px 22px;
       border-radius: 8px;
       border: 1px solid var(--color-gold-antique);
-      box-shadow: 0 4px 14px rgba(26, 49, 39, 0.25);
-      transition: all 0.3s ease;
+      box-shadow: 0 4px 16px rgba(26, 49, 39, 0.28);
+      transition: all 0.3s var(--ease-editorial);
       cursor: pointer;
     }
-
-    .btn-primary:hover {
+    .btn-royal-primary:hover {
       background: var(--color-forest-deep);
       transform: translateY(-2px);
-      box-shadow: 0 6px 18px rgba(26, 49, 39, 0.35);
+      box-shadow: 0 8px 22px rgba(26, 49, 39, 0.38);
+      border-color: var(--color-gold-bright);
     }
 
-    .btn-secondary {
+    .btn-royal-secondary {
       display: inline-flex;
       align-items: center;
       justify-content: center;
@@ -444,84 +303,43 @@
       font-size: 0.8125rem;
       font-weight: 600;
       letter-spacing: 0.06em;
-      padding: 12px 18px;
+      padding: 12px 20px;
       border-radius: 8px;
-      border: 1px solid rgba(185, 154, 98, 0.5);
+      border: 1px solid rgba(185, 154, 98, 0.55);
       transition: all 0.25s ease;
       cursor: pointer;
     }
-
-    .btn-secondary:hover {
+    .btn-royal-secondary:hover {
       background: rgba(185, 154, 98, 0.08);
       border-color: var(--color-gold-antique);
+      transform: translateY(-1px);
     }
 
-    /* Botanical Illustrations & Garland Accent */
-    .botanical-strip {
-      width: 100%;
-      height: 36px;
-      object-fit: cover;
-      opacity: 0.8;
-      margin: 16px 0;
-    }
-
-    /* Blessings & Hospitality */
-    .blessing-quote {
-      font-family: var(--font-heading);
-      font-size: 1.15rem;
-      font-style: italic;
-      color: var(--color-forest-deep);
-      line-height: 1.6;
-      margin: 16px 0;
-    }
-
-    .hosts-signature {
-      font-family: var(--font-accent);
-      font-size: 2.25rem;
-      color: var(--color-gold-antique);
-      margin-top: 10px;
-    }
-
-    /* Floating Audio Widget */
+    /* Floating Audio Player */
     .floating-audio-widget {
       position: fixed;
-      bottom: 24px;
-      right: 24px;
-      background: rgba(26, 49, 39, 0.9);
-      backdrop-filter: blur(10px);
-      border: 1px solid rgba(185, 154, 98, 0.5);
+      bottom: 22px;
+      right: 20px;
+      background: rgba(26, 49, 39, 0.94);
+      backdrop-filter: blur(14px);
+      border: 1px solid rgba(185, 154, 98, 0.45);
       border-radius: 30px;
       padding: 10px 18px;
       display: flex;
       align-items: center;
       gap: 10px;
-      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.35);
+      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.35);
       cursor: pointer;
       z-index: 1000;
-      transition: all 0.3s ease;
+      transition: all 0.35s ease;
+      user-select: none;
     }
-
-    .floating-audio-widget:hover {
-      transform: scale(1.05);
+    .floating-audio-widget.active {
       border-color: var(--color-gold-bright);
+      box-shadow: 0 12px 32px rgba(0, 0, 0, 0.45), 0 0 15px rgba(216, 189, 138, 0.35);
     }
 
-    .audio-icon {
-      width: 18px;
-      height: 18px;
-      fill: var(--color-gold-antique);
-    }
-
-    .audio-text {
-      font-family: var(--font-body);
-      font-size: 0.75rem;
-      font-weight: 600;
-      letter-spacing: 0.05em;
-      color: var(--color-gold-champagne);
-      text-transform: uppercase;
-    }
-
-    /* Toast Notification */
+    /* Toast */
     .toast-popup {
       position: fixed;
       bottom: 80px;
@@ -538,7 +356,6 @@
       transition: all 0.3s ease;
       z-index: 10000;
     }
-
     .toast-popup.visible {
       transform: translateX(-50%) translateY(0);
       opacity: 1;
@@ -547,211 +364,269 @@
 </head>
 <body>
 
-  <!-- Viewport Preview Controls -->
+  <!-- Viewport Switcher -->
   <div class="viewport-toolbar">
-    <button class="viewport-btn active" onclick="setViewport('375px', this)">iPhone 13 (375px)</button>
-    <button class="viewport-btn" onclick="setViewport('414px', this)">Large Phone (414px)</button>
-    <button class="viewport-btn" onclick="setViewport('640px', this)">Tablet / Desktop (640px)</button>
+    <button class="viewport-btn active" onclick="setViewport('480px', this)">iPhone 13 (Mobile)</button>
+    <button class="viewport-btn" onclick="setViewport('640px', this)">Tablet / Desktop</button>
   </div>
 
   <div class="invitation-wrapper" id="invitationWrapper">
-    <main class="invitation-card">
+    <main class="invitation-card" id="main-invitation">
       <!-- 4 Corner Flourishes -->
-      <img src="public/assets/frames/alpona_corner_gold.png" alt="Corner flourish" class="corner-ornament corner-tl">
-      <img src="public/assets/frames/alpona_corner_gold.png" alt="Corner flourish" class="corner-ornament corner-tr">
-      <img src="public/assets/frames/alpona_corner_gold.png" alt="Corner flourish" class="corner-ornament corner-bl">
-      <img src="public/assets/frames/alpona_corner_gold.png" alt="Corner flourish" class="corner-ornament corner-br">
+      <img src="public/assets/frames/deco-alpona-corner.webp" alt="Corner flourish" class="corner-flourish corner-tl">
+      <img src="public/assets/frames/deco-alpona-corner.webp" alt="Corner flourish" class="corner-flourish corner-tr">
+      <img src="public/assets/frames/deco-alpona-corner.webp" alt="Corner flourish" class="corner-flourish corner-bl">
+      <img src="public/assets/frames/deco-alpona-corner.webp" alt="Corner flourish" class="corner-flourish corner-br">
 
-      <!-- ==========================================
-           SCENE 1: THE ROYAL PRELUDE & 3D RINGS
-      =========================================== -->
-      <section class="scene-section">
-        <div class="shloka-box">
-          <p class="shloka-sanskrit">॥ श्री गणेशाय नमः ॥</p>
-          <p class="shloka-meaning">With the divine blessings of the Almighty</p>
+      <!-- SCENE 1: INVOCATION & 3D RINGS -->
+      <section style="text-align: center; padding-top: 6px; padding-bottom: 16px;">
+        <div style="margin-bottom: 14px;">
+          <p class="shloka-text" style="font-family: var(--font-heading); font-size: 1.35rem; letter-spacing: 0.05em; font-weight: 700; line-height: 1.3;">
+            ॥ श्री गणेशाय नमः ॥
+          </p>
+          <p style="font-family: var(--font-body); font-size: 0.8125rem; color: var(--color-ink-muted); letter-spacing: 0.08em; text-transform: uppercase; font-weight: 500;">
+            With the divine grace and blessings of the Almighty
+          </p>
         </div>
 
-        <img src="public/assets/ornaments/diya_oil_lamp_brass.png" alt="Sacred Brass Diya" class="diya-graphic">
-
-        <div class="ring-stage">
-          <div class="ring-aura"></div>
-          <img src="public/assets/florals/roses2.png" alt="Interactive Gold Rings" class="ring-visual" id="ringVisual">
-        </div>
-        <p style="font-size: 0.75rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--color-ink-muted);">
-          Interactive 3D Rings Showcase • Drag to Rotate
-        </p>
-      </section>
-
-      <!-- ==========================================
-           SCENE 2: THE FORMAL INVITATION
-      =========================================== -->
-      <section class="scene-section">
-        <p class="invitation-intro">Under the Grace of Elders & Ancestors</p>
-        
-        <div class="parents-blessing-card">
-          <p class="parents-line">Mr. Bhudeo Bawankule<br>& Mrs. Rekha Bawankle</p>
-          <p class="parents-relation">Cordially invite you to the auspicious wedding of their beloved daughter</p>
+        <div style="display: inline-flex; flex-direction: column; align-items: center; position: relative; margin: 4px auto 0;">
+          <div style="position: absolute; top: -6px; width: 18px; height: 24px; border-radius: 50% 50% 35% 35%; background: radial-gradient(ellipse at 50% 60%, #FFFFFF 10%, #FFDF73 40%, #E86518 80%, transparent 100%); filter: drop-shadow(0 0 10px #FF9E2C); animation: flameFlicker 2s infinite ease-in-out; z-index: 3; pointer-events: none;"></div>
+          <img src="public/assets/ornaments/wed-lamp.webp" alt="Auspicious Brass Diya" style="width: 56px; height: auto; filter: drop-shadow(0 6px 14px rgba(185, 154, 98, 0.4)); display: block;">
         </div>
 
-        <p class="verbatim-invite-line">“ We are Inviting you  ”</p>
-
-        <div class="parents-blessing-card">
-          <p class="parents-relation">Together with</p>
-          <p class="parents-line" style="margin-top: 4px;">Mr. Manikrao Deshmukh<br>& Mrs. Nirmala Deshmukh</p>
-          <p class="parents-relation">Parents of the Groom</p>
+        <!-- Real 3D Three.js Rings Hero Canvas -->
+        <div style="position: relative; width: 100%; height: 290px; margin: 6px auto 12px; display: flex; align-items: center; justify-content: center;">
+          <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 230px; height: 230px; border-radius: 50%; background: radial-gradient(circle, rgba(216, 189, 138, 0.28) 0%, rgba(185, 154, 98, 0.1) 45%, transparent 75%); pointer-events: none; animation: pulseGlow 4s infinite ease-in-out;"></div>
+          <div id="threeCanvas" style="width: 100%; height: 100%; cursor: grab; touch-action: none;"></div>
+          <p style="position: absolute; bottom: 2px; text-align: center; font-family: var(--font-body); font-size: 0.6875rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--color-gold-deep); font-weight: 600; pointer-events: none;">
+            ✦ 3D Royal Rings • Drag to Rotate &amp; Inspect ✦
+          </p>
         </div>
       </section>
 
-      <!-- ==========================================
-           SCENE 3: THE COUPLE CELEBRATION
-      =========================================== -->
-      <section class="scene-section">
-        <img src="public/assets/frames/royal_filigree_crest.png" alt="Royal Monogram Crest" class="names-monogram-crest">
-        
-        <h1 class="couple-name">Isha Bawankule</h1>
-        <span class="couple-ampersand">&</span>
-        <h1 class="couple-name">Ashish Deshmukh</h1>
+      <hr class="scene-divider">
 
-        <p style="font-family: var(--font-heading); font-size: 1.15rem; color: var(--color-ink-muted); margin-top: 14px; font-style: italic;">
-          As they unite their hands and hearts in holy matrimony
+      <!-- SCENE 2: FORMAL INVITATION -->
+      <section class="reveal" style="text-align: center; padding: 16px 0;">
+        <p class="reveal delay-1" style="font-family: var(--font-body); font-size: 0.8125rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--color-gold-deep); font-weight: 600; margin-bottom: 14px;">
+          Under the Grace of Elders &amp; Ancestors
         </p>
 
-        <img src="public/assets/botanical/garland-jasmine-marigold.png" alt="Floral Garland" class="botanical-strip">
+        <div class="luxury-paper-card reveal delay-2" style="background: rgba(35, 59, 50, 0.035); border: 1px solid rgba(185, 154, 98, 0.32); border-radius: 12px; padding: 18px 16px; margin-bottom: 18px; box-shadow: 0 4px 14px rgba(35, 59, 50, 0.04);">
+          <p style="font-family: var(--font-heading); font-size: 1.25rem; color: var(--color-forest-deep); line-height: 1.35; font-weight: 600;">
+            Mr. Bhudeo Bawankule<br>&amp; Mrs. Rekha Bawankle
+          </p>
+          <p style="font-family: var(--font-body); font-size: 0.8125rem; color: var(--color-ink-muted); margin-top: 6px; letter-spacing: 0.04em;">
+            Cordially invite your gracious presence to celebrate the wedding of their daughter
+          </p>
+        </div>
+
+        <div class="reveal delay-3" style="margin: 22px 0;">
+          <p style="font-family: var(--font-heading); font-size: 1.5rem; font-style: italic; color: var(--color-forest-rich); letter-spacing: 0.02em; font-weight: 600;">
+            “ We are Inviting you  ”
+          </p>
+        </div>
+
+        <div class="luxury-paper-card reveal delay-4" style="background: rgba(35, 59, 50, 0.035); border: 1px solid rgba(185, 154, 98, 0.32); border-radius: 12px; padding: 18px 16px; box-shadow: 0 4px 14px rgba(35, 59, 50, 0.04);">
+          <p style="font-family: var(--font-body); font-size: 0.8125rem; color: var(--color-ink-muted); letter-spacing: 0.04em; margin-bottom: 4px;">
+            Together with
+          </p>
+          <p style="font-family: var(--font-heading); font-size: 1.25rem; color: var(--color-forest-deep); line-height: 1.35; font-weight: 600;">
+            Mr. Manikrao Deshmukh<br>&amp; Mrs. Nirmala Deshmukh
+          </p>
+          <p style="font-family: var(--font-body); font-size: 0.8125rem; color: var(--color-ink-muted); marginTop: 4px; letter-spacing: 0.04em;">
+            Parents of the Groom
+          </p>
+        </div>
       </section>
 
-      <!-- ==========================================
-           SCENE 4: AUSPICIOUS MUHURAT & COUNTDOWN
-      =========================================== -->
-      <section class="scene-section">
-        <h2 class="scene-title">The Auspicious Muhurat</h2>
+      <hr class="scene-divider">
+
+      <!-- SCENE 3: THE COUPLE MONOGRAM -->
+      <section class="reveal" style="text-align: center; padding: 16px 0;">
+        <img src="public/assets/frames/crest-royal.webp" alt="Royal Heritage Crest" class="reveal delay-1" style="width: 78px; height: auto; margin: 0 auto 12px; opacity: 0.95; filter: drop-shadow(0 4px 12px rgba(185, 154, 98, 0.3)); display: block;">
         
-        <div class="muhurat-badge">
+        <div class="reveal delay-2">
+          <h1 style="font-family: var(--font-display); font-size: 2.5rem; line-height: 1.15; color: var(--color-forest-deep); font-weight: 700; letter-spacing: 0.02em;">
+            Isha Bawankule
+          </h1>
+          <span style="font-family: var(--font-accent); font-size: 3.2rem; line-height: 0.85; color: var(--color-gold-antique); display: block; margin: 6px 0;">
+            &amp;
+          </span>
+          <h1 style="font-family: var(--font-display); font-size: 2.5rem; line-height: 1.15; color: var(--color-forest-deep); font-weight: 700; letter-spacing: 0.02em;">
+            Ashish Deshmukh
+          </h1>
+        </div>
+
+        <p class="reveal delay-3" style="font-family: var(--font-heading); font-size: 1.25rem; color: var(--color-ink-muted); margin-top: 16px; font-style: italic;">
+          As they unite their lives in sacred matrimony
+        </p>
+
+        <div class="reveal delay-4" style="margin-top: 20px;">
+          <img src="public/assets/frames/garland-gold.webp" alt="Royal Botanical Garland" style="width: 100%; maxWidth: 360px; height: 42px; object-fit: contain; margin: 0 auto; opacity: 0.92; display: block; filter: drop-shadow(0 2px 6px rgba(185, 154, 98, 0.25));">
+        </div>
+      </section>
+
+      <hr class="scene-divider">
+
+      <!-- SCENE 4: AUSPICIOUS MUHURAT -->
+      <section class="reveal" style="text-align: center; padding: 16px 0;">
+        <div class="reveal delay-1">
+          <p style="font-family: var(--font-body); font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--color-gold-deep); font-weight: 600; margin-bottom: 6px;">
+            Auspicious Muhurat
+          </p>
+          <h2 style="font-family: var(--font-display); font-size: 1.625rem; color: var(--color-forest-deep); letter-spacing: 0.03em; font-weight: 700; margin-bottom: 12px;">
+            The Sacred Vows
+          </h2>
+        </div>
+
+        <div class="reveal delay-2" style="display: inline-flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 8px; background: rgba(185, 154, 98, 0.12); border: 1px solid rgba(185, 154, 98, 0.45); padding: 8px 18px; border-radius: 24px; font-family: var(--font-heading); font-size: 1.05rem; color: var(--color-forest-deep); font-weight: 600; margin: 0 auto 10px;">
           <span>Thursday, 17 December 2026</span>
           <span>•</span>
           <span>5:40 PM IST</span>
         </div>
 
-        <p style="font-size: 0.875rem; color: var(--color-ink-muted); margin-bottom: 12px;">
-          Twilight Ceremony (Goraj Muhurat)
+        <p class="reveal delay-2" style="font-family: var(--font-body); font-size: 0.8125rem; color: var(--color-ink-muted); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 20px;">
+          Twilight Goraj Muhurat (IST Asia/Kolkata)
         </p>
 
-        <div class="countdown-grid">
-          <div class="countdown-cell">
-            <div class="countdown-value" id="daysVal">--</div>
-            <div class="countdown-label">Days</div>
+        <div class="reveal delay-3" style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-bottom: 22px;">
+          <div class="countdown-box" style="background: #FFFFFF; border: 1px solid rgba(185, 154, 98, 0.35); border-radius: 12px; padding: 14px 6px; box-shadow: 0 4px 14px rgba(35, 59, 50, 0.05);">
+            <div id="daysVal" style="font-family: var(--font-display); font-size: 1.85rem; color: var(--color-forest-deep); font-weight: 700; line-height: 1;">--</div>
+            <div style="font-family: var(--font-body); font-size: 0.6875rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--color-ink-muted); margin-top: 6px; font-weight: 600;">Days</div>
           </div>
-          <div class="countdown-cell">
-            <div class="countdown-value" id="hoursVal">--</div>
-            <div class="countdown-label">Hours</div>
+          <div class="countdown-box" style="background: #FFFFFF; border: 1px solid rgba(185, 154, 98, 0.35); border-radius: 12px; padding: 14px 6px; box-shadow: 0 4px 14px rgba(35, 59, 50, 0.05);">
+            <div id="hoursVal" style="font-family: var(--font-display); font-size: 1.85rem; color: var(--color-forest-deep); font-weight: 700; line-height: 1;">--</div>
+            <div style="font-family: var(--font-body); font-size: 0.6875rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--color-ink-muted); margin-top: 6px; font-weight: 600;">Hours</div>
           </div>
-          <div class="countdown-cell">
-            <div class="countdown-value" id="minsVal">--</div>
-            <div class="countdown-label">Mins</div>
+          <div class="countdown-box" style="background: #FFFFFF; border: 1px solid rgba(185, 154, 98, 0.35); border-radius: 12px; padding: 14px 6px; box-shadow: 0 4px 14px rgba(35, 59, 50, 0.05);">
+            <div id="minsVal" style="font-family: var(--font-display); font-size: 1.85rem; color: var(--color-forest-deep); font-weight: 700; line-height: 1;">--</div>
+            <div style="font-family: var(--font-body); font-size: 0.6875rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--color-ink-muted); margin-top: 6px; font-weight: 600;">Mins</div>
           </div>
-          <div class="countdown-cell">
-            <div class="countdown-value" id="secsVal">--</div>
-            <div class="countdown-label">Secs</div>
+          <div class="countdown-box" style="background: #FFFFFF; border: 1px solid rgba(185, 154, 98, 0.35); border-radius: 12px; padding: 14px 6px; box-shadow: 0 4px 14px rgba(35, 59, 50, 0.05);">
+            <div id="secsVal" style="font-family: var(--font-display); font-size: 1.85rem; color: var(--color-forest-deep); font-weight: 700; line-height: 1;">--</div>
+            <div style="font-family: var(--font-body); font-size: 0.6875rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--color-ink-muted); margin-top: 6px; font-weight: 600;">Secs</div>
           </div>
         </div>
 
-        <button class="btn-secondary" onclick="addToCalendar()" style="width: 100%;">
-          📅 Add to Calendar (.ics)
-        </button>
+        <div class="reveal delay-4">
+          <button onclick="addToCalendar()" class="btn-royal-secondary" style="width: 100%; max-width: 320px;">
+            📅 Save Date to Calendar (.ics)
+          </button>
+        </div>
       </section>
 
-      <!-- ==========================================
-           SCENE 5: THE SACRED SANCTUARY (VENUE)
-      =========================================== -->
-      <section class="scene-section">
-        <h2 class="scene-title">The Sacred Sanctuary</h2>
-        
-        <div class="venue-card">
-          <h3 class="venue-name">Amrit Farms</h3>
-          <p class="venue-address">
-            GUMTHALA NAGPUR (MH) 441111<br>
-            <span style="font-size: 0.8125rem; color: var(--color-ink-muted);">(Near Gumthi/Koradi Road Area)</span>
+      <hr class="scene-divider">
+
+      <!-- SCENE 5: SANCTUARY VENUE -->
+      <section class="reveal" style="text-align: center; padding: 16px 0;">
+        <div class="reveal delay-1">
+          <p style="font-family: var(--font-body); font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--color-gold-deep); font-weight: 600; margin-bottom: 6px;">
+            The Destination
+          </p>
+          <h2 style="font-family: var(--font-display); font-size: 1.625rem; color: var(--color-forest-deep); letter-spacing: 0.03em; font-weight: 700; margin-bottom: 12px;">
+            Sacred Sanctuary
+          </h2>
+        </div>
+
+        <div class="luxury-paper-card reveal delay-2" style="background: rgba(35, 59, 50, 0.035); border: 1px solid rgba(185, 154, 98, 0.35); border-radius: 14px; padding: 24px 20px; margin-top: 12px; box-shadow: 0 6px 18px rgba(35, 59, 50, 0.05);">
+          <div style="width: 44px; height: 44px; border-radius: 50%; background: rgba(185, 154, 98, 0.16); border: 1px solid rgba(185, 154, 98, 0.45); display: flex; align-items: center; justify-content: center; margin: 0 auto 12px;">
+            <img src="public/assets/icons/map-marker.svg" alt="Venue Pin" style="width: 22px; height: 22px;">
+          </div>
+
+          <h3 style="font-family: var(--font-display); font-size: 1.85rem; color: var(--color-forest-deep); font-weight: 700; margin-bottom: 8px;">
+            Amrit Farms
+          </h3>
+          <p style="font-family: var(--font-body); font-size: 0.95rem; line-height: 1.5; color: var(--color-ink-charcoal); font-weight: 500;">
+            GUMTHALA NAGPUR (MH) 441111
+          </p>
+          <p style="font-family: var(--font-body); font-size: 0.8125rem; color: var(--color-ink-muted); margin-top: 4px; margin-bottom: 22px;">
+            (Near Gumthi/Koradi Road Area)
           </p>
 
-          <div class="btn-group">
-            <a href="https://maps.app.goo.gl/zbGfRrkW83LXk8qG8?g_st=ac" target="_blank" rel="noopener noreferrer" class="btn-primary">
+          <div style="display: flex; flex-direction: column; gap: 12px; max-width: 340px; margin: 0 auto;">
+            <a href="https://maps.app.goo.gl/zbGfRrkW83LXk8qG8?g_st=ac" target="_blank" rel="noopener noreferrer" class="btn-royal-primary">
               📍 Open in Google Maps
             </a>
-            <button class="btn-secondary" onclick="copyAddress()">
-              📋 Copy Full Address
+            <button onclick="copyAddress()" class="btn-royal-secondary" id="copyBtn">
+              📋 Copy Address for Uber / Cab
             </button>
           </div>
         </div>
       </section>
 
-      <!-- ==========================================
-           SCENE 6: BLESSINGS & HOSPITALITY
-      =========================================== -->
-      <section class="scene-section">
-        <img src="public/assets/ornaments/wax_seal_gold.png" alt="Royal Wax Seal" style="width: 58px; height: auto; margin-bottom: 12px;">
+      <hr class="scene-divider">
+
+      <!-- SCENE 6: TRADITIONAL BLESSINGS -->
+      <section class="reveal" style="text-align: center; padding: 20px 0 10px;">
+        <img src="public/assets/ornaments/seal.png" alt="Royal Wax Seal" class="reveal delay-1" style="width: 68px; height: auto; margin: 0 auto 16px; filter: drop-shadow(0 6px 14px rgba(185, 154, 98, 0.4)); display: block;">
         
-        <p class="blessing-quote">
-          “May the harmony of your souls be eternal,<br>
-          blessed with joy, love, and boundless peace.”
+        <p class="reveal delay-2" style="font-family: var(--font-heading); font-size: 1.25rem; font-style: italic; color: var(--color-forest-deep); line-height: 1.6; max-width: 440px; margin: 0 auto 20px;">
+          “May the harmony of your souls be eternal, blessed with joy, laughter, and boundless peace.”
         </p>
 
-        <p style="font-family: var(--font-body); font-size: 0.875rem; color: var(--color-ink-muted); text-transform: uppercase; letter-spacing: 0.1em; margin-top: 14px;">
+        <p class="reveal delay-3" style="font-family: var(--font-body); font-size: 0.8125rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--color-ink-muted); font-weight: 600;">
           Warmly Welcomed by
         </p>
-        <p class="hosts-signature">Isha & Ashish</p>
-        <p style="font-size: 0.8125rem; color: var(--color-ink-light); margin-top: 4px;">& The Bawankule & Deshmukh Families</p>
+
+        <div class="reveal delay-4">
+          <p style="font-family: var(--font-accent); font-size: 3rem; line-height: 1; color: var(--color-gold-antique); margin-top: 6px;">
+            Isha &amp; Ashish
+          </p>
+          <p style="font-family: var(--font-heading); font-size: 1.1rem; color: var(--color-ink-charcoal); margin-top: 6px;">
+            &amp; The Bawankule &amp; Deshmukh Families
+          </p>
+        </div>
       </section>
     </main>
   </div>
 
-  <!-- Ambient Audio Floating Action Button -->
-  <div class="floating-audio-widget" onclick="toggleAudio()" id="audioWidget">
-    <svg class="audio-icon" viewBox="0 0 24 24" id="audioIcon">
-      <path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/>
-    </svg>
-    <span class="audio-text" id="audioLabel">Sacred Music</span>
-  </div>
+  <!-- Floating Audio Widget with Auto-Play Enabled by Default -->
+  <aside class="floating-audio-widget" id="audioWidget" onclick="toggleAudio()">
+    <span id="audioIcon" style="font-size: 1.15rem; display: inline-block;">🎵</span>
+    <div style="display: flex; flex-direction: column; text-align: left;">
+      <span style="font-family: var(--font-body); font-size: 0.75rem; font-weight: 700; letter-spacing: 0.07em; color: var(--color-gold-champagne); text-transform: uppercase; line-height: 1.2;">
+        Sacred Shehnai
+      </span>
+      <span id="audioStatus" style="font-family: var(--font-body); font-size: 0.625rem; color: var(--color-gold-bright); letter-spacing: 0.04em;">
+        Playing • Tap to Mute
+      </span>
+    </div>
+  </aside>
 
-  <!-- Toast Notification -->
-  <div class="toast-popup" id="toast">Address copied to clipboard!</div>
+  <div class="toast-popup" id="toast">✓ Address copied to clipboard!</div>
 
   <script>
-    // Viewport Width Switcher
-    function setViewport(width, btn) {
-      document.getElementById('invitationWrapper').style.maxWidth = width;
+    // Viewport Switcher
+    function setViewport(w, btn) {
+      document.getElementById('invitationWrapper').style.maxWidth = w;
       document.querySelectorAll('.viewport-btn').forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
     }
 
-    // Precise IST Countdown to 17 December 2026, 17:40:00 IST (UTC+05:30)
-    const targetDate = new Date("2026-12-17T17:40:00+05:30").getTime();
+    // IntersectionObserver for Scroll Reveals
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) e.target.classList.add('is-visible');
+      });
+    }, { threshold: 0.12 });
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
+    // Countdown to 17 Dec 2026, 17:40:00 IST
+    const targetDate = new Date("2026-12-17T17:40:00+05:30").getTime();
     function updateCountdown() {
       const now = new Date().getTime();
-      const distance = targetDate - now;
-
-      if (distance < 0) {
-        document.getElementById("daysVal").innerText = "00";
-        document.getElementById("hoursVal").innerText = "00";
-        document.getElementById("minsVal").innerText = "00";
-        document.getElementById("secsVal").innerText = "00";
-        return;
-      }
-
-      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-      document.getElementById("daysVal").innerText = String(days).padStart(2, '0');
-      document.getElementById("hoursVal").innerText = String(hours).padStart(2, '0');
-      document.getElementById("minsVal").innerText = String(minutes).padStart(2, '0');
-      document.getElementById("secsVal").innerText = String(seconds).padStart(2, '0');
+      const diff = targetDate - now;
+      if (diff <= 0) return;
+      document.getElementById("daysVal").innerText = String(Math.floor(diff / (1000 * 60 * 60 * 24))).padStart(2, '0');
+      document.getElementById("hoursVal").innerText = String(Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))).padStart(2, '0');
+      document.getElementById("minsVal").innerText = String(Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60))).padStart(2, '0');
+      document.getElementById("secsVal").innerText = String(Math.floor((diff % (1000 * 60)) / 1000)).padStart(2, '0');
     }
-
     setInterval(updateCountdown, 1000);
     updateCountdown();
 
-    // Copy Address Handler
+    // Copy Address Toast
     function copyAddress() {
       const addressText = "Amrit Farms, GUMTHALA NAGPUR (MH) 441111 (Near Gumthi/Koradi Road Area)";
       navigator.clipboard.writeText(addressText).then(() => {
@@ -761,23 +636,22 @@
       });
     }
 
-    // Add to Calendar Generator (.ics)
+    // Calendar Export
     function addToCalendar() {
-      const icsContent = [
+      const ics = [
         "BEGIN:VCALENDAR",
         "VERSION:2.0",
         "PRODID:-//The Royal Indian Botanical Experience//Wedding Invitation//EN",
         "BEGIN:VEVENT",
         "SUMMARY:Wedding: Isha Bawankule & Ashish Deshmukh",
-        "DESCRIPTION:The wedding ceremony of Isha Bawankule and Ashish Deshmukh at Amrit Farms, Nagpur.",
+        "DESCRIPTION:The royal wedding ceremony of Isha Bawankule and Ashish Deshmukh at Amrit Farms, Nagpur.",
         "LOCATION:Amrit Farms, GUMTHALA NAGPUR (MH) 441111",
-        "DTSTART:20261217T121000Z", // 17:40 IST is 12:10 UTC
+        "DTSTART:20261217T121000Z",
         "DTEND:20261217T163000Z",
         "END:VEVENT",
         "END:VCALENDAR"
       ].join("\r\n");
-
-      const blob = new Blob([icsContent], { type: "text/calendar;charset=utf-8" });
+      const blob = new Blob([ics], { type: "text/calendar;charset=utf-8" });
       const link = document.createElement("a");
       link.href = window.URL.createObjectURL(blob);
       link.setAttribute("download", "Isha_Ashish_Wedding_17Dec2026.ics");
@@ -786,19 +660,278 @@
       document.body.removeChild(link);
     }
 
-    // Audio Playback Simulation
+    // Real-Time 3D Rings Three.js Scene
+    function init3DHero() {
+      const container = document.getElementById('threeCanvas');
+      if (!container) return;
+
+      const width = container.clientWidth || 340;
+      const height = container.clientHeight || 290;
+
+      const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true, powerPreference: 'high-performance' });
+      renderer.setSize(width, height);
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+      renderer.toneMapping = THREE.ACESFilmicToneMapping;
+      renderer.toneMappingExposure = 1.35;
+      container.appendChild(renderer.domElement);
+
+      const scene = new THREE.Scene();
+      const camera = new THREE.PerspectiveCamera(38, width / height, 0.1, 100);
+      camera.position.set(0, 0.25, 4.2);
+
+      // Studio Lighting
+      scene.add(new THREE.AmbientLight(0xfff6ea, 2.0));
+      const keyLight = new THREE.DirectionalLight(0xffeedd, 3.0);
+      keyLight.position.set(3, 5, 4);
+      scene.add(keyLight);
+      const fillLight = new THREE.DirectionalLight(0xd4af37, 2.2);
+      fillLight.position.set(-4, -1, 3);
+      scene.add(fillLight);
+      const rimLight = new THREE.PointLight(0xffffff, 4.0, 10);
+      rimLight.position.set(0, 3, -3);
+      scene.add(rimLight);
+      const diamondLight = new THREE.PointLight(0xffffff, 3.5, 6);
+      diamondLight.position.set(0.4, 0.8, 1.2);
+      scene.add(diamondLight);
+
+      // Materials
+      const goldMat = new THREE.MeshPhysicalMaterial({
+        color: 0xEDB85A,
+        metalness: 0.98,
+        roughness: 0.12,
+        clearcoat: 0.8,
+        reflectivity: 1.0,
+      });
+
+      const diamondMat = new THREE.MeshPhysicalMaterial({
+        color: 0xFFFFFF,
+        metalness: 0.02,
+        roughness: 0.03,
+        transmission: 0.95,
+        ior: 2.417,
+        thickness: 1.6,
+        transparent: true,
+        opacity: 0.98,
+      });
+
+      const masterGroup = new THREE.Group();
+      scene.add(masterGroup);
+
+      // Groom's Gold Band
+      const bandGroup = new THREE.Group();
+      const bandMesh = new THREE.Mesh(new THREE.TorusGeometry(0.72, 0.11, 32, 100), goldMat);
+      bandGroup.add(bandMesh);
+      bandGroup.position.set(-0.38, 0, -0.15);
+      bandGroup.rotation.set(0.35, 0.45, -0.2);
+      masterGroup.add(bandGroup);
+
+      // Bride's Solitaire Engagement Ring
+      const solGroup = new THREE.Group();
+      solGroup.add(new THREE.Mesh(new THREE.TorusGeometry(0.68, 0.09, 32, 100), goldMat));
+
+      const setting = new THREE.Group();
+      setting.position.set(0, 0.69, 0);
+
+      // 4 Prongs
+      const prongGeo = new THREE.CylinderGeometry(0.025, 0.03, 0.22, 12);
+      for (let i = 0; i < 4; i++) {
+        const a = (i * Math.PI) / 2 + Math.PI / 4;
+        const p = new THREE.Mesh(prongGeo, goldMat);
+        p.position.set(Math.cos(a) * 0.13, 0.08, Math.sin(a) * 0.13);
+        p.rotation.z = -Math.cos(a) * 0.25;
+        p.rotation.x = Math.sin(a) * 0.25;
+        setting.add(p);
+      }
+
+      // Brilliant Cut Diamond
+      const crown = new THREE.Mesh(new THREE.CylinderGeometry(0.19, 0.23, 0.1, 16), diamondMat);
+      crown.position.y = 0.12;
+      setting.add(crown);
+      const pav = new THREE.Mesh(new THREE.ConeGeometry(0.23, 0.22, 16), diamondMat);
+      pav.rotation.x = Math.PI;
+      pav.position.y = 0.01;
+      setting.add(pav);
+
+      solGroup.add(setting);
+      solGroup.position.set(0.38, 0.05, 0.12);
+      solGroup.rotation.set(-0.25, -0.4, 0.28);
+      masterGroup.add(solGroup);
+
+      // Stardust Particles
+      const pCount = 45;
+      const pPos = new Float32Array(pCount * 3);
+      for (let i = 0; i < pCount; i++) {
+        const r = 1.2 + Math.random() * 1.4;
+        const th = Math.random() * Math.PI * 2;
+        const ph = (Math.random() - 0.5) * Math.PI;
+        pPos[i*3] = r * Math.cos(th) * Math.cos(ph);
+        pPos[i*3+1] = r * Math.sin(ph);
+        pPos[i*3+2] = r * Math.sin(th) * Math.cos(ph);
+      }
+      const pGeo = new THREE.BufferGeometry();
+      pGeo.setAttribute('position', new THREE.BufferAttribute(pPos, 3));
+      const pMat = new THREE.PointsMaterial({ size: 0.08, color: 0xF5DEB3, transparent: true, opacity: 0.8 });
+      const particles = new THREE.Points(pGeo, pMat);
+      scene.add(particles);
+
+      // Touch & Mouse Dragging
+      let isDrag = false, prevPos = { x: 0, y: 0 }, rotX = 0, rotY = 0;
+      const onDown = (e) => {
+        isDrag = true;
+        const x = e.touches ? e.touches[0].clientX : e.clientX;
+        const y = e.touches ? e.touches[0].clientY : e.clientY;
+        prevPos = { x, y };
+      };
+      const onMove = (e) => {
+        if (!isDrag) return;
+        const x = e.touches ? e.touches[0].clientX : e.clientX;
+        const y = e.touches ? e.touches[0].clientY : e.clientY;
+        rotY += (x - prevPos.x) * 0.009;
+        rotX += (y - prevPos.y) * 0.009;
+        prevPos = { x, y };
+      };
+      const onUp = () => { isDrag = false; };
+
+      renderer.domElement.addEventListener('mousedown', onDown);
+      renderer.domElement.addEventListener('mousemove', onMove);
+      window.addEventListener('mouseup', onUp);
+      renderer.domElement.addEventListener('touchstart', onDown, { passive: true });
+      renderer.domElement.addEventListener('touchmove', onMove, { passive: true });
+      window.addEventListener('touchend', onUp);
+
+      let clock = new THREE.Clock();
+      function animate() {
+        requestAnimationFrame(animate);
+        const t = clock.getElapsedTime();
+        masterGroup.position.y = Math.sin(t * 1.5) * 0.06;
+        if (!isDrag) {
+          masterGroup.rotation.y += 0.005;
+        } else {
+          masterGroup.rotation.y += (rotY - masterGroup.rotation.y) * 0.12;
+          masterGroup.rotation.x += (rotX - masterGroup.rotation.x) * 0.12;
+        }
+        particles.rotation.y = -t * 0.05;
+        diamondLight.position.x = Math.sin(t * 2) * 1.5;
+        diamondLight.position.z = Math.cos(t * 2) * 1.5;
+        renderer.render(scene, camera);
+      }
+      animate();
+    }
+    window.addEventListener('DOMContentLoaded', init3DHero);
+
+    // Audio Autoplay Engine (Web Audio API)
+    let audioCtx = null;
+    let masterGain = null;
+    let oscs = [];
     let isPlaying = false;
-    function toggleAudio() {
-      isPlaying = !isPlaying;
-      const label = document.getElementById("audioLabel");
-      if (isPlaying) {
-        label.innerText = "Playing Shehnai";
-        document.getElementById("audioWidget").style.borderColor = "var(--color-gold-bright)";
-      } else {
-        label.innerText = "Sacred Music";
-        document.getElementById("audioWidget").style.borderColor = "rgba(185, 154, 98, 0.5)";
+
+    function startAudio() {
+      if (audioCtx && audioCtx.state === 'running') return;
+      try {
+        const AC = window.AudioContext || window.webkitAudioContext;
+        audioCtx = audioCtx || new AC();
+        if (audioCtx.state === 'suspended') audioCtx.resume();
+
+        masterGain = audioCtx.createGain();
+        masterGain.gain.setValueAtTime(0.0001, audioCtx.currentTime);
+        masterGain.gain.exponentialRampToValueAtTime(0.22, audioCtx.currentTime + 2.0);
+        masterGain.connect(audioCtx.destination);
+
+        // Tanpura Harmonics in C# / G#
+        const freqs = [69.3, 138.59, 207.65, 277.18, 415.3];
+        oscs = [];
+        freqs.forEach((f, i) => {
+          const osc = audioCtx.createOscillator();
+          const g = audioCtx.createGain();
+          osc.type = i === 0 ? 'sine' : i % 2 === 0 ? 'triangle' : 'sine';
+          osc.frequency.setValueAtTime(f, audioCtx.currentTime);
+
+          const filt = audioCtx.createBiquadFilter();
+          filt.type = 'lowpass';
+          filt.frequency.setValueAtTime(750, audioCtx.currentTime);
+
+          g.gain.setValueAtTime(0.28 / (i + 1), audioCtx.currentTime);
+          osc.connect(filt);
+          filt.connect(g);
+          g.connect(masterGain);
+          osc.start();
+          oscs.push(osc);
+        });
+
+        // Shehnai Flute Vibrato
+        const sOsc = audioCtx.createOscillator();
+        const sGain = audioCtx.createGain();
+        sOsc.type = 'triangle';
+        sOsc.frequency.setValueAtTime(554.37, audioCtx.currentTime);
+
+        const lfo = audioCtx.createOscillator();
+        const lfoG = audioCtx.createGain();
+        lfo.frequency.setValueAtTime(4.5, audioCtx.currentTime);
+        lfoG.gain.setValueAtTime(3.5, audioCtx.currentTime);
+        lfo.connect(sOsc.frequency);
+        lfo.start();
+
+        sGain.gain.setValueAtTime(0.045, audioCtx.currentTime);
+        sOsc.connect(sGain);
+        sGain.connect(masterGain);
+        sOsc.start();
+        oscs.push(sOsc);
+
+        isPlaying = true;
+        updateAudioUI();
+      } catch (err) {
+        console.warn('Autoplay waiting for gesture:', err);
       }
     }
+
+    function stopAudio() {
+      if (audioCtx && masterGain) {
+        masterGain.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + 0.8);
+        setTimeout(() => {
+          oscs.forEach(o => { try { o.stop(); o.disconnect(); } catch(e){} });
+          oscs = [];
+          audioCtx.close();
+          audioCtx = null;
+          isPlaying = false;
+          updateAudioUI();
+        }, 800);
+      } else {
+        isPlaying = false;
+        updateAudioUI();
+      }
+    }
+
+    function toggleAudio() {
+      if (isPlaying) stopAudio();
+      else startAudio();
+    }
+
+    function updateAudioUI() {
+      const widget = document.getElementById('audioWidget');
+      const icon = document.getElementById('audioIcon');
+      const status = document.getElementById('audioStatus');
+      if (isPlaying) {
+        widget.classList.add('active');
+        icon.innerText = '🎵';
+        icon.style.animation = 'musicPulse 1.8s infinite ease-in-out';
+        status.innerText = 'Playing • Tap to Mute';
+      } else {
+        widget.classList.remove('active');
+        icon.innerText = '🔇';
+        icon.style.animation = 'none';
+        status.innerText = 'Tap to Play';
+      }
+    }
+
+    // Attempt autoplay immediately and attach universal gesture triggers
+    window.addEventListener('DOMContentLoaded', () => {
+      startAudio();
+      const trigger = () => {
+        startAudio();
+        ['touchstart', 'scroll', 'pointerdown', 'click', 'keydown'].forEach(ev => window.removeEventListener(ev, trigger));
+      };
+      ['touchstart', 'scroll', 'pointerdown', 'click', 'keydown'].forEach(ev => window.addEventListener(ev, trigger, { passive: true }));
+    });
   </script>
 </body>
 </html>
