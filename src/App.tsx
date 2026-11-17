@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import { CardOpeningPreloader } from './components/CardOpeningPreloader';
 import { AuspiciousShloka } from './components/AuspiciousShloka';
 import { ThreeRingsCanvas } from './components/ThreeRingsCanvas';
 import { FormalInvitation } from './components/FormalInvitation';
@@ -40,6 +41,9 @@ export const App: React.FC = () => {
 
   return (
     <div className="app-container">
+      {/* Royal Gatefold Card Opening Preloading Screen */}
+      <CardOpeningPreloader />
+
       <main className="royal-invitation-card" id="main-invitation">
         {/* 4 Sacred Alpona Gold Corner Flourishes */}
         <img

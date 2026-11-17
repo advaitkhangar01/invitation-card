@@ -364,6 +364,58 @@
 </head>
 <body>
 
+  <!-- Royal Card Opening Preloader Screen -->
+  <div id="cardPreloader" style="position: fixed; inset: 0; z-index: 99999; background: #0B1410; display: flex; align-items: center; justify-content: center; perspective: 1400px; padding: 16px; transition: opacity 0.6s ease 0.8s;">
+    <div style="position: absolute; width: 500px; height: 500px; border-radius: 50%; background: radial-gradient(circle, rgba(185, 154, 98, 0.18) 0%, transparent 70%); pointer-events: none;"></div>
+    
+    <div onclick="openInvitationCard()" style="position: relative; width: 100%; maxWidth: 400px; height: 580px; maxHeight: 90vh; border-radius: 16px; box-shadow: 0 30px 90px rgba(0,0,0,0.85), 0 0 0 1px rgba(185,154,98,0.45); cursor: pointer; transform-style: preserve-3d; user-select: none;">
+      <!-- Left Flap -->
+      <div id="flapLeft" style="position: absolute; top: 0; left: 0; width: 50.5%; height: 100%; background: #15241C; background-image: radial-gradient(circle at 100% 50%, rgba(185,154,98,0.15) 0%, transparent 70%), url('public/assets/textures/white_wall.jpg'); background-size: cover; border-top-left-radius: 16px; border-bottom-left-radius: 16px; border: 1px solid rgba(185,154,98,0.45); border-right: 1px solid rgba(185,154,98,0.7); transform-origin: left center; transition: transform 1.1s cubic-bezier(0.25, 1, 0.5, 1); box-shadow: 5px 0 25px rgba(0,0,0,0.5); z-index: 10; overflow: hidden;">
+        <div style="position: absolute; top: 12px; left: 12px; right: 6px; bottom: 12px; border: 1px solid rgba(185,154,98,0.3); border-radius: 8px 0 0 8px; pointer-events: none;"></div>
+        <img src="public/assets/frames/deco-alpona-corner.webp" alt="flourish" style="position: absolute; top: 16px; left: 16px; width: 36px; height: 36px; opacity: 0.8;">
+        <img src="public/assets/frames/deco-alpona-corner.webp" alt="flourish" style="position: absolute; bottom: 16px; left: 16px; width: 36px; height: 36px; transform: scaleY(-1); opacity: 0.8;">
+      </div>
+
+      <!-- Right Flap -->
+      <div id="flapRight" style="position: absolute; top: 0; right: 0; width: 50.5%; height: 100%; background: #15241C; background-image: radial-gradient(circle at 0% 50%, rgba(185,154,98,0.15) 0%, transparent 70%), url('public/assets/textures/white_wall.jpg'); background-size: cover; border-top-right-radius: 16px; border-bottom-right-radius: 16px; border: 1px solid rgba(185,154,98,0.45); border-left: none; transform-origin: right center; transition: transform 1.1s cubic-bezier(0.25, 1, 0.5, 1); box-shadow: -5px 0 25px rgba(0,0,0,0.5); z-index: 10; overflow: hidden;">
+        <div style="position: absolute; top: 12px; left: 6px; right: 12px; bottom: 12px; border: 1px solid rgba(185,154,98,0.3); border-radius: 0 8px 8px 0; pointer-events: none;"></div>
+        <img src="public/assets/frames/deco-alpona-corner.webp" alt="flourish" style="position: absolute; top: 16px; right: 16px; width: 36px; height: 36px; transform: scaleX(-1); opacity: 0.8;">
+        <img src="public/assets/frames/deco-alpona-corner.webp" alt="flourish" style="position: absolute; bottom: 16px; right: 16px; width: 36px; height: 36px; transform: scale(-1); opacity: 0.8;">
+      </div>
+
+      <!-- Center Presentation -->
+      <div id="preloaderContent" style="position: absolute; inset: 0; z-index: 20; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 24px; text-align: center; transition: opacity 0.4s ease; pointer-events: none;">
+        <p style="font-family: var(--font-heading); font-size: 1.15rem; color: #E0B970; font-weight: 700; letter-spacing: 0.06em; margin-bottom: 10px;">
+          ॥ श्री गणेशाय नमः ॥
+        </p>
+        <img src="public/assets/frames/crest-royal.webp" alt="Royal Crest" style="width: 64px; height: auto; margin-bottom: 14px; filter: drop-shadow(0 4px 10px rgba(216,189,138,0.35));">
+        <p style="font-family: var(--font-body); font-size: 0.6875rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--color-gold-bright); font-weight: 600; margin-bottom: 6px;">
+          Wedding Invitation
+        </p>
+        <h2 style="font-family: var(--font-display); font-size: 2rem; line-height: 1.1; color: #FDFBF7; font-weight: 700;">
+          Isha
+        </h2>
+        <span style="font-family: var(--font-accent); font-size: 2.4rem; color: var(--color-gold-antique); line-height: 0.85; margin: 4px 0;">
+          &amp;
+        </span>
+        <h2 style="font-family: var(--font-display); font-size: 2rem; line-height: 1.1; color: #FDFBF7; font-weight: 700; margin-bottom: 12px;">
+          Ashish
+        </h2>
+        <p style="font-family: var(--font-heading); font-size: 1.05rem; color: #D8BD8A; letter-spacing: 0.05em; margin-bottom: 24px;">
+          Thursday, 17 December 2026
+        </p>
+        <div style="position: relative; width: 84px; height: 84px; display: flex; align-items: center; justify-content: center; margin: 0 auto 18px;">
+          <div style="position: absolute; width: 90px; height: 90px; border-radius: 50%; background: radial-gradient(circle, rgba(216, 189, 138, 0.4) 0%, transparent 70%); animation: pulseGlow 2.5s infinite ease-in-out;"></div>
+          <img src="public/assets/ornaments/seal.png" alt="Royal Wax Seal" style="width: 74px; height: auto; filter: drop-shadow(0 6px 16px rgba(0,0,0,0.6));">
+        </div>
+        <button style="display: inline-flex; align-items: center; justify-content: center; gap: 8px; background: linear-gradient(135deg, #B99A62 0%, #E8D3A7 50%, #B99A62 100%); color: #1A3127; font-family: var(--font-body); font-size: 0.8125rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; padding: 12px 24px; border-radius: 30px; border: 1px solid #FFE6B0; box-shadow: 0 6px 20px rgba(0,0,0,0.4), 0 0 15px rgba(216,189,138,0.4); cursor: pointer; pointer-events: auto;">
+          <span>✉️</span>
+          <span>Tap to Open Invitation</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
   <!-- Viewport Switcher -->
   <div class="viewport-toolbar">
     <button class="viewport-btn active" onclick="setViewport('480px', this)">iPhone 13 (Mobile)</button>
@@ -398,9 +450,6 @@
         <div style="position: relative; width: 100%; height: 290px; margin: 6px auto 12px; display: flex; align-items: center; justify-content: center;">
           <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 230px; height: 230px; border-radius: 50%; background: radial-gradient(circle, rgba(216, 189, 138, 0.28) 0%, rgba(185, 154, 98, 0.1) 45%, transparent 75%); pointer-events: none; animation: pulseGlow 4s infinite ease-in-out;"></div>
           <div id="threeCanvas" style="width: 100%; height: 100%; cursor: grab; touch-action: none;"></div>
-          <p style="position: absolute; bottom: 2px; text-align: center; font-family: var(--font-body); font-size: 0.6875rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--color-gold-deep); font-weight: 600; pointer-events: none;">
-            ✦ 3D Royal Rings • Drag to Rotate &amp; Inspect ✦
-          </p>
         </div>
       </section>
 
@@ -597,6 +646,29 @@
   <div class="toast-popup" id="toast">✓ Address copied to clipboard!</div>
 
   <script>
+    // Open Gatefold Invitation Card
+    function openInvitationCard() {
+      const left = document.getElementById('flapLeft');
+      const right = document.getElementById('flapRight');
+      const content = document.getElementById('preloaderContent');
+      const preloader = document.getElementById('cardPreloader');
+
+      if (left && right && content && preloader) {
+        left.style.transform = 'rotateY(-125deg)';
+        right.style.transform = 'rotateY(125deg)';
+        content.style.opacity = '0';
+        preloader.style.opacity = '0';
+        preloader.style.pointerEvents = 'none';
+
+        // Trigger sacred audio immediately on user tap
+        startAudio();
+
+        setTimeout(() => {
+          preloader.style.display = 'none';
+        }, 1400);
+      }
+    }
+
     // Viewport Switcher
     function setViewport(w, btn) {
       document.getElementById('invitationWrapper').style.maxWidth = w;

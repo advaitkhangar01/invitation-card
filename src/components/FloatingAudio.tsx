@@ -136,6 +136,11 @@ export const FloatingAudio: React.FC = () => {
     // Attempt instant autoplay
     startSacredMusic();
 
+    const handleCustomAudioStart = () => {
+      startSacredMusic();
+    };
+    window.addEventListener('start-wedding-audio', handleCustomAudioStart);
+
     // Universal gesture handler to satisfy strict browser autoplay policies
     const handleFirstGesture = () => {
       startSacredMusic();
@@ -149,6 +154,7 @@ export const FloatingAudio: React.FC = () => {
     });
 
     return () => {
+      window.removeEventListener('start-wedding-audio', handleCustomAudioStart);
       ['touchstart', 'scroll', 'pointerdown', 'click', 'keydown'].forEach((evt) => {
         window.removeEventListener(evt, handleFirstGesture);
       });

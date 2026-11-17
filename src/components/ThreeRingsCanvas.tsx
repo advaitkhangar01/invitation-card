@@ -393,25 +393,6 @@ export const ThreeRingsCanvas: React.FC = () => {
           transition: 'opacity 0.6s ease',
         }}
       />
-
-      {/* Touch & Drag Micro-Instruction */}
-      <p
-        style={{
-          position: 'absolute',
-          bottom: '2px',
-          textAlign: 'center',
-          fontFamily: 'var(--font-body)',
-          fontSize: '0.6875rem',
-          letterSpacing: '0.12em',
-          textTransform: 'uppercase',
-          color: 'var(--color-gold-deep)',
-          fontWeight: 600,
-          pointerEvents: 'none',
-          textShadow: '0 1px 2px rgba(255, 255, 255, 0.8)',
-        }}
-      >
-        ✦ 3D Royal Rings • Drag to Rotate &amp; Inspect ✦
-      </p>
     </div>
   );
 };
