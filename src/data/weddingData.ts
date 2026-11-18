@@ -68,7 +68,7 @@ export const WEDDING_DATA: WeddingData = {
   },
   time: {
     display: "5:40 PM",
-    periodName: "Twilight Goraj Muhurat",
+    periodName: "Auspicious Muhurat",
     timezone: "IST (Asia/Kolkata)",
   },
   venue: {

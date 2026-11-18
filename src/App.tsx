@@ -8,6 +8,7 @@ import { MuhuratCountdown } from './components/MuhuratCountdown';
 import { SanctuaryVenue } from './components/SanctuaryVenue';
 import { TraditionalBlessings } from './components/TraditionalBlessings';
 import { FloatingAudio } from './components/FloatingAudio';
+import { GoldCornerFlourish } from './components/GoldCornerFlourish';
 
 export const App: React.FC = () => {
   // IntersectionObserver for cinematic scroll reveals
@@ -41,38 +42,18 @@ export const App: React.FC = () => {
 
   return (
     <div className="app-container">
-      {/* Royal Gatefold Card Opening Preloading Screen */}
+      {/* Royal Gatefold Card Opening Preloading Screen (Automatic Opening, No Buttons) */}
       <CardOpeningPreloader />
 
       <main className="royal-invitation-card" id="main-invitation">
-        {/* 4 Sacred Alpona Gold Corner Flourishes */}
-        <img
-          src="/assets/frames/deco-alpona-corner.webp"
-          alt="Alpona flourish"
-          className="corner-flourish top-left"
-          aria-hidden="true"
-        />
-        <img
-          src="/assets/frames/deco-alpona-corner.webp"
-          alt="Alpona flourish"
-          className="corner-flourish top-right"
-          aria-hidden="true"
-        />
-        <img
-          src="/assets/frames/deco-alpona-corner.webp"
-          alt="Alpona flourish"
-          className="corner-flourish bottom-left"
-          aria-hidden="true"
-        />
-        <img
-          src="/assets/frames/deco-alpona-corner.webp"
-          alt="Alpona flourish"
-          className="corner-flourish bottom-right"
-          aria-hidden="true"
-        />
+        {/* 4 Sacred Alpona Gold Corner Flourishes (Crisp Vector SVG, 100% Reliable) */}
+        <GoldCornerFlourish position="top-left" />
+        <GoldCornerFlourish position="top-right" />
+        <GoldCornerFlourish position="bottom-left" />
+        <GoldCornerFlourish position="bottom-right" />
 
         {/* =================================================================
-            SCENE 1: THE ROYAL PRELUDE & 3D RINGS SHOWCASE
+            SCENE 1: THE ROYAL PRELUDE & HOT-STAMPED GOLD FOIL RINGS EMBLEM
         ================================================================== */}
         <AuspiciousShloka />
         <ThreeRingsCanvas />
@@ -101,7 +82,7 @@ export const App: React.FC = () => {
         <hr className="scene-divider" />
 
         {/* =================================================================
-            SCENE 5: THE SACRED SANCTUARY (AMRIT FARMS)
+            SCENE 5: THE WEDDING VENUE (AMRIT FARMS)
         ================================================================== */}
         <SanctuaryVenue />
 
@@ -113,7 +94,7 @@ export const App: React.FC = () => {
         <TraditionalBlessings />
       </main>
 
-      {/* Floating Sacred Audio Ambient Player (Autoplay with gesture fallback) */}
+      {/* Floating Sacred Audio Ambient Player */}
       <FloatingAudio />
     </div>
   );

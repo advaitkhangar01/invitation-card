@@ -2,16 +2,13 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Isha &amp; Ashish — Royal Wedding Invitation | The Royal Indian Botanical Experience</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+  <title>Isha &amp; Ashish — Royal Wedding Invitation | 17 December 2026</title>
   
-  <!-- Typography -->
+  <!-- Typography Preconnect & Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Pinyon+Script&display=swap" rel="stylesheet">
-  
-  <!-- Three.js from CDN for standalone mockup -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 
   <style>
     *, *::before, *::after {
@@ -48,8 +45,7 @@
       background-color: #0E1713;
       background-image: 
         radial-gradient(circle at 50% 12%, rgba(33, 59, 48, 0.75) 0%, transparent 65%),
-        radial-gradient(circle at 85% 85%, rgba(179, 145, 85, 0.16) 0%, transparent 50%),
-        url('public/assets/textures/white_wall.jpg');
+        radial-gradient(circle at 85% 85%, rgba(179, 145, 85, 0.16) 0%, transparent 50%);
       background-attachment: fixed;
       background-size: cover;
       color: var(--color-ink-espresso);
@@ -59,12 +55,12 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      padding: 40px 16px 80px;
+      padding: 30px 16px 80px;
       overflow-x: hidden;
       position: relative;
     }
 
-    /* Ambient Floating Stardust */
+    /* Ambient Stardust */
     body::before {
       content: "";
       position: fixed;
@@ -90,88 +86,85 @@
     /* Device Preview Toolbar */
     .viewport-toolbar {
       position: fixed;
-      top: 16px;
+      top: 14px;
       left: 50%;
       transform: translateX(-50%);
-      background: rgba(22, 41, 32, 0.9);
-      backdrop-filter: blur(12px);
-      border: 1px solid rgba(179, 145, 85, 0.45);
+      background: rgba(22, 41, 32, 0.94);
+      backdrop-filter: blur(14px);
+      border: 1px solid rgba(179, 145, 85, 0.5);
       border-radius: 30px;
       padding: 6px 14px;
       display: flex;
-      gap: 10px;
-      z-index: 9999;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+      gap: 8px;
+      z-index: 999;
+      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.4);
     }
-
     .viewport-btn {
       background: transparent;
       border: 1px solid transparent;
       color: var(--color-gold-champagne);
       font-family: var(--font-body);
-      font-size: 12px;
+      font-size: 0.75rem;
       font-weight: 600;
-      padding: 6px 14px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 6px 12px;
       border-radius: 20px;
       cursor: pointer;
       transition: all 0.25s ease;
     }
-
     .viewport-btn.active, .viewport-btn:hover {
-      background: var(--color-gold-antique);
-      color: #162920;
+      background: rgba(179, 145, 85, 0.22);
+      border-color: var(--color-gold-antique);
+      color: #FFF;
     }
 
-    /* Main Invitation Canvas Card */
+    /* Main Invitation Card */
     .invitation-wrapper {
       width: 100%;
       max-width: 480px;
-      margin-top: 40px;
-      transition: max-width 0.4s var(--ease-editorial);
+      transition: max-width 0.4s cubic-bezier(0.22, 1, 0.36, 1);
       position: relative;
       z-index: 10;
+      margin-top: 48px;
     }
 
     .invitation-card {
-      background: var(--color-paper-ivory);
+      background-color: var(--color-paper-ivory);
       background-image: 
-        radial-gradient(circle at 50% 0%, rgba(179, 145, 85, 0.09) 0%, transparent 45%),
-        radial-gradient(circle at 50% 100%, rgba(33, 59, 48, 0.05) 0%, transparent 45%),
-        url('public/assets/textures/white_wall.jpg');
-      background-size: cover;
-      border-radius: 20px;
-      box-shadow: 
-        0 4px 6px -1px rgba(0, 0, 0, 0.05),
-        0 25px 60px -12px rgba(14, 23, 19, 0.45),
-        0 0 0 1px rgba(179, 145, 85, 0.4);
+        radial-gradient(circle at 50% 0%, rgba(179, 145, 85, 0.09) 0%, transparent 50%),
+        radial-gradient(circle at 100% 100%, rgba(33, 59, 48, 0.04) 0%, transparent 60%),
+        linear-gradient(135deg, rgba(255, 255, 255, 0.6) 0%, rgba(248, 244, 236, 0.6) 100%);
+      border-radius: 22px;
+      padding: 44px 28px 48px;
       position: relative;
+      box-shadow: 
+        0 35px 85px rgba(0, 0, 0, 0.7),
+        0 10px 30px rgba(0, 0, 0, 0.35),
+        0 0 0 1px rgba(179, 145, 85, 0.45);
+      border: 1px solid rgba(255, 255, 255, 0.6);
       overflow: hidden;
-      padding: 52px 36px;
-      animation: cardEntrance 1.2s var(--ease-editorial) forwards;
+      box-sizing: border-box;
     }
 
-    @keyframes cardEntrance {
-      0% { opacity: 0; transform: translateY(35px); }
-      100% { opacity: 1; transform: translateY(0); }
-    }
-
-    /* Gold Double Inset Border */
+    /* Outer Gold Hairline Border */
     .invitation-card::before {
       content: "";
       position: absolute;
-      top: 12px; left: 12px; right: 12px; bottom: 12px;
-      border: 1px solid rgba(179, 145, 85, 0.4);
+      top: 10px; left: 10px; right: 10px; bottom: 10px;
+      border: 1px solid rgba(179, 145, 85, 0.55);
       border-radius: 14px;
       pointer-events: none;
       z-index: 2;
     }
 
+    /* Inner Micro-Hairline Border */
     .invitation-card::after {
       content: "";
       position: absolute;
-      top: 17px; left: 17px; right: 17px; bottom: 17px;
-      border: 1px solid rgba(179, 145, 85, 0.2);
-      border-radius: 11px;
+      top: 15px; left: 15px; right: 15px; bottom: 15px;
+      border: 1px solid rgba(179, 145, 85, 0.22);
+      border-radius: 10px;
       pointer-events: none;
       z-index: 2;
     }
@@ -179,30 +172,29 @@
     /* Corner Flourishes */
     .corner-flourish {
       position: absolute;
-      width: 50px;
-      height: 50px;
-      opacity: 0.88;
+      width: clamp(44px, 10vw, 56px);
+      height: clamp(44px, 10vw, 56px);
       pointer-events: none;
-      z-index: 3;
-      filter: drop-shadow(0 2px 4px rgba(179, 145, 85, 0.3));
+      z-index: 4;
+      filter: drop-shadow(0 2px 5px rgba(179, 145, 85, 0.45));
     }
-    .corner-tl { top: 20px; left: 20px; }
-    .corner-tr { top: 20px; right: 20px; transform: scaleX(-1); }
-    .corner-bl { bottom: 20px; left: 20px; transform: scaleY(-1); }
-    .corner-br { bottom: 20px; right: 20px; transform: scale(-1); }
+    .corner-tl { top: 16px; left: 16px; }
+    .corner-tr { top: 16px; right: 16px; transform: scaleX(-1); }
+    .corner-bl { bottom: 16px; left: 16px; transform: scaleY(-1); }
+    .corner-br { bottom: 16px; right: 16px; transform: scale(-1); }
 
     /* Scene Separator */
     .scene-divider {
       border: none;
       height: 1px;
-      background: radial-gradient(circle, rgba(179, 145, 85, 0.5) 0%, rgba(179, 145, 85, 0.08) 80%, transparent 100%);
-      margin: 44px 0;
+      background: radial-gradient(circle, rgba(179, 145, 85, 0.55) 0%, rgba(179, 145, 85, 0.08) 80%, transparent 100%);
+      margin: 36px 0;
     }
 
     /* Scroll Reveal Engine */
     .reveal {
       opacity: 0;
-      transform: translateY(28px);
+      transform: translateY(24px);
       transition: opacity 0.85s var(--ease-editorial), transform 0.85s var(--ease-editorial);
     }
     .reveal.is-visible {
@@ -210,10 +202,10 @@
       transform: translateY(0);
     }
 
-    .delay-1 { transition-delay: 100ms; }
-    .delay-2 { transition-delay: 200ms; }
-    .delay-3 { transition-delay: 350ms; }
-    .delay-4 { transition-delay: 500ms; }
+    .delay-1 { transition-delay: 80ms; }
+    .delay-2 { transition-delay: 160ms; }
+    .delay-3 { transition-delay: 260ms; }
+    .delay-4 { transition-delay: 380ms; }
 
     /* Shloka Shimmer */
     .shloka-text {
@@ -242,61 +234,38 @@
       50% { transform: translate(-50%, -50%) scale(1.08); opacity: 0.95; }
     }
 
-    @keyframes musicPulse {
-      0%, 100% { transform: scale(1); }
-      50% { transform: scale(1.2); }
-    }
-
-    .luxury-paper-card {
-      transition: transform 0.35s ease, box-shadow 0.35s ease;
-    }
-    .luxury-paper-card:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 10px 26px rgba(22, 41, 32, 0.08) !important;
-    }
-
-    .countdown-box {
-      transition: transform 0.25s ease, box-shadow 0.25s ease;
-    }
-    .countdown-box:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 8px 24px rgba(22, 41, 32, 0.1) !important;
-      border-color: var(--color-gold-antique) !important;
-    }
-
-    /* Buttons */
     .btn-royal-primary {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      gap: 12px;
+      gap: 10px;
       background: var(--color-forest-rich);
       color: var(--color-paper-ivory);
       text-decoration: none;
       font-family: var(--font-body);
-      font-size: clamp(0.875rem, 2.2vw, 1rem);
+      font-size: clamp(0.8125rem, 2vw, 0.9375rem);
       font-weight: 700;
-      letter-spacing: 0.1em;
+      letter-spacing: 0.08em;
       text-transform: uppercase;
-      padding: 16px 28px;
+      padding: 14px 26px;
       border-radius: 8px;
       border: 1px solid var(--color-gold-antique);
-      box-shadow: 0 4px 18px rgba(22, 41, 32, 0.32);
-      transition: all 0.3s var(--ease-editorial);
+      box-shadow: 0 6px 18px rgba(22, 41, 32, 0.28);
+      transition: all 0.25s ease;
       cursor: pointer;
     }
     .btn-royal-primary:hover {
       background: var(--color-forest-deep);
-      transform: translateY(-2px);
-      box-shadow: 0 8px 24px rgba(22, 41, 32, 0.42);
       border-color: var(--color-gold-bright);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(22, 41, 32, 0.38);
     }
 
     .btn-royal-secondary {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      gap: 10px;
+      gap: 8px;
       background: transparent;
       color: var(--color-forest-deep);
       text-decoration: none;
@@ -378,112 +347,285 @@
         border-radius: 0 !important;
         border: none !important;
         box-shadow: none !important;
-        padding: calc(env(safe-area-inset-top, 16px) + 24px) 20px calc(env(safe-area-inset-bottom, 16px) + 36px) !important;
+        padding: calc(env(safe-area-inset-top, 16px) + 20px) 18px calc(env(safe-area-inset-bottom, 16px) + 36px) !important;
       }
-      .invitation-card::before { top: 10px; left: 10px; right: 10px; bottom: 10px; border-radius: 0; }
-      .invitation-card::after { top: 14px; left: 14px; right: 14px; bottom: 14px; border-radius: 0; }
+      .invitation-card::before { top: 8px; left: 8px; right: 8px; bottom: 8px; border-radius: 0; }
+      .invitation-card::after { top: 12px; left: 12px; right: 12px; bottom: 12px; border-radius: 0; }
     }
   </style>
 </head>
 <body>
 
-  <!-- Royal Gatefold Card Opening Preloader Screen (Warm Ivory Paper) -->
-  <div id="cardPreloader" style="position: fixed; inset: 0; z-index: 99999; background: #0E1713; display: flex; align-items: center; justify-content: center; perspective: 1600px; padding: 0; transition: opacity 0.6s ease 0.75s;">
-    <div style="position: absolute; width: 600px; height: 600px; border-radius: 50%; background: radial-gradient(circle, rgba(179, 145, 85, 0.15) 0%, transparent 70%); pointer-events: none;"></div>
+  <!-- Royal Gatefold Card Opening Preloader Screen (Automatic Opening, NO Buttons) -->
+  <div id="cardPreloader" style="position: fixed; inset: 0; z-index: 99999; background: #0E1713; display: flex; align-items: center; justify-content: center; perspective: 1600px; padding: 0; transition: opacity 0.7s cubic-bezier(0.25, 1, 0.5, 1) 0.55s; overflow: hidden;">
+    <div style="position: absolute; width: 600px; height: 600px; border-radius: 50%; background: radial-gradient(circle, rgba(179, 145, 85, 0.16) 0%, transparent 70%); pointer-events: none;"></div>
     
-    <div style="position: relative; width: 100%; max-width: 480px; height: 100svh; max-height: 100dvh; transform-style: preserve-3d; user-select: none;">
-      <!-- Left Flap (Warm Ivory Handmade Paper) -->
-      <div id="flapLeft" style="position: absolute; top: 0; left: 0; width: 50.5%; height: 100%; background: #FDFBF7; background-image: radial-gradient(circle at 100% 50%, rgba(179,145,85,0.12) 0%, transparent 65%), url('public/assets/textures/white_wall.jpg'); background-size: cover; border: 1px solid rgba(179,145,85,0.45); border-right: 1px solid rgba(179,145,85,0.75); transform-origin: left center; transition: transform 1.1s cubic-bezier(0.25, 1, 0.5, 1); box-shadow: 6px 0 24px rgba(0,0,0,0.25); z-index: 10; overflow: hidden;">
+    <div id="preloaderEnvelope" style="position: relative; width: 100%; max-width: 480px; height: 100svh; max-height: 100dvh; transform-style: preserve-3d; user-select: none;">
+      <!-- Left Gatefold Flap -->
+      <div id="flapLeft" style="position: absolute; top: 0; left: 0; width: 50.5%; height: 100%; background: #FDFBF7; background-image: radial-gradient(circle at 100% 50%, rgba(179,145,85,0.12) 0%, transparent 65%), linear-gradient(135deg, rgba(255,255,255,0.7), rgba(243,236,224,0.7)); border: 1px solid rgba(179,145,85,0.45); border-right: 1px solid rgba(179,145,85,0.75); transform-origin: left center; transition: transform 1.2s cubic-bezier(0.25, 1, 0.5, 1); box-shadow: 6px 0 24px rgba(0,0,0,0.25); z-index: 10; overflow: hidden;">
         <div style="position: absolute; top: 14px; left: 14px; right: 6px; bottom: 14px; border: 1px solid rgba(179,145,85,0.4); border-right: none; pointer-events: none;"></div>
-        <img src="public/assets/frames/deco-alpona-corner.webp" alt="flourish" style="position: absolute; top: 18px; left: 18px; width: 42px; height: 42px; opacity: 0.85;">
-        <img src="public/assets/frames/deco-alpona-corner.webp" alt="flourish" style="position: absolute; bottom: 18px; left: 18px; width: 42px; height: 42px; transform: scaleY(-1); opacity: 0.85;">
+        <svg style="position: absolute; top: 18px; left: 18px; width: 38px; height: 38px;" viewBox="0 0 50 50">
+          <path d="M 4 28 L 4 6 C 4 4.9, 4.9 4, 6 4 L 28 4" stroke="#D4AF37" strokeWidth="1.5" fill="none" />
+          <circle cx="8" cy="8" r="2" fill="#D4AF37" />
+        </svg>
+        <svg style="position: absolute; bottom: 18px; left: 18px; width: 38px; height: 38px;" viewBox="0 0 50 50">
+          <path d="M 4 22 L 4 44 C 4 45.1, 4.9 46, 6 46 L 28 46" stroke="#D4AF37" strokeWidth="1.5" fill="none" />
+          <circle cx="8" cy="42" r="2" fill="#D4AF37" />
+        </svg>
       </div>
 
-      <!-- Right Flap (Warm Ivory Handmade Paper) -->
-      <div id="flapRight" style="position: absolute; top: 0; right: 0; width: 50.5%; height: 100%; background: #FDFBF7; background-image: radial-gradient(circle at 0% 50%, rgba(179,145,85,0.12) 0%, transparent 65%), url('public/assets/textures/white_wall.jpg'); background-size: cover; border: 1px solid rgba(179,145,85,0.45); border-left: none; transform-origin: right center; transition: transform 1.1s cubic-bezier(0.25, 1, 0.5, 1); box-shadow: -6px 0 24px rgba(0,0,0,0.25); z-index: 10; overflow: hidden;">
+      <!-- Right Gatefold Flap -->
+      <div id="flapRight" style="position: absolute; top: 0; right: 0; width: 50.5%; height: 100%; background: #FDFBF7; background-image: radial-gradient(circle at 0% 50%, rgba(179,145,85,0.12) 0%, transparent 65%), linear-gradient(135deg, rgba(255,255,255,0.7), rgba(243,236,224,0.7)); border: 1px solid rgba(179,145,85,0.45); border-left: none; transform-origin: right center; transition: transform 1.2s cubic-bezier(0.25, 1, 0.5, 1); box-shadow: -6px 0 24px rgba(0,0,0,0.25); z-index: 10; overflow: hidden;">
         <div style="position: absolute; top: 14px; left: 6px; right: 14px; bottom: 14px; border: 1px solid rgba(179,145,85,0.4); border-left: none; pointer-events: none;"></div>
-        <img src="public/assets/frames/deco-alpona-corner.webp" alt="flourish" style="position: absolute; top: 18px; right: 18px; width: 42px; height: 42px; transform: scaleX(-1); opacity: 0.85;">
-        <img src="public/assets/frames/deco-alpona-corner.webp" alt="flourish" style="position: absolute; bottom: 18px; right: 18px; width: 42px; height: 42px; transform: scale(-1); opacity: 0.85;">
+        <svg style="position: absolute; top: 18px; right: 18px; width: 38px; height: 38px;" viewBox="0 0 50 50">
+          <path d="M 46 28 L 46 6 C 46 4.9, 45.1 4, 44 4 L 22 4" stroke="#D4AF37" strokeWidth="1.5" fill="none" />
+          <circle cx="42" cy="8" r="2" fill="#D4AF37" />
+        </svg>
+        <svg style="position: absolute; bottom: 18px; right: 18px; width: 38px; height: 38px;" viewBox="0 0 50 50">
+          <path d="M 46 22 L 46 44 C 46 45.1, 45.1 46, 44 46 L 22 46" stroke="#D4AF37" strokeWidth="1.5" fill="none" />
+          <circle cx="42" cy="42" r="2" fill="#D4AF37" />
+        </svg>
       </div>
 
-      <!-- Front Presentation -->
+      <!-- Front Presentation (Zero buttons, purely automatic, authentic stationery) -->
       <div id="preloaderContent" style="position: absolute; inset: 0; z-index: 20; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 24px; text-align: center; transition: opacity 0.4s ease; pointer-events: none;">
-        <p style="font-family: var(--font-heading); font-size: clamp(1.15rem, 3.2vw, 1.45rem); color: var(--color-sacred-kumkum); font-weight: 700; letter-spacing: 0.06em; margin-bottom: 8px;">
+        <p style="font-family: var(--font-heading); font-size: clamp(1.2rem, 3.4vw, 1.55rem); color: var(--color-sacred-kumkum); font-weight: 700; letter-spacing: 0.06em; margin-bottom: 8px;">
           ॥ श्री गणेशाय नमः ॥
         </p>
-        <img src="public/assets/frames/crest-royal.webp" alt="Royal Crest" style="width: clamp(58px, 12vw, 76px); height: auto; margin-bottom: 10px; filter: drop-shadow(0 3px 8px rgba(179,145,85,0.35));">
-        <p style="font-family: var(--font-body); font-size: clamp(0.75rem, 1.8vw, 0.875rem); letter-spacing: 0.22em; text-transform: uppercase; color: var(--color-gold-deep); font-weight: 700; margin-bottom: 4px;">
+        <!-- Royal Crest Vector -->
+        <svg viewBox="0 0 100 80" width="64" height="52" fill="none" xmlns="http://www.w3.org/2000/svg" style="margin-bottom: 10px; filter: drop-shadow(0 3px 6px rgba(179,145,85,0.4))">
+          <path d="M 50 6 L 56 22 L 72 24 L 60 36 L 64 52 L 50 44 L 36 52 L 40 36 L 28 24 L 44 22 Z" fill="#D4AF37" />
+          <path d="M 20 45 C 32 35, 42 55, 50 66 C 58 55, 68 35, 80 45" stroke="#B39155" strokeWidth="1.8" fill="none" />
+          <circle cx="50" cy="30" r="4" fill="#881C22" />
+        </svg>
+        <p style="font-family: var(--font-body); font-size: clamp(0.72rem, 1.8vw, 0.85rem); letter-spacing: 0.22em; text-transform: uppercase; color: var(--color-gold-deep); font-weight: 700; margin-bottom: 6px;">
           Royal Wedding Invitation
         </p>
-        <h2 style="font-family: var(--font-display); font-size: clamp(2.4rem, 7.5vw, 3.6rem); line-height: 1.1; color: var(--color-forest-deep); font-weight: 700;">
+        <h2 style="font-family: var(--font-display); font-size: clamp(2.4rem, 7.5vw, 3.6rem); line-height: 1.1; color: var(--color-forest-deep); font-weight: 700; margin: 0;">
           Isha
         </h2>
-        <span style="font-family: var(--font-accent); font-size: clamp(2.5rem, 7vw, 3.8rem); color: var(--color-gold-antique); lineHeight: 0.85; margin: 2px 0;">
+        <span style="font-family: var(--font-accent); font-size: clamp(2.4rem, 7vw, 3.6rem); color: var(--color-gold-antique); line-height: 0.85; margin: 2px 0;">
           &amp;
         </span>
         <h2 style="font-family: var(--font-display); font-size: clamp(2.4rem, 7.5vw, 3.6rem); line-height: 1.1; color: var(--color-forest-deep); font-weight: 700; margin-bottom: 10px;">
           Ashish
         </h2>
-        <p style="font-family: var(--font-heading); font-size: clamp(1.1rem, 2.8vw, 1.35rem); color: var(--color-ink-charcoal); font-weight: 600; letter-spacing: 0.04em; margin-bottom: 18px;">
+        <p style="font-family: var(--font-heading); font-size: clamp(1.05rem, 2.8vw, 1.3rem); color: var(--color-ink-charcoal); font-weight: 600; letter-spacing: 0.04em; margin-bottom: 20px;">
           Thursday, 17 December 2026
         </p>
-        <div style="position: relative; width: 80px; height: 80px; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px;">
-          <div style="position: absolute; width: 88px; height: 88px; border-radius: 50%; background: radial-gradient(circle, rgba(179, 145, 85, 0.4) 0%, transparent 70%); animation: pulseGlow 2.5s infinite ease-in-out;"></div>
-          <img src="public/assets/ornaments/seal.png" alt="Royal Wax Seal" style="width: 72px; height: auto; filter: drop-shadow(0 6px 16px rgba(0,0,0,0.25));">
-        </div>
-        <div style="display: flex; flex-direction: column; gap: 10px; width: 100%; max-width: 300px; pointer-events: auto;">
-          <button onclick="openInvitationCard(true)" style="display: inline-flex; align-items: center; justify-content: center; gap: 10px; background: var(--color-forest-rich); color: var(--color-paper-ivory); font-family: var(--font-body); font-size: clamp(0.8125rem, 2.2vw, 0.9375rem); font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; padding: 14px 22px; border-radius: 30px; border: 1px solid var(--color-gold-antique); box-shadow: 0 6px 20px rgba(22,41,32,0.35); cursor: pointer;">
-            <span>✉️</span>
-            <span>Open with Sacred Music 🎵</span>
-          </button>
-          <button onclick="openInvitationCard(false)" style="background: transparent; color: var(--color-ink-muted); font-family: var(--font-body); font-size: 0.8125rem; font-weight: 600; letter-spacing: 0.05em; padding: 8px 16px; border: none; cursor: pointer; text-decoration: underline; text-underline-offset: 3px;">
-            Open Silently 🔇
-          </button>
+        <div style="position: relative; width: 82px; height: 82px; display: flex; align-items: center; justify-content: center; margin: 0 auto;">
+          <div style="position: absolute; width: 90px; height: 90px; border-radius: 50%; background: radial-gradient(circle, rgba(179, 145, 85, 0.4) 0%, transparent 70%); animation: pulseGlow 2.5s infinite ease-in-out;"></div>
+          <!-- Royal Gold Wax Seal SVG -->
+          <svg viewBox="0 0 100 100" width="78" height="78" fill="none" xmlns="http://www.w3.org/2000/svg" style="filter: drop-shadow(0 6px 16px rgba(0,0,0,0.3))">
+            <defs>
+              <linearGradient id="sealCoverGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stopColor="#FFF2B8" />
+                <stop offset="35%" stopColor="#D4AF37" />
+                <stop offset="70%" stopColor="#966F23" />
+                <stop offset="100%" stopColor="#E2BE66" />
+              </linearGradient>
+            </defs>
+            <circle cx="50" cy="50" r="44" fill="url(#sealCoverGrad)" />
+            <path d="M 50 4 C 62 3, 74 12, 85 20 C 95 30, 97 44, 94 58 C 91 72, 80 84, 68 91 C 54 98, 38 95, 26 89 C 14 82, 4 69, 5 54 C 6 40, 14 26, 26 16 C 36 8, 42 4, 50 4 Z" fill="url(#sealCoverGrad)" />
+            <circle cx="50" cy="50" r="34" fill="#966F23" stroke="#FFF2B8" strokeWidth="1" />
+            <circle cx="50" cy="50" r="30" stroke="#FFF2B8" strokeWidth="0.8" strokeDasharray="2,2" fill="none" />
+            <text x="50" y="58" text-anchor="middle" fill="#FFF4D0" font-family="var(--font-display)" font-size="24" font-weight="700" letter-spacing="1">I&amp;A</text>
+          </svg>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- Viewport Switcher -->
+  <!-- Viewport Switcher Toolbar -->
   <div class="viewport-toolbar">
-    <button class="viewport-btn active" onclick="setViewport('480px', this)">iPhone 13 (Mobile)</button>
+    <button class="viewport-btn active" onclick="setViewport('480px', this)">iPhone (Mobile)</button>
     <button class="viewport-btn" onclick="setViewport('640px', this)">Tablet / Desktop</button>
   </div>
 
   <div class="invitation-wrapper" id="invitationWrapper">
     <main class="invitation-card" id="main-invitation">
-      <!-- 4 Corner Flourishes -->
-      <img src="public/assets/frames/deco-alpona-corner.webp" alt="Corner flourish" class="corner-flourish corner-tl">
-      <img src="public/assets/frames/deco-alpona-corner.webp" alt="Corner flourish" class="corner-flourish corner-tr">
-      <img src="public/assets/frames/deco-alpona-corner.webp" alt="Corner flourish" class="corner-flourish corner-bl">
-      <img src="public/assets/frames/deco-alpona-corner.webp" alt="Corner flourish" class="corner-flourish corner-br">
+      <!-- 4 Sacred Gold Alpona Corner Flourishes (Pure Vector, 100% Reliable) -->
+      <svg class="corner-flourish corner-tl" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M 6 42 L 6 10 C 6 7.8, 7.8 6, 10 6 L 42 6" stroke="#D4AF37" stroke-width="1.8" stroke-linecap="round"/>
+        <path d="M 12 36 L 12 14 C 12 12.9, 12.9 12, 14 12 L 36 12" stroke="#D4AF37" stroke-width="0.9" stroke-linecap="round" opacity="0.8"/>
+        <path d="M 14 14 C 24 14, 38 24, 38 42 C 38 52, 28 60, 20 54 C 14 50, 16 38, 26 34 C 32 32, 38 36, 40 42" stroke="#D4AF37" stroke-width="1.4" stroke-linecap="round" fill="none"/>
+        <circle cx="10" cy="10" r="2.2" fill="#D4AF37"/>
+        <circle cx="20" cy="6" r="1.4" fill="#D4AF37"/>
+        <circle cx="30" cy="6" r="1.4" fill="#D4AF37"/>
+        <circle cx="6" cy="20" r="1.4" fill="#D4AF37"/>
+        <circle cx="6" cy="30" r="1.4" fill="#D4AF37"/>
+        <circle cx="48" cy="6" r="1.8" fill="#D4AF37"/>
+        <circle cx="6" cy="48" r="1.8" fill="#D4AF37"/>
+      </svg>
+      <svg class="corner-flourish corner-tr" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M 6 42 L 6 10 C 6 7.8, 7.8 6, 10 6 L 42 6" stroke="#D4AF37" stroke-width="1.8" stroke-linecap="round"/>
+        <path d="M 12 36 L 12 14 C 12 12.9, 12.9 12, 14 12 L 36 12" stroke="#D4AF37" stroke-width="0.9" stroke-linecap="round" opacity="0.8"/>
+        <path d="M 14 14 C 24 14, 38 24, 38 42 C 38 52, 28 60, 20 54 C 14 50, 16 38, 26 34 C 32 32, 38 36, 40 42" stroke="#D4AF37" stroke-width="1.4" stroke-linecap="round" fill="none"/>
+        <circle cx="10" cy="10" r="2.2" fill="#D4AF37"/>
+        <circle cx="20" cy="6" r="1.4" fill="#D4AF37"/>
+        <circle cx="30" cy="6" r="1.4" fill="#D4AF37"/>
+        <circle cx="6" cy="20" r="1.4" fill="#D4AF37"/>
+        <circle cx="6" cy="30" r="1.4" fill="#D4AF37"/>
+        <circle cx="48" cy="6" r="1.8" fill="#D4AF37"/>
+        <circle cx="6" cy="48" r="1.8" fill="#D4AF37"/>
+      </svg>
+      <svg class="corner-flourish corner-bl" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M 6 42 L 6 10 C 6 7.8, 7.8 6, 10 6 L 42 6" stroke="#D4AF37" stroke-width="1.8" stroke-linecap="round"/>
+        <path d="M 12 36 L 12 14 C 12 12.9, 12.9 12, 14 12 L 36 12" stroke="#D4AF37" stroke-width="0.9" stroke-linecap="round" opacity="0.8"/>
+        <path d="M 14 14 C 24 14, 38 24, 38 42 C 38 52, 28 60, 20 54 C 14 50, 16 38, 26 34 C 32 32, 38 36, 40 42" stroke="#D4AF37" stroke-width="1.4" stroke-linecap="round" fill="none"/>
+        <circle cx="10" cy="10" r="2.2" fill="#D4AF37"/>
+        <circle cx="20" cy="6" r="1.4" fill="#D4AF37"/>
+        <circle cx="30" cy="6" r="1.4" fill="#D4AF37"/>
+        <circle cx="6" cy="20" r="1.4" fill="#D4AF37"/>
+        <circle cx="6" cy="30" r="1.4" fill="#D4AF37"/>
+        <circle cx="48" cy="6" r="1.8" fill="#D4AF37"/>
+        <circle cx="6" cy="48" r="1.8" fill="#D4AF37"/>
+      </svg>
+      <svg class="corner-flourish corner-br" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M 6 42 L 6 10 C 6 7.8, 7.8 6, 10 6 L 42 6" stroke="#D4AF37" stroke-width="1.8" stroke-linecap="round"/>
+        <path d="M 12 36 L 12 14 C 12 12.9, 12.9 12, 14 12 L 36 12" stroke="#D4AF37" stroke-width="0.9" stroke-linecap="round" opacity="0.8"/>
+        <path d="M 14 14 C 24 14, 38 24, 38 42 C 38 52, 28 60, 20 54 C 14 50, 16 38, 26 34 C 32 32, 38 36, 40 42" stroke="#D4AF37" stroke-width="1.4" stroke-linecap="round" fill="none"/>
+        <circle cx="10" cy="10" r="2.2" fill="#D4AF37"/>
+        <circle cx="20" cy="6" r="1.4" fill="#D4AF37"/>
+        <circle cx="30" cy="6" r="1.4" fill="#D4AF37"/>
+        <circle cx="6" cy="20" r="1.4" fill="#D4AF37"/>
+        <circle cx="6" cy="30" r="1.4" fill="#D4AF37"/>
+        <circle cx="48" cy="6" r="1.8" fill="#D4AF37"/>
+        <circle cx="6" cy="48" r="1.8" fill="#D4AF37"/>
+      </svg>
 
-      <!-- SCENE 1: INVOCATION & 3D RINGS -->
-      <section style="text-align: center; padding-top: 6px; padding-bottom: 20px;">
-        <div style="margin-bottom: 18px; padding: 0 8px;">
-          <p class="shloka-text" style="font-family: var(--font-heading); font-size: clamp(1.45rem, 4.5vw, 2.35rem); letter-spacing: 0.04em; font-weight: 700; line-height: 1.25; margin: 0 auto 6px;">
+      <!-- =================================================================
+          SCENE 1: THE ROYAL PRELUDE & HOT-STAMPED GOLD FOIL RINGS EMBLEM
+      ================================================================== -->
+      <section style="text-align: center; padding-top: 4px; padding-bottom: 16px; width: 100%; box-sizing: border-box;">
+        <div style="margin-bottom: 16px; padding: 0 16px; width: 100%; box-sizing: border-box;">
+          <p class="shloka-text" style="font-family: var(--font-heading); font-size: clamp(1.5rem, 4.6vw, 2.4rem); letter-spacing: 0.04em; font-weight: 700; line-height: 1.25; margin: 0 auto 6px;">
             ॥ श्री गणेशाय नमः ॥
           </p>
-          <p style="font-family: var(--font-body); font-size: clamp(0.75rem, 2.1vw, 0.9375rem); color: var(--color-ink-muted); letter-spacing: 0.12em; text-transform: uppercase; font-weight: 600; max-width: 380px; margin: 0 auto; line-height: 1.5;">
+          <p style="font-family: var(--font-body); font-size: clamp(0.72rem, 1.9vw, 0.875rem); color: var(--color-ink-muted); letter-spacing: 0.08em; text-transform: uppercase; font-weight: 600; max-width: 420px; margin: 0 auto; line-height: 1.45; padding: 0 8px; box-sizing: border-box; word-break: normal; overflow-wrap: break-word;">
             With the divine grace and blessings of the Almighty
           </p>
         </div>
 
-        <div style="display: inline-flex; flex-direction: column; align-items: center; position: relative; margin: 2px auto 0;">
-          <div style="position: absolute; top: 2px; width: 14px; height: 20px; border-radius: 50% 50% 35% 35%; background: radial-gradient(ellipse at 50% 65%, #FFF6D6 15%, #FFA726 65%, transparent 100%); animation: flameOrganic 2.4s infinite ease-in-out; z-index: 3; pointer-events: none;"></div>
-          <img src="public/assets/ornaments/wed-lamp.webp" alt="Auspicious Brass Diya" style="width: clamp(52px, 12vw, 68px); height: auto; filter: drop-shadow(0 6px 14px rgba(179, 145, 85, 0.35)); display: block;">
+        {/* Ceremonial Brass Deepam / Diya Lamp (Self-Contained Vector) */}
+        <div style="display: inline-flex; flex-direction: column; align-items: center; position: relative; margin: 0 auto;">
+          <div style="position: absolute; top: -2px; width: 16px; height: 24px; border-radius: 50% 50% 35% 35%; background: radial-gradient(ellipse at 50% 70%, #FFFFFF 0%, #FFF5CC 25%, #FFA726 65%, rgba(255, 112, 67, 0) 100%); animation: flameOrganic 2.2s infinite ease-in-out; z-index: 3; pointer-events: none;"></div>
+          <div style="position: absolute; top: -8px; width: 42px; height: 42px; border-radius: 50%; background: radial-gradient(circle, rgba(255, 183, 77, 0.45) 0%, rgba(255, 152, 0, 0.15) 50%, transparent 75%); animation: pulseGlow 3s infinite ease-in-out; z-index: 1; pointer-events: none;"></div>
+          
+          <svg viewBox="0 0 100 125" width="56" height="70" fill="none" xmlns="http://www.w3.org/2000/svg" style="filter: drop-shadow(0 6px 12px rgba(179, 145, 85, 0.35)); display: block; position: relative; z-index: 2;">
+            <defs>
+              <linearGradient id="mockBrass" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stopColor="#FFF2B8" />
+                <stop offset="25%" stopColor="#D4A738" />
+                <stop offset="50%" stopColor="#FDEAA8" />
+                <stop offset="75%" stopColor="#8F6A1A" />
+                <stop offset="100%" stopColor="#C99B2A" />
+              </linearGradient>
+            </defs>
+            <path d="M 48 24 Q 50 16 52 24 Z" fill="#451A03" />
+            <ellipse cx="50" cy="28" rx="28" ry="8" fill="url(#mockBrass)" stroke="#7A5618" stroke-width="1" />
+            <ellipse cx="50" cy="27" rx="23" ry="5.5" fill="#B45309" />
+            <ellipse cx="50" cy="26" rx="15" ry="3" fill="#FDE68A" opacity="0.6" />
+            <path d="M 22 28 C 22 42, 34 50, 44 52 L 44 60 L 38 64 L 38 68 L 62 68 L 62 64 L 56 60 L 56 52 C 66 50, 78 42, 78 28 Z" fill="url(#mockBrass)" stroke="#7A5618" stroke-width="0.8" />
+            <path d="M 32 34 Q 50 48 68 34" fill="none" stroke="#7A5618" stroke-width="1.2" />
+            <rect x="42" y="58" width="16" height="4" rx="2" fill="#FFE8A3" stroke="#8F6A1A" stroke-width="0.8" />
+            <path d="M 46 68 L 44 88 L 56 88 L 54 68 Z" fill="url(#mockBrass)" stroke="#7A5618" stroke-width="0.8" />
+            <ellipse cx="50" cy="78" rx="7" ry="3.5" fill="#FFF2B8" stroke="#8F6A1A" stroke-width="0.8" />
+            <path d="M 36 88 L 30 102 L 70 102 L 64 88 Z" fill="url(#mockBrass)" stroke="#7A5618" stroke-width="0.8" />
+            <rect x="24" y="102" width="52" height="6" rx="2" fill="url(#mockBrass)" stroke="#7A5618" stroke-width="0.8" />
+            <rect x="20" y="108" width="60" height="4" rx="1.5" fill="#5E430F" />
+          </svg>
         </div>
 
-        <!-- 3D Three.js Rings Hero Canvas (Clean, no text label) -->
-        <div style="position: relative; width: 100%; height: 290px; margin: 6px auto 12px; display: flex; align-items: center; justify-content: center;">
-          <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 230px; height: 230px; border-radius: 50%; background: radial-gradient(circle, rgba(179, 145, 85, 0.28) 0%, rgba(179, 145, 85, 0.1) 45%, transparent 75%); pointer-events: none; animation: pulseGlow 4s infinite ease-in-out;"></div>
-          <div id="threeCanvas" style="width: 100%; height: 100%; cursor: grab; touch-action: none;"></div>
+        <!-- Hot-Stamped Gold Foil Interlocking Rings & Solitaire Diamond Artwork (NO PROMPT TEXT!) -->
+        <div style="position: relative; width: 100%; margin: 8px auto 16px; display: flex; flex-direction: column; align-items: center; justify-content: center;">
+          <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: clamp(200px, 45vw, 260px); height: clamp(200px, 45vw, 260px); border-radius: 50%; background: radial-gradient(circle, rgba(212, 182, 126, 0.22) 0%, rgba(179, 145, 85, 0.08) 50%, transparent 72%); pointer-events: none; animation: pulseGlow 5s infinite ease-in-out;"></div>
+          
+          <div style="position: relative; width: clamp(220px, 48vw, 290px); height: clamp(170px, 36vw, 210px); display: flex; align-items: center; justify-content: center; filter: drop-shadow(0 10px 22px rgba(138, 108, 52, 0.22));">
+            <svg viewBox="0 0 320 230" width="100%" height="100%" fill="none" xmlns="http://www.w3.org/2000/svg" style="overflow: visible;">
+              <defs>
+                <linearGradient id="mockGold1" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stopColor="#F9E8B2" />
+                  <stop offset="25%" stopColor="#D4AF37" />
+                  <stop offset="50%" stopColor="#FFF3C4" />
+                  <stop offset="75%" stopColor="#9E7628" />
+                  <stop offset="100%" stopColor="#DFBC5E" />
+                </linearGradient>
+                <linearGradient id="mockGold2" x1="100%" y1="0%" x2="0%" y2="100%">
+                  <stop offset="0%" stopColor="#FFF4D0" />
+                  <stop offset="30%" stopColor="#C99F3B" />
+                  <stop offset="60%" stopColor="#ECCB77" />
+                  <stop offset="85%" stopColor="#8A641B" />
+                  <stop offset="100%" stopColor="#F2D789" />
+                </linearGradient>
+                <linearGradient id="mockDiaPav" x1="0%" y1="0%" x2="0%" y2="100%">
+                  <stop offset="0%" stopColor="#DDF0FF" />
+                  <stop offset="60%" stopColor="#B0D5F7" />
+                  <stop offset="100%" stopColor="#7DAFE0" />
+                </linearGradient>
+              </defs>
+
+              <!-- Laurel Sprigs -->
+              <g opacity="0.65" stroke="url(#mockGold2)" stroke-width="1.2" stroke-linecap="round">
+                <path d="M 92 145 C 72 135, 58 110, 62 82 C 65 62, 78 44, 98 34" fill="none" />
+                <path d="M 66 116 C 54 112, 50 102, 58 98 C 65 94, 68 106, 66 116 Z" fill="url(#mockGold1)" />
+                <path d="M 61 90 C 49 84, 46 74, 55 71 C 62 68, 64 80, 61 90 Z" fill="url(#mockGold1)" />
+                <path d="M 68 64 C 58 56, 58 46, 67 44 C 74 43, 74 54, 68 64 Z" fill="url(#mockGold1)" />
+                <path d="M 228 145 C 248 135, 262 110, 258 82 C 255 62, 242 44, 222 34" fill="none" />
+                <path d="M 254 116 C 266 112, 270 102, 262 98 C 255 94, 252 106, 254 116 Z" fill="url(#mockGold2)" />
+                <path d="M 259 90 C 271 84, 274 74, 265 71 C 258 68, 256 80, 259 90 Z" fill="url(#mockGold2)" />
+                <path d="M 252 64 C 262 56, 262 46, 253 44 C 246 43, 246 54, 252 64 Z" fill="url(#mockGold2)" />
+              </g>
+
+              <!-- Ring 1 (Groom's Band) -->
+              <ellipse cx="128" cy="118" rx="46" ry="62" stroke="#523910" stroke-width="15" opacity="0.3" transform="rotate(-18 128 118)" />
+              <ellipse cx="128" cy="118" rx="46" ry="62" fill="none" stroke="url(#mockGold1)" stroke-width="12" transform="rotate(-18 128 118)" />
+              <ellipse cx="128" cy="118" rx="40.5" ry="56.5" fill="none" stroke="#FFF9E6" stroke-width="1.2" opacity="0.85" transform="rotate(-18 128 118)" />
+              <ellipse cx="128" cy="118" rx="51.5" ry="67.5" fill="none" stroke="#7A5618" stroke-width="1" opacity="0.75" transform="rotate(-18 128 118)" />
+
+              <!-- Ring 2 (Bride's Solitaire Diamond Ring) -->
+              <ellipse cx="192" cy="120" rx="44" ry="60" fill="none" stroke="url(#mockGold2)" stroke-width="10.5" transform="rotate(18 192 120)" />
+              <ellipse cx="192" cy="120" rx="39" ry="55" fill="none" stroke="#FFF9E6" stroke-width="1.2" opacity="0.8" transform="rotate(18 192 120)" />
+              <ellipse cx="192" cy="120" rx="49" ry="65" fill="none" stroke="#7A5618" stroke-width="1" opacity="0.7" transform="rotate(18 192 120)" />
+
+              <!-- Interlock overlap -->
+              <path d="M 148 64 C 158 76, 164 92, 166 110" fill="none" stroke="url(#mockGold1)" stroke-width="12" stroke-linecap="round" />
+              <path d="M 148 64 C 158 76, 164 92, 166 110" fill="none" stroke="#FFF9E6" stroke-width="1.2" opacity="0.85" stroke-linecap="round" />
+
+              <!-- Solitaire Diamond Crown -->
+              <g transform="translate(182, 54)">
+                <ellipse cx="14" cy="18" rx="14" ry="4" fill="url(#mockGold2)" stroke="#7A5618" stroke-width="0.8" />
+                <path d="M 2 18 L 4 4" stroke="url(#mockGold2)" stroke-width="2.5" stroke-linecap="round" />
+                <path d="M 26 18 L 24 4" stroke="url(#mockGold2)" stroke-width="2.5" stroke-linecap="round" />
+                <path d="M 10 20 L 10 5" stroke="url(#mockGold1)" stroke-width="2" stroke-linecap="round" />
+                <path d="M 18 20 L 18 5" stroke="url(#mockGold1)" stroke-width="2" stroke-linecap="round" />
+
+                <!-- Diamond Facets -->
+                <polygon points="4,5 24,5 14,19" fill="url(#mockDiaPav)" stroke="#B3D7F5" stroke-width="0.6" />
+                <polygon points="4,5 8,-4 20,-4 24,5" fill="#E3F0FC" stroke="#E1EFFF" stroke-width="0.6" />
+                <polygon points="8,-4 14,-8 20,-4" fill="#FFFFFF" stroke="#FFFFFF" stroke-width="0.6" />
+                <polygon points="8,-4 14,-7 20,-4 14, -2" fill="#FFFFFF" />
+                <g transform="translate(18, -3)">
+                  <line x1="-8" y1="0" x2="8" y2="0" stroke="#FFFFFF" stroke-width="1.2" stroke-linecap="round" />
+                  <line x1="0" y1="-8" x2="0" y2="8" stroke="#FFFFFF" stroke-width="1.2" stroke-linecap="round" />
+                  <circle cx="0" cy="0" r="1.8" fill="#FFFFFF" />
+                </g>
+              </g>
+
+              <!-- Sacred Bindus -->
+              <circle cx="160" cy="202" r="2.5" fill="url(#mockGold1)" />
+              <circle cx="148" cy="202" r="1.5" fill="url(#mockGold2)" opacity="0.8" />
+              <circle cx="172" cy="202" r="1.5" fill="url(#mockGold2)" opacity="0.8" />
+            </svg>
+          </div>
         </div>
       </section>
 
       <hr class="scene-divider">
 
-      <!-- SCENE 2: FORMAL INVITATION -->
+      <!-- =================================================================
+          SCENE 2: THE FORMAL INVITATION
+      ================================================================== -->
       <section class="reveal" style="text-align: center; padding: 20px 0;">
         <p class="reveal delay-1" style="font-family: var(--font-body); font-size: clamp(0.8125rem, 2.2vw, 0.95rem); letter-spacing: 0.18em; text-transform: uppercase; color: var(--color-gold-deep); font-weight: 700; margin-bottom: 18px;">
           Under the Grace of Elders &amp; Ancestors
@@ -493,7 +635,7 @@
           <p style="font-family: var(--font-heading); font-size: clamp(1.3rem, 3.8vw, 1.85rem); color: var(--color-forest-deep); line-height: 1.3; font-weight: 700;">
             Mr. Bhudeo Bawankule<br>&amp; Mrs. Rekha Bawankle
           </p>
-          <p style="font-family: var(--font-body); font-size: clamp(0.875rem, 2.2vw, 1.05rem); color: var(--color-ink-muted); marginTop: 8px; letter-spacing: 0.04em; line-height: 1.5;">
+          <p style="font-family: var(--font-body); font-size: clamp(0.875rem, 2.2vw, 1.05rem); color: var(--color-ink-muted); margin-top: 8px; letter-spacing: 0.04em; line-height: 1.5;">
             Cordially invite your gracious presence to celebrate the wedding of their daughter
           </p>
         </div>
@@ -519,88 +661,135 @@
 
       <hr class="scene-divider">
 
-      <!-- SCENE 3: THE COUPLE MONOGRAM (MONUMENTAL TYPOGRAPHY) -->
-      <section class="reveal" style="text-align: center; padding: 24px 0;">
-        <img src="public/assets/frames/crest-royal.webp" alt="Royal Heritage Crest" class="reveal delay-1" style="width: clamp(68px, 14vw, 92px); height: auto; margin: 0 auto 16px; opacity: 0.95; filter: drop-shadow(0 4px 12px rgba(179, 145, 85, 0.35)); display: block;">
+      <!-- =================================================================
+          SCENE 3: THE COUPLE MONOGRAM (RESPONSIVE TYPOGRAPHY WITH ZERO CLIPPING)
+      ================================================================== -->
+      <section class="reveal" style="text-align: center; padding: 24px 0; width: 100%; box-sizing: border-box;">
+        <!-- Royal Crest Vector -->
+        <div class="reveal delay-1" style="display: flex; justify-content: center; margin-bottom: 14px;">
+          <svg viewBox="0 0 100 80" width="74" height="60" fill="none" xmlns="http://www.w3.org/2000/svg" style="filter: drop-shadow(0 3px 8px rgba(179, 145, 85, 0.4)); display: block;">
+            <defs>
+              <linearGradient id="crestGoldMock" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stopColor="#FFF2B8" />
+                <stop offset="35%" stopColor="#D4AF37" />
+                <stop offset="70%" stopColor="#966F23" />
+                <stop offset="100%" stopColor="#E2BE66" />
+              </linearGradient>
+            </defs>
+            <path d="M 50 8 L 56 22 L 72 24 L 60 36 L 64 52 L 50 44 L 36 52 L 40 36 L 28 24 L 44 22 Z" fill="url(#crestGoldMock)" />
+            <path d="M 18 46 C 30 36, 42 54, 50 64 C 58 54, 70 36, 82 46" stroke="url(#crestGoldMock)" stroke-width="2" fill="none" stroke-linecap="round" />
+            <circle cx="50" cy="30" r="3.5" fill="#881C22" />
+          </svg>
+        </div>
         
-        <div class="reveal delay-2" style="padding: 0 8px;">
-          <h1 style="font-family: var(--font-display); font-size: clamp(3rem, 9.2vw, 6.2rem); line-height: 1.05; color: var(--color-forest-deep); font-weight: 700; letter-spacing: 0.01em; margin: 0;">
-            Isha Bawankule
+        {/* Controlled Typographic Hierarchy to Prevent ANY Mobile Overflow */}
+        <div class="reveal delay-2" style="width: 100%; max-width: 100%; box-sizing: border-box; padding: 0 8px;">
+          <h1 style="margin: 0; padding: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; width: 100%; box-sizing: border-box;">
+            <span style="font-family: var(--font-display); font-size: clamp(2.6rem, 8.8vw, 5.4rem); line-height: 1.05; color: var(--color-forest-deep); font-weight: 700; letter-spacing: 0.02em; text-shadow: 0 1px 2px rgba(179, 145, 85, 0.25); display: block; max-width: 100%;">
+              Isha
+            </span>
+            <span style="font-family: var(--font-display); font-size: clamp(1.4rem, 5.2vw, 2.8rem); line-height: 1.2; color: var(--color-ink-espresso); font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; display: block; max-width: 100%; margin-top: 2px;">
+              Bawankule
+            </span>
           </h1>
-          <span style="font-family: var(--font-accent); font-size: clamp(3.2rem, 9.5vw, 6.4rem); line-height: 0.8; color: var(--color-gold-antique); display: block; margin: 6px 0;">
-            &amp;
-          </span>
-          <h1 style="font-family: var(--font-display); font-size: clamp(3rem, 9.2vw, 6.2rem); line-height: 1.05; color: var(--color-forest-deep); font-weight: 700; letter-spacing: 0.01em; margin: 0;">
-            Ashish Deshmukh
+
+          <div style="display: flex; align-items: center; justify-content: center; margin: 4px 0;">
+            <span style="font-family: var(--font-accent); font-size: clamp(2.8rem, 8.5vw, 5.8rem); line-height: 0.85; color: var(--color-gold-antique); display: inline-block;">
+              &amp;
+            </span>
+          </div>
+
+          <h1 style="margin: 0; padding: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; width: 100%; box-sizing: border-box;">
+            <span style="font-family: var(--font-display); font-size: clamp(2.6rem, 8.8vw, 5.4rem); line-height: 1.05; color: var(--color-forest-deep); font-weight: 700; letter-spacing: 0.02em; text-shadow: 0 1px 2px rgba(179, 145, 85, 0.25); display: block; max-width: 100%;">
+              Ashish
+            </span>
+            <span style="font-family: var(--font-display); font-size: clamp(1.4rem, 5.2vw, 2.8rem); line-height: 1.2; color: var(--color-ink-espresso); font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; display: block; max-width: 100%; margin-top: 2px;">
+              Deshmukh
+            </span>
           </h1>
         </div>
 
-        <p class="reveal delay-3" style="font-family: var(--font-heading); font-size: clamp(1.15rem, 3.2vw, 1.55rem); color: var(--color-ink-muted); margin-top: 20px; font-style: italic; line-height: 1.4; padding: 0 12px;">
+        <p class="reveal delay-3" style="font-family: var(--font-heading); font-size: clamp(1.15rem, 3.2vw, 1.55rem); color: var(--color-ink-muted); margin-top: 20px; font-style: italic; line-height: 1.45; padding: 0 14px;">
           As they unite their lives in sacred matrimony
         </p>
 
-        <div class="reveal delay-4" style="margin-top: 24px;">
-          <img src="public/assets/frames/garland-gold.webp" alt="Royal Botanical Garland" style="width: 100%; max-width: 380px; height: 46px; object-fit: contain; margin: 0 auto; opacity: 0.92; display: block; filter: drop-shadow(0 2px 8px rgba(179, 145, 85, 0.28));">
+        <div class="reveal delay-4" style="margin-top: 18px;">
+          <svg viewBox="0 0 320 36" width="100%" max-width="360" height="32" fill="none" xmlns="http://www.w3.org/2000/svg" style="margin: 0 auto; display: block; filter: drop-shadow(0 2px 4px rgba(179, 145, 85, 0.3));">
+            <path d="M 20 18 Q 80 8 160 18 Q 240 28 300 18" stroke="#D4AF37" stroke-width="1.2" fill="none" />
+            <circle cx="160" cy="18" r="3.5" fill="#D4AF37" />
+            <circle cx="152" cy="18" r="2" fill="#D4AF37" />
+            <circle cx="168" cy="18" r="2" fill="#D4AF37" />
+          </svg>
         </div>
       </section>
 
       <hr class="scene-divider">
 
-      <!-- SCENE 4: AUSPICIOUS MUHURAT -->
+      <!-- =================================================================
+          SCENE 4: AUSPICIOUS MUHURAT & LIVE COUNTDOWN
+      ================================================================== -->
       <section class="reveal" style="text-align: center; padding: 20px 0;">
-        <div class="reveal delay-1">
-          <p class="section-eyebrow">Auspicious Muhurat</p>
-          <h2 class="section-main-title">The Sacred Vows</h2>
-        </div>
+        <p style="font-family: var(--font-body); font-size: clamp(0.8125rem, 2.2vw, 0.95rem); letter-spacing: 0.18em; text-transform: uppercase; color: var(--color-gold-deep); font-weight: 700; margin-bottom: 8px;">
+          Auspicious Muhurat
+        </p>
+        <h2 style="font-family: var(--font-display); font-size: clamp(2rem, 5.5vw, 3rem); color: var(--color-forest-deep); font-weight: 700; margin-bottom: 20px;">
+          Wedding Date &amp; Time
+        </h2>
 
-        <div class="reveal delay-2" style="display: inline-flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 10px; background: rgba(179, 145, 85, 0.12); border: 1px solid rgba(179, 145, 85, 0.5); padding: 10px 22px; border-radius: 30px; font-family: var(--font-heading); font-size: clamp(1.15rem, 3.2vw, 1.55rem); color: var(--color-forest-deep); font-weight: 700; margin: 0 auto 12px; box-shadow: 0 2px 10px rgba(179, 145, 85, 0.15);">
+        <div style="display: inline-flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 10px; background: rgba(179, 145, 85, 0.12); border: 1px solid rgba(179, 145, 85, 0.5); padding: 10px 22px; border-radius: 30px; font-family: var(--font-heading); font-size: clamp(1.15rem, 3.2vw, 1.55rem); color: var(--color-forest-deep); font-weight: 700; margin: 0 auto 12px; box-shadow: 0 2px 10px rgba(179, 145, 85, 0.15);">
           <span>Thursday, 17 December 2026</span>
           <span>•</span>
-          <span>5:40 PM IST</span>
+          <span>5:40 PM</span>
         </div>
 
-        <p class="reveal delay-2" style="font-family: var(--font-body); font-size: clamp(0.8125rem, 2.2vw, 0.95rem); color: var(--color-ink-muted); letter-spacing: 0.1em; text-transform: uppercase; font-weight: 600; margin-bottom: 24px;">
-          Twilight Goraj Muhurat (IST Asia/Kolkata)
+        <p style="font-family: var(--font-body); font-size: clamp(0.8125rem, 2.2vw, 0.95rem); color: var(--color-ink-muted); letter-spacing: 0.1em; text-transform: uppercase; font-weight: 600; margin-bottom: 24px;">
+          Auspicious Muhurat (IST / Asia/Kolkata)
         </p>
 
-        <div class="reveal delay-3" style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-bottom: 26px;">
-          <div class="countdown-box" style="background: #FFFFFF; border: 1px solid rgba(179, 145, 85, 0.4); border-radius: 14px; padding: 16px 6px; box-shadow: 0 4px 16px rgba(22, 41, 32, 0.05);">
-            <div id="daysVal" style="font-family: var(--font-display); font-size: clamp(2rem, 5.8vw, 3.2rem); color: var(--color-forest-deep); font-weight: 700; line-height: 1;">--</div>
+        <!-- Live Countdown Grid -->
+        <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-bottom: 26px;">
+          <div style="background: #FFFFFF; border: 1px solid rgba(179, 145, 85, 0.4); border-radius: 14px; padding: 16px 6px; box-shadow: 0 4px 16px rgba(22, 41, 32, 0.05);">
+            <div id="cntDays" style="font-family: var(--font-display); font-size: clamp(2rem, 5.8vw, 3.2rem); color: var(--color-forest-deep); font-weight: 700; line-height: 1;">00</div>
             <div style="font-family: var(--font-body); font-size: clamp(0.6875rem, 1.8vw, 0.8125rem); letter-spacing: 0.14em; text-transform: uppercase; color: var(--color-ink-muted); margin-top: 8px; font-weight: 700;">Days</div>
           </div>
-          <div class="countdown-box" style="background: #FFFFFF; border: 1px solid rgba(179, 145, 85, 0.4); border-radius: 14px; padding: 16px 6px; box-shadow: 0 4px 16px rgba(22, 41, 32, 0.05);">
-            <div id="hoursVal" style="font-family: var(--font-display); font-size: clamp(2rem, 5.8vw, 3.2rem); color: var(--color-forest-deep); font-weight: 700; line-height: 1;">--</div>
+          <div style="background: #FFFFFF; border: 1px solid rgba(179, 145, 85, 0.4); border-radius: 14px; padding: 16px 6px; box-shadow: 0 4px 16px rgba(22, 41, 32, 0.05);">
+            <div id="cntHours" style="font-family: var(--font-display); font-size: clamp(2rem, 5.8vw, 3.2rem); color: var(--color-forest-deep); font-weight: 700; line-height: 1;">00</div>
             <div style="font-family: var(--font-body); font-size: clamp(0.6875rem, 1.8vw, 0.8125rem); letter-spacing: 0.14em; text-transform: uppercase; color: var(--color-ink-muted); margin-top: 8px; font-weight: 700;">Hours</div>
           </div>
-          <div class="countdown-box" style="background: #FFFFFF; border: 1px solid rgba(179, 145, 85, 0.4); border-radius: 14px; padding: 16px 6px; box-shadow: 0 4px 16px rgba(22, 41, 32, 0.05);">
-            <div id="minsVal" style="font-family: var(--font-display); font-size: clamp(2rem, 5.8vw, 3.2rem); color: var(--color-forest-deep); font-weight: 700; line-height: 1;">--</div>
+          <div style="background: #FFFFFF; border: 1px solid rgba(179, 145, 85, 0.4); border-radius: 14px; padding: 16px 6px; box-shadow: 0 4px 16px rgba(22, 41, 32, 0.05);">
+            <div id="cntMinutes" style="font-family: var(--font-display); font-size: clamp(2rem, 5.8vw, 3.2rem); color: var(--color-forest-deep); font-weight: 700; line-height: 1;">00</div>
             <div style="font-family: var(--font-body); font-size: clamp(0.6875rem, 1.8vw, 0.8125rem); letter-spacing: 0.14em; text-transform: uppercase; color: var(--color-ink-muted); margin-top: 8px; font-weight: 700;">Mins</div>
           </div>
-          <div class="countdown-box" style="background: #FFFFFF; border: 1px solid rgba(179, 145, 85, 0.4); border-radius: 14px; padding: 16px 6px; box-shadow: 0 4px 16px rgba(22, 41, 32, 0.05);">
-            <div id="secsVal" style="font-family: var(--font-display); font-size: clamp(2rem, 5.8vw, 3.2rem); color: var(--color-forest-deep); font-weight: 700; line-height: 1;">--</div>
+          <div style="background: #FFFFFF; border: 1px solid rgba(179, 145, 85, 0.4); border-radius: 14px; padding: 16px 6px; box-shadow: 0 4px 16px rgba(22, 41, 32, 0.05);">
+            <div id="cntSeconds" style="font-family: var(--font-display); font-size: clamp(2rem, 5.8vw, 3.2rem); color: var(--color-forest-deep); font-weight: 700; line-height: 1;">00</div>
             <div style="font-family: var(--font-body); font-size: clamp(0.6875rem, 1.8vw, 0.8125rem); letter-spacing: 0.14em; text-transform: uppercase; color: var(--color-ink-muted); margin-top: 8px; font-weight: 700;">Secs</div>
           </div>
         </div>
 
-        <div class="reveal delay-4">
-          <button onclick="addToCalendar()" class="btn-royal-secondary" style="width: 100%; max-width: 340px;">
-            📅 Save Date to Calendar (.ics)
-          </button>
-        </div>
+        <button onclick="downloadICS()" class="btn-royal-secondary" style="width: 100%; max-width: 340px;">
+          📅 Save Date to Calendar (.ics)
+        </button>
       </section>
 
       <hr class="scene-divider">
 
-      <!-- SCENE 5: SANCTUARY VENUE -->
+      <!-- =================================================================
+          SCENE 5: THE WEDDING VENUE (AMRIT FARMS)
+      ================================================================== -->
       <section class="reveal" style="text-align: center; padding: 20px 0;">
-        <div class="reveal delay-1">
-          <p class="section-eyebrow">The Destination</p>
-          <h2 class="section-main-title">Sacred Sanctuary</h2>
-        </div>
+        <p style="font-family: var(--font-body); font-size: clamp(0.8125rem, 2.2vw, 0.95rem); letter-spacing: 0.18em; text-transform: uppercase; color: var(--color-gold-deep); font-weight: 700; margin-bottom: 8px;">
+          Venue Details
+        </p>
+        <h2 style="font-family: var(--font-display); font-size: clamp(2rem, 5.5vw, 3rem); color: var(--color-forest-deep); font-weight: 700; margin-bottom: 20px;">
+          Wedding Venue
+        </h2>
 
-        <div class="luxury-paper-card reveal delay-2" style="background: rgba(33, 59, 48, 0.035); border: 1px solid rgba(179, 145, 85, 0.38); border-radius: 16px; padding: 28px 22px; margin-top: 14px; box-shadow: 0 6px 20px rgba(22, 41, 32, 0.06);">
+        <div class="luxury-paper-card" style="background: rgba(33, 59, 48, 0.035); border: 1px solid rgba(179, 145, 85, 0.38); border-radius: 16px; padding: 28px 22px; margin-top: 14px; box-shadow: 0 6px 20px rgba(22, 41, 32, 0.06);">
           <div style="width: 48px; height: 48px; border-radius: 50%; background: rgba(179, 145, 85, 0.16); border: 1px solid rgba(179, 145, 85, 0.5); display: flex; align-items: center; justify-content: center; margin: 0 auto 16px;">
-            <img src="public/assets/icons/map-marker.svg" alt="Venue Pin" style="width: 24px; height: 24px;">
+            <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="var(--color-gold-antique)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+              <circle cx="12" cy="10" r="3" />
+            </svg>
           </div>
 
           <h3 style="font-family: var(--font-display); font-size: clamp(2rem, 5.6vw, 3.2rem); color: var(--color-forest-deep); font-weight: 700; margin-bottom: 10px; line-height: 1.15;">
@@ -615,10 +804,10 @@
 
           <div style="display: flex; flex-direction: column; gap: 14px; max-width: 360px; margin: 0 auto;">
             <a href="https://maps.app.goo.gl/zbGfRrkW83LXk8qG8?g_st=ac" target="_blank" rel="noopener noreferrer" class="btn-royal-primary">
-              📍 Open in Google Maps
+              <span>🗺️ Open in Google Maps</span>
             </a>
-            <button onclick="copyAddress()" class="btn-royal-secondary" id="copyBtn">
-              📋 Copy Address for Uber / Cab
+            <button onclick="copyVenueAddress()" class="btn-royal-secondary">
+              <span id="copyBtnText">📋 Copy Full Address</span>
             </button>
           </div>
         </div>
@@ -626,10 +815,20 @@
 
       <hr class="scene-divider">
 
-      <!-- SCENE 6: TRADITIONAL BLESSINGS -->
+      <!-- =================================================================
+          SCENE 6: TRADITIONAL BLESSINGS & HOSPITALITY
+      ================================================================== -->
       <section class="reveal" style="text-align: center; padding: 24px 0 16px;">
-        <img src="public/assets/ornaments/seal.png" alt="Royal Wax Seal" class="reveal delay-1" style="width: clamp(64px, 14vw, 84px); height: auto; margin: 0 auto 18px; filter: drop-shadow(0 6px 16px rgba(179, 145, 85, 0.4)); display: block;">
-        
+        <!-- Royal Wax Seal SVG -->
+        <div class="reveal delay-1" style="display: flex; justify-content: center; margin-bottom: 18px;">
+          <svg viewBox="0 0 100 100" width="72" height="72" fill="none" xmlns="http://www.w3.org/2000/svg" style="filter: drop-shadow(0 6px 16px rgba(179, 145, 85, 0.4))">
+            <circle cx="50" cy="50" r="44" fill="#D4AF37" />
+            <circle cx="50" cy="50" r="34" fill="#966F23" stroke="#FFF2B8" stroke-width="1" />
+            <circle cx="50" cy="50" r="30" stroke="#FFF2B8" stroke-width="0.8" stroke-dasharray="2,2" fill="none" />
+            <text x="50" y="58" text-anchor="middle" fill="#FFF4D0" font-family="var(--font-display)" font-size="24" font-weight="700" letter-spacing="1">I&amp;A</text>
+          </svg>
+        </div>
+
         <p class="reveal delay-2" style="font-family: var(--font-heading); font-size: clamp(1.25rem, 3.6vw, 1.75rem); font-style: italic; color: var(--color-forest-deep); line-height: 1.55; max-width: 480px; margin: 0 auto 24px; padding: 0 8px;">
           “May the harmony of your souls be eternal, blessed with joy, laughter, and boundless peace.”
         </p>
@@ -639,10 +838,10 @@
         </p>
 
         <div class="reveal delay-4">
-          <p style="font-family: var(--font-accent); font-size: clamp(3.2rem, 9.5vw, 6.2rem); lineHeight: 0.95; color: var(--color-gold-antique); margin-top: 8px;">
+          <p style="font-family: var(--font-accent); font-size: clamp(3.2rem, 9.5vw, 6.2rem); line-height: 0.95; color: var(--color-gold-antique); margin-top: 8px;">
             Isha &amp; Ashish
           </p>
-          <p style="font-family: var(--font-heading); font-size: clamp(1.15rem, 3vw, 1.45rem); color: var(--color-ink-charcoal); marginTop: 8px; font-weight: 600;">
+          <p style="font-family: var(--font-heading); font-size: clamp(1.15rem, 3vw, 1.45rem); color: var(--color-ink-charcoal); margin-top: 8px; font-weight: 600;">
             &amp; The Bawankule &amp; Deshmukh Families
           </p>
         </div>
@@ -650,103 +849,117 @@
     </main>
   </div>
 
-  <!-- Floating Audio Widget -->
-  <aside class="floating-audio-widget" id="audioWidget" onclick="toggleAudio()">
-    <span id="audioIcon" style="font-size: 1.15rem; display: inline-block;">🎵</span>
-    <div style="display: flex; flex-direction: column; text-align: left;">
-      <span style="font-family: var(--font-body); font-size: 0.75rem; font-weight: 700; letter-spacing: 0.08em; color: var(--color-gold-champagne); text-transform: uppercase; line-height: 1.2;">
-        Sacred Shehnai
-      </span>
-      <span id="audioStatus" style="font-family: var(--font-body); font-size: 0.625rem; color: var(--color-gold-bright); letter-spacing: 0.04em;">
-        Playing • Tap to Mute
-      </span>
-    </div>
-  </aside>
+  <!-- Discreet Floating Audio Pill -->
+  <div class="floating-audio-widget" id="audioPill" onclick="toggleAudio()">
+    <span id="audioIcon">🎵</span>
+    <span id="audioLabel" style="font-size: 0.8125rem; font-weight: 600; color: var(--color-paper-ivory);">Sacred Shehnai &amp; Tanpura</span>
+  </div>
 
-  <div class="toast-popup" id="toast">✓ Address copied to clipboard!</div>
+  <div class="toast-popup" id="toast">Address copied to clipboard!</div>
 
   <script>
-    // Viewport Switcher
-    function setViewport(w, btn) {
-      document.getElementById('invitationWrapper').style.maxWidth = w;
+    // Automatic Card Opening (0 Buttons, 850ms deliberate opening)
+    window.addEventListener('DOMContentLoaded', () => {
+      setTimeout(() => {
+        const flapL = document.getElementById('flapLeft');
+        const flapR = document.getElementById('flapRight');
+        const preContent = document.getElementById('preloaderContent');
+        const preloader = document.getElementById('cardPreloader');
+
+        if (flapL && flapR && preContent && preloader) {
+          flapL.style.transform = 'rotateY(-125deg)';
+          flapR.style.transform = 'rotateY(125deg)';
+          flapL.style.boxShadow = 'none';
+          flapR.style.boxShadow = 'none';
+          preContent.style.opacity = '0';
+          preloader.style.opacity = '0';
+
+          setTimeout(() => {
+            preloader.style.display = 'none';
+            window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+          }, 1400);
+        }
+      }, 850);
+    });
+
+    // Viewport Width Switcher
+    function setViewport(width, btn) {
+      document.getElementById('invitationWrapper').style.maxWidth = width;
       document.querySelectorAll('.viewport-btn').forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
     }
 
-    // Open Gatefold Invitation Card (Warm Ivory Paper)
-    function openInvitationCard(withMusic) {
-      const left = document.getElementById('flapLeft');
-      const right = document.getElementById('flapRight');
-      const content = document.getElementById('preloaderContent');
-      const preloader = document.getElementById('cardPreloader');
-
-      if (left && right && content && preloader) {
-        left.style.transform = 'rotateY(-125deg)';
-        right.style.transform = 'rotateY(125deg)';
-        content.style.opacity = '0';
-        preloader.style.opacity = '0';
-        preloader.style.pointerEvents = 'none';
-
-        if (withMusic) {
-          startAudio();
-        } else {
-          stopAudio();
-        }
-
-        setTimeout(() => {
-          preloader.style.display = 'none';
-        }, 1300);
-      }
-    }
-
-    // IntersectionObserver for Scroll Reveals
+    // Scroll Reveal Observer
     const observer = new IntersectionObserver((entries) => {
-      entries.forEach(e => {
-        if (e.isIntersecting) e.target.classList.add('is-visible');
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+        }
       });
     }, { threshold: 0.12 });
-    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-    // Countdown to 17 Dec 2026, 17:40:00 IST
-    const targetDate = new Date("2026-12-17T17:40:00+05:30").getTime();
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    // Immediately show top elements
+    document.querySelectorAll('#main-invitation > section:first-of-type, #main-invitation > section:first-of-type *').forEach(el => {
+      if (el.classList.contains('reveal')) el.classList.add('is-visible');
+    });
+
+    // Countdown Timer
+    const weddingDate = new Date("2026-12-17T17:40:00+05:30").getTime();
     function updateCountdown() {
       const now = new Date().getTime();
-      const diff = targetDate - now;
+      const diff = weddingDate - now;
       if (diff <= 0) return;
-      document.getElementById("daysVal").innerText = String(Math.floor(diff / (1000 * 60 * 60 * 24))).padStart(2, '0');
-      document.getElementById("hoursVal").innerText = String(Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))).padStart(2, '0');
-      document.getElementById("minsVal").innerText = String(Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60))).padStart(2, '0');
-      document.getElementById("secsVal").innerText = String(Math.floor((diff % (1000 * 60)) / 1000)).padStart(2, '0');
+
+      const d = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const h = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const m = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+      const s = Math.floor((diff % (1000 * 60)) / 1000);
+
+      document.getElementById('cntDays').innerText = String(d).padStart(2, '0');
+      document.getElementById('cntHours').innerText = String(h).padStart(2, '0');
+      document.getElementById('cntMinutes').innerText = String(m).padStart(2, '0');
+      document.getElementById('cntSeconds').innerText = String(s).padStart(2, '0');
     }
-    setInterval(updateCountdown, 1000);
     updateCountdown();
+    setInterval(updateCountdown, 1000);
 
     // Copy Address Toast
-    function copyAddress() {
-      const addressText = "Amrit Farms, GUMTHALA NAGPUR (MH) 441111 (Near Gumthi/Koradi Road Area)";
-      navigator.clipboard.writeText(addressText).then(() => {
-        const toast = document.getElementById("toast");
-        toast.classList.add("visible");
-        setTimeout(() => toast.classList.remove("visible"), 2500);
+    function copyVenueAddress() {
+      const text = "Amrit Farms, GUMTHALA NAGPUR (MH) 441111 (Near Gumthi/Koradi Road Area)";
+      navigator.clipboard.writeText(text).then(() => {
+        const btn = document.getElementById('copyBtnText');
+        const toast = document.getElementById('toast');
+        btn.innerText = "✓ Address Copied!";
+        toast.classList.add('visible');
+        setTimeout(() => {
+          btn.innerText = "📋 Copy Full Address";
+          toast.classList.remove('visible');
+        }, 2500);
       });
     }
 
-    // Calendar Export
-    function addToCalendar() {
-      const ics = [
+    // ICS Calendar Generator
+    function downloadICS() {
+      const icsData = [
         "BEGIN:VCALENDAR",
         "VERSION:2.0",
         "PRODID:-//The Royal Indian Botanical Experience//Wedding Invitation//EN",
+        "CALSCALE:GREGORIAN",
+        "METHOD:PUBLISH",
         "BEGIN:VEVENT",
         "SUMMARY:Wedding: Isha Bawankule & Ashish Deshmukh",
         "DESCRIPTION:The royal wedding ceremony of Isha Bawankule and Ashish Deshmukh at Amrit Farms, Nagpur.",
         "LOCATION:Amrit Farms, GUMTHALA NAGPUR (MH) 441111",
         "DTSTART:20261217T121000Z",
         "DTEND:20261217T163000Z",
+        "STATUS:CONFIRMED",
+        "TRANSP:OPAQUE",
         "END:VEVENT",
         "END:VCALENDAR"
       ].join("\r\n");
-      const blob = new Blob([ics], { type: "text/calendar;charset=utf-8" });
+
+      const blob = new Blob([icsData], { type: "text/calendar;charset=utf-8" });
       const link = document.createElement("a");
       link.href = window.URL.createObjectURL(blob);
       link.setAttribute("download", "Isha_Ashish_Wedding_17Dec2026.ics");
@@ -755,164 +968,15 @@
       document.body.removeChild(link);
     }
 
-    // Real-Time 3D Rings Three.js Scene
-    function init3DHero() {
-      const container = document.getElementById('threeCanvas');
-      if (!container) return;
-
-      const width = container.clientWidth || 340;
-      const height = container.clientHeight || 290;
-
-      const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true, powerPreference: 'high-performance' });
-      renderer.setSize(width, height);
-      renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-      renderer.toneMapping = THREE.ACESFilmicToneMapping;
-      renderer.toneMappingExposure = 1.35;
-      container.appendChild(renderer.domElement);
-
-      const scene = new THREE.Scene();
-      const camera = new THREE.PerspectiveCamera(38, width / height, 0.1, 100);
-      camera.position.set(0, 0.25, 4.2);
-
-      scene.add(new THREE.AmbientLight(0xfff6ea, 2.0));
-      const keyLight = new THREE.DirectionalLight(0xffeedd, 3.0);
-      keyLight.position.set(3, 5, 4);
-      scene.add(keyLight);
-      const fillLight = new THREE.DirectionalLight(0xd4af37, 2.2);
-      fillLight.position.set(-4, -1, 3);
-      scene.add(fillLight);
-      const rimLight = new THREE.PointLight(0xffffff, 4.0, 10);
-      rimLight.position.set(0, 3, -3);
-      scene.add(rimLight);
-      const diamondLight = new THREE.PointLight(0xffffff, 3.5, 6);
-      diamondLight.position.set(0.4, 0.8, 1.2);
-      scene.add(diamondLight);
-
-      const goldMat = new THREE.MeshPhysicalMaterial({
-        color: 0xEDB85A,
-        metalness: 0.98,
-        roughness: 0.12,
-        clearcoat: 0.8,
-        reflectivity: 1.0,
-      });
-
-      const diamondMat = new THREE.MeshPhysicalMaterial({
-        color: 0xFFFFFF,
-        metalness: 0.02,
-        roughness: 0.03,
-        transmission: 0.95,
-        ior: 2.417,
-        thickness: 1.6,
-        transparent: true,
-        opacity: 0.98,
-      });
-
-      const masterGroup = new THREE.Group();
-      scene.add(masterGroup);
-
-      const bandGroup = new THREE.Group();
-      const bandMesh = new THREE.Mesh(new THREE.TorusGeometry(0.72, 0.11, 32, 100), goldMat);
-      bandGroup.add(bandMesh);
-      bandGroup.position.set(-0.38, 0, -0.15);
-      bandGroup.rotation.set(0.35, 0.45, -0.2);
-      masterGroup.add(bandGroup);
-
-      const solGroup = new THREE.Group();
-      solGroup.add(new THREE.Mesh(new THREE.TorusGeometry(0.68, 0.09, 32, 100), goldMat));
-
-      const setting = new THREE.Group();
-      setting.position.set(0, 0.69, 0);
-
-      const prongGeo = new THREE.CylinderGeometry(0.025, 0.03, 0.22, 12);
-      for (let i = 0; i < 4; i++) {
-        const a = (i * Math.PI) / 2 + Math.PI / 4;
-        const p = new THREE.Mesh(prongGeo, goldMat);
-        p.position.set(Math.cos(a) * 0.13, 0.08, Math.sin(a) * 0.13);
-        p.rotation.z = -Math.cos(a) * 0.25;
-        p.rotation.x = Math.sin(a) * 0.25;
-        setting.add(p);
-      }
-
-      const crown = new THREE.Mesh(new THREE.CylinderGeometry(0.19, 0.23, 0.1, 16), diamondMat);
-      crown.position.y = 0.12;
-      setting.add(crown);
-      const pav = new THREE.Mesh(new THREE.ConeGeometry(0.23, 0.22, 16), diamondMat);
-      pav.rotation.x = Math.PI;
-      pav.position.y = 0.01;
-      setting.add(pav);
-
-      solGroup.add(setting);
-      solGroup.position.set(0.38, 0.05, 0.12);
-      solGroup.rotation.set(-0.25, -0.4, 0.28);
-      masterGroup.add(solGroup);
-
-      const pCount = 45;
-      const pPos = new Float32Array(pCount * 3);
-      for (let i = 0; i < pCount; i++) {
-        const r = 1.2 + Math.random() * 1.4;
-        const th = Math.random() * Math.PI * 2;
-        const ph = (Math.random() - 0.5) * Math.PI;
-        pPos[i*3] = r * Math.cos(th) * Math.cos(ph);
-        pPos[i*3+1] = r * Math.sin(ph);
-        pPos[i*3+2] = r * Math.sin(th) * Math.cos(ph);
-      }
-      const pGeo = new THREE.BufferGeometry();
-      pGeo.setAttribute('position', new THREE.BufferAttribute(pPos, 3));
-      const pMat = new THREE.PointsMaterial({ size: 0.08, color: 0xF5DEB3, transparent: true, opacity: 0.8 });
-      scene.add(new THREE.Points(pGeo, pMat));
-
-      let isDrag = false, prevPos = { x: 0, y: 0 }, rotX = 0, rotY = 0;
-      const onDown = (e) => {
-        isDrag = true;
-        const x = e.touches ? e.touches[0].clientX : e.clientX;
-        const y = e.touches ? e.touches[0].clientY : e.clientY;
-        prevPos = { x, y };
-      };
-      const onMove = (e) => {
-        if (!isDrag) return;
-        const x = e.touches ? e.touches[0].clientX : e.clientX;
-        const y = e.touches ? e.touches[0].clientY : e.clientY;
-        rotY += (x - prevPos.x) * 0.009;
-        rotX += (y - prevPos.y) * 0.009;
-        prevPos = { x, y };
-      };
-      const onUp = () => { isDrag = false; };
-
-      renderer.domElement.addEventListener('mousedown', onDown);
-      renderer.domElement.addEventListener('mousemove', onMove);
-      window.addEventListener('mouseup', onUp);
-      renderer.domElement.addEventListener('touchstart', onDown, { passive: true });
-      renderer.domElement.addEventListener('touchmove', onMove, { passive: true });
-      window.addEventListener('touchend', onUp);
-
-      let clock = new THREE.Clock();
-      function animate() {
-        requestAnimationFrame(animate);
-        const t = clock.getElapsedTime();
-        masterGroup.position.y = Math.sin(t * 1.5) * 0.06;
-        if (!isDrag) {
-          masterGroup.rotation.y += 0.005;
-        } else {
-          masterGroup.rotation.y += (rotY - masterGroup.rotation.y) * 0.12;
-          masterGroup.rotation.x += (rotX - masterGroup.rotation.x) * 0.12;
-        }
-        diamondLight.position.x = Math.sin(t * 2) * 1.5;
-        diamondLight.position.z = Math.cos(t * 2) * 1.5;
-        renderer.render(scene, camera);
-      }
-      animate();
-    }
-    window.addEventListener('DOMContentLoaded', init3DHero);
-
-    // Audio Engine (Web Audio API with Chime)
+    // Web Audio Synthesizer Engine
     let audioCtx = null;
     let masterGain = null;
     let oscs = [];
-    let isPlaying = false;
+    let isAudioActive = false;
 
     function playChime(ctx, dest) {
-      const chimeFreqs = [1108.73, 1479.98, 2217.46];
-      chimeFreqs.forEach((freq, idx) => {
+      const freqs = [1108.73, 1479.98, 2217.46];
+      freqs.forEach((freq, idx) => {
         const osc = ctx.createOscillator();
         const g = ctx.createGain();
         osc.type = 'sine';
@@ -928,8 +992,15 @@
       });
     }
 
+    function toggleAudio() {
+      if (!isAudioActive) {
+        startAudio();
+      } else {
+        stopAudio();
+      }
+    }
+
     function startAudio() {
-      if (audioCtx && audioCtx.state === 'running') return;
       try {
         const AC = window.AudioContext || window.webkitAudioContext;
         audioCtx = audioCtx || new AC();
@@ -937,14 +1008,14 @@
 
         masterGain = audioCtx.createGain();
         masterGain.gain.setValueAtTime(0.0001, audioCtx.currentTime);
-        masterGain.gain.exponentialRampToValueAtTime(0.2, audioCtx.currentTime + 2.2);
+        masterGain.gain.exponentialRampToValueAtTime(0.2, audioCtx.currentTime + 2.0);
         masterGain.connect(audioCtx.destination);
 
         playChime(audioCtx, audioCtx.destination);
 
-        const freqs = [69.3, 138.59, 207.65, 277.18, 415.3];
+        const droneFreqs = [69.3, 138.59, 207.65, 277.18, 415.3];
         oscs = [];
-        freqs.forEach((f, i) => {
+        droneFreqs.forEach((f, i) => {
           const osc = audioCtx.createOscillator();
           const g = audioCtx.createGain();
           osc.type = i === 0 ? 'sine' : i % 2 === 0 ? 'triangle' : 'sine';
@@ -962,67 +1033,24 @@
           oscs.push(osc);
         });
 
-        const sOsc = audioCtx.createOscillator();
-        const sGain = audioCtx.createGain();
-        sOsc.type = 'triangle';
-        sOsc.frequency.setValueAtTime(554.37, audioCtx.currentTime);
-
-        const lfo = audioCtx.createOscillator();
-        const lfoG = audioCtx.createGain();
-        lfo.frequency.setValueAtTime(4.5, audioCtx.currentTime);
-        lfoG.gain.setValueAtTime(3.2, audioCtx.currentTime);
-        lfo.connect(sOsc.frequency);
-        lfo.start();
-
-        sGain.gain.setValueAtTime(0.04, audioCtx.currentTime);
-        sOsc.connect(sGain);
-        sGain.connect(masterGain);
-        sOsc.start();
-        oscs.push(sOsc);
-
-        isPlaying = true;
-        updateAudioUI();
-      } catch (err) {
-        console.warn('Audio waiting for user gesture:', err);
+        isAudioActive = true;
+        document.getElementById('audioPill').classList.add('active');
+        document.getElementById('audioIcon').innerText = "🔊";
+      } catch (e) {
+        console.warn('Audio waiting for gesture:', e);
       }
     }
 
     function stopAudio() {
-      if (audioCtx && masterGain) {
+      if (masterGain && audioCtx) {
         masterGain.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + 0.8);
         setTimeout(() => {
-          oscs.forEach(o => { try { o.stop(); o.disconnect(); } catch(e){} });
+          oscs.forEach(o => { try { o.stop(); } catch(e){} });
           oscs = [];
-          audioCtx.close();
-          audioCtx = null;
-          isPlaying = false;
-          updateAudioUI();
-        }, 800);
-      } else {
-        isPlaying = false;
-        updateAudioUI();
-      }
-    }
-
-    function toggleAudio() {
-      if (isPlaying) stopAudio();
-      else startAudio();
-    }
-
-    function updateAudioUI() {
-      const widget = document.getElementById('audioWidget');
-      const icon = document.getElementById('audioIcon');
-      const status = document.getElementById('audioStatus');
-      if (isPlaying) {
-        widget.classList.add('active');
-        icon.innerText = '🎵';
-        icon.style.animation = 'musicPulse 1.8s infinite ease-in-out';
-        status.innerText = 'Playing • Tap to Mute';
-      } else {
-        widget.classList.remove('active');
-        icon.innerText = '🔇';
-        icon.style.animation = 'none';
-        status.innerText = 'Muted • Tap to Play';
+          isAudioActive = false;
+          document.getElementById('audioPill').classList.remove('active');
+          document.getElementById('audioIcon').innerText = "🎵";
+        }, 850);
       }
     }
   </script>

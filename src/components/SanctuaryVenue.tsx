@@ -22,8 +22,8 @@ export const SanctuaryVenue: React.FC = () => {
       aria-label="Wedding Venue and Directions"
     >
       <div className="section-title-wrap reveal delay-1">
-        <p className="section-eyebrow">The Destination</p>
-        <h2 className="section-main-title">Sacred Sanctuary</h2>
+        <p className="section-eyebrow">Venue Details</p>
+        <h2 className="section-main-title">Wedding Venue</h2>
       </div>
 
       <div
@@ -51,11 +51,19 @@ export const SanctuaryVenue: React.FC = () => {
             margin: '0 auto 16px',
           }}
         >
-          <img
-            src="/assets/icons/map-marker.svg"
-            alt="Venue Pin"
-            style={{ width: '24px', height: '24px' }}
-          />
+          <svg
+            viewBox="0 0 24 24"
+            width="24"
+            height="24"
+            fill="none"
+            stroke="var(--color-gold-antique)"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          >
+            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+            <circle cx="12" cy="10" r="3" />
+          </svg>
         </div>
 
         <h3

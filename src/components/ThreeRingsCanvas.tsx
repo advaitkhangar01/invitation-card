@@ -1,398 +1,271 @@
-import React, { useEffect, useRef, useState } from 'react';
-import * as THREE from 'three';
+import React, { useState } from 'react';
 
 export const ThreeRingsCanvas: React.FC = () => {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const [isReady, setIsReady] = useState(false);
-
-  useEffect(() => {
-    const container = containerRef.current;
-    if (!container) return;
-
-    let renderer: THREE.WebGLRenderer | null = null;
-    try {
-      renderer = new THREE.WebGLRenderer({
-        antialias: true,
-        alpha: true,
-        powerPreference: 'high-performance',
-      });
-    } catch {
-      return;
-    }
-
-    const width = container.clientWidth || 340;
-    const height = container.clientHeight || 280;
-
-    renderer.setSize(width, height);
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-    renderer.toneMapping = THREE.ACESFilmicToneMapping;
-    renderer.toneMappingExposure = 1.35;
-    container.appendChild(renderer.domElement);
-
-    const scene = new THREE.Scene();
-
-    // Camera positioned to view both rings completely without clipping
-    const camera = new THREE.PerspectiveCamera(38, width / height, 0.1, 100);
-    camera.position.set(0, 0.25, 4.2);
-
-    // Create a dynamic high-end CubeTexture Environment Map for hyper-realistic metallic gold & diamond reflections
-    const cubeRenderTarget = new THREE.WebGLCubeRenderTarget(256, {
-      generateMipmaps: true,
-      minFilter: THREE.LinearMipmapLinearFilter,
-      magFilter: THREE.LinearFilter,
-    });
-    const cubeCamera = new THREE.CubeCamera(0.1, 10, cubeRenderTarget);
-    scene.add(cubeCamera);
-
-    // Dynamic Environment Sphere (Warm studio softboxes & champagne gold gradients)
-    const envGeo = new THREE.SphereGeometry(8, 32, 16);
-    const envMat = new THREE.ShaderMaterial({
-      side: THREE.BackSide,
-      uniforms: {
-        topColor: { value: new THREE.Color(0xfff5e6) }, // Soft warm ivory
-        midColor: { value: new THREE.Color(0xe0b970) }, // Rich antique gold
-        bottomColor: { value: new THREE.Color(0x1a3127) }, // Deep royal forest green
-      },
-      vertexShader: `
-        varying vec3 vWorldPosition;
-        void main() {
-          vec4 worldPosition = modelMatrix * vec4(position, 1.0);
-          vWorldPosition = worldPosition.xyz;
-          gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
-        }
-      `,
-      fragmentShader: `
-        uniform vec3 topColor;
-        uniform vec3 midColor;
-        uniform vec3 bottomColor;
-        varying vec3 vWorldPosition;
-        void main() {
-          float h = normalize(vWorldPosition).y;
-          vec3 col = mix(midColor, topColor, max(h, 0.0));
-          col = mix(col, bottomColor, max(-h, 0.0));
-          gl_FragColor = vec4(col, 1.0);
-        }
-      `,
-    });
-    const envMesh = new THREE.Mesh(envGeo, envMat);
-    scene.add(envMesh);
-
-    // Update cube camera once to capture the environment
-    cubeCamera.update(renderer, scene);
-    scene.remove(envMesh); // Remove the background mesh so scene remains transparent
-
-    const envMap = cubeRenderTarget.texture;
-    scene.environment = envMap;
-
-    // Studio Lights
-    const ambientLight = new THREE.AmbientLight(0xfff6ea, 2.0);
-    scene.add(ambientLight);
-
-    const keyLight = new THREE.DirectionalLight(0xffeedd, 3.0);
-    keyLight.position.set(3, 5, 4);
-    scene.add(keyLight);
-
-    const fillLight = new THREE.DirectionalLight(0xd4af37, 2.2);
-    fillLight.position.set(-4, -1, 3);
-    scene.add(fillLight);
-
-    const rimLight = new THREE.PointLight(0xffffff, 4.0, 10);
-    rimLight.position.set(0, 3, -3);
-    scene.add(rimLight);
-
-    // Diamond Sparkle Light
-    const diamondLight = new THREE.PointLight(0xffffff, 3.5, 6);
-    diamondLight.position.set(0.4, 0.8, 1.2);
-    scene.add(diamondLight);
-
-    // Materials
-    const goldMaterial = new THREE.MeshPhysicalMaterial({
-      color: new THREE.Color(0xEDB85A), // 24K Royal Indian Gold
-      metalness: 0.98,
-      roughness: 0.12,
-      clearcoat: 0.8,
-      clearcoatRoughness: 0.1,
-      reflectivity: 1.0,
-      envMap: envMap,
-      envMapIntensity: 1.8,
-    });
-
-    const diamondMaterial = new THREE.MeshPhysicalMaterial({
-      color: new THREE.Color(0xFFFFFF),
-      metalness: 0.02,
-      roughness: 0.03,
-      transmission: 0.95,
-      ior: 2.417, // Natural diamond refractive index
-      thickness: 1.6,
-      transparent: true,
-      opacity: 0.98,
-      envMap: envMap,
-      envMapIntensity: 2.5,
-    });
-
-    // Root Group
-    const masterGroup = new THREE.Group();
-    scene.add(masterGroup);
-
-    // 1. Groom's Ring (Ashish) - Broad Comfort-Fit Royal Gold Wedding Band
-    const bandGroup = new THREE.Group();
-    const bandGeo = new THREE.TorusGeometry(0.72, 0.11, 32, 100);
-    const bandMesh = new THREE.Mesh(bandGeo, goldMaterial);
-    bandGroup.add(bandMesh);
-
-    // Inner bevel rim
-    const innerRimGeo = new THREE.TorusGeometry(0.72, 0.035, 16, 80);
-    const innerRimMesh = new THREE.Mesh(innerRimGeo, goldMaterial);
-    innerRimMesh.scale.set(0.96, 0.96, 1.6);
-    bandGroup.add(innerRimMesh);
-
-    bandGroup.position.set(-0.38, 0, -0.15);
-    bandGroup.rotation.set(0.35, 0.45, -0.2);
-    masterGroup.add(bandGroup);
-
-    // 2. Bride's Ring (Isha) - Royal Solitaire Engagement Ring with Brilliant Cut Diamond
-    const solitaireGroup = new THREE.Group();
-    const solitaireBandGeo = new THREE.TorusGeometry(0.68, 0.09, 32, 100);
-    const solitaireBandMesh = new THREE.Mesh(solitaireBandGeo, goldMaterial);
-    solitaireGroup.add(solitaireBandMesh);
-
-    // Diamond Crown & Prongs Setting at Top
-    const settingGroup = new THREE.Group();
-    settingGroup.position.set(0, 0.69, 0);
-
-    // 4 Gold Prongs
-    const prongGeo = new THREE.CylinderGeometry(0.025, 0.03, 0.22, 12);
-    for (let i = 0; i < 4; i++) {
-      const angle = (i * Math.PI) / 2 + Math.PI / 4;
-      const prong = new THREE.Mesh(prongGeo, goldMaterial);
-      prong.position.set(Math.cos(angle) * 0.13, 0.08, Math.sin(angle) * 0.13);
-      prong.rotation.z = -Math.cos(angle) * 0.25;
-      prong.rotation.x = Math.sin(angle) * 0.25;
-      settingGroup.add(prong);
-    }
-
-    // Base collar ring of setting
-    const collarGeo = new THREE.TorusGeometry(0.12, 0.025, 12, 32);
-    const collar = new THREE.Mesh(collarGeo, goldMaterial);
-    collar.rotation.x = Math.PI / 2;
-    collar.position.y = 0.02;
-    settingGroup.add(collar);
-
-    // Brilliant Cut Solitaire Diamond (Faceted Cone + Hexagonal Crown)
-    const diamondGroup = new THREE.Group();
-    const diamondCrownGeo = new THREE.CylinderGeometry(0.19, 0.23, 0.1, 16);
-    const diamondCrown = new THREE.Mesh(diamondCrownGeo, diamondMaterial);
-    diamondCrown.position.y = 0.12;
-    diamondGroup.add(diamondCrown);
-
-    const diamondPavilionGeo = new THREE.ConeGeometry(0.23, 0.22, 16);
-    const diamondPavilion = new THREE.Mesh(diamondPavilionGeo, diamondMaterial);
-    diamondPavilion.rotation.x = Math.PI;
-    diamondPavilion.position.y = 0.01;
-    diamondGroup.add(diamondPavilion);
-
-    // Brilliant Table facet top
-    const diamondTableGeo = new THREE.CylinderGeometry(0.12, 0.19, 0.04, 16);
-    const diamondTable = new THREE.Mesh(diamondTableGeo, diamondMaterial);
-    diamondTable.position.y = 0.17;
-    diamondGroup.add(diamondTable);
-
-    settingGroup.add(diamondGroup);
-    solitaireGroup.add(settingGroup);
-
-    solitaireGroup.position.set(0.38, 0.05, 0.12);
-    solitaireGroup.rotation.set(-0.25, -0.4, 0.28);
-    masterGroup.add(solitaireGroup);
-
-    // 3. Stardust Particle Swarm (Golden Floating Sparkles)
-    const particleCount = 45;
-    const particleGeo = new THREE.BufferGeometry();
-    const particlePositions = new Float32Array(particleCount * 3);
-    const particleSpeeds = new Float32Array(particleCount);
-
-    for (let i = 0; i < particleCount; i++) {
-      const radius = 1.2 + Math.random() * 1.4;
-      const theta = Math.random() * Math.PI * 2;
-      const phi = (Math.random() - 0.5) * Math.PI;
-
-      particlePositions[i * 3] = radius * Math.cos(theta) * Math.cos(phi);
-      particlePositions[i * 3 + 1] = radius * Math.sin(phi);
-      particlePositions[i * 3 + 2] = radius * Math.sin(theta) * Math.cos(phi);
-      particleSpeeds[i] = 0.2 + Math.random() * 0.5;
-    }
-
-    particleGeo.setAttribute('position', new THREE.BufferAttribute(particlePositions, 3));
-
-    // Particle sprite
-    const canvas = document.createElement('canvas');
-    canvas.width = 32;
-    canvas.height = 32;
-    const ctx = canvas.getContext('2d');
-    if (ctx) {
-      const grad = ctx.createRadialGradient(16, 16, 0, 16, 16, 16);
-      grad.addColorStop(0, 'rgba(255, 245, 200, 1.0)');
-      grad.addColorStop(0.3, 'rgba(216, 189, 138, 0.8)');
-      grad.addColorStop(1, 'rgba(216, 189, 138, 0.0)');
-      ctx.fillStyle = grad;
-      ctx.fillRect(0, 0, 32, 32);
-    }
-    const particleTex = new THREE.CanvasTexture(canvas);
-
-    const particleMat = new THREE.PointsMaterial({
-      size: 0.12,
-      map: particleTex,
-      transparent: true,
-      blending: THREE.AdditiveBlending,
-      depthWrite: false,
-    });
-
-    const particles = new THREE.Points(particleGeo, particleMat);
-    scene.add(particles);
-
-    setIsReady(true);
-
-    // Interactive Touch & Drag Orbit Controls
-    let isDragging = false;
-    let prevPointer = { x: 0, y: 0 };
-    let targetRotationX = 0;
-    let targetRotationY = 0;
-
-    const onPointerDown = (e: MouseEvent | TouchEvent) => {
-      isDragging = true;
-      const clientX = 'touches' in e ? e.touches[0].clientX : e.clientX;
-      const clientY = 'touches' in e ? e.touches[0].clientY : e.clientY;
-      prevPointer = { x: clientX, y: clientY };
-    };
-
-    const onPointerMove = (e: MouseEvent | TouchEvent) => {
-      if (!isDragging) return;
-      const clientX = 'touches' in e ? e.touches[0].clientX : e.clientX;
-      const clientY = 'touches' in e ? e.touches[0].clientY : e.clientY;
-
-      const deltaX = clientX - prevPointer.x;
-      const deltaY = clientY - prevPointer.y;
-
-      targetRotationY += deltaX * 0.009;
-      targetRotationX += deltaY * 0.009;
-
-      prevPointer = { x: clientX, y: clientY };
-    };
-
-    const onPointerUp = () => {
-      isDragging = false;
-    };
-
-    const dom = renderer.domElement;
-    dom.addEventListener('mousedown', onPointerDown);
-    dom.addEventListener('mousemove', onPointerMove);
-    window.addEventListener('mouseup', onPointerUp);
-
-    dom.addEventListener('touchstart', onPointerDown, { passive: true });
-    dom.addEventListener('touchmove', onPointerMove, { passive: true });
-    window.addEventListener('touchend', onPointerUp);
-
-    const handleResize = () => {
-      if (!container || !renderer) return;
-      const w = container.clientWidth || 340;
-      const h = container.clientHeight || 280;
-      camera.aspect = w / h;
-      camera.updateProjectionMatrix();
-      renderer.setSize(w, h);
-    };
-
-    window.addEventListener('resize', handleResize);
-
-    // Animation Loop with Smooth Levitation & Sparkle Orbit
-    let animId: number;
-    let clock = new THREE.Clock();
-
-    const animate = () => {
-      animId = requestAnimationFrame(animate);
-      const elapsed = clock.getElapsedTime();
-
-      // Gentle vertical floating levitation
-      masterGroup.position.y = Math.sin(elapsed * 1.5) * 0.06;
-
-      if (!isDragging) {
-        masterGroup.rotation.y += 0.005; // Slow ambient rotation
-      } else {
-        masterGroup.rotation.y += (targetRotationY - masterGroup.rotation.y) * 0.12;
-        masterGroup.rotation.x += (targetRotationX - masterGroup.rotation.x) * 0.12;
-      }
-
-      // Rotate stardust particles in opposite direction
-      particles.rotation.y = -elapsed * 0.05;
-      particles.rotation.x = Math.sin(elapsed * 0.4) * 0.08;
-
-      // Orbit diamond light for specular facets
-      diamondLight.position.x = Math.sin(elapsed * 2) * 1.5;
-      diamondLight.position.z = Math.cos(elapsed * 2) * 1.5;
-
-      if (renderer) {
-        renderer.render(scene, camera);
-      }
-    };
-    animate();
-
-    return () => {
-      cancelAnimationFrame(animId);
-      window.removeEventListener('resize', handleResize);
-      window.removeEventListener('mouseup', onPointerUp);
-      window.removeEventListener('touchend', onPointerUp);
-      if (renderer && renderer.domElement && container.contains(renderer.domElement)) {
-        container.removeChild(renderer.domElement);
-        renderer.dispose();
-      }
-      cubeRenderTarget.dispose();
-      goldMaterial.dispose();
-      diamondMaterial.dispose();
-      particleMat.dispose();
-      particleTex.dispose();
-    };
-  }, []);
+  const [isHovered, setIsHovered] = useState(false);
 
   return (
     <div
+      className="scene-block reveal"
       style={{
         position: 'relative',
         width: '100%',
-        height: '290px',
-        margin: '6px auto 12px',
+        margin: '8px auto 16px',
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
         justifyContent: 'center',
       }}
-      aria-label="Interactive 3D Royal Gold and Solitaire Diamond Rings"
+      aria-label="Hot-Stamped Gold Foil Wedding Bands and Solitaire Diamond Emblem"
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
     >
-      {/* Radiant Golden Glow Aura */}
+      {/* Subtle Warm Ambient Glow */}
       <div
         style={{
           position: 'absolute',
           top: '50%',
           left: '50%',
           transform: 'translate(-50%, -50%)',
-          width: '230px',
-          height: '230px',
+          width: 'clamp(200px, 45vw, 260px)',
+          height: 'clamp(200px, 45vw, 260px)',
           borderRadius: '50%',
-          background: 'radial-gradient(circle, rgba(216, 189, 138, 0.28) 0%, rgba(185, 154, 98, 0.1) 45%, transparent 75%)',
+          background: 'radial-gradient(circle, rgba(212, 182, 126, 0.22) 0%, rgba(179, 145, 85, 0.08) 50%, transparent 72%)',
           pointerEvents: 'none',
-          animation: 'pulseGlow 4s infinite ease-in-out',
+          animation: 'pulseGlow 5s infinite ease-in-out',
         }}
       />
 
-      {/* 3D WebGL Canvas */}
+      {/* Handcrafted Hot-Stamped Gold Foil Interlocking Rings & Solitaire Diamond Artwork */}
       <div
-        ref={containerRef}
         style={{
-          width: '100%',
-          height: '100%',
-          cursor: 'grab',
-          touchAction: 'none',
-          opacity: isReady ? 1 : 0,
-          transition: 'opacity 0.6s ease',
+          position: 'relative',
+          width: 'clamp(220px, 48vw, 290px)',
+          height: 'clamp(170px, 36vw, 210px)',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          filter: 'drop-shadow(0 10px 22px rgba(138, 108, 52, 0.22))',
+          transition: 'transform 0.4s cubic-bezier(0.22, 1, 0.36, 1)',
+          transform: isHovered ? 'scale(1.03) translateY(-2px)' : 'scale(1)',
         }}
-      />
+      >
+        <svg
+          viewBox="0 0 320 230"
+          width="100%"
+          height="100%"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+          style={{ overflow: 'visible' }}
+        >
+          <defs>
+            {/* Rich 24K Hot-Stamping Metallic Gold Gradients */}
+            <linearGradient id="goldSheenPrimary" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stopColor="#F9E8B2" />
+              <stop offset="25%" stopColor="#D4AF37" />
+              <stop offset="50%" stopColor="#FFF3C4" />
+              <stop offset="75%" stopColor="#9E7628" />
+              <stop offset="100%" stopColor="#DFBC5E" />
+            </linearGradient>
+
+            <linearGradient id="goldSheenSecondary" x1="100%" y1="0%" x2="0%" y2="100%">
+              <stop offset="0%" stopColor="#FFF4D0" />
+              <stop offset="30%" stopColor="#C99F3B" />
+              <stop offset="60%" stopColor="#ECCB77" />
+              <stop offset="85%" stopColor="#8A641B" />
+              <stop offset="100%" stopColor="#F2D789" />
+            </linearGradient>
+
+            {/* Solitaire Diamond Prismatic Facet Gradients */}
+            <linearGradient id="diamondTable" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stopColor="#FFFFFF" />
+              <stop offset="50%" stopColor="#EAF6FF" />
+              <stop offset="100%" stopColor="#D2E8F8" />
+            </linearGradient>
+
+            <linearGradient id="diamondFacetLeft" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stopColor="#E3F0FC" />
+              <stop offset="50%" stopColor="#C2DFF7" />
+              <stop offset="100%" stopColor="#FFFFFF" />
+            </linearGradient>
+
+            <linearGradient id="diamondFacetRight" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stopColor="#FFFFFF" />
+              <stop offset="70%" stopColor="#B3D7F5" />
+              <stop offset="100%" stopColor="#9AC5EB" />
+            </linearGradient>
+
+            <linearGradient id="diamondPavilion" x1="0%" y1="0%" x2="0%" y2="100%">
+              <stop offset="0%" stopColor="#DDF0FF" />
+              <stop offset="60%" stopColor="#B0D5F7" />
+              <stop offset="100%" stopColor="#7DAFE0" />
+            </linearGradient>
+
+            {/* Paper Deboss Filter Simulation */}
+            <filter id="letterpressIndent" x="-20%" y="-20%" width="140%" height="140%">
+              <feDropShadow dx="0" dy="1.5" stdDeviation="1.5" floodColor="#3A280D" floodOpacity="0.45" />
+              <feDropShadow dx="0" dy="-1" stdDeviation="0.8" floodColor="#FFF9E6" floodOpacity="0.85" />
+            </filter>
+
+            <filter id="diamondSparkleGlow" x="-30%" y="-30%" width="160%" height="160%">
+              <feGaussianBlur stdDeviation="2.5" result="blur" />
+              <feComposite in="SourceGraphic" in2="blur" operator="over" />
+            </filter>
+          </defs>
+
+          {/* Background Botanical Laurel Garland (Delicate Royal Wreath) */}
+          <g opacity="0.65" stroke="url(#goldSheenSecondary)" strokeWidth="1.2" strokeLinecap="round">
+            {/* Left Laurel Sprig */}
+            <path d="M 92 145 C 72 135, 58 110, 62 82 C 65 62, 78 44, 98 34" fill="none" />
+            <path d="M 66 116 C 54 112, 50 102, 58 98 C 65 94, 68 106, 66 116 Z" fill="url(#goldSheenPrimary)" />
+            <path d="M 61 90 C 49 84, 46 74, 55 71 C 62 68, 64 80, 61 90 Z" fill="url(#goldSheenPrimary)" />
+            <path d="M 68 64 C 58 56, 58 46, 67 44 C 74 43, 74 54, 68 64 Z" fill="url(#goldSheenPrimary)" />
+            <path d="M 84 43 C 76 34, 79 24, 88 24 C 95 24, 92 34, 84 43 Z" fill="url(#goldSheenPrimary)" />
+
+            {/* Right Laurel Sprig */}
+            <path d="M 228 145 C 248 135, 262 110, 258 82 C 255 62, 242 44, 222 34" fill="none" />
+            <path d="M 254 116 C 266 112, 270 102, 262 98 C 255 94, 252 106, 254 116 Z" fill="url(#goldSheenSecondary)" />
+            <path d="M 259 90 C 271 84, 274 74, 265 71 C 258 68, 256 80, 259 90 Z" fill="url(#goldSheenSecondary)" />
+            <path d="M 252 64 C 262 56, 262 46, 253 44 C 246 43, 246 54, 252 64 Z" fill="url(#goldSheenSecondary)" />
+            <path d="M 236 43 C 244 34, 241 24, 232 24 C 225 24, 228 34, 236 43 Z" fill="url(#goldSheenSecondary)" />
+          </g>
+
+          {/* Interlocking Wedding Ring 1: Groom's Polished Gold Band (Left, Angled) */}
+          <g filter="url(#letterpressIndent)">
+            {/* Shadow under intersection */}
+            <ellipse cx="128" cy="118" rx="46" ry="62" stroke="#523910" strokeWidth="15" opacity="0.3" transform="rotate(-18 128 118)" />
+            {/* Outer Band */}
+            <ellipse
+              cx="128"
+              cy="118"
+              rx="46"
+              ry="62"
+              fill="none"
+              stroke="url(#goldSheenPrimary)"
+              strokeWidth="12"
+              transform="rotate(-18 128 118)"
+            />
+            {/* Inner Chamfer Bevel Highlight */}
+            <ellipse
+              cx="128"
+              cy="118"
+              rx="40.5"
+              ry="56.5"
+              fill="none"
+              stroke="#FFF9E6"
+              strokeWidth="1.2"
+              opacity="0.85"
+              transform="rotate(-18 128 118)"
+            />
+            {/* Outer Chamfer Rim */}
+            <ellipse
+              cx="128"
+              cy="118"
+              rx="51.5"
+              ry="67.5"
+              fill="none"
+              stroke="#7A5618"
+              strokeWidth="1"
+              opacity="0.75"
+              transform="rotate(-18 128 118)"
+            />
+          </g>
+
+          {/* Interlocking Wedding Ring 2: Bride's Royal Solitaire Diamond Ring (Right, Overlapping) */}
+          <g filter="url(#letterpressIndent)">
+            {/* Outer Band */}
+            <ellipse
+              cx="192"
+              cy="120"
+              rx="44"
+              ry="60"
+              fill="none"
+              stroke="url(#goldSheenSecondary)"
+              strokeWidth="10.5"
+              transform="rotate(18 192 120)"
+            />
+            {/* Inner Chamfer Bevel Highlight */}
+            <ellipse
+              cx="192"
+              cy="120"
+              rx="39"
+              ry="55"
+              fill="none"
+              stroke="#FFF9E6"
+              strokeWidth="1.2"
+              opacity="0.8"
+              transform="rotate(18 192 120)"
+            />
+            {/* Outer Chamfer Rim */}
+            <ellipse
+              cx="192"
+              cy="120"
+              rx="49"
+              ry="65"
+              fill="none"
+              stroke="#7A5618"
+              strokeWidth="1"
+              opacity="0.7"
+              transform="rotate(18 192 120)"
+            />
+
+            {/* Overlap Interlock Mask: Re-draw the front portion of Ring 1 over Ring 2 for authentic 3D interlock */}
+            <path
+              d="M 148 64 C 158 76, 164 92, 166 110"
+              fill="none"
+              stroke="url(#goldSheenPrimary)"
+              strokeWidth="12"
+              strokeLinecap="round"
+            />
+            <path
+              d="M 148 64 C 158 76, 164 92, 166 110"
+              fill="none"
+              stroke="#FFF9E6"
+              strokeWidth="1.2"
+              opacity="0.85"
+              strokeLinecap="round"
+            />
+
+            {/* 4-Prong Royal Solitaire Setting */}
+            <g transform="translate(182, 54)">
+              {/* Crown Base Gallery */}
+              <ellipse cx="14" cy="18" rx="14" ry="4" fill="url(#goldSheenSecondary)" stroke="#7A5618" strokeWidth="0.8" />
+              {/* Prongs */}
+              <path d="M 2 18 L 4 4" stroke="url(#goldSheenSecondary)" strokeWidth="2.5" strokeLinecap="round" />
+              <path d="M 26 18 L 24 4" stroke="url(#goldSheenSecondary)" strokeWidth="2.5" strokeLinecap="round" />
+              <path d="M 10 20 L 10 5" stroke="url(#goldSheenPrimary)" strokeWidth="2" strokeLinecap="round" />
+              <path d="M 18 20 L 18 5" stroke="url(#goldSheenPrimary)" strokeWidth="2" strokeLinecap="round" />
+
+              {/* Brilliant Multi-Faceted Solitaire Diamond */}
+              <g filter="url(#diamondSparkleGlow)">
+                {/* Lower Pavilion V-cut */}
+                <polygon points="4,5 24,5 14,19" fill="url(#diamondPavilion)" stroke="#B3D7F5" strokeWidth="0.6" />
+                <polygon points="8,5 20,5 14,19" fill="#9AC5EB" opacity="0.6" />
+                {/* Crown Upper Facets */}
+                <polygon points="4,5 8,-4 20,-4 24,5" fill="url(#diamondFacetLeft)" stroke="#E1EFFF" strokeWidth="0.6" />
+                <polygon points="8,-4 14,-8 20,-4" fill="url(#diamondTable)" stroke="#FFFFFF" strokeWidth="0.6" />
+                <polygon points="4,5 8,-4 14,5" fill="url(#diamondFacetLeft)" stroke="#C6E2F7" strokeWidth="0.5" />
+                <polygon points="24,5 20,-4 14,5" fill="url(#diamondFacetRight)" stroke="#B0D5F7" strokeWidth="0.5" />
+                {/* Top Flat Table */}
+                <polygon points="8,-4 14,-7 20,-4 14, -2" fill="#FFFFFF" />
+
+                {/* Spectacular Light Burst Star */}
+                <g transform="translate(18, -3)">
+                  <line x1="-8" y1="0" x2="8" y2="0" stroke="#FFFFFF" strokeWidth="1.2" strokeLinecap="round" />
+                  <line x1="0" y1="-8" x2="0" y2="8" stroke="#FFFFFF" strokeWidth="1.2" strokeLinecap="round" />
+                  <line x1="-4" y1="-4" x2="4" y2="4" stroke="#FFF7D6" strokeWidth="0.8" strokeLinecap="round" />
+                  <line x1="4" y1="-4" x2="-4" y2="4" stroke="#FFF7D6" strokeWidth="0.8" strokeLinecap="round" />
+                  <circle cx="0" cy="0" r="1.8" fill="#FFFFFF" />
+                </g>
+              </g>
+            </g>
+          </g>
+
+          {/* Sacred Bindus & Accent Dots */}
+          <circle cx="160" cy="202" r="2.5" fill="url(#goldSheenPrimary)" />
+          <circle cx="148" cy="202" r="1.5" fill="url(#goldSheenSecondary)" opacity="0.8" />
+          <circle cx="172" cy="202" r="1.5" fill="url(#goldSheenSecondary)" opacity="0.8" />
+        </svg>
+      </div>
     </div>
   );
 };

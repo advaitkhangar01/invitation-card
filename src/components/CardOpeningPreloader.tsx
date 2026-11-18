@@ -1,27 +1,29 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { WEDDING_DATA } from '../data/weddingData';
 
-interface CardOpeningPreloaderProps {
-  onOpen?: (withSound: boolean) => void;
-}
-
-export const CardOpeningPreloader: React.FC<CardOpeningPreloaderProps> = ({ onOpen }) => {
+export const CardOpeningPreloader: React.FC = () => {
   const [isOpening, setIsOpening] = useState(false);
   const [isClosed, setIsClosed] = useState(true);
 
-  const handleOpen = (withSound: boolean) => {
-    if (isOpening) return;
-    setIsOpening(true);
+  useEffect(() => {
+    // 1. Initial stable render of closed luxury invitation cover
+    // 2. Automatically initiate the smooth physical card opening after 850ms
+    const timerOpen = setTimeout(() => {
+      setIsOpening(true);
+      window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+    }, 850);
 
-    if (withSound) {
-      window.dispatchEvent(new Event('start-wedding-audio'));
-    }
-    if (onOpen) onOpen(withSound);
-
-    setTimeout(() => {
+    // 3. Complete transition and unmount preloader overlay
+    const timerComplete = setTimeout(() => {
       setIsClosed(false);
-    }, 1300);
-  };
+      window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+    }, 2100);
+
+    return () => {
+      clearTimeout(timerOpen);
+      clearTimeout(timerComplete);
+    };
+  }, []);
 
   if (!isClosed) return null;
 
@@ -39,26 +41,24 @@ export const CardOpeningPreloader: React.FC<CardOpeningPreloaderProps> = ({ onOp
         overflow: 'hidden',
         padding: '0',
         opacity: isOpening ? 0 : 1,
-        transition: 'opacity 0.6s ease 0.75s',
+        transition: 'opacity 0.7s cubic-bezier(0.25, 1, 0.5, 1) 0.55s',
         pointerEvents: isOpening ? 'none' : 'auto',
       }}
+      aria-hidden={!isClosed}
     >
-      {/* Background Ambient Radial Glow */}
+      {/* Ambient Warm Golden Aura */}
       <div
         style={{
           position: 'absolute',
           width: '600px',
           height: '600px',
           borderRadius: '50%',
-          background: 'radial-gradient(circle, rgba(179, 145, 85, 0.15) 0%, transparent 70%)',
+          background: 'radial-gradient(circle, rgba(179, 145, 85, 0.16) 0%, transparent 70%)',
           pointerEvents: 'none',
         }}
       />
 
-      {/* Royal Card Envelope Container
-          Mobile: Full Edge-to-Edge 100vw, 100svh/100dvh, 0 margins
-          Desktop: Max-width 480px, 680px height, centered with luxury shadow
-      */}
+      {/* Royal Card Envelope Container (Mobile-first edge-to-edge, Desktop framed) */}
       <div
         className="preloader-envelope"
         style={{
@@ -111,13 +111,12 @@ export const CardOpeningPreloader: React.FC<CardOpeningPreloaderProps> = ({ onOp
             height: '100%',
             background: 'var(--color-paper-ivory)',
             backgroundImage:
-              'radial-gradient(circle at 100% 50%, rgba(179, 145, 85, 0.12) 0%, transparent 65%), url("/assets/textures/white_wall.jpg")',
-            backgroundSize: 'cover',
+              'radial-gradient(circle at 100% 50%, rgba(179, 145, 85, 0.12) 0%, transparent 65%), linear-gradient(135deg, rgba(255,255,255,0.7), rgba(243,236,224,0.7))',
             border: '1px solid rgba(179, 145, 85, 0.45)',
             borderRight: '1px solid rgba(179, 145, 85, 0.75)',
             transformOrigin: 'left center',
             transform: isOpening ? 'rotateY(-125deg)' : 'rotateY(0deg)',
-            transition: 'transform 1.1s cubic-bezier(0.25, 1, 0.5, 1)',
+            transition: 'transform 1.2s cubic-bezier(0.25, 1, 0.5, 1)',
             boxShadow: isOpening ? 'none' : '6px 0 24px rgba(0, 0, 0, 0.25)',
             zIndex: 10,
             overflow: 'hidden',
@@ -136,17 +135,15 @@ export const CardOpeningPreloader: React.FC<CardOpeningPreloaderProps> = ({ onOp
               pointerEvents: 'none',
             }}
           />
-          {/* Left Corner Alpona Flourishes */}
-          <img
-            src="/assets/frames/deco-alpona-corner.webp"
-            alt="flourish"
-            style={{ position: 'absolute', top: '18px', left: '18px', width: '42px', height: '42px', opacity: 0.85 }}
-          />
-          <img
-            src="/assets/frames/deco-alpona-corner.webp"
-            alt="flourish"
-            style={{ position: 'absolute', bottom: '18px', left: '18px', width: '42px', height: '42px', transform: 'scaleY(-1)', opacity: 0.85 }}
-          />
+          {/* Corner gold vector marks */}
+          <svg style={{ position: 'absolute', top: '18px', left: '18px', width: '38px', height: '38px' }} viewBox="0 0 50 50">
+            <path d="M 4 28 L 4 6 C 4 4.9, 4.9 4, 6 4 L 28 4" stroke="#D4AF37" strokeWidth="1.5" fill="none" />
+            <circle cx="8" cy="8" r="2" fill="#D4AF37" />
+          </svg>
+          <svg style={{ position: 'absolute', bottom: '18px', left: '18px', width: '38px', height: '38px' }} viewBox="0 0 50 50">
+            <path d="M 4 22 L 4 44 C 4 45.1, 4.9 46, 6 46 L 28 46" stroke="#D4AF37" strokeWidth="1.5" fill="none" />
+            <circle cx="8" cy="42" r="2" fill="#D4AF37" />
+          </svg>
         </div>
 
         {/* Right Gatefold Flap (Warm Ivory Handmade Paper with Gold Inset) */}
@@ -160,13 +157,12 @@ export const CardOpeningPreloader: React.FC<CardOpeningPreloaderProps> = ({ onOp
             height: '100%',
             background: 'var(--color-paper-ivory)',
             backgroundImage:
-              'radial-gradient(circle at 0% 50%, rgba(179, 145, 85, 0.12) 0%, transparent 65%), url("/assets/textures/white_wall.jpg")',
-            backgroundSize: 'cover',
+              'radial-gradient(circle at 0% 50%, rgba(179, 145, 85, 0.12) 0%, transparent 65%), linear-gradient(135deg, rgba(255,255,255,0.7), rgba(243,236,224,0.7))',
             border: '1px solid rgba(179, 145, 85, 0.45)',
             borderLeft: 'none',
             transformOrigin: 'right center',
             transform: isOpening ? 'rotateY(125deg)' : 'rotateY(0deg)',
-            transition: 'transform 1.1s cubic-bezier(0.25, 1, 0.5, 1)',
+            transition: 'transform 1.2s cubic-bezier(0.25, 1, 0.5, 1)',
             boxShadow: isOpening ? 'none' : '-6px 0 24px rgba(0, 0, 0, 0.25)',
             zIndex: 10,
             overflow: 'hidden',
@@ -185,20 +181,18 @@ export const CardOpeningPreloader: React.FC<CardOpeningPreloaderProps> = ({ onOp
               pointerEvents: 'none',
             }}
           />
-          {/* Right Corner Alpona Flourishes */}
-          <img
-            src="/assets/frames/deco-alpona-corner.webp"
-            alt="flourish"
-            style={{ position: 'absolute', top: '18px', right: '18px', width: '42px', height: '42px', transform: 'scaleX(-1)', opacity: 0.85 }}
-          />
-          <img
-            src="/assets/frames/deco-alpona-corner.webp"
-            alt="flourish"
-            style={{ position: 'absolute', bottom: '18px', right: '18px', width: '42px', height: '42px', transform: 'scale(-1)', opacity: 0.85 }}
-          />
+          {/* Corner gold vector marks */}
+          <svg style={{ position: 'absolute', top: '18px', right: '18px', width: '38px', height: '38px' }} viewBox="0 0 50 50">
+            <path d="M 46 28 L 46 6 C 46 4.9, 45.1 4, 44 4 L 22 4" stroke="#D4AF37" strokeWidth="1.5" fill="none" />
+            <circle cx="42" cy="8" r="2" fill="#D4AF37" />
+          </svg>
+          <svg style={{ position: 'absolute', bottom: '18px', right: '18px', width: '38px', height: '38px' }} viewBox="0 0 50 50">
+            <path d="M 46 22 L 46 44 C 46 45.1, 45.1 46, 44 46 L 22 46" stroke="#D4AF37" strokeWidth="1.5" fill="none" />
+            <circle cx="42" cy="42" r="2" fill="#D4AF37" />
+          </svg>
         </div>
 
-        {/* Front Presentation (Typography rendered directly as authentic letterpress text on warm paper) */}
+        {/* Front Presentation (Automatic, Elegant Letterpress Stationery Display) */}
         <div
           style={{
             position: 'absolute',
@@ -219,7 +213,7 @@ export const CardOpeningPreloader: React.FC<CardOpeningPreloaderProps> = ({ onOp
           <p
             style={{
               fontFamily: 'var(--font-heading)',
-              fontSize: 'clamp(1.15rem, 3.2vw, 1.45rem)',
+              fontSize: 'clamp(1.2rem, 3.4vw, 1.55rem)',
               color: 'var(--color-sacred-kumkum)',
               fontWeight: 700,
               letterSpacing: '0.06em',
@@ -229,33 +223,42 @@ export const CardOpeningPreloader: React.FC<CardOpeningPreloaderProps> = ({ onOp
             {WEDDING_DATA.shloka.sanskrit}
           </p>
 
-          {/* Royal Crest */}
-          <img
-            src="/assets/frames/crest-royal.webp"
-            alt="Royal Crest"
-            style={{
-              width: 'clamp(58px, 12vw, 76px)',
-              height: 'auto',
-              marginBottom: '10px',
-              filter: 'drop-shadow(0 3px 8px rgba(179, 145, 85, 0.35))',
-            }}
-          />
+          {/* Royal Crest Vector Emblem */}
+          <svg
+            viewBox="0 0 100 80"
+            width="64"
+            height="52"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            style={{ marginBottom: '10px', filter: 'drop-shadow(0 3px 6px rgba(179,145,85,0.4))' }}
+          >
+            <path d="M 50 6 L 56 22 L 72 24 L 60 36 L 64 52 L 50 44 L 36 52 L 40 36 L 28 24 L 44 22 Z" fill="url(#crestGold)" />
+            <path d="M 20 45 C 32 35, 42 55, 50 66 C 58 55, 68 35, 80 45" stroke="#B39155" strokeWidth="1.8" fill="none" />
+            <circle cx="50" cy="30" r="4" fill="#881C22" />
+            <defs>
+              <linearGradient id="crestGold" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stopColor="#FFF2B8" />
+                <stop offset="50%" stopColor="#D4AF37" />
+                <stop offset="100%" stopColor="#966F23" />
+              </linearGradient>
+            </defs>
+          </svg>
 
           <p
             style={{
               fontFamily: 'var(--font-body)',
-              fontSize: 'clamp(0.75rem, 1.8vw, 0.875rem)',
+              fontSize: 'clamp(0.72rem, 1.8vw, 0.85rem)',
               letterSpacing: '0.22em',
               textTransform: 'uppercase',
               color: 'var(--color-gold-deep)',
               fontWeight: 700,
-              marginBottom: '4px',
+              marginBottom: '6px',
             }}
           >
             Royal Wedding Invitation
           </p>
 
-          {/* Monumental Names */}
+          {/* Couple Names on Cover */}
           <h2
             style={{
               fontFamily: 'var(--font-display)',
@@ -264,15 +267,16 @@ export const CardOpeningPreloader: React.FC<CardOpeningPreloaderProps> = ({ onOp
               color: 'var(--color-forest-deep)',
               fontWeight: 700,
               letterSpacing: '0.02em',
+              margin: 0,
             }}
           >
-            {WEDDING_DATA.bride.name.split(' ')[0]}
+            Isha
           </h2>
 
           <span
             style={{
               fontFamily: 'var(--font-accent)',
-              fontSize: 'clamp(2.5rem, 7vw, 3.8rem)',
+              fontSize: 'clamp(2.4rem, 7vw, 3.6rem)',
               color: 'var(--color-gold-antique)',
               lineHeight: 0.85,
               margin: '2px 0',
@@ -292,111 +296,87 @@ export const CardOpeningPreloader: React.FC<CardOpeningPreloaderProps> = ({ onOp
               marginBottom: '10px',
             }}
           >
-            {WEDDING_DATA.groom.name.split(' ')[0]}
+            Ashish
           </h2>
 
           <p
             style={{
               fontFamily: 'var(--font-heading)',
-              fontSize: 'clamp(1.1rem, 2.8vw, 1.35rem)',
+              fontSize: 'clamp(1.05rem, 2.8vw, 1.3rem)',
               color: 'var(--color-ink-charcoal)',
               fontWeight: 600,
               letterSpacing: '0.04em',
-              marginBottom: '18px',
+              marginBottom: '20px',
             }}
           >
             {WEDDING_DATA.date.fullFormatted}
           </p>
 
-          {/* Royal Gold Wax Seal */}
+          {/* Royal Hot-Stamped Gold Foil Wax Seal */}
           <div
             style={{
               position: 'relative',
-              width: '80px',
-              height: '80px',
+              width: '82px',
+              height: '82px',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
-              margin: '0 auto 20px',
             }}
           >
             <div
               style={{
                 position: 'absolute',
-                width: '88px',
-                height: '88px',
+                width: '90px',
+                height: '90px',
                 borderRadius: '50%',
                 background: 'radial-gradient(circle, rgba(179, 145, 85, 0.4) 0%, transparent 70%)',
                 animation: 'pulseGlow 2.5s infinite ease-in-out',
               }}
             />
-            <img
-              src="/assets/ornaments/seal.png"
-              alt="Royal Wax Seal"
-              style={{
-                width: '72px',
-                height: 'auto',
-                filter: 'drop-shadow(0 6px 16px rgba(0, 0, 0, 0.25))',
-              }}
-            />
-          </div>
-
-          {/* User Choice CTAs: Enter with Sound or Enter Silently */}
-          <div
-            style={{
-              display: 'flex',
-              flexDirection: 'column',
-              gap: '10px',
-              width: '100%',
-              maxWidth: '300px',
-              pointerEvents: 'auto',
-            }}
-          >
-            <button
-              onClick={() => handleOpen(true)}
-              style={{
-                display: 'inline-flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                gap: '10px',
-                background: 'var(--color-forest-rich)',
-                color: 'var(--color-paper-ivory)',
-                fontFamily: 'var(--font-body)',
-                fontSize: 'clamp(0.8125rem, 2.2vw, 0.9375rem)',
-                fontWeight: 700,
-                letterSpacing: '0.1em',
-                textTransform: 'uppercase',
-                padding: '14px 22px',
-                borderRadius: '30px',
-                border: '1px solid var(--color-gold-antique)',
-                boxShadow: '0 6px 20px rgba(22, 41, 32, 0.35)',
-                cursor: 'pointer',
-                transition: 'all 0.25s ease',
-              }}
+            {/* Handcrafted Royal Wax Seal Vector Artwork */}
+            <svg
+              viewBox="0 0 100 100"
+              width="78"
+              height="78"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+              style={{ filter: 'drop-shadow(0 6px 16px rgba(0,0,0,0.3))' }}
             >
-              <span>✉️</span>
-              <span>Open with Sacred Music 🎵</span>
-            </button>
-
-            <button
-              onClick={() => handleOpen(false)}
-              style={{
-                background: 'transparent',
-                color: 'var(--color-ink-muted)',
-                fontFamily: 'var(--font-body)',
-                fontSize: '0.8125rem',
-                fontWeight: 600,
-                letterSpacing: '0.05em',
-                padding: '8px 16px',
-                border: 'none',
-                cursor: 'pointer',
-                textDecoration: 'underline',
-                textUnderlineOffset: '3px',
-                transition: 'color 0.2s ease',
-              }}
-            >
-              Open Silently 🔇
-            </button>
+              <defs>
+                <linearGradient id="sealGold" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stopColor="#FFF2B8" />
+                  <stop offset="35%" stopColor="#D4AF37" />
+                  <stop offset="70%" stopColor="#966F23" />
+                  <stop offset="100%" stopColor="#E2BE66" />
+                </linearGradient>
+                <linearGradient id="sealInner" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stopColor="#B38728" />
+                  <stop offset="100%" stopColor="#7A5618" />
+                </linearGradient>
+              </defs>
+              {/* Organic Wax Edge Scallops */}
+              <circle cx="50" cy="50" r="44" fill="url(#sealGold)" />
+              <path
+                d="M 50 4 C 62 3, 74 12, 85 20 C 95 30, 97 44, 94 58 C 91 72, 80 84, 68 91 C 54 98, 38 95, 26 89 C 14 82, 4 69, 5 54 C 6 40, 14 26, 26 16 C 36 8, 42 4, 50 4 Z"
+                fill="url(#sealGold)"
+              />
+              <circle cx="50" cy="50" r="34" fill="url(#sealInner)" stroke="#FFF2B8" strokeWidth="1" />
+              <circle cx="50" cy="50" r="30" stroke="#FFF2B8" strokeWidth="0.8" strokeDasharray="2,2" fill="none" />
+              {/* Couple Monogram IA */}
+              <text
+                x="50"
+                y="58"
+                textAnchor="middle"
+                fill="#FFF4D0"
+                fontFamily="var(--font-display)"
+                fontSize="24"
+                fontWeight="700"
+                letterSpacing="1"
+                style={{ textShadow: '0 1px 2px rgba(0,0,0,0.5)' }}
+              >
+                I&amp;A
+              </text>
+            </svg>
           </div>
         </div>
       </div>

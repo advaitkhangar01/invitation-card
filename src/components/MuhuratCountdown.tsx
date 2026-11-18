@@ -76,7 +76,7 @@ export const MuhuratCountdown: React.FC = () => {
     >
       <div className="section-title-wrap reveal delay-1">
         <p className="section-eyebrow">Auspicious Muhurat</p>
-        <h2 className="section-main-title">The Sacred Vows</h2>
+        <h2 className="section-main-title">Wedding Date &amp; Time</h2>
       </div>
 
       {/* Date & Time Monumental Badge */}
