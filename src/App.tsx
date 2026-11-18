@@ -32,7 +32,9 @@ export const App: React.FC = () => {
     revealElements.forEach((el) => observer.observe(el));
 
     // Force top elements to be visible immediately on load
-    const topElements = document.querySelectorAll('#main-invitation > section:first-of-type .reveal, #main-invitation > .scene-block:first-of-type');
+    const topElements = document.querySelectorAll(
+      '#main-invitation > section:first-of-type .reveal, #main-invitation > .scene-block:first-of-type'
+    );
     topElements.forEach((el) => el.classList.add('is-visible'));
 
     return () => {
@@ -46,7 +48,10 @@ export const App: React.FC = () => {
       <CardOpeningPreloader />
 
       <main className="royal-invitation-card" id="main-invitation">
-        {/* 4 Sacred Alpona Gold Corner Flourishes (Crisp Vector SVG, 100% Reliable) */}
+        {/* Subtle diagonal gold foil light sweep effect on opening */}
+        <div className="foil-sheen-overlay" aria-hidden="true" />
+
+        {/* 4 Sacred Royal Architectural Gold Corner Flourishes */}
         <GoldCornerFlourish position="top-left" />
         <GoldCornerFlourish position="top-right" />
         <GoldCornerFlourish position="bottom-left" />

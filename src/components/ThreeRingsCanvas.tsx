@@ -9,261 +9,274 @@ export const ThreeRingsCanvas: React.FC = () => {
       style={{
         position: 'relative',
         width: '100%',
-        margin: '8px auto 16px',
+        maxWidth: '100%',
+        margin: '4px auto 14px',
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
         justifyContent: 'center',
+        boxSizing: 'border-box',
       }}
-      aria-label="Hot-Stamped Gold Foil Wedding Bands and Solitaire Diamond Emblem"
+      aria-label="Hot-Stamped Gold Foil Interlocking Wedding Bands and Solitaire Diamond"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
-      {/* Subtle Warm Ambient Glow */}
+      {/* Subtle Warm Golden Ambient Glow */}
       <div
         style={{
           position: 'absolute',
           top: '50%',
           left: '50%',
           transform: 'translate(-50%, -50%)',
-          width: 'clamp(200px, 45vw, 260px)',
-          height: 'clamp(200px, 45vw, 260px)',
+          width: 'clamp(190px, 45vw, 260px)',
+          height: 'clamp(190px, 45vw, 260px)',
           borderRadius: '50%',
-          background: 'radial-gradient(circle, rgba(212, 182, 126, 0.22) 0%, rgba(179, 145, 85, 0.08) 50%, transparent 72%)',
+          background: 'radial-gradient(circle, rgba(229, 195, 104, 0.16) 0%, rgba(197, 160, 89, 0.05) 50%, transparent 72%)',
           pointerEvents: 'none',
-          animation: 'pulseGlow 5s infinite ease-in-out',
         }}
       />
 
-      {/* Handcrafted Hot-Stamped Gold Foil Interlocking Rings & Solitaire Diamond Artwork */}
+      {/* Bespoke Hot-Stamped Gold Foil Wedding Bands Emblem in Realistic Perspective */}
       <div
         style={{
           position: 'relative',
-          width: 'clamp(220px, 48vw, 290px)',
-          height: 'clamp(170px, 36vw, 210px)',
+          width: '100%',
+          maxWidth: '300px',
+          aspectRatio: '340 / 210',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
-          filter: 'drop-shadow(0 10px 22px rgba(138, 108, 52, 0.22))',
-          transition: 'transform 0.4s cubic-bezier(0.22, 1, 0.36, 1)',
-          transform: isHovered ? 'scale(1.03) translateY(-2px)' : 'scale(1)',
+          filter: 'drop-shadow(0 6px 16px rgba(140, 111, 50, 0.22))',
+          transition: 'transform 0.45s cubic-bezier(0.22, 1, 0.36, 1)',
+          transform: isHovered ? 'scale(1.025) translateY(-2px)' : 'scale(1)',
+          boxSizing: 'border-box',
         }}
       >
         <svg
-          viewBox="0 0 320 230"
+          viewBox="0 0 340 210"
           width="100%"
           height="100%"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
-          style={{ overflow: 'visible' }}
+          style={{ display: 'block', maxWidth: '100%', height: 'auto' }}
         >
           <defs>
-            {/* Rich 24K Hot-Stamping Metallic Gold Gradients */}
-            <linearGradient id="goldSheenPrimary" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stopColor="#F9E8B2" />
-              <stop offset="25%" stopColor="#D4AF37" />
-              <stop offset="50%" stopColor="#FFF3C4" />
-              <stop offset="75%" stopColor="#9E7628" />
-              <stop offset="100%" stopColor="#DFBC5E" />
+            {/* 24K Hot-Stamped Antique Gold Metallic Foil */}
+            <linearGradient id="ringGold24K" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stopColor="#FFF9E6" />
+              <stop offset="20%" stopColor="#E5C368" />
+              <stop offset="45%" stopColor="#FFF5D6" />
+              <stop offset="70%" stopColor="#967733" />
+              <stop offset="90%" stopColor="#C5A059" />
+              <stop offset="100%" stopColor="#7A5D20" />
             </linearGradient>
 
-            <linearGradient id="goldSheenSecondary" x1="100%" y1="0%" x2="0%" y2="100%">
-              <stop offset="0%" stopColor="#FFF4D0" />
-              <stop offset="30%" stopColor="#C99F3B" />
-              <stop offset="60%" stopColor="#ECCB77" />
-              <stop offset="85%" stopColor="#8A641B" />
-              <stop offset="100%" stopColor="#F2D789" />
+            {/* Inner Ring Surface Shading */}
+            <linearGradient id="ringInnerShade" x1="0%" y1="0%" x2="0%" y2="100%">
+              <stop offset="0%" stopColor="#6E521D" />
+              <stop offset="50%" stopColor="#4A3611" />
+              <stop offset="100%" stopColor="#8C6A28" />
             </linearGradient>
 
-            {/* Solitaire Diamond Prismatic Facet Gradients */}
-            <linearGradient id="diamondTable" x1="0%" y1="0%" x2="100%" y2="100%">
+            {/* Solitaire Platinum / White Gold Crown */}
+            <linearGradient id="ringPlatinum" x1="0%" y1="0%" x2="100%" y2="100%">
               <stop offset="0%" stopColor="#FFFFFF" />
-              <stop offset="50%" stopColor="#EAF6FF" />
-              <stop offset="100%" stopColor="#D2E8F8" />
+              <stop offset="40%" stopColor="#E8EEF5" />
+              <stop offset="70%" stopColor="#B4C2D0" />
+              <stop offset="100%" stopColor="#DDE5EE" />
             </linearGradient>
 
-            <linearGradient id="diamondFacetLeft" x1="0%" y1="0%" x2="100%" y2="0%">
-              <stop offset="0%" stopColor="#E3F0FC" />
-              <stop offset="50%" stopColor="#C2DFF7" />
-              <stop offset="100%" stopColor="#FFFFFF" />
-            </linearGradient>
-
-            <linearGradient id="diamondFacetRight" x1="0%" y1="0%" x2="100%" y2="100%">
+            {/* Brilliant Diamond Facets (Crystal Pure White & Subtle Ice Reflections) */}
+            <linearGradient id="diaTableFacet" x1="0%" y1="0%" x2="100%" y2="100%">
               <stop offset="0%" stopColor="#FFFFFF" />
-              <stop offset="70%" stopColor="#B3D7F5" />
-              <stop offset="100%" stopColor="#9AC5EB" />
+              <stop offset="60%" stopColor="#FBFDFF" />
+              <stop offset="100%" stopColor="#F0F4F8" />
             </linearGradient>
 
-            <linearGradient id="diamondPavilion" x1="0%" y1="0%" x2="0%" y2="100%">
-              <stop offset="0%" stopColor="#DDF0FF" />
-              <stop offset="60%" stopColor="#B0D5F7" />
-              <stop offset="100%" stopColor="#7DAFE0" />
+            <linearGradient id="diaUpperFacet" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stopColor="#FFFFFF" />
+              <stop offset="50%" stopColor="#EEF4F9" />
+              <stop offset="100%" stopColor="#D9E4EE" />
             </linearGradient>
 
-            {/* Paper Deboss Filter Simulation */}
-            <filter id="letterpressIndent" x="-20%" y="-20%" width="140%" height="140%">
-              <feDropShadow dx="0" dy="1.5" stdDeviation="1.5" floodColor="#3A280D" floodOpacity="0.45" />
-              <feDropShadow dx="0" dy="-1" stdDeviation="0.8" floodColor="#FFF9E6" floodOpacity="0.85" />
+            <linearGradient id="diaLowerFacet" x1="0%" y1="0%" x2="0%" y2="100%">
+              <stop offset="0%" stopColor="#E6F0F8" />
+              <stop offset="50%" stopColor="#C4D6E6" />
+              <stop offset="100%" stopColor="#9FBAD2" />
+            </linearGradient>
+
+            {/* Letterpress Paper Indentation Filter */}
+            <filter id="letterpressEmboss" x="-20%" y="-20%" width="140%" height="140%">
+              <feDropShadow dx="0" dy="1.5" stdDeviation="1" floodColor="#3A280D" floodOpacity="0.28" />
+              <feDropShadow dx="0" dy="-0.6" stdDeviation="0.5" floodColor="#FFFFFF" floodOpacity="0.85" />
             </filter>
 
-            <filter id="diamondSparkleGlow" x="-30%" y="-30%" width="160%" height="160%">
-              <feGaussianBlur stdDeviation="2.5" result="blur" />
+            {/* Star Sparkle Glow */}
+            <filter id="diamondGlow" x="-30%" y="-30%" width="160%" height="160%">
+              <feGaussianBlur stdDeviation="1.5" result="blur" />
               <feComposite in="SourceGraphic" in2="blur" operator="over" />
             </filter>
           </defs>
 
-          {/* Background Botanical Laurel Garland (Delicate Royal Wreath) */}
-          <g opacity="0.65" stroke="url(#goldSheenSecondary)" strokeWidth="1.2" strokeLinecap="round">
-            {/* Left Laurel Sprig */}
-            <path d="M 92 145 C 72 135, 58 110, 62 82 C 65 62, 78 44, 98 34" fill="none" />
-            <path d="M 66 116 C 54 112, 50 102, 58 98 C 65 94, 68 106, 66 116 Z" fill="url(#goldSheenPrimary)" />
-            <path d="M 61 90 C 49 84, 46 74, 55 71 C 62 68, 64 80, 61 90 Z" fill="url(#goldSheenPrimary)" />
-            <path d="M 68 64 C 58 56, 58 46, 67 44 C 74 43, 74 54, 68 64 Z" fill="url(#goldSheenPrimary)" />
-            <path d="M 84 43 C 76 34, 79 24, 88 24 C 95 24, 92 34, 84 43 Z" fill="url(#goldSheenPrimary)" />
+          {/* 1. Base Botanical Laurel & Jasmine Crescent Garland */}
+          <g opacity="0.8" stroke="url(#ringGold24K)" strokeWidth="1.2" strokeLinecap="round">
+            {/* Left Botanical Vine */}
+            <path d="M 170 172 C 120 172, 65 155, 48 118 C 42 104, 46 88, 56 76" fill="none" strokeWidth="1.4" />
+            {/* Left Leaf Clusters */}
+            <path d="M 52 82 C 40 76, 38 64, 48 62 C 55 60, 56 72, 52 82 Z" fill="url(#ringGold24K)" stroke="none" />
+            <path d="M 46 102 C 32 100, 30 88, 40 84 C 47 82, 49 94, 46 102 Z" fill="url(#ringGold24K)" stroke="none" />
+            <path d="M 54 124 C 42 126, 38 114, 47 108 C 55 106, 58 116, 54 124 Z" fill="url(#ringGold24K)" stroke="none" />
+            <path d="M 76 146 C 64 152, 58 140, 66 132 C 73 130, 78 138, 76 146 Z" fill="url(#ringGold24K)" stroke="none" />
+            <path d="M 108 164 C 96 172, 90 160, 98 152 C 105 149, 110 156, 108 164 Z" fill="url(#ringGold24K)" stroke="none" />
 
-            {/* Right Laurel Sprig */}
-            <path d="M 228 145 C 248 135, 262 110, 258 82 C 255 62, 242 44, 222 34" fill="none" />
-            <path d="M 254 116 C 266 112, 270 102, 262 98 C 255 94, 252 106, 254 116 Z" fill="url(#goldSheenSecondary)" />
-            <path d="M 259 90 C 271 84, 274 74, 265 71 C 258 68, 256 80, 259 90 Z" fill="url(#goldSheenSecondary)" />
-            <path d="M 252 64 C 262 56, 262 46, 253 44 C 246 43, 246 54, 252 64 Z" fill="url(#goldSheenSecondary)" />
-            <path d="M 236 43 C 244 34, 241 24, 232 24 C 225 24, 228 34, 236 43 Z" fill="url(#goldSheenSecondary)" />
+            {/* Right Botanical Vine */}
+            <path d="M 170 172 C 220 172, 275 155, 292 118 C 298 104, 294 88, 284 76" fill="none" strokeWidth="1.4" />
+            {/* Right Leaf Clusters */}
+            <path d="M 288 82 C 300 76, 302 64, 292 62 C 285 60, 284 72, 288 82 Z" fill="url(#ringGold24K)" stroke="none" />
+            <path d="M 294 102 C 308 100, 310 88, 300 84 C 293 82, 291 94, 294 102 Z" fill="url(#ringGold24K)" stroke="none" />
+            <path d="M 286 124 C 298 126, 302 114, 293 108 C 285 106, 282 116, 286 124 Z" fill="url(#ringGold24K)" stroke="none" />
+            <path d="M 264 146 C 276 152, 282 140, 274 132 C 267 130, 262 138, 264 146 Z" fill="url(#ringGold24K)" stroke="none" />
+            <path d="M 232 164 C 244 172, 250 160, 242 152 C 235 149, 230 156, 232 164 Z" fill="url(#ringGold24K)" stroke="none" />
+
+            {/* Delicately Placed Sacred Buds */}
+            <circle cx="68" cy="92" r="2.2" fill="url(#ringGold24K)" stroke="none" />
+            <circle cx="90" cy="132" r="2.2" fill="url(#ringGold24K)" stroke="none" />
+            <circle cx="272" cy="92" r="2.2" fill="url(#ringGold24K)" stroke="none" />
+            <circle cx="250" cy="132" r="2.2" fill="url(#ringGold24K)" stroke="none" />
           </g>
 
-          {/* Interlocking Wedding Ring 1: Groom's Polished Gold Band (Left, Angled) */}
-          <g filter="url(#letterpressIndent)">
-            {/* Shadow under intersection */}
-            <ellipse cx="128" cy="118" rx="46" ry="62" stroke="#523910" strokeWidth="15" opacity="0.3" transform="rotate(-18 128 118)" />
-            {/* Outer Band */}
-            <ellipse
-              cx="128"
-              cy="118"
-              rx="46"
-              ry="62"
-              fill="none"
-              stroke="url(#goldSheenPrimary)"
-              strokeWidth="12"
-              transform="rotate(-18 128 118)"
+          {/* 2. Soft Contact Drop Shadow on Cotton Paper */}
+          <ellipse cx="132" cy="148" rx="42" ry="14" fill="#3D2B10" opacity="0.22" filter="blur(4px)" />
+          <ellipse cx="204" cy="146" rx="40" ry="13" fill="#3D2B10" opacity="0.22" filter="blur(4px)" />
+
+          {/* 3. Groom's Comfort-Fit Gold Wedding Band (Left, 3D Perspective Tilt) */}
+          <g filter="url(#letterpressEmboss)">
+            {/* Inner Back Wall of Groom's Ring */}
+            <path
+              d="M 94 116 C 94 92, 114 74, 138 74 C 160 74, 178 90, 180 112 C 172 98, 156 86, 138 86 C 118 86, 102 98, 102 114 Z"
+              fill="url(#ringInnerShade)"
             />
+
+            {/* Main Outer Torus of Groom's Ring */}
+            <path
+              d="M 88 118 C 88 88, 110 66, 138 66 C 166 66, 188 88, 188 118 C 188 144, 166 164, 138 164 C 110 164, 88 144, 88 118 Z"
+              fill="none"
+              stroke="url(#ringGold24K)"
+              strokeWidth="11"
+            />
+
             {/* Inner Chamfer Bevel Highlight */}
-            <ellipse
-              cx="128"
-              cy="118"
-              rx="40.5"
-              ry="56.5"
+            <path
+              d="M 94 118 C 94 92, 114 72, 138 72 C 162 72, 182 92, 182 118 C 182 140, 162 158, 138 158 C 114 158, 94 140, 94 118 Z"
               fill="none"
               stroke="#FFF9E6"
               strokeWidth="1.2"
               opacity="0.85"
-              transform="rotate(-18 128 118)"
             />
-            {/* Outer Chamfer Rim */}
-            <ellipse
-              cx="128"
-              cy="118"
-              rx="51.5"
-              ry="67.5"
+
+            {/* Outer Precision Chamfer Rim */}
+            <path
+              d="M 82 118 C 82 84, 107 60, 138 60 C 169 60, 194 84, 194 118 C 194 148, 169 170, 138 170 C 107 170, 82 148, 82 118 Z"
               fill="none"
-              stroke="#7A5618"
-              strokeWidth="1"
-              opacity="0.75"
-              transform="rotate(-18 128 118)"
+              stroke="#7A5D20"
+              strokeWidth="0.8"
+              opacity="0.65"
             />
           </g>
 
-          {/* Interlocking Wedding Ring 2: Bride's Royal Solitaire Diamond Ring (Right, Overlapping) */}
-          <g filter="url(#letterpressIndent)">
-            {/* Outer Band */}
-            <ellipse
-              cx="192"
-              cy="120"
-              rx="44"
-              ry="60"
-              fill="none"
-              stroke="url(#goldSheenSecondary)"
-              strokeWidth="10.5"
-              transform="rotate(18 192 120)"
+          {/* 4. Bride's Solitaire Diamond Engagement Ring (Right, Interlocking in Perspective) */}
+          <g filter="url(#letterpressEmboss)">
+            {/* Inner Back Wall of Bride's Ring */}
+            <path
+              d="M 166 114 C 166 94, 184 78, 206 78 C 226 78, 242 92, 244 110 C 238 98, 224 88, 206 88 C 188 88, 174 98, 174 112 Z"
+              fill="url(#ringInnerShade)"
             />
+
+            {/* Main Outer Band of Bride's Ring */}
+            <path
+              d="M 160 116 C 160 90, 181 68, 206 68 C 232 68, 252 90, 252 116 C 252 140, 232 160, 206 160 C 181 160, 160 140, 160 116 Z"
+              fill="none"
+              stroke="url(#ringGold24K)"
+              strokeWidth="9.5"
+            />
+
             {/* Inner Chamfer Bevel Highlight */}
-            <ellipse
-              cx="192"
-              cy="120"
-              rx="39"
-              ry="55"
+            <path
+              d="M 165 116 C 165 93, 183 73, 206 73 C 229 73, 247 93, 247 116 C 247 136, 229 155, 206 155 C 183 155, 165 136, 165 116 Z"
               fill="none"
               stroke="#FFF9E6"
-              strokeWidth="1.2"
-              opacity="0.8"
-              transform="rotate(18 192 120)"
-            />
-            {/* Outer Chamfer Rim */}
-            <ellipse
-              cx="192"
-              cy="120"
-              rx="49"
-              ry="65"
-              fill="none"
-              stroke="#7A5618"
-              strokeWidth="1"
-              opacity="0.7"
-              transform="rotate(18 192 120)"
-            />
-
-            {/* Overlap Interlock Mask: Re-draw the front portion of Ring 1 over Ring 2 for authentic 3D interlock */}
-            <path
-              d="M 148 64 C 158 76, 164 92, 166 110"
-              fill="none"
-              stroke="url(#goldSheenPrimary)"
-              strokeWidth="12"
-              strokeLinecap="round"
-            />
-            <path
-              d="M 148 64 C 158 76, 164 92, 166 110"
-              fill="none"
-              stroke="#FFF9E6"
-              strokeWidth="1.2"
+              strokeWidth="1.1"
               opacity="0.85"
+            />
+
+            {/* Outer Precision Chamfer Rim */}
+            <path
+              d="M 155 116 C 155 86, 178 63, 206 63 C 235 63, 257 86, 257 116 C 257 144, 235 165, 206 165 C 178 165, 155 144, 155 116 Z"
+              fill="none"
+              stroke="#7A5D20"
+              strokeWidth="0.8"
+              opacity="0.65"
+            />
+
+            {/* Authentic 3D Physical Interlock: Front portion of Groom's Ring overlaps over Bride's Ring */}
+            <path
+              d="M 152 74 C 166 84, 178 98, 184 116"
+              fill="none"
+              stroke="url(#ringGold24K)"
+              strokeWidth="11"
+              strokeLinecap="round"
+            />
+            <path
+              d="M 152 74 C 166 84, 178 98, 184 116"
+              fill="none"
+              stroke="#FFF9E6"
+              strokeWidth="1.2"
+              opacity="0.9"
               strokeLinecap="round"
             />
 
-            {/* 4-Prong Royal Solitaire Setting */}
-            <g transform="translate(182, 54)">
-              {/* Crown Base Gallery */}
-              <ellipse cx="14" cy="18" rx="14" ry="4" fill="url(#goldSheenSecondary)" stroke="#7A5618" strokeWidth="0.8" />
-              {/* Prongs */}
-              <path d="M 2 18 L 4 4" stroke="url(#goldSheenSecondary)" strokeWidth="2.5" strokeLinecap="round" />
-              <path d="M 26 18 L 24 4" stroke="url(#goldSheenSecondary)" strokeWidth="2.5" strokeLinecap="round" />
-              <path d="M 10 20 L 10 5" stroke="url(#goldSheenPrimary)" strokeWidth="2" strokeLinecap="round" />
-              <path d="M 18 20 L 18 5" stroke="url(#goldSheenPrimary)" strokeWidth="2" strokeLinecap="round" />
+            {/* 5. 6-Prong Royal Solitaire Platinum Setting & Brilliant-Cut Diamond */}
+            <g transform="translate(196, 48)">
+              {/* Platinum Gallery Ring Basket */}
+              <ellipse cx="10" cy="19" rx="10" ry="3" fill="url(#ringPlatinum)" stroke="#7A8B9C" strokeWidth="0.7" />
+              {/* Crown Prongs */}
+              <path d="M 1 19 L 2.5 5" stroke="url(#ringPlatinum)" strokeWidth="1.8" strokeLinecap="round" />
+              <path d="M 19 19 L 17.5 5" stroke="url(#ringPlatinum)" strokeWidth="1.8" strokeLinecap="round" />
+              <path d="M 6 20 L 7 6" stroke="#FFFFFF" strokeWidth="1.4" strokeLinecap="round" />
+              <path d="M 14 20 L 13 6" stroke="#FFFFFF" strokeWidth="1.4" strokeLinecap="round" />
 
-              {/* Brilliant Multi-Faceted Solitaire Diamond */}
-              <g filter="url(#diamondSparkleGlow)">
-                {/* Lower Pavilion V-cut */}
-                <polygon points="4,5 24,5 14,19" fill="url(#diamondPavilion)" stroke="#B3D7F5" strokeWidth="0.6" />
-                <polygon points="8,5 20,5 14,19" fill="#9AC5EB" opacity="0.6" />
-                {/* Crown Upper Facets */}
-                <polygon points="4,5 8,-4 20,-4 24,5" fill="url(#diamondFacetLeft)" stroke="#E1EFFF" strokeWidth="0.6" />
-                <polygon points="8,-4 14,-8 20,-4" fill="url(#diamondTable)" stroke="#FFFFFF" strokeWidth="0.6" />
-                <polygon points="4,5 8,-4 14,5" fill="url(#diamondFacetLeft)" stroke="#C6E2F7" strokeWidth="0.5" />
-                <polygon points="24,5 20,-4 14,5" fill="url(#diamondFacetRight)" stroke="#B0D5F7" strokeWidth="0.5" />
-                {/* Top Flat Table */}
-                <polygon points="8,-4 14,-7 20,-4 14, -2" fill="#FFFFFF" />
+              {/* Brilliant Round-Cut Diamond (Authentic Crystal/Diamond Facets) */}
+              <g filter="url(#diamondGlow)">
+                {/* Lower Pavilion V-Facets */}
+                <polygon points="2,6 18,6 10,19" fill="url(#diaLowerFacet)" stroke="#D0DFEC" strokeWidth="0.5" />
+                <polygon points="5,6 15,6 10,19" fill="#B0C8DC" opacity="0.75" />
+                <polygon points="8,6 12,6 10,19" fill="#90B0CC" opacity="0.6" />
 
-                {/* Spectacular Light Burst Star */}
-                <g transform="translate(18, -3)">
-                  <line x1="-8" y1="0" x2="8" y2="0" stroke="#FFFFFF" strokeWidth="1.2" strokeLinecap="round" />
-                  <line x1="0" y1="-8" x2="0" y2="8" stroke="#FFFFFF" strokeWidth="1.2" strokeLinecap="round" />
-                  <line x1="-4" y1="-4" x2="4" y2="4" stroke="#FFF7D6" strokeWidth="0.8" strokeLinecap="round" />
-                  <line x1="4" y1="-4" x2="-4" y2="4" stroke="#FFF7D6" strokeWidth="0.8" strokeLinecap="round" />
-                  <circle cx="0" cy="0" r="1.8" fill="#FFFFFF" />
+                {/* Crown Kite & Girdle Facets */}
+                <polygon points="2,6 6,-3 14,-3 18,6" fill="url(#diaUpperFacet)" stroke="#E5F0F8" strokeWidth="0.5" />
+                <polygon points="6,-3 10,-6 14,-3" fill="url(#diaTableFacet)" stroke="#FFFFFF" strokeWidth="0.5" />
+                <polygon points="2,6 6,-3 10,6" fill="url(#diaUpperFacet)" stroke="#DAE7F2" strokeWidth="0.4" />
+                <polygon points="18,6 14,-3 10,6" fill="url(#diaUpperFacet)" stroke="#C6D8E8" strokeWidth="0.4" />
+
+                {/* Flat Table Facet (Highest Light Reflectance) */}
+                <polygon points="6,-3 10,-6 14,-3 10, -1" fill="#FFFFFF" />
+
+                {/* Scintillation Star Sparkle Burst */}
+                <g transform="translate(14, -2)">
+                  <line x1="-7" y1="0" x2="7" y2="0" stroke="#FFFFFF" strokeWidth="1.3" strokeLinecap="round" />
+                  <line x1="0" y1="-7" x2="0" y2="7" stroke="#FFFFFF" strokeWidth="1.3" strokeLinecap="round" />
+                  <line x1="-3.5" y1="-3.5" x2="3.5" y2="3.5" stroke="#FFFBF0" strokeWidth="0.8" strokeLinecap="round" />
+                  <line x1="3.5" y1="-3.5" x2="-3.5" y2="3.5" stroke="#FFFBF0" strokeWidth="0.8" strokeLinecap="round" />
+                  <circle cx="0" cy="0" r="1.6" fill="#FFFFFF" />
                 </g>
               </g>
             </g>
           </g>
 
-          {/* Sacred Bindus & Accent Dots */}
-          <circle cx="160" cy="202" r="2.5" fill="url(#goldSheenPrimary)" />
-          <circle cx="148" cy="202" r="1.5" fill="url(#goldSheenSecondary)" opacity="0.8" />
-          <circle cx="172" cy="202" r="1.5" fill="url(#goldSheenSecondary)" opacity="0.8" />
+          {/* Sacred Royal Bindus (Auspicious Gold Accent Points) */}
+          <circle cx="170" cy="192" r="2.2" fill="url(#ringGold24K)" />
+          <circle cx="158" cy="192" r="1.4" fill="url(#ringGold24K)" opacity="0.8" />
+          <circle cx="182" cy="192" r="1.4" fill="url(#ringGold24K)" opacity="0.8" />
         </svg>
       </div>
     </div>

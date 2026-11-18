@@ -52,7 +52,7 @@ export const FloatingAudio: React.FC = () => {
       // Master Gain Node with 2s smooth cinematic fade in
       const masterGain = ctx.createGain();
       masterGain.gain.setValueAtTime(0.0001, ctx.currentTime);
-      masterGain.gain.exponentialRampToValueAtTime(0.2, ctx.currentTime + 2.2);
+      masterGain.gain.exponentialRampToValueAtTime(0.18, ctx.currentTime + 2.2);
       masterGain.connect(ctx.destination);
       masterGainRef.current = masterGain;
 
@@ -74,7 +74,7 @@ export const FloatingAudio: React.FC = () => {
         filter.type = 'lowpass';
         filter.frequency.setValueAtTime(720, ctx.currentTime);
 
-        const vol = 0.25 / (idx + 1);
+        const vol = 0.22 / (idx + 1);
         oscGain.gain.setValueAtTime(vol, ctx.currentTime);
 
         osc.connect(filter);
@@ -99,7 +99,7 @@ export const FloatingAudio: React.FC = () => {
       lfo.start();
       lfoRef.current = lfo;
 
-      shehnaiGain.gain.setValueAtTime(0.04, ctx.currentTime);
+      shehnaiGain.gain.setValueAtTime(0.035, ctx.currentTime);
       shehnaiOsc.connect(shehnaiGain);
       shehnaiGain.connect(masterGain);
       shehnaiOsc.start();
@@ -157,7 +157,6 @@ export const FloatingAudio: React.FC = () => {
   };
 
   useEffect(() => {
-    // Listen for custom trigger from card opening button
     const handleCustomAudioStart = () => {
       startSacredMusic();
     };
@@ -173,60 +172,78 @@ export const FloatingAudio: React.FC = () => {
       onClick={toggleMusic}
       style={{
         position: 'fixed',
-        bottom: '22px',
+        bottom: '20px',
         right: '20px',
-        background: 'rgba(22, 41, 32, 0.94)',
-        backdropFilter: 'blur(14px)',
-        border: `1px solid ${isPlaying ? 'var(--color-gold-bright)' : 'rgba(179, 145, 85, 0.45)'}`,
-        borderRadius: '30px',
-        padding: '10px 18px',
+        background: 'rgba(14, 26, 20, 0.88)',
+        backdropFilter: 'blur(12px)',
+        border: `1px solid ${isPlaying ? 'rgba(229, 195, 104, 0.7)' : 'rgba(197, 160, 89, 0.4)'}`,
+        borderRadius: '24px',
+        padding: '8px 16px',
         display: 'flex',
         alignItems: 'center',
-        gap: '10px',
+        gap: '9px',
         boxShadow: isPlaying
-          ? '0 12px 32px rgba(0, 0, 0, 0.45), 0 0 15px rgba(212, 182, 126, 0.35)'
-          : '0 10px 24px rgba(0, 0, 0, 0.35)',
+          ? '0 8px 24px rgba(0, 0, 0, 0.4), 0 0 12px rgba(229, 195, 104, 0.2)'
+          : '0 6px 18px rgba(0, 0, 0, 0.35)',
         cursor: 'pointer',
         zIndex: 1000,
-        transition: 'all 0.35s ease',
+        transition: 'all 0.3s cubic-bezier(0.22, 1, 0.36, 1)',
         userSelect: 'none',
       }}
       role="button"
       tabIndex={0}
-      aria-label={isPlaying ? 'Mute Sacred Music' : 'Play Sacred Music'}
+      aria-label={isPlaying ? 'Mute Sacred Shehnai' : 'Play Sacred Shehnai'}
     >
-      <span
-        style={{
-          fontSize: '1.15rem',
-          display: 'inline-block',
-          animation: isPlaying ? 'musicPulse 1.8s infinite ease-in-out' : 'none',
-        }}
+      {/* Refined Vector Audio Icon (No crude emoji) */}
+      <svg
+        viewBox="0 0 24 24"
+        width="16"
+        height="16"
+        fill="none"
+        stroke={isPlaying ? '#E5C368' : '#C5A059'}
+        strokeWidth="1.8"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        style={{ flexShrink: 0 }}
       >
-        {isPlaying ? '🎵' : '🔇'}
-      </span>
+        <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" fill={isPlaying ? 'rgba(229, 195, 104, 0.25)' : 'none'} />
+        {isPlaying ? (
+          <>
+            <path d="M15.54 8.46a5 5 0 0 1 0 7.07" />
+            <path d="M19.07 4.93a10 10 0 0 1 0 14.14" />
+          </>
+        ) : (
+          <>
+            <line x1="23" y1="9" x2="17" y2="15" />
+            <line x1="17" y1="9" x2="23" y2="15" />
+          </>
+        )}
+      </svg>
+
       <div style={{ display: 'flex', flexDirection: 'column', textAlign: 'left' }}>
         <span
           style={{
             fontFamily: 'var(--font-body)',
-            fontSize: '0.75rem',
+            fontSize: '0.72rem',
             fontWeight: 700,
-            letterSpacing: '0.08em',
-            color: 'var(--color-gold-champagne)',
+            letterSpacing: '0.12em',
+            color: isPlaying ? 'var(--color-gold-bright)' : 'var(--color-gold-champagne)',
             textTransform: 'uppercase',
-            lineHeight: 1.2,
+            lineHeight: 1.15,
           }}
         >
-          {isPlaying ? 'Sacred Shehnai' : 'Play Music'}
+          {isPlaying ? 'Shehnai' : 'Music'}
         </span>
         <span
           style={{
             fontFamily: 'var(--font-body)',
-            fontSize: '0.625rem',
-            color: isPlaying ? 'var(--color-gold-bright)' : 'var(--color-sage-light)',
+            fontSize: '0.6rem',
+            color: isPlaying ? 'rgba(255, 248, 223, 0.8)' : 'var(--color-sage-light)',
             letterSpacing: '0.04em',
+            lineHeight: 1.1,
           }}
         >
-          {isPlaying ? 'Playing • Tap to Mute' : 'Muted • Tap to Play'}
+          {isPlaying ? 'Playing • Mute' : 'Muted • Play'}
         </span>
       </div>
     </aside>

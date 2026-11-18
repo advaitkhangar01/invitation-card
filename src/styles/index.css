@@ -1,8 +1,9 @@
 @import './fonts.css';
 
 /* ==========================================================================
-   ROYAL INDIAN BOTANICAL DESIGN SYSTEM (RIB-DS)
-   REFINED LUXURY SPECIFICATION — ISHA & ASHISH
+   ROYAL INDIAN BOTANICAL LUXURY DESIGN SYSTEM
+   Bespoke Stationery Specification — Isha Bawankule & Ashish Deshmukh
+   Art Direction: Royal Indian Elegance × Botanical Details × Cinematic Interactions
    ========================================================================== */
 
 *, *::before, *::after {
@@ -12,97 +13,87 @@
 }
 
 :root {
-  /* Surfaces & Tactility */
+  /* Heavyweight Cotton Rag Stationery Palette */
+  --color-paper-base: #FAF7F2;
   --color-paper-ivory: #FDFBF7;
-  --color-paper-warm: #F8F4EC;
-  --color-paper-cream: #F3ECE0;
-  --color-paper-border: #E8DECC;
+  --color-paper-warm: #F7F3EB;
+  --color-paper-cream: #F2ECE0;
+  --color-paper-border: #E5DCB8;
 
-  /* Royal Indian Botanical Greens */
-  --color-forest-deep: #162920;
-  --color-forest-rich: #213B30;
-  --color-forest-medium: #2D4E40;
-  --color-sage-soft: #849479;
-  --color-sage-light: #BDC8B7;
+  /* Imperial Indian Heritage Greens (Ambient Setting) */
+  --color-bg-darkest: #09140F;
+  --color-forest-deep: #14261E;
+  --color-forest-rich: #1E382C;
+  --color-forest-medium: #2C4D3E;
+  --color-sage-soft: #7D8F74;
+  --color-sage-light: #B4C2AD;
 
-  /* Metallic Royal Antique Gold (Refined, never cheap yellow) */
-  --color-gold-deep: #7D6335;
-  --color-gold-antique: #B39155;
-  --color-gold-bright: #D4B67E;
-  --color-gold-champagne: #F2E7D3;
+  /* Authentic 24K Hot-Stamped Metallic Gold Foil Palette */
+  --color-gold-highlight: #FFF8DF;
+  --color-gold-bright: #E5C368;
+  --color-gold-antique: #C5A059;
+  --color-gold-deep: #8C6F32;
+  --color-gold-shadow: #52401C;
+  --color-gold-champagne: #F5EBD7;
 
-  /* High-Contrast Luxury Letterpress Inks */
-  --color-ink-espresso: #1A1412;        /* Primary dominant text (16.5:1 contrast) */
-  --color-ink-charcoal: #2F2723;        /* Secondary headings */
-  --color-ink-muted: #5E534B;           /* Supporting details */
-  --color-ink-subtle: #877B72;          /* Captions */
+  /* Crisp Letterpress Inks (High Legibility & Material Weight) */
+  --color-ink-primary: #191412;        /* Dominant high-contrast letterpress (17:1 ratio) */
+  --color-ink-secondary: #2C2420;      /* Section headings & titles */
+  --color-ink-muted: #594E46;          /* Supporting details & dates */
+  --color-ink-subtle: #7F736B;         /* Micro captions */
 
-  /* Auspicious Sacred Accents */
-  --color-sacred-kumkum: #881C22;
-  --color-sacred-marigold: #CF7017;
+  /* Sacred Ritual Accents */
+  --color-sacred-kumkum: #881C24;      /* Pure auspicious vermilion */
+  --color-sacred-marigold: #D97706;    /* Warm sacred saffron */
+  --color-sacred-oil: #B45309;         /* Diya brass oil well */
 
-  /* Typography Stacks */
+  /* Fine-Art Stationery Typography Stack */
   --font-display: "Bodoni Moda", "Didot", "Playfair Display", Georgia, serif;
   --font-heading: "Cormorant Garamond", "Garamond", "Times New Roman", serif;
   --font-body: "DM Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   --font-accent: "Pinyon Script", "Alex Brush", cursive;
 
-  /* Responsive Motion Tokens */
+  /* Editorial Motion Curves */
   --ease-editorial: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-smooth: cubic-bezier(0.25, 0.8, 0.25, 1);
   --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
 html {
   font-size: 16px;
-  scroll-behavior: smooth;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: var(--color-bg-darkest);
+  overflow-x: hidden !important;
+  max-width: 100vw;
+  width: 100%;
 }
 
 /* ==========================================================================
-   VIEWPORT & LAYOUT ARCHITECTURE
+   AMBIENT LUXURY SETTING (Surrounding Background)
+   Rich imperial emerald lacquer surface with warm candlelight vignette
    ========================================================================== */
 
 body {
-  background-color: #0E1713;
+  background-color: var(--color-bg-darkest);
   background-image: 
-    radial-gradient(circle at 50% 12%, rgba(33, 59, 48, 0.75) 0%, transparent 65%),
-    radial-gradient(circle at 85% 85%, rgba(179, 145, 85, 0.16) 0%, transparent 50%),
-    url('/assets/textures/white_wall.jpg');
+    radial-gradient(circle at 50% 15%, rgba(30, 56, 44, 0.8) 0%, transparent 65%),
+    radial-gradient(circle at 50% 85%, rgba(20, 38, 30, 0.9) 0%, transparent 70%),
+    radial-gradient(circle at 85% 20%, rgba(197, 160, 89, 0.08) 0%, transparent 45%);
   background-attachment: fixed;
   background-size: cover;
-  color: var(--color-ink-espresso);
+  color: var(--color-ink-primary);
   font-family: var(--font-body);
   min-height: 100vh;
   min-height: 100dvh;
   display: flex;
-  justify-content: center;
-  padding: 40px 16px 80px;
-  overflow-x: hidden;
+  flex-direction: column;
+  align-items: center;
+  padding: 44px 16px 88px;
+  overflow-x: hidden !important;
+  max-width: 100vw;
+  width: 100%;
   position: relative;
-}
-
-/* Ambient Floating Stardust */
-body::before {
-  content: "";
-  position: fixed;
-  top: 0; left: 0; right: 0; bottom: 0;
-  background-image: 
-    radial-gradient(2px 2px at 20px 30px, rgba(212, 182, 126, 0.4), rgba(0,0,0,0)),
-    radial-gradient(2px 2px at 140px 170px, rgba(212, 182, 126, 0.35), rgba(0,0,0,0)),
-    radial-gradient(3px 3px at 260px 240px, rgba(255, 245, 200, 0.5), rgba(0,0,0,0)),
-    radial-gradient(2px 2px at 380px 390px, rgba(212, 182, 126, 0.3), rgba(0,0,0,0));
-  background-repeat: repeat;
-  background-size: 400px 400px;
-  opacity: 0.65;
-  pointer-events: none;
-  z-index: 1;
-  animation: stardustDrift 60s linear infinite;
-}
-
-@keyframes stardustDrift {
-  from { transform: translateY(0); }
-  to { transform: translateY(-400px); }
 }
 
 /* Base Desktop Container */
@@ -112,136 +103,179 @@ body::before {
   margin: 0 auto;
   position: relative;
   z-index: 10;
+  box-sizing: border-box;
 }
 
-/* Royal Invitation Paper Card (Desktop Presentation) */
+/* ==========================================================================
+   ROYAL INVITATION PAPER CARD (Physical Luxury Stationery Presentation)
+   Heavyweight 600gsm Cotton Rag with Multi-Tier Contact Shadows & Foil Insets
+   ========================================================================== */
+
 .royal-invitation-card {
-  background: var(--color-paper-ivory);
+  background-color: var(--color-paper-base);
   background-image: 
-    radial-gradient(circle at 50% 0%, rgba(179, 145, 85, 0.09) 0%, transparent 45%),
-    radial-gradient(circle at 50% 100%, rgba(33, 59, 48, 0.05) 0%, transparent 45%),
-    url('/assets/textures/white_wall.jpg');
-  background-size: cover;
-  border-radius: 20px;
+    radial-gradient(circle at 50% 0%, rgba(229, 195, 104, 0.08) 0%, transparent 45%),
+    radial-gradient(circle at 50% 100%, rgba(30, 56, 44, 0.04) 0%, transparent 45%),
+    url('/assets/textures/luxury_cotton_paper.jpg');
+  background-size: 512px 512px;
+  background-repeat: repeat;
+  border-radius: 18px;
+  /* Multi-stage contact shadows for realistic stationery elevation */
   box-shadow: 
-    0 4px 6px -1px rgba(0, 0, 0, 0.05),
-    0 25px 60px -12px rgba(14, 23, 19, 0.45),
-    0 0 0 1px rgba(179, 145, 85, 0.4);
+    0 1px 2px rgba(0, 0, 0, 0.08),
+    0 8px 24px -4px rgba(9, 20, 15, 0.22),
+    0 24px 60px -12px rgba(0, 0, 0, 0.45),
+    0 0 0 1px rgba(197, 160, 89, 0.38);
   position: relative;
   overflow: hidden;
-  padding: 52px 36px;
+  contain: paint;
+  padding: 54px 34px 58px;
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 100%;
   animation: cardEntrance 1.2s var(--ease-editorial) forwards;
 }
 
 @keyframes cardEntrance {
-  0% { opacity: 0; transform: translateY(35px); }
-  100% { opacity: 1; transform: translateY(0); }
+  0% { opacity: 0; transform: translateY(28px) scale(0.985); }
+  100% { opacity: 1; transform: translateY(0) scale(1); }
 }
 
-/* Double Inset Gold Foil Border */
+/* Refined Hot-Stamped Gold Foil Outer Inset Frame */
 .royal-invitation-card::before {
   content: "";
   position: absolute;
-  top: 12px; left: 12px; right: 12px; bottom: 12px;
-  border: 1px solid rgba(179, 145, 85, 0.4);
-  border-radius: 14px;
+  top: 14px; left: 14px; right: 14px; bottom: 14px;
+  border: 1.5px solid rgba(197, 160, 89, 0.6);
+  border-radius: 12px;
   pointer-events: none;
   z-index: 2;
+  box-shadow: inset 0 0 0 1px rgba(255, 248, 223, 0.4);
 }
 
+/* Refined Hot-Stamped Gold Foil Inner Hairline Inset */
 .royal-invitation-card::after {
   content: "";
   position: absolute;
-  top: 17px; left: 17px; right: 17px; bottom: 17px;
-  border: 1px solid rgba(179, 145, 85, 0.2);
-  border-radius: 11px;
+  top: 19px; left: 19px; right: 19px; bottom: 19px;
+  border: 0.75px solid rgba(197, 160, 89, 0.32);
+  border-radius: 9px;
   pointer-events: none;
   z-index: 2;
 }
 
-/* Corner Flourishes */
-.corner-flourish {
+/* Diagonal Gold Foil Light Sheen Sweep across Card Surface */
+.foil-sheen-overlay {
   position: absolute;
-  width: 52px;
-  height: 52px;
-  opacity: 0.88;
+  top: 0; left: 0; right: 0; bottom: 0;
   pointer-events: none;
   z-index: 3;
-  filter: drop-shadow(0 2px 4px rgba(179, 145, 85, 0.3));
+  background: linear-gradient(
+    115deg,
+    transparent 20%,
+    rgba(255, 248, 223, 0.12) 45%,
+    rgba(229, 195, 104, 0.22) 50%,
+    rgba(255, 248, 223, 0.12) 55%,
+    transparent 80%
+  );
+  opacity: 0;
+  animation: foilSheenSweep 3.2s cubic-bezier(0.25, 1, 0.5, 1) 1.2s 1 forwards;
 }
-.corner-flourish.top-left { top: 20px; left: 20px; }
-.corner-flourish.top-right { top: 20px; right: 20px; transform: scaleX(-1); }
-.corner-flourish.bottom-left { bottom: 20px; left: 20px; transform: scaleY(-1); }
-.corner-flourish.bottom-right { bottom: 20px; right: 20px; transform: scale(-1); }
 
-/* Scene Separator */
+@keyframes foilSheenSweep {
+  0% {
+    opacity: 0;
+    transform: translateX(-100%) translateY(-30%);
+  }
+  30% {
+    opacity: 1;
+  }
+  70% {
+    opacity: 0.8;
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(100%) translateY(30%);
+    visibility: hidden;
+    display: none;
+  }
+}
+
+/* Refined Scene Separator */
 .scene-divider {
   border: none;
   height: 1px;
-  background: radial-gradient(circle, rgba(179, 145, 85, 0.5) 0%, rgba(179, 145, 85, 0.08) 80%, transparent 100%);
-  margin: 44px 0;
+  background: radial-gradient(circle, rgba(197, 160, 89, 0.55) 0%, rgba(197, 160, 89, 0.1) 75%, transparent 100%);
+  margin: 34px 0;
+  position: relative;
 }
 
 /* ==========================================================================
-   MOBILE EDGE-TO-EDGE VIEWPORT SPECIFICATION
-   Eliminates all green bands, margins and gaps on mobile portrait
+   MOBILE RESPONSIVE ARCHITECTURE
+   Maintains physical card identity & luxury borders without screen-stretching
    ========================================================================== */
 
 @media (max-width: 600px) {
   body {
-    padding: 0 !important;
-    margin: 0 !important;
-    background-color: var(--color-paper-ivory) !important;
-    background-image: none !important;
-  }
-
-  body::before {
-    display: none !important;
+    padding: 10px 8px 40px !important;
+    background-color: var(--color-bg-darkest) !important;
   }
 
   .app-container {
     max-width: 100% !important;
     width: 100% !important;
-    margin: 0 !important;
+    margin: 0 auto !important;
+    padding: 0 !important;
   }
 
   .royal-invitation-card {
     width: 100% !important;
-    min-height: 100svh !important;
-    min-height: 100dvh !important;
-    border-radius: 0 !important;
-    border: none !important;
-    box-shadow: none !important;
-    padding: calc(env(safe-area-inset-top, 16px) + 24px) 20px calc(env(safe-area-inset-bottom, 16px) + 36px) !important;
+    border-radius: 14px !important;
+    padding: calc(env(safe-area-inset-top, 14px) + 22px) 14px calc(env(safe-area-inset-bottom, 14px) + 28px) !important;
+    box-shadow: 
+      0 1px 3px rgba(0, 0, 0, 0.1),
+      0 6px 20px -2px rgba(9, 20, 15, 0.35),
+      0 0 0 1px rgba(197, 160, 89, 0.4) !important;
   }
 
   .royal-invitation-card::before {
-    top: 10px; left: 10px; right: 10px; bottom: 10px;
-    border-radius: 0;
+    top: 8px; left: 8px; right: 8px; bottom: 8px;
+    border-radius: 8px;
   }
 
   .royal-invitation-card::after {
-    top: 14px; left: 14px; right: 14px; bottom: 14px;
-    border-radius: 0;
+    top: 12px; left: 12px; right: 12px; bottom: 12px;
+    border-radius: 6px;
   }
 
-  .corner-flourish {
-    width: 44px;
-    height: 44px;
+  .scene-divider {
+    margin: 26px 0;
   }
-  .corner-flourish.top-left { top: 16px; left: 16px; }
-  .corner-flourish.top-right { top: 16px; right: 16px; }
-  .corner-flourish.bottom-left { bottom: 16px; left: 16px; }
-  .corner-flourish.bottom-right { bottom: 16px; right: 16px; }
+}
+
+/* Extra Compact Viewport Adjustments (< 360px) */
+@media (max-width: 359px) {
+  body {
+    padding: 6px 4px 32px !important;
+  }
+  .royal-invitation-card {
+    padding: calc(env(safe-area-inset-top, 12px) + 18px) 10px calc(env(safe-area-inset-bottom, 12px) + 24px) !important;
+  }
+  .royal-invitation-card::before {
+    top: 6px; left: 6px; right: 6px; bottom: 6px;
+  }
+  .royal-invitation-card::after {
+    top: 9px; left: 9px; right: 9px; bottom: 9px;
+  }
 }
 
 /* ==========================================================================
-   SCROLL REVEAL & TEXT ANIMATION ENGINE
+   SCROLL REVEAL & EDITORIAL MOTION ENGINE
    ========================================================================== */
 
 .reveal {
   opacity: 0;
-  transform: translateY(28px);
+  transform: translateY(22px);
   transition: opacity 0.85s var(--ease-editorial), transform 0.85s var(--ease-editorial);
   will-change: opacity, transform;
 }
@@ -251,118 +285,130 @@ body::before {
   transform: translateY(0);
 }
 
-.delay-1 { transition-delay: 100ms; }
-.delay-2 { transition-delay: 200ms; }
-.delay-3 { transition-delay: 350ms; }
-.delay-4 { transition-delay: 500ms; }
+.delay-1 { transition-delay: 80ms; }
+.delay-2 { transition-delay: 160ms; }
+.delay-3 { transition-delay: 260ms; }
+.delay-4 { transition-delay: 380ms; }
 
-/* Sanskrit Shloka Shimmer */
-.shloka-text {
-  background: linear-gradient(135deg, #881C22 0%, #B39155 35%, #881C22 75%);
-  background-size: 200% auto;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  animation: shlokaShimmer 6s infinite linear;
+/* Crisp Sacred Sanskrit Shloka Typography */
+.shloka-title {
+  font-family: var(--font-heading);
+  color: var(--color-sacred-kumkum);
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-shadow: 0 0.5px 1px rgba(136, 28, 36, 0.2);
 }
 
-@keyframes shlokaShimmer {
-  0% { background-position: 0% center; }
-  100% { background-position: 200% center; }
-}
-
-/* Sacred Flame Organic Teardrop Flicker */
-@keyframes flameOrganic {
+/* Gentle, Believable Ceremonial Diya Flame Motion */
+@keyframes flameLiving {
   0%, 100% {
     transform: scale(1) translateY(0) rotate(0deg);
-    opacity: 0.95;
-    filter: drop-shadow(0 -2px 6px rgba(255, 170, 40, 0.7));
+    opacity: 0.96;
+    filter: drop-shadow(0 -2px 5px rgba(245, 158, 11, 0.65));
   }
   25% {
-    transform: scale(1.06, 0.94) translateY(-1px) rotate(-1.5deg);
+    transform: scale(1.03, 0.97) translateY(-0.8px) rotate(-1deg);
     opacity: 1;
-    filter: drop-shadow(0 -3px 9px rgba(255, 200, 60, 0.85));
+    filter: drop-shadow(0 -3px 8px rgba(251, 191, 36, 0.8));
   }
   50% {
-    transform: scale(0.96, 1.05) translateY(-2px) rotate(1.5deg);
-    opacity: 0.92;
-    filter: drop-shadow(0 -2px 5px rgba(255, 140, 30, 0.65));
+    transform: scale(0.97, 1.03) translateY(-1.4px) rotate(1deg);
+    opacity: 0.94;
+    filter: drop-shadow(0 -2px 4px rgba(217, 119, 6, 0.6));
   }
   75% {
-    transform: scale(1.03, 0.98) translateY(-0.5px) rotate(-0.5deg);
+    transform: scale(1.02, 0.98) translateY(-0.4px) rotate(-0.5deg);
     opacity: 0.98;
-    filter: drop-shadow(0 -3px 8px rgba(255, 180, 50, 0.8));
+    filter: drop-shadow(0 -2.5px 7px rgba(245, 158, 11, 0.75));
   }
 }
 
-/* Radiant Gold Pulsing Glow */
-@keyframes pulseGlow {
+/* Restrained Warm Diya Aura Pulse */
+@keyframes diyaAuraRestrained {
   0%, 100% {
-    transform: translate(-50%, -50%) scale(0.95);
-    opacity: 0.55;
+    transform: translate(-50%, -50%) scale(0.96);
+    opacity: 0.45;
   }
   50% {
-    transform: translate(-50%, -50%) scale(1.08);
-    opacity: 0.95;
+    transform: translate(-50%, -50%) scale(1.05);
+    opacity: 0.75;
   }
-}
-
-/* Music Icon Pulse */
-@keyframes musicPulse {
-  0%, 100% { transform: scale(1); }
-  50% { transform: scale(1.2); }
 }
 
 /* Section Header Styles */
 .section-title-wrap {
   text-align: center;
-  margin-bottom: 24px;
+  margin-bottom: 20px;
 }
 
 .section-eyebrow {
   font-family: var(--font-body);
-  font-size: clamp(0.8125rem, 2vw, 0.9375rem);
+  font-size: clamp(0.75rem, 1.9vw, 0.86rem);
   letter-spacing: 0.18em;
   text-transform: uppercase;
   color: var(--color-gold-deep);
   font-weight: 700;
-  margin-bottom: 8px;
+  margin-bottom: 6px;
 }
 
 .section-main-title {
   font-family: var(--font-display);
-  font-size: clamp(2.1rem, 5.5vw, 3.8rem);
+  font-size: clamp(1.85rem, 5vw, 3.2rem);
   color: var(--color-forest-deep);
   letter-spacing: 0.02em;
   font-weight: 700;
   line-height: 1.15;
 }
 
-/* Primary Button Styling */
+/* Luxury Paper Panel Card */
+.luxury-paper-card {
+  background: rgba(255, 255, 255, 0.45);
+  border: 1px solid rgba(197, 160, 89, 0.4);
+  border-radius: 14px;
+  box-shadow: 
+    0 2px 8px rgba(20, 38, 30, 0.04),
+    inset 0 1px 0 rgba(255, 255, 255, 0.8);
+  transition: transform 0.3s var(--ease-editorial), box-shadow 0.3s var(--ease-editorial);
+}
+
+.luxury-paper-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 
+    0 6px 18px rgba(20, 38, 30, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.9);
+}
+
+/* Primary Luxury Action Button */
 .btn-royal-primary {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 12px;
+  gap: 10px;
   background: var(--color-forest-rich);
   color: var(--color-paper-ivory);
   text-decoration: none;
   font-family: var(--font-body);
-  font-size: clamp(0.875rem, 2.2vw, 1rem);
+  font-size: clamp(0.82rem, 2vw, 0.95rem);
   font-weight: 700;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  padding: 16px 28px;
+  padding: 14px 22px;
   border-radius: 8px;
   border: 1px solid var(--color-gold-antique);
-  box-shadow: 0 4px 18px rgba(22, 41, 32, 0.32);
+  box-shadow: 
+    0 4px 14px rgba(20, 38, 30, 0.28),
+    inset 0 1px 0 rgba(229, 195, 104, 0.3);
   transition: all 0.3s var(--ease-editorial);
   cursor: pointer;
+  max-width: 100%;
 }
 
 .btn-royal-primary:hover {
   background: var(--color-forest-deep);
-  transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(22, 41, 32, 0.42);
+  transform: translateY(-1.5px);
+  box-shadow: 
+    0 7px 20px rgba(20, 38, 30, 0.38),
+    inset 0 1px 0 rgba(229, 195, 104, 0.5);
   border-color: var(--color-gold-bright);
 }
 
@@ -370,52 +416,40 @@ body::before {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 10px;
-  background: transparent;
+  gap: 8px;
+  background: rgba(255, 255, 255, 0.6);
   color: var(--color-forest-deep);
   text-decoration: none;
   font-family: var(--font-body);
-  font-size: clamp(0.8125rem, 2vw, 0.9375rem);
+  font-size: clamp(0.78rem, 1.9vw, 0.88rem);
   font-weight: 700;
   letter-spacing: 0.08em;
-  padding: 14px 24px;
+  padding: 12px 18px;
   border-radius: 8px;
-  border: 1px solid rgba(179, 145, 85, 0.6);
+  border: 1px solid rgba(197, 160, 89, 0.6);
   transition: all 0.25s ease;
   cursor: pointer;
+  max-width: 100%;
 }
 
 .btn-royal-secondary:hover {
-  background: rgba(179, 145, 85, 0.1);
+  background: rgba(197, 160, 89, 0.12);
   border-color: var(--color-gold-antique);
   transform: translateY(-1px);
-}
-
-/* Countdown Card Hover Elevation */
-.countdown-box:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 8px 24px rgba(22, 41, 32, 0.1) !important;
-  border-color: var(--color-gold-antique) !important;
-}
-
-/* Luxury Paper Card Hover */
-.luxury-paper-card {
-  transition: transform 0.35s ease, box-shadow 0.35s ease;
-}
-.luxury-paper-card:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 10px 26px rgba(22, 41, 32, 0.08) !important;
 }
 
 /* Reduced Motion Guidelines */
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
-    animation-duration: 0.01ms !important;
+    animation-duration: 0.001ms !important;
     animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
+    transition-duration: 0.001ms !important;
   }
   .reveal {
     opacity: 1 !important;
     transform: none !important;
+  }
+  .foil-sheen-overlay {
+    display: none !important;
   }
 }

@@ -8,107 +8,89 @@ export const AuspiciousShloka: React.FC = () => {
       style={{
         textAlign: 'center',
         paddingTop: '4px',
-        paddingBottom: '16px',
+        paddingBottom: '10px',
         width: '100%',
+        maxWidth: '100%',
         boxSizing: 'border-box',
       }}
-      aria-label="Auspicious Invocation"
+      aria-label="Auspicious Invocation and Ceremonial Deepam"
     >
-      {/* Traditional Sanskrit Shloka & Unclipped English Subtitle */}
+      {/* 1. Auspicious Sanskrit Invocation */}
       <div
         style={{
-          marginBottom: '16px',
-          padding: '0 16px',
+          marginBottom: '10px',
+          padding: '0 8px',
           width: '100%',
+          maxWidth: '100%',
           boxSizing: 'border-box',
         }}
       >
-        <p
-          className="shloka-text"
+        <h2
+          className="shloka-title"
           style={{
-            fontFamily: 'var(--font-heading)',
-            fontSize: 'clamp(1.5rem, 4.6vw, 2.4rem)',
-            letterSpacing: '0.04em',
-            color: 'var(--color-sacred-kumkum)',
-            fontWeight: 700,
+            fontSize: 'clamp(1.4rem, 4.4vw, 2.25rem)',
             lineHeight: 1.25,
             margin: '0 auto 6px',
-            textShadow: '0 1px 2px rgba(136, 28, 34, 0.15)',
-          }}
-        >
-          {WEDDING_DATA.shloka.sanskrit}
-        </p>
-
-        <p
-          style={{
-            fontFamily: 'var(--font-body)',
-            fontSize: 'clamp(0.72rem, 1.9vw, 0.875rem)',
-            color: 'var(--color-ink-muted)',
-            letterSpacing: '0.08em',
-            textTransform: 'uppercase',
-            fontWeight: 600,
-            maxWidth: '420px',
-            margin: '0 auto',
-            lineHeight: 1.45,
-            padding: '0 8px',
-            boxSizing: 'border-box',
-            wordBreak: 'normal',
+            maxWidth: '100%',
             overflowWrap: 'break-word',
           }}
         >
-          {WEDDING_DATA.shloka.english}
-        </p>
+          {WEDDING_DATA.shloka.sanskrit}
+        </h2>
       </div>
 
-      {/* Ceremonial Brass Deepam / Diya Lamp (Self-Contained Vector Artwork) */}
+      {/* 2. Authentic Ceremonial Brass Deepam / Diya (Handcrafted Vector Stationery Emblem) */}
       <div
         style={{
           display: 'inline-flex',
           flexDirection: 'column',
           alignItems: 'center',
           position: 'relative',
-          margin: '0 auto',
+          margin: '0 auto 12px',
         }}
+        aria-hidden="true"
       >
-        {/* Living Sacred Flame & Aura Glow */}
+        {/* Living Incandescent Sacred Flame */}
         <div
           style={{
             position: 'absolute',
             top: '-2px',
-            width: '16px',
-            height: '24px',
+            width: '13px',
+            height: '20px',
             borderRadius: '50% 50% 35% 35%',
-            background: 'radial-gradient(ellipse at 50% 70%, #FFFFFF 0%, #FFF5CC 25%, #FFA726 65%, rgba(255, 112, 67, 0) 100%)',
-            animation: 'flameOrganic 2.2s infinite ease-in-out',
+            background: 'radial-gradient(ellipse at 50% 75%, #FFFFFF 0%, #FFF8DF 28%, #F59E0B 70%, rgba(217, 119, 6, 0) 100%)',
+            animation: 'flameLiving 2.6s infinite ease-in-out',
             zIndex: 3,
             pointerEvents: 'none',
           }}
         />
 
-        {/* Ambient Warm Golden Aura */}
+        {/* Restrained Warm Ambient Candlelight Aura */}
         <div
           style={{
             position: 'absolute',
-            top: '-8px',
-            width: '42px',
-            height: '42px',
+            top: '4px',
+            left: '50%',
+            transform: 'translate(-50%, -50%)',
+            width: '36px',
+            height: '36px',
             borderRadius: '50%',
-            background: 'radial-gradient(circle, rgba(255, 183, 77, 0.45) 0%, rgba(255, 152, 0, 0.15) 50%, transparent 75%)',
-            animation: 'pulseGlow 3s infinite ease-in-out',
+            background: 'radial-gradient(circle, rgba(245, 158, 11, 0.32) 0%, rgba(217, 119, 6, 0.12) 50%, transparent 75%)',
+            animation: 'diyaAuraRestrained 3.4s infinite ease-in-out',
             zIndex: 1,
             pointerEvents: 'none',
           }}
         />
 
-        {/* Authentic Handcrafted Royal Brass Diya SVG */}
+        {/* Handcrafted Royal Antique Brass Diya Artwork */}
         <svg
-          viewBox="0 0 100 125"
-          width="56"
-          height="70"
+          viewBox="0 0 80 96"
+          width="44"
+          height="54"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
           style={{
-            filter: 'drop-shadow(0 6px 12px rgba(179, 145, 85, 0.35))',
+            filter: 'drop-shadow(0 3px 6px rgba(140, 111, 50, 0.28))',
             display: 'block',
             position: 'relative',
             zIndex: 2,
@@ -117,67 +99,85 @@ export const AuspiciousShloka: React.FC = () => {
         >
           <defs>
             <linearGradient id="brassMetallic" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stopColor="#FFF2B8" />
-              <stop offset="25%" stopColor="#D4A738" />
-              <stop offset="50%" stopColor="#FDEAA8" />
-              <stop offset="75%" stopColor="#8F6A1A" />
-              <stop offset="100%" stopColor="#C99B2A" />
+              <stop offset="0%" stopColor="#FFF8DF" />
+              <stop offset="25%" stopColor="#E5C368" />
+              <stop offset="55%" stopColor="#C5A059" />
+              <stop offset="85%" stopColor="#8C6F32" />
+              <stop offset="100%" stopColor="#B38E3F" />
             </linearGradient>
 
-            <linearGradient id="brassDark" x1="0%" y1="0%" x2="0%" y2="100%">
-              <stop offset="0%" stopColor="#A87F25" />
-              <stop offset="100%" stopColor="#5E430F" />
+            <linearGradient id="brassDarkShade" x1="0%" y1="0%" x2="0%" y2="100%">
+              <stop offset="0%" stopColor="#8C6F32" />
+              <stop offset="100%" stopColor="#4A3B18" />
             </linearGradient>
 
-            <linearGradient id="oilPool" x1="0%" y1="0%" x2="0%" y2="100%">
+            <linearGradient id="sacredOilPool" x1="0%" y1="0%" x2="0%" y2="100%">
               <stop offset="0%" stopColor="#D97706" />
-              <stop offset="100%" stopColor="#92400E" />
+              <stop offset="100%" stopColor="#78350F" />
             </linearGradient>
           </defs>
 
-          {/* Wick Spout */}
-          <path d="M 48 24 Q 50 16 52 24 Z" fill="#451A03" />
+          {/* Diya Wick Tip */}
+          <path d="M 39 17 Q 40 10 41 17 Z" fill="#291807" />
 
-          {/* Diya Bowl Top Lip */}
-          <ellipse cx="50" cy="28" rx="28" ry="8" fill="url(#brassMetallic)" stroke="#7A5618" strokeWidth="1" />
-          {/* Inner Oil Basin */}
-          <ellipse cx="50" cy="27" rx="23" ry="5.5" fill="url(#oilPool)" />
-          {/* Oil Surface Shimmer */}
-          <ellipse cx="50" cy="26" rx="15" ry="3" fill="#FDE68A" opacity="0.6" />
+          {/* Diya Upper Basin Rim */}
+          <ellipse cx="40" cy="20" rx="22" ry="6.5" fill="url(#brassMetallic)" stroke="#6B5421" strokeWidth="0.8" />
+          {/* Inner Sacred Oil Reservoir */}
+          <ellipse cx="40" cy="19.5" rx="18" ry="4.5" fill="url(#sacredOilPool)" />
+          {/* Oil Surface Specular Golden Highlight */}
+          <ellipse cx="40" cy="19" rx="11" ry="2.2" fill="#FEF3C7" opacity="0.65" />
 
-          {/* Diya Bowl Body with Ornate Engraving */}
+          {/* Fluted Cast Brass Bowl Body */}
           <path
-            d="M 22 28 C 22 42, 34 50, 44 52 L 44 60 L 38 64 L 38 68 L 62 68 L 62 64 L 56 60 L 56 52 C 66 50, 78 42, 78 28 Z"
+            d="M 18 20 C 18 31, 28 38, 35 40 L 35 48 L 31 52 L 31 55 L 49 55 L 49 52 L 45 48 L 45 40 C 52 38, 62 31, 62 20 Z"
             fill="url(#brassMetallic)"
-            stroke="#7A5618"
+            stroke="#6B5421"
             strokeWidth="0.8"
           />
 
-          {/* Traditional Carved Fluting Accents */}
-          <path d="M 32 34 Q 50 48 68 34" fill="none" stroke="url(#brassDark)" strokeWidth="1.2" />
-          <path d="M 37 40 Q 50 50 63 40" fill="none" stroke="url(#brassDark)" strokeWidth="1" />
+          {/* Traditional Engraved Band on Basin Body */}
+          <path d="M 24 28 C 30 33, 50 33, 56 28" stroke="#6B5421" strokeWidth="1" fill="none" opacity="0.8" />
+          <path d="M 28 33 C 34 37, 46 37, 52 33" stroke="#FFF8DF" strokeWidth="0.75" fill="none" opacity="0.7" />
 
-          {/* Pedestal Central Baluster Ring */}
-          <rect x="42" y="58" width="16" height="4" rx="2" fill="#FFE8A3" stroke="#8F6A1A" strokeWidth="0.8" />
+          {/* Traditional Stepped Pedestal Base */}
+          <rect x="33" y="55" width="14" height="6" fill="url(#brassDarkShade)" stroke="#6B5421" strokeWidth="0.6" />
+          <ellipse cx="40" cy="62" rx="14" ry="3.5" fill="url(#brassMetallic)" stroke="#6B5421" strokeWidth="0.7" />
+          <ellipse cx="40" cy="67" rx="19" ry="4.5" fill="url(#brassMetallic)" stroke="#52401C" strokeWidth="0.8" />
+          <path d="M 21 67 C 21 73, 26 77, 40 77 C 54 77, 59 73, 59 67 Z" fill="url(#brassDarkShade)" stroke="#52401C" strokeWidth="0.8" />
+          <ellipse cx="40" cy="77" rx="22" ry="5" fill="url(#brassMetallic)" stroke="#6B5421" strokeWidth="0.8" />
 
-          {/* Pedestal Stem */}
-          <path d="M 46 68 L 44 88 L 56 88 L 54 68 Z" fill="url(#brassMetallic)" stroke="#7A5618" strokeWidth="0.8" />
-          {/* Mid-stem Ornate Bead */}
-          <ellipse cx="50" cy="78" rx="7" ry="3.5" fill="#FFF2B8" stroke="#8F6A1A" strokeWidth="0.8" />
-
-          {/* Multi-Tiered Ceremonial Base */}
-          <path d="M 36 88 L 30 102 L 70 102 L 64 88 Z" fill="url(#brassMetallic)" stroke="#7A5618" strokeWidth="0.8" />
-          {/* Base Stepped Foot */}
-          <rect x="24" y="102" width="52" height="6" rx="2" fill="url(#brassMetallic)" stroke="#7A5618" strokeWidth="0.8" />
-          <rect x="20" y="108" width="60" height="4" rx="1.5" fill="url(#brassDark)" />
-
-          {/* Decorative Relief Dots on Base */}
-          <circle cx="36" cy="98" r="1.5" fill="#FFE8A3" />
-          <circle cx="43" cy="98" r="1.5" fill="#FFE8A3" />
-          <circle cx="50" cy="98" r="1.5" fill="#FFE8A3" />
-          <circle cx="57" cy="98" r="1.5" fill="#FFE8A3" />
-          <circle cx="64" cy="98" r="1.5" fill="#FFE8A3" />
+          {/* Base Rim Highlight */}
+          <ellipse cx="40" cy="76" rx="18" ry="3.2" fill="none" stroke="#FFF8DF" strokeWidth="0.6" opacity="0.75" />
         </svg>
+      </div>
+
+      {/* 3. English Blessing Subtitle (With Clean Multi-Line Responsive Balance) */}
+      <div
+        style={{
+          padding: '0 8px',
+          maxWidth: '420px',
+          margin: '0 auto',
+          boxSizing: 'border-box',
+          width: '100%',
+        }}
+      >
+        <p
+          style={{
+            fontFamily: 'var(--font-body)',
+            fontSize: 'clamp(0.72rem, 1.8vw, 0.82rem)',
+            color: 'var(--color-ink-muted)',
+            letterSpacing: '0.12em',
+            textTransform: 'uppercase',
+            fontWeight: 600,
+            lineHeight: 1.5,
+            margin: '0 auto',
+            textAlign: 'center',
+          }}
+        >
+          With the Divine Grace &amp; Blessings
+          <br />
+          of the Almighty
+        </p>
       </div>
     </section>
   );
