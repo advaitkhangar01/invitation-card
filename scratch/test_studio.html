@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <style>
+    body { margin: 0; background: #FAF8F5; overflow: hidden; display: flex; align-items: center; justify-content: center; height: 100vh; }
+    canvas { width: 440px; height: 280px; }
+  </style>
+  <script type="importmap">
+    {
+      "imports": {
+        "three": "/node_modules/three/build/three.module.js",
+        "three/addons/": "/node_modules/three/examples/jsm/"
+      }
+    }
+  </script>
+</head>
+<body>
+<div id="container" style="width: 440px; height: 280px;"></div>
+<script type="module">
+  import * as THREE from 'three';
+
+  const width = 440;
+  const height = 280;
+  const container = document.getElementById('container');
+
+  const scene = new THREE.Scene();
+  const camera = new THREE.PerspectiveCamera(32, width / height, 0.1, 100);
+  camera.position.set(0, 3.8, 8.2);
+  camera.lookAt(0, 0, 0);
+
+  const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true, powerPreference: 'high-performance' });
+  renderer.setSize(width, height);
+  renderer.setPixelRatio(2);
+  renderer.toneMapping = THREE.ACESFilmicToneMapping;
+  renderer.toneMappingExposure = 1.05;
+  renderer.shadowMap.enabled = true;
+  renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+  container.appendChild(renderer.domElement);
+
+  // BUILD A PROFESSIONAL HIGH-CONTRAST JEWELLERY STUDIO ENVIRONMENT CUBEMAP
+  // In jewellery photography, metallic luster is defined by high-contrast black, white, and warm golden studio softboxes.
+  function createJewelleryStudioEnvironment() {
+    const envScene = new THREE.Scene();
+    envScene.background = new THREE.Color(0x1a1612); // Warm dark ambient
+
+    // Top Softbox (White highlight)
+    const topLightGeo = new THREE.PlaneGeometry(12, 12);
+    const topLightMat = new THREE.MeshBasicMaterial({ color: 0xffffff });
+    const topLight = new THREE.Mesh(topLightGeo, topLightMat);
+    topLight.position.set(0, 8, 0);
+    topLight.rotation.x = Math.PI / 2;
+    envScene.add(topLight);
+
+    // Front-Right Key Softbox (Bright white with warm falloff)
+    const keyGeo = new THREE.PlaneGeometry(8, 14);
+    const keyMat = new THREE.MeshBasicMaterial({ color: 0xfff8ee });
+    const key = new THREE.Mesh(keyGeo, keyMat);
+    key.position.set(7, 4, 7);
+    key.lookAt(0, 0, 0);
+    envScene.add(key);
+
+    // Front-Left Fill Softbox (Warm champagne gold)
+    const fillGeo = new THREE.PlaneGeometry(7, 12);
+    const fillMat = new THREE.MeshBasicMaterial({ color: 0xf5d996 });
+    const fill = new THREE.Mesh(fillGeo, fillMat);
+    fill.position.set(-8, 3, 6);
+    fill.lookAt(0, 0, 0);
+    envScene.add(fill);
+
+    // Black Flag / Reflector Strip (Creates dark reflections for metallic contrast)
+    const blackFlagGeo = new THREE.PlaneGeometry(5, 14);
+    const blackFlagMat = new THREE.MeshBasicMaterial({ color: 0x050403 });
+    const blackFlag = new THREE.Mesh(blackFlagGeo, blackFlagMat);
+    blackFlag.position.set(0, 0, 9);
+    blackFlag.lookAt(0, 0, 0);
+    envScene.add(blackFlag);
+
+    // Floor bounce (Ivory paper reflection)
+    const floorGeo = new THREE.PlaneGeometry(16, 16);
+    const floorMat = new THREE.MeshBasicMaterial({ color: 0xfaf6ef });
+    const floor = new THREE.Mesh(floorGeo, floorMat);
+    floor.position.set(0, -6, 0);
+    floor.rotation.x = -Math.PI / 2;
+    envScene.add(floor);
+
+    const pmremGen = new THREE.PMREMGenerator(renderer);
+    const envTexture = pmremGen.fromScene(envScene, 0.04).texture;
+    pmremGen.dispose();
+    return envTexture;
+  }
+
+  const studioEnv = createJewelleryStudioEnvironment();
+  scene.environment = studioEnv;
+
+  // Scene Direct Lights
+  const ambient = new THREE.AmbientLight(0xfff6eb, 0.6);
+  scene.add(ambient);
+
+  const mainDir = new THREE.DirectionalLight(0xfff5e6, 2.2);
+  mainDir.position.set(4, 9, 6);
+  mainDir.castShadow = true;
+  mainDir.shadow.mapSize.width = 1024;
+  mainDir.shadow.mapSize.height = 1024;
+  mainDir.shadow.bias = -0.0003;
+  mainDir.shadow.radius = 3.5;
+  scene.add(mainDir);
+
+  const warmRim = new THREE.DirectionalLight(0xedd3a1, 1.4);
+  warmRim.position.set(-6, 5, -4);
+  scene.add(warmRim);
+
+  // Soft Contact AO Shadow on Card Surface
+  const shadowCanvas = document.createElement('canvas');
+  shadowCanvas.width = 512; shadowCanvas.height = 256;
+  const sCtx = shadowCanvas.getContext('2d');
+  
+  // Left ring contact shadow
+  let g1 = sCtx.createRadialGradient(180, 140, 5, 180, 140, 95);
+  g1.addColorStop(0, 'rgba(50, 35, 15, 0.45)');
+  g1.addColorStop(0.3, 'rgba(70, 50, 22, 0.22)');
+  g1.addColorStop(0.7, 'rgba(100, 75, 35, 0.08)');
+  g1.addColorStop(1, 'rgba(0, 0, 0, 0)');
+  sCtx.fillStyle = g1;
+  sCtx.beginPath();
+  sCtx.ellipse(180, 140, 95, 42, -0.15, 0, Math.PI * 2);
+  sCtx.fill();
+
+  // Right ring contact shadow
+  let g2 = sCtx.createRadialGradient(330, 138, 5, 330, 138, 85);
+  g2.addColorStop(0, 'rgba(50, 35, 15, 0.42)');
+  g2.addColorStop(0.3, 'rgba(70, 50, 22, 0.20)');
+  g2.addColorStop(0.7, 'rgba(100, 75, 35, 0.07)');
+  g2.addColorStop(1, 'rgba(0, 0, 0, 0)');
+  sCtx.fillStyle = g2;
+  sCtx.beginPath();
+  sCtx.ellipse(330, 138, 85, 38, 0.15, 0, Math.PI * 2);
+  sCtx.fill();
+
+  const contactTex = new THREE.CanvasTexture(shadowCanvas);
+  const contactMesh = new THREE.Mesh(
+    new THREE.PlaneGeometry(6.8, 3.4),
+    new THREE.MeshBasicMaterial({ map: contactTex, transparent: true, depthWrite: false })
+  );
+  contactMesh.rotation.x = -Math.PI / 2;
+  contactMesh.position.set(0, -1.05, 0.2);
+  scene.add(contactMesh);
+
+  // 18K Luxury Warm Yellow Gold PBR Material
+  const goldMaterial = new THREE.MeshPhysicalMaterial({
+    color: new THREE.Color(0xdab469),
+    emissive: new THREE.Color(0x1a1205),
+    metalness: 0.98,
+    roughness: 0.11,
+    clearcoat: 0.15,
+    clearcoatRoughness: 0.08,
+    reflectivity: 0.9,
+    envMapIntensity: 1.6,
+  });
+
+  // Slightly warmer rose/champagne gold for the second band to give authentic distinction
+  const bridalGoldMaterial = new THREE.MeshPhysicalMaterial({
+    color: new THREE.Color(0xdfba78),
+    emissive: new THREE.Color(0x1a1306),
+    metalness: 0.98,
+    roughness: 0.09,
+    clearcoat: 0.2,
+    clearcoatRoughness: 0.06,
+    reflectivity: 0.92,
+    envMapIntensity: 1.65,
+  });
+
+  // Function to create a realistic jewellery band with rounded court profile
+  function createCourtProfileRing(ringRadius, bandWidth, thickness, radialSeg = 128) {
+    const pts = [];
+    const hw = bandWidth / 2;
+    const steps = 14;
+    // Outer domed curve
+    for (let i = 0; i <= steps; i++) {
+      const a = (i / steps) * Math.PI - Math.PI / 2;
+      const x = Math.cos(a) * thickness;
+      const y = Math.sin(a) * hw;
+      pts.push(new THREE.Vector2(ringRadius + x, y));
+    }
+    // Inner comfort-fit soft curve (gentle concave/comfort fit)
+    for (let i = steps; i >= 0; i--) {
+      const a = (i / steps) * Math.PI - Math.PI / 2;
+      const x = Math.cos(a) * (thickness * 0.28);
+      const y = Math.sin(a) * (hw * 0.85);
+      pts.push(new THREE.Vector2(ringRadius - x, y));
+    }
+    return new THREE.LatheGeometry(pts, radialSeg);
+  }
+
+  const ringsRoot = new THREE.Group();
+
+  // Ring 1: Groom's Court Band (Left, classic 5mm proportion, standing tilted)
+  const groomGeo = createCourtProfileRing(1.35, 0.48, 0.22, 160);
+  const groomRing = new THREE.Mesh(groomGeo, goldMaterial);
+  groomRing.castShadow = true;
+  groomRing.receiveShadow = true;
+  groomRing.position.set(-0.75, -0.05, -0.15);
+  groomRing.rotation.set(0.62, -0.38, 0.22);
+  ringsRoot.add(groomRing);
+
+  // Ring 2: Bride's Band (Right, delicate 3.6mm proportion, interlocking physically with clearance)
+  const brideGeo = createCourtProfileRing(1.28, 0.36, 0.18, 160);
+  const brideRing = new THREE.Mesh(brideGeo, bridalGoldMaterial);
+  brideRing.castShadow = true;
+  brideRing.receiveShadow = true;
+  brideRing.position.set(0.72, -0.12, 0.18);
+  brideRing.rotation.set(0.52, 0.42, -0.25);
+  ringsRoot.add(brideRing);
+
+  scene.add(ringsRoot);
+
+  renderer.render(scene, camera);
+  window.RENDER_DONE = true;
+</script>
+</body>
+</html>

@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <style>
+    body { margin: 0; background: #FAF8F5; overflow: hidden; display: flex; align-items: center; justify-content: center; height: 100vh; gap: 20px; }
+    canvas { width: 440px; height: 280px; }
+  </style>
+  <script type="importmap">
+    {
+      "imports": {
+        "three": "/node_modules/three/build/three.module.js",
+        "three/addons/": "/node_modules/three/examples/jsm/"
+      }
+    }
+  </script>
+</head>
+<body>
+<div id="c1" style="width: 440px; height: 280px;"></div>
+<div id="c2" style="width: 440px; height: 280px;"></div>
+<script type="module">
+  import * as THREE from 'three';
+
+  function setupScene(container, withDiamond) {
+    const width = 440;
+    const height = 280;
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(30, width / height, 0.1, 100);
+    camera.position.set(0, 3.5, 7.8);
+    camera.lookAt(0, -0.1, 0);
+
+    const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true, powerPreference: 'high-performance' });
+    renderer.setSize(width, height);
+    renderer.setPixelRatio(2);
+    renderer.toneMapping = THREE.ACESFilmicToneMapping;
+    renderer.toneMappingExposure = 1.08;
+    renderer.shadowMap.enabled = true;
+    renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+    container.appendChild(renderer.domElement);
+
+    // Studio Environment
+    const envScene = new THREE.Scene();
+    envScene.background = new THREE.Color(0x181410);
+
+    const topLight = new THREE.Mesh(new THREE.PlaneGeometry(14, 14), new THREE.MeshBasicMaterial({ color: 0xffffff }));
+    topLight.position.set(0, 8, 0);
+    topLight.rotation.x = Math.PI / 2;
+    envScene.add(topLight);
+
+    const key = new THREE.Mesh(new THREE.PlaneGeometry(8, 14), new THREE.MeshBasicMaterial({ color: 0xfff6ec }));
+    key.position.set(6, 4, 7);
+    key.lookAt(0, 0, 0);
+    envScene.add(key);
+
+    const fill = new THREE.Mesh(new THREE.PlaneGeometry(8, 12), new THREE.MeshBasicMaterial({ color: 0xf5dca3 }));
+    fill.position.set(-7, 3, 6);
+    fill.lookAt(0, 0, 0);
+    envScene.add(fill);
+
+    const blackFlag = new THREE.Mesh(new THREE.PlaneGeometry(6, 14), new THREE.MeshBasicMaterial({ color: 0x050403 }));
+    blackFlag.position.set(0, 0, 8);
+    blackFlag.lookAt(0, 0, 0);
+    envScene.add(blackFlag);
+
+    const floor = new THREE.Mesh(new THREE.PlaneGeometry(16, 16), new THREE.MeshBasicMaterial({ color: 0xfaf6ef }));
+    floor.position.set(0, -5, 0);
+    floor.rotation.x = -Math.PI / 2;
+    envScene.add(floor);
+
+    const pmremGen = new THREE.PMREMGenerator(renderer);
+    const envTexture = pmremGen.fromScene(envScene, 0.04).texture;
+    pmremGen.dispose();
+    scene.environment = envTexture;
+
+    // Direct Lights
+    const ambient = new THREE.AmbientLight(0xfff5ea, 0.5);
+    scene.add(ambient);
+
+    const mainDir = new THREE.DirectionalLight(0xfff6eb, 2.5);
+    mainDir.position.set(4, 8, 5);
+    mainDir.castShadow = true;
+    mainDir.shadow.mapSize.width = 2048;
+    mainDir.shadow.mapSize.height = 2048;
+    mainDir.shadow.bias = -0.0002;
+    mainDir.shadow.radius = 3;
+    scene.add(mainDir);
+
+    const warmRim = new THREE.DirectionalLight(0xf2ddb6, 1.3);
+    warmRim.position.set(-6, 4, -4);
+    scene.add(warmRim);
+
+    // Contact AO Shadow Plane
+    const shadowCanvas = document.createElement('canvas');
+    shadowCanvas.width = 512; shadowCanvas.height = 256;
+    const sCtx = shadowCanvas.getContext('2d');
+    
+    // Groom ring contact shadow
+    let g1 = sCtx.createRadialGradient(185, 145, 6, 185, 145, 90);
+    g1.addColorStop(0, 'rgba(45, 30, 12, 0.42)');
+    g1.addColorStop(0.35, 'rgba(65, 45, 18, 0.18)');
+    g1.addColorStop(0.75, 'rgba(90, 65, 28, 0.06)');
+    g1.addColorStop(1, 'rgba(0, 0, 0, 0)');
+    sCtx.fillStyle = g1;
+    sCtx.beginPath();
+    sCtx.ellipse(185, 145, 90, 38, -0.15, 0, Math.PI * 2);
+    sCtx.fill();
+
+    // Bride ring contact shadow
+    let g2 = sCtx.createRadialGradient(325, 142, 6, 325, 142, 85);
+    g2.addColorStop(0, 'rgba(45, 30, 12, 0.40)');
+    g2.addColorStop(0.35, 'rgba(65, 45, 18, 0.17)');
+    g2.addColorStop(0.75, 'rgba(90, 65, 28, 0.05)');
+    g2.addColorStop(1, 'rgba(0, 0, 0, 0)');
+    sCtx.fillStyle = g2;
+    sCtx.beginPath();
+    sCtx.ellipse(325, 142, 85, 35, 0.18, 0, Math.PI * 2);
+    sCtx.fill();
+
+    const contactTex = new THREE.CanvasTexture(shadowCanvas);
+    const contactMesh = new THREE.Mesh(
+      new THREE.PlaneGeometry(6.6, 3.3),
+      new THREE.MeshBasicMaterial({ map: contactTex, transparent: true, depthWrite: false })
+    );
+    contactMesh.rotation.x = -Math.PI / 2;
+    contactMesh.position.set(0, -1.02, 0.22);
+    scene.add(contactMesh);
+
+    // Materials
+    const goldMaterial = new THREE.MeshPhysicalMaterial({
+      color: new THREE.Color(0xd9b366),
+      emissive: new THREE.Color(0x181104),
+      metalness: 0.98,
+      roughness: 0.11,
+      clearcoat: 0.18,
+      clearcoatRoughness: 0.07,
+      reflectivity: 0.9,
+      envMapIntensity: 1.6,
+    });
+
+    const bridalGoldMaterial = new THREE.MeshPhysicalMaterial({
+      color: new THREE.Color(0xdeb872),
+      emissive: new THREE.Color(0x191205),
+      metalness: 0.98,
+      roughness: 0.09,
+      clearcoat: 0.22,
+      clearcoatRoughness: 0.06,
+      reflectivity: 0.92,
+      envMapIntensity: 1.65,
+    });
+
+    function createCourtProfileRing(ringRadius, bandWidth, thickness, radialSeg = 160) {
+      const pts = [];
+      const hw = bandWidth / 2;
+      const steps = 14;
+      for (let i = 0; i <= steps; i++) {
+        const a = (i / steps) * Math.PI - Math.PI / 2;
+        const x = Math.cos(a) * thickness;
+        const y = Math.sin(a) * hw;
+        pts.push(new THREE.Vector2(ringRadius + x, y));
+      }
+      for (let i = steps; i >= 0; i--) {
+        const a = (i / steps) * Math.PI - Math.PI / 2;
+        const x = Math.cos(a) * (thickness * 0.28);
+        const y = Math.sin(a) * (hw * 0.85);
+        pts.push(new THREE.Vector2(ringRadius - x, y));
+      }
+      return new THREE.LatheGeometry(pts, radialSeg);
+    }
+
+    const ringsRoot = new THREE.Group();
+
+    // Groom's Band (Left, 5mm proportion, classic comfort-fit)
+    const groomGeo = createCourtProfileRing(1.35, 0.48, 0.22, 160);
+    const groomRing = new THREE.Mesh(groomGeo, goldMaterial);
+    groomRing.castShadow = true;
+    groomRing.receiveShadow = true;
+    groomRing.position.set(-0.72, -0.05, -0.18);
+    groomRing.rotation.set(0.64, -0.36, 0.20);
+    ringsRoot.add(groomRing);
+
+    // Bride's Band (Right, 3.6mm proportion, resting propped against Groom's band)
+    const brideGeo = createCourtProfileRing(1.26, 0.36, 0.18, 160);
+    const brideRing = new THREE.Mesh(brideGeo, bridalGoldMaterial);
+    brideRing.castShadow = true;
+    brideRing.receiveShadow = true;
+    brideRing.position.set(0.68, -0.12, 0.18);
+    brideRing.rotation.set(0.50, 0.40, -0.24);
+
+    if (withDiamond) {
+      // 4-Prong Cathedral Solitaire Setting
+      const crown = new THREE.Group();
+      crown.position.set(0, 1.36, 0);
+
+      const colletGeo = new THREE.CylinderGeometry(0.34, 0.22, 0.18, 32);
+      const collet = new THREE.Mesh(colletGeo, goldMaterial);
+      collet.position.y = 0.08;
+      crown.add(collet);
+
+      const numProngs = 4;
+      for (let i = 0; i < numProngs; i++) {
+        const a = (i / numProngs) * Math.PI * 2 + Math.PI / 4;
+        const prongGeo = new THREE.CylinderGeometry(0.045, 0.038, 0.42, 16);
+        const prong = new THREE.Mesh(prongGeo, goldMaterial);
+        const px = Math.cos(a) * 0.28;
+        const pz = Math.sin(a) * 0.28;
+        prong.position.set(px, 0.22, pz);
+        prong.rotation.x = (pz / 0.28) * -0.12;
+        prong.rotation.z = (px / 0.28) * 0.12;
+        prong.castShadow = true;
+        crown.add(prong);
+
+        const claw = new THREE.Mesh(new THREE.SphereGeometry(0.046, 12, 12), goldMaterial);
+        claw.position.set(px * 0.92, 0.42, pz * 0.92);
+        crown.add(claw);
+      }
+
+      // Brilliant Diamond
+      const diaMat = new THREE.MeshPhysicalMaterial({
+        color: new THREE.Color(0xffffff),
+        transmission: 0.95,
+        opacity: 1,
+        transparent: true,
+        ior: 2.417,
+        roughness: 0.01,
+        metalness: 0.0,
+        thickness: 0.9,
+        envMapIntensity: 2.5,
+      });
+
+      // Octagonal faceted diamond
+      const facets = 10;
+      const vertices = [0, 0.22, 0, 0, -0.22, 0];
+      for (let i = 0; i < facets; i++) {
+        const a = (i / facets) * Math.PI * 2;
+        vertices.push(Math.cos(a) * 0.16, 0.22, Math.sin(a) * 0.16);
+      }
+      for (let i = 0; i < facets; i++) {
+        const a = (i / facets) * Math.PI * 2;
+        vertices.push(Math.cos(a) * 0.28, 0.06, Math.sin(a) * 0.28);
+      }
+      for (let i = 0; i < facets; i++) {
+        const a = ((i + 0.5) / facets) * Math.PI * 2;
+        vertices.push(Math.cos(a) * 0.26, -0.02, Math.sin(a) * 0.26);
+      }
+      const indices = [];
+      const tOff = 2, gOff = 2 + facets, lgOff = 2 + 2 * facets;
+      for (let i = 0; i < facets; i++) {
+        const n = (i + 1) % facets;
+        indices.push(0, tOff + i, tOff + n);
+        indices.push(tOff + i, gOff + i, tOff + n);
+        indices.push(tOff + n, gOff + i, gOff + n);
+        indices.push(gOff + i, lgOff + i, gOff + n);
+        indices.push(gOff + n, lgOff + i, lgOff + n);
+        indices.push(lgOff + i, 1, lgOff + n);
+      }
+      const dGeo = new THREE.BufferGeometry();
+      dGeo.setAttribute('position', new THREE.Float32BufferAttribute(vertices, 3));
+      dGeo.setIndex(indices);
+      dGeo.computeVertexNormals();
+
+      const diaMesh = new THREE.Mesh(dGeo, diaMat);
+      diaMesh.position.set(0, 0.24, 0);
+      crown.add(diaMesh);
+
+      brideRing.add(crown);
+    }
+
+    ringsRoot.add(brideRing);
+    scene.add(ringsRoot);
+
+    renderer.render(scene, camera);
+  }
+
+  setupScene(document.getElementById('c1'), false); // Pure gold bands
+  setupScene(document.getElementById('c2'), true);  // With solitaire diamond
+  window.RENDER_DONE = true;
+</script>
+</body>
+</html>
